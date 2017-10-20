@@ -1,0 +1,17 @@
+# Description: GNU compression utility (replacement for compress)
+# URL:         http://www.gzip.org/
+# Maintainer:  CRUX System Team, core-ports at crux dot nu
+# Depends on:  curl openssl
+
+name=xmlrpc-c
+version=1.43.06
+release=1
+svnrev=2912
+source=(https://sourceforge.net/code-snapshots/svn/x/xm/$name/code/$name-code-$svnrev-trunk.zip)
+
+build() {
+    cd $name-code-$svnrev-trunk
+    ./configure --prefix=/usr
+    make
+    make DESTDIR=$PKG install
+}
