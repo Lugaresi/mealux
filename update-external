@@ -1,0 +1,3 @@
+cp -r /usr/ports/contrib/rtorrent .
+sed -i /usr/ports/mealux/rtorrent/Pkgfile -e 's@libsigc++@libsigc++ xmlrpc-c@g' -e 's@--prefix=/usr@--prefix=/usr --with-xmlrpc-c@g'
+rm /usr/ports/mealux/rtorrent/.md5sum /usr/ports/mealux/rtorrent/.signature

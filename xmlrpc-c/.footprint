@@ -1,5 +1,6 @@
 drwxr-xr-x	root/root	usr/
 drwxr-xr-x	root/root	usr/bin/
+-rwxr-xr-x	root/root	usr/bin/xmlrpc-c-config
 drwxr-xr-x	root/root	usr/include/
 lrwxrwxrwx	root/root	usr/include/XmlRpcCpp.h -> xmlrpc-c/oldcppwrapper.hpp
 drwxr-xr-x	root/root	usr/include/xmlrpc-c/
