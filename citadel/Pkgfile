@@ -1,0 +1,20 @@
+# Description: Email and collaboration server - Server Binary.
+# URL:         http://www.citadel.org/doku.php
+# Maintainer:  Lugaresi
+# Depends on:  libcitadel
+
+name=citadel
+version=9.17
+release=1
+source=(http://easyinstall.citadel.org/citadel.tar.gz 001-libical3_support_citadel.patch citadel.s)
+
+build() {
+    cd $name
+    patch -p1 -i $SRC/001-libical3_support_citadel.patch
+    ./configure --prefix=/var/citadel
+    make
+    make DESTDIR=$PKG install
+    mkdir -p $PKG/etc/rc.d
+    install -m 755 $SRC/citadel.s $PKG/etc/rc.d/citadel
+    chown -R citadel:citadel $PKG/var/citadel
+}

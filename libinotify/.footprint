@@ -1,0 +1,16 @@
+drwxr-xr-x	root/root	usr/
+drwxr-xr-x	root/root	usr/lib/
+-rwxr-xr-x	root/root	usr/lib/libinotify.a
+-rwxr-xr-x	root/root	usr/lib/libinotify.la
+drwxr-xr-x	root/root	usr/lib/pkgconfig/
+-rw-r--r--	root/root	usr/lib/pkgconfig/libinotify.pc
+drwxr-xr-x	root/root	usr/share/
+drwxr-xr-x	root/root	usr/share/man/
+drwxr-xr-x	root/root	usr/share/man/man3/
+lrwxrwxrwx	root/root	usr/share/man/man3/inotify_add_watch.3.gz -> libinotify.3.gz
+lrwxrwxrwx	root/root	usr/share/man/man3/inotify_event.3.gz -> libinotify.3.gz
+lrwxrwxrwx	root/root	usr/share/man/man3/inotify_init.3.gz -> libinotify.3.gz
+lrwxrwxrwx	root/root	usr/share/man/man3/inotify_init1.3.gz -> libinotify.3.gz
+lrwxrwxrwx	root/root	usr/share/man/man3/inotify_rm_watch.3.gz -> libinotify.3.gz
+lrwxrwxrwx	root/root	usr/share/man/man3/inotify_set_param.3.gz -> libinotify.3.gz
+-rw-r--r--	root/root	usr/share/man/man3/libinotify.3.gz

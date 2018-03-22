@@ -1,0 +1,18 @@
+# Description: Libical is an Open Source implementation of the iCalendar protocols and protocol data units.
+# URL:         https://github.com/libical/libical
+# Maintainer:  Lugaresi
+# Depends on:  perl icu
+
+name=libical
+version=3.0.3
+release=1
+source=(https://github.com/libical/libical/releases/download/v$version/$name-$version.tar.gz)
+
+build() {
+    cd $name-$version
+    mkdir build && cd build
+    cmake -DCMAKE_INSTALL_PREFIX=/usr ..
+    make
+    make DESTDIR=$PKG install
+    mv $PKG/usr/lib64 $PKG/usr/lib
+}

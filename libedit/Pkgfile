@@ -1,0 +1,18 @@
+# Description: Port of the NetBSD Editline library (libedit)
+# URL:         http://thrysoee.dk/editline/
+# Maintainer:  Lugaresi
+# Depends on:  
+
+name=libedit
+version=3.1
+release=1
+date=20170329
+source=(http://thrysoee.dk/editline/libedit-$date-$version.tar.gz)
+
+build() {
+    cd $name-$date-$version
+    ./configure --prefix=/usr
+    make
+    make DESTDIR=$PKG install
+    rm -rf $PKG/usr/share/man/man3/history*
+}

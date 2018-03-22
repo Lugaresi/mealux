@@ -1,0 +1,6 @@
+drwxr-xr-x	root/root	etc/
+drwxr-xr-x	root/root	etc/firewall/
+-rw-r--r--	root/root	etc/firewall/rules-both.iptables
+-rw-r--r--	root/root	etc/firewall/rules-ipv4.iptables
+drwxr-xr-x	root/root	etc/rc.d/
+-rwxr-xr-x	root/root	etc/rc.d/firewall

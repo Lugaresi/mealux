@@ -1,0 +1,20 @@
+# Description:
+# URL:         https://www.opensmtpd.org
+# Maintainer:  Isak Andersson, contact at bitpuffin dot com
+#
+# depends on: libevent libasr
+
+name=libasr
+version=1.0.1
+release=1
+source=(
+  https://www.opensmtpd.org/archives/$name-$version.tar.gz
+)
+
+build() {
+  cd $name-$version
+
+  ./configure --prefix=/usr
+  make
+  make DESTDIR=$PKG install
+}

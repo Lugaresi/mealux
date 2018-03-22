@@ -1,0 +1,5 @@
+#!/bin/sh
+
+/usr/sbin/usermod -d /var/empty -s /sbin/nologin mail
+getent passwd mailq || /usr/sbin/useradd -r -g mail -d /var/empty -s /sbin/nologin mailq
+/usr/bin/passwd -l mailq

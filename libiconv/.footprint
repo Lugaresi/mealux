@@ -1,0 +1,18 @@
+drwxr-xr-x	root/root	usr/
+drwxr-xr-x	root/root	usr/bin/
+drwxr-xr-x	root/root	usr/include/
+-rw-r--r--	root/root	usr/include/libcharset.h
+-rw-r--r--	root/root	usr/include/localcharset.h
+drwxr-xr-x	root/root	usr/lib/
+-rw-r--r--	root/root	usr/lib/charset.alias
+-rw-r--r--	root/root	usr/lib/libcharset.a
+-rwxr-xr-x	root/root	usr/lib/libcharset.la
+lrwxrwxrwx	root/root	usr/lib/libcharset.so -> libcharset.so.1.0.0
+lrwxrwxrwx	root/root	usr/lib/libcharset.so.1 -> libcharset.so.1.0.0
+-rwxr-xr-x	root/root	usr/lib/libcharset.so.1.0.0
+-rwxr-xr-x	root/root	usr/lib/libiconv.la
+lrwxrwxrwx	root/root	usr/lib/libiconv.so -> libiconv.so.2.6.0
+lrwxrwxrwx	root/root	usr/lib/libiconv.so.2 -> libiconv.so.2.6.0
+-rwxr-xr-x	root/root	usr/lib/libiconv.so.2.6.0
+-rw-r--r--	root/root	usr/lib/preloadable_libiconv.so
+drwxr-xr-x	root/root	usr/share/

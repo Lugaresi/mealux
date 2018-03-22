@@ -1,0 +1,9 @@
+drwxr-xr-x	root/root	usr/
+drwxr-xr-x	root/root	usr/include/
+-rw-r--r--	root/root	usr/include/asr.h
+drwxr-xr-x	root/root	usr/lib/
+-rw-r--r--	root/root	usr/lib/libasr.a
+-rw-r--r--	root/root	usr/lib/libasr.la
+lrwxrwxrwx	root/root	usr/lib/libasr.so -> libasr.so.0.0.1
+lrwxrwxrwx	root/root	usr/lib/libasr.so.0 -> libasr.so.0.0.1
+-rw-r--r--	root/root	usr/lib/libasr.so.0.0.1

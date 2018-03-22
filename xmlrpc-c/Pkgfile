@@ -4,9 +4,9 @@
 # Depends on:  curl openssl
 
 name=xmlrpc-c
-version=1.43.06
+version=1.51.00
 release=1
-svnrev=2912
+svnrev=2981
 source=(https://sourceforge.net/code-snapshots/svn/x/xm/$name/code/$name-code-$svnrev-trunk.zip)
 
 build() {

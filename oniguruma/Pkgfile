@@ -1,0 +1,17 @@
+# Description: Oniguruma is a regular expressions library.
+# URL:         https://github.com/kkos/oniguruma/
+# Maintainer:  Lugaresi
+# Depends on:  
+
+name=oniguruma
+version=6.7.1
+release=1
+source=(https://github.com/kkos/$name/archive/v$version.tar.gz)
+
+build() {
+    cd $name-$version
+    mkdir build && cd build
+    cmake -DCMAKE_INSTALL_PREFIX=/usr ..
+    make
+    make DESTDIR=$PKG install
+}

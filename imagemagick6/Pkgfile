@@ -1,0 +1,32 @@
+# Description: Image manipulation wizard - Legacy 6.x Version
+# URL:         http://www.imagemagick.org/
+# Maintainer:  Juergen Daubert, jue at crux dot nu
+# Packager:    danm, maol, jaeger, sip
+# Depends on:  util-linux lcms2 pango xorg-libxt
+
+name=imagemagick6
+version=6.9.9-20
+release=1
+source=(ftp://ftp.imagemagick.org/pub/ImageMagick/releases/ImageMagick-$version.tar.xz ImageMagick-6.9.7-8-libs_only-1.patch)
+
+build () {
+    cd ImageMagick-$version
+    patch -p1 -i $SRC/ImageMagick-6.9.7-8-libs_only-1.patch
+
+    ./configure --prefix=/usr \
+                --enable-shared \
+                --with-modules \
+                --with-perl=no \
+                --with-lcms=no --with-lcms2=yes
+
+    make
+    make DESTDIR=$PKG install
+
+    rm -r $PKG/usr/share/doc
+    rm -rf $PKG/usr/share/man/
+    rm -rf $PKG/usr/bin
+    rm -rf $PKG/usr/lib/perl5/
+    find $PKG -regex '.*\(ChangeLog\|LICENSE\|NEWS\.txt\)$' -delete 
+    find $PKG -regex '.*\(\.packlist\|perllocal.pod\|\.bs\)$' -delete
+    find $PKG -type d -empty -delete
+}

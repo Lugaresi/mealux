@@ -1,0 +1,11 @@
+--- hhvm-3.24.3/hphp/runtime/ext/domdocument/ext_domdocument.cpp.orig	2018-03-10 05:25:44.130000003 +0100
++++ hhvm-3.24.3/hphp/runtime/ext/domdocument/ext_domdocument.cpp	2018-03-10 05:27:03.563333337 +0100
+@@ -1452,7 +1452,7 @@ struct notationIterator {
+   xmlNotation *notation;
+ };
+ 
+-static void itemHashScanner(void* payload, void* data, xmlChar* /*name*/) {
++static void itemHashScanner(void* payload, void* data, const xmlChar* /*name*/) {
+   nodeIterator *priv = (nodeIterator *)data;
+   if (priv->cur < priv->index) {
+     priv->cur++;

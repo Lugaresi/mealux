@@ -1,0 +1,16 @@
+# Description: C/C++ client library and tools for the memcached server
+# URL:         http://libmemcached.org/libMemcached.html
+# Maintainer:  Lugaresi
+# Depends on:  
+
+name=libmemcached
+version=1.0.18
+release=1
+source=(https://launchpad.net/libmemcached/1.0/$version/+download/$name-$version.tar.gz)
+
+build() {
+    cd $name-$version
+    ./configure --prefix=/usr
+    make
+    make DESTDIR=$PKG install
+}

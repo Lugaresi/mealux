@@ -1,0 +1,23 @@
+#!/bin/sh
+#
+# /etc/rc.d/opensmptd: start/stop opensmtpd daemon
+#
+
+case $1 in
+start)
+  /usr/sbin/smtpd
+  ;;
+stop)
+  /usr/sbin/smtpctl stop
+  ;;
+restart)
+  $0 stop
+  sleep 2
+  $0 start
+  ;;
+*)
+  echo "usage: $0 [start|stop|restart]"
+  ;;
+esac
+
+# End of file

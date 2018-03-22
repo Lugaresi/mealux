@@ -1,0 +1,24 @@
+# Description: 
+# URL:         https://www.opensmtpd.org
+# Maintainer:  Isak Andersson, contact at bitpuffin dot com
+#
+# depends on: libevent libasr
+
+name=opensmtpd
+version=6.0.3p1
+release=1
+source=(
+  https://www.$name.org/archives/$name-$version.tar.gz
+  $name.rc
+)
+
+build() {
+  cd $name-$version
+
+  ./configure --prefix=/usr --mandir=/usr/man --sysconfdir=/etc --libexecdir=/usr/lib --with-pam --with-user-smtpd=mail --with-user-queue=mailq --with-group-queue=mail
+
+  make
+  make DESTDIR=$PKG install
+  install -D -m 755 $SRC/$name.rc $PKG/etc/rc.d/$name
+  ln -s /usr/sbin/smtpctl $PKG/usr/sbin/sendmail
+}

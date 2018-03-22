@@ -1,0 +1,20 @@
+# Description: Email and collaboration server - WWW interface.
+# URL:         http://www.citadel.org/doku.php
+# Maintainer:  Lugaresi
+# Depends on:  citadel
+
+name=webcit
+version=9.17
+release=1
+source=(http://easyinstall.citadel.org/webcit.tar.gz 001-libical3_support_webcit.patch webcit.s)
+
+build() {
+    cd $name
+    patch -p1 -i $SRC/001-libical3_support_webcit.patch
+    ./configure --prefix=/var/citadel/webcit
+    make
+    make DESTDIR=$PKG install
+    mkdir -p $PKG/etc/rc.d
+    install -m 755 $SRC/webcit.s $PKG/etc/rc.d/webcit
+    chown -R citadel:citadel $PKG/var/citadel
+}

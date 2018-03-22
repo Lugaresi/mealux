@@ -1,0 +1,28 @@
+#!/bin/sh
+# description: Load Firewall rules
+#
+#
+case "$1" in
+start)
+if [ -f /etc/firewall/rules.iptables ]; then
+    /usr/sbin/iptables-restore < /etc/firewall/rules.iptables
+else
+   echo "Please put a ruleset in /etc/firewall/rules.iptables"
+fi
+;;
+stop)
+/usr/sbin/iptables -F
+;;
+restart)
+/usr/sbin/iptables -F
+if [ -f /etc/firewall/rules.iptables ]; then
+    /usr/sbin/iptables-restore < /etc/firewall/rules.iptables
+else
+   echo "Please put a ruleset in /etc/firewall/rules.iptables"
+fi
+;;
+*)
+echo "Usage: $0 {start|stop|restart}"
+exit 1
+;;
+esac

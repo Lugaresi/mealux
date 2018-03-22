@@ -1,0 +1,19 @@
+# Description: Simple firewall ruleset and script.
+# URL:         
+# Maintainer:  Lugaresi
+# Depends on:  
+
+name=firewall
+version=0.0.1
+release=1
+source=(https://gist.githubusercontent.com/jirutka/3742890/raw/c9f6bdbfcf597578e562c92ea1e256a9ebcf3a2c/rules-both.iptables \
+	https://gist.githubusercontent.com/jirutka/3742890/raw/c9f6bdbfcf597578e562c92ea1e256a9ebcf3a2c/rules-ipv4.iptables \
+	firewall)
+
+build() {
+    mkdir -p $PKG/etc/firewall
+    install -m 644 $SRC/rules-ipv4.iptables $PKG/etc/firewall/
+    install -m 644 $SRC/rules-both.iptables $PKG/etc/firewall/
+    mkdir -p $PKG/etc/rc.d
+    install -m 755 $SRC/firewall $PKG/etc/rc.d/
+}

@@ -1,0 +1,69 @@
+--- citadel/ical_dezonify.c.orig	2018-03-08 16:35:24.736666675 +0100
++++ citadel/ical_dezonify.c	2018-03-08 16:55:52.813333342 +0100
+@@ -135,13 +135,13 @@ void ical_dezonify_backend(icalcomponent
+ 
+ 	/* syslog(LOG_DEBUG, "                * Was: %s\n", icaltime_as_ical_string(TheTime)); */
+ 
+-	if (TheTime.is_utc) {
++	if (icaltime_is_utc(TheTime)) {
+ 		/* syslog(LOG_DEBUG, "                * This property is ALREADY UTC.\n"); */
+ 	}
+ 
+ 	else if (utc_declared_as_tzid) {
+ 		/* syslog(LOG_DEBUG, "                * Replacing '%s' TZID with 'Z' suffix.\n", tzid); */
+-		TheTime.is_utc = 1;
++		icaltime_set_timezone(&TheTime, icaltimezone_get_utc_timezone());
+ 	}
+ 
+ 	else {
+@@ -161,7 +161,7 @@ void ical_dezonify_backend(icalcomponent
+ 					t,
+ 					icaltimezone_get_utc_timezone()
+ 		);
+-		TheTime.is_utc = 1;
++		icaltime_set_timezone(&TheTime, icaltimezone_get_utc_timezone());
+ 	}
+ 
+ 	icalproperty_remove_parameter_by_kind(prop, ICAL_TZID_PARAMETER);
+--- citadel/modules/calendar/serv_calendar.c.orig	2018-03-08 17:08:49.560000007 +0100
++++ citadel/modules/calendar/serv_calendar.c	2018-03-09 09:54:37.800000009 +0100
+@@ -235,7 +235,7 @@ void ical_send_a_reply(icalcomponent *re
+ 		/* We found our own address in the attendee list. */
+ 		if (me_attend) {
+ 			/* Change the partstat from NEEDS-ACTION to ACCEPT or DECLINE */
+-			icalproperty_remove_parameter(me_attend, ICAL_PARTSTAT_PARAMETER);
++			icalproperty_remove_parameter_by_kind(me_attend, ICAL_PARTSTAT_PARAMETER);
+ 
+ 			if (!strcasecmp(action, "accept")) {
+ 				partstat = icalparameter_new_partstat(ICAL_PARTSTAT_ACCEPTED);
+@@ -1370,7 +1370,7 @@ void ical_add_to_freebusy(icalcomponent
+ 			if (!icaltime_is_null_time(dtend)) {
+ 				dtend = icaltime_add(dtstart, dur);
+ 				dtend.zone = dtstart.zone;
+-				dtend.is_utc = dtstart.is_utc;
++				icaltime_set_timezone(&dtend, icaltime_is_utc(dtstart));
+ 			}
+ 			++num_recur;
+ 		}
+@@ -1520,7 +1520,7 @@ void ical_freebusy(char *who) {
+ 	icalcomponent_set_method(fb, ICAL_METHOD_PUBLISH);
+ 
+ 	/* Set the DTSTAMP to right now. */
+-	icalcomponent_set_dtstamp(fb, icaltime_from_timet(time(NULL), 0));
++	icalcomponent_set_dtstamp(fb, icaltime_from_timet_with_zone(time(NULL), 0, icaltimezone_get_utc_timezone()));
+ 
+ 	/* Add the user's email address as ORGANIZER */
+ 	sprintf(buf, "MAILTO:%s", who);
+@@ -1541,10 +1541,10 @@ void ical_freebusy(char *who) {
+ 	 * to yesterday and tomorrow as default values.
+ 	 */
+ 	if (icalcomponent_get_first_property(fb, ICAL_DTSTART_PROPERTY) == NULL) {
+-		icalcomponent_set_dtstart(fb, icaltime_from_timet(time(NULL)-86400L, 0));
++		icalcomponent_set_dtstart(fb, icaltime_from_timet_with_zone(time(NULL)-86400L, 0, icaltimezone_get_utc_timezone()));
+ 	}
+ 	if (icalcomponent_get_first_property(fb, ICAL_DTEND_PROPERTY) == NULL) {
+-		icalcomponent_set_dtend(fb, icaltime_from_timet(time(NULL)+86400L, 0));
++		icalcomponent_set_dtend(fb, icaltime_from_timet_with_zone(time(NULL)+86400L, 0, icaltimezone_get_utc_timezone()));
+ 	}
+ 
+ 	/* Put the freebusy component into the calendar component */

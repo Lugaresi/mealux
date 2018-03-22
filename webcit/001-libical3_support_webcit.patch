@@ -1,0 +1,109 @@
+--- webcit/ical_dezonify.c.orig	2018-03-11 10:42:33.573333337 +0100
++++ webcit/ical_dezonify.c	2018-03-11 10:44:27.320000003 +0100
+@@ -116,7 +116,7 @@ void ical_dezonify_backend(icalcomponent
+ 	syslog(LOG_DEBUG, "                * Was: %s\n", icaltime_as_ical_string(TheTime));
+ #endif
+ 
+-	if (TheTime.is_utc) {
++	if (icaltime_is_utc(TheTime)) {
+ #ifdef DBG_ICAL
+ 		syslog(LOG_DEBUG, "                * This property is ALREADY UTC.\n");
+ #endif
+@@ -126,7 +126,7 @@ void ical_dezonify_backend(icalcomponent
+ #ifdef DBG_ICAL
+ 		syslog(LOG_DEBUG, "                * Replacing '%s' TZID with 'Z' suffix.\n", tzid);
+ #endif
+-		TheTime.is_utc = 1;
++		icaltime_set_timezone(&TheTime, icaltimezone_get_utc_timezone());
+ 	}
+ 
+ 	else {
+@@ -146,7 +146,7 @@ void ical_dezonify_backend(icalcomponent
+ 			t = get_default_icaltimezone();
+ 		}
+ 		icaltimezone_convert_time(&TheTime, t, icaltimezone_get_utc_timezone());
+-		TheTime.is_utc = 1;
++		icaltime_set_timezone(&TheTime, icaltimezone_get_utc_timezone());
+ 	}
+ 
+ 	icalproperty_remove_parameter_by_kind(prop, ICAL_TZID_PARAMETER);
+--- webcit/calendar_tools.c.orig	2018-03-11 14:35:32.306666671 +0100
++++ webcit/calendar_tools.c	2018-03-11 14:42:24.190000004 +0100
+@@ -151,7 +151,6 @@ void icaltime_from_webform(struct icalti
+ 	t->minute = IBSTR(vname);
+ 
+ 	/* time zone is set to the default zone for this server */
+-	t->is_utc = 0;
+ 	t->is_date = 0;
+ 	t->zone = get_default_icaltimezone();
+ }
+@@ -170,8 +169,8 @@ void icaltime_from_webform_dateonly(stru
+ 	sscanf((char*)BSTR(prefix), "%04d-%02d-%02d", &t->year, &t->month, &t->day);
+ 
+ 	/* time zone is set to the default zone for this server */
+-	t->is_utc = 1;
+ 	t->is_date = 1;
++	t->zone = icaltimezone_get_utc_timezone();
+ }
+ 
+ 
+--- webcit/calendar_view.c.orig	2018-03-11 14:42:54.056666671 +0100
++++ webcit/calendar_view.c	2018-03-11 14:45:29.136666670 +0100
+@@ -198,7 +198,7 @@ void calendar_month_view_display_events(
+ 	starting_tm.tm_hour = 0;
+ 	starting_tm.tm_min = 0;
+ 	today_start_t = icaltime_from_timet_with_zone(mktime(&starting_tm), 0, icaltimezone_get_utc_timezone());
+-	today_start_t.is_utc = 1;
++	today_start_t.zone = icaltimezone_get_utc_timezone();
+ 
+ 	memset(&ending_tm, 0, sizeof(struct tm));
+ 	ending_tm.tm_year = year - 1900;
+@@ -207,7 +207,7 @@ void calendar_month_view_display_events(
+ 	ending_tm.tm_hour = 23;
+ 	ending_tm.tm_min = 59;
+ 	today_end_t = icaltime_from_timet_with_zone(mktime(&ending_tm), 0, icaltimezone_get_utc_timezone());
+-	today_end_t.is_utc = 1;
++	today_end_t.zone = icaltimezone_get_utc_timezone();
+ 
+ 	/*
+ 	 * Create another one without caring about the timezone for all day events.
+@@ -854,7 +854,7 @@ void calendar_day_view_display_events(ti
+ 	starting_tm.tm_hour = 0;
+ 	starting_tm.tm_min = 0;
+ 	today_start_t = icaltime_from_timet_with_zone(mktime(&starting_tm), 0, icaltimezone_get_utc_timezone());
+-	today_start_t.is_utc = 1;
++	today_start_t.zone = icaltimezone_get_utc_timezone();
+ 
+ 	memset(&ending_tm, 0, sizeof(struct tm));
+ 	ending_tm.tm_year = year - 1900;
+@@ -863,7 +863,7 @@ void calendar_day_view_display_events(ti
+ 	ending_tm.tm_hour = 23;
+ 	ending_tm.tm_min = 59;
+ 	today_end_t = icaltime_from_timet_with_zone(mktime(&ending_tm), 0, icaltimezone_get_utc_timezone());
+-	today_end_t.is_utc = 1;
++	today_end_t.zone = icaltimezone_get_utc_timezone();
+ 
+ 	/*
+ 	 * Create another one without caring about the timezone for all day events.
+--- webcit/event.c.orig	2018-03-13 04:49:06.643333336 +0100
++++ webcit/event.c	2018-03-13 04:51:46.756666671 +0100
+@@ -264,7 +264,7 @@ void display_edit_individual_event(icalc
+ 			((yesbstr("alldayevent")) ? 1 : 0),
+ 			icaltimezone_get_utc_timezone()
+ 		);
+-		t_start.is_utc = 1;
++		icaltime_set_timezone(&t_start, icaltimezone_get_utc_timezone());
+ 
+ 	}
+ 	display_icaltimetype_as_webform(&t_start, "dtstart", 0);
+@@ -854,8 +854,8 @@ void save_individual_event(icalcomponent
+ 
+ 		/* Add NOW() to the calendar object... */
+ 		icalcomponent_set_dtstamp(vevent,
+-					  icaltime_from_timet(
+-						  time(NULL), 0));
++					  icaltime_from_timet_with_zone(
++						  time(NULL), 0, icaltimezone_get_utc_timezone()));
+ 
+ 	 	if (havebstr("summary")) {
+ 		 	icalcomponent_add_property(vevent,
