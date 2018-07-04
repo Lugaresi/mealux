@@ -1,0 +1,38 @@
+#!/bin/sh
+#
+# This script starts and stops the spampd daemon
+#
+# description: spampd is a daemon process which uses SpamAssassin to check
+#              email messages for SPAM.
+
+[ -f /usr/sbin/spampd ] || exit 0
+PATH=$PATH:/usr/sbin
+
+# See how we were called.
+case "$1" in
+  start)
+	# Start daemon.
+	echo -n "Starting spampd: "
+	spampd --port=10025 --relayhost=127.0.0.1:10026 --tagall --auto-whitelist
+	RETVAL=$?
+	touch /var/lock/spampd
+	echo
+	;;
+  stop)
+	# Stop daemons.
+	echo -n "Shutting down spampd: "
+	killall spampd
+	RETVAL=$?
+	rm -f /var/lock/spampd
+	echo
+	;;
+  restart)
+	$0 stop
+	$0 start
+	;;
+  *)
+	echo "Usage: $0 {start|stop|restart}"
+	exit 1
+esac
+
+exit 0

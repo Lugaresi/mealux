@@ -1,6 +1,8 @@
 1843040de7a27fb4f55b51cfe3e6884e  dwarfhack.diff
+83d716327221b38326fd34ddeac1701c  folly322.diff
 a20680a92aea72000ede60d0d0d32385  hhvm
-2a7272fd1f505992007692f2e11feb22  hhvm-3.24.3.tar.gz
+9d4fb3d9d2d751e22bf102aec51b0d5d  hhvm-3.27.0.tar.gz
 305a0345be25af25cb3566196bbdd097  libxml-hack.diff
 23f945471468111f2b48a539ff9fd241  php.ini
 c9a890edbfcaa07eed373dcfd97c1aa4  server.ini
+eeec88e0a20ef9e7d2225a2068faf8e6  zip.diff

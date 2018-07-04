@@ -1,0 +1,18 @@
+# Description: SpamPD is used within an e-mail delivery system to detect spam.
+# URL:         https://github.com/mpaperno/spampd
+# Maintainer:  Lugaresi
+# Depends on:  
+
+name=spampd
+version=2.20
+release=1
+source=(https://github.com/downloads/mpaperno/$name/$name-$version.tar.gz \
+	spampd-rh-rc-script)
+
+build() {
+    cd $name-$version
+    mkdir -p $PKG/usr/sbin
+    install -m 755 spampd $PKG/usr/sbin
+    mkdir -p $PKG/etc/rc.d
+    install -m 755 $SRC/spampd-rh-rc-script $PKG/etc/rc.d/spampd
+}
