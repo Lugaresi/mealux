@@ -8,7 +8,6 @@ drwxr-xr-x	root/root	usr/
 drwxr-xr-x	root/root	usr/bin/
 -rwxr-xr-x	root/root	usr/bin/hackfmt
 -rwxr-xr-x	root/root	usr/bin/hh_client
--rwxr-xr-x	root/root	usr/bin/hh_format
 -rwxr-xr-x	root/root	usr/bin/hh_parse
 -rwxr-xr-x	root/root	usr/bin/hh_server
 -rwxr-xr-x	root/root	usr/bin/hh_single_compile
@@ -199,10 +198,18 @@ drwxr-xr-x	root/root	usr/include/hphp/runtime/base/ini-parser/
 -rw-r--r--	root/root	usr/include/hphp/runtime/base/repo-auth-type-codec-inl.h
 -rw-r--r--	root/root	usr/include/hphp/runtime/base/repo-auth-type-codec.h
 -rw-r--r--	root/root	usr/include/hphp/runtime/base/repo-auth-type.h
--rw-r--r--	root/root	usr/include/hphp/runtime/base/req-containers.h
+-rw-r--r--	root/root	usr/include/hphp/runtime/base/req-deque.h
+-rw-r--r--	root/root	usr/include/hphp/runtime/base/req-hash-map.h
+-rw-r--r--	root/root	usr/include/hphp/runtime/base/req-hash-set.h
+-rw-r--r--	root/root	usr/include/hphp/runtime/base/req-list.h
 -rw-r--r--	root/root	usr/include/hphp/runtime/base/req-malloc.h
+-rw-r--r--	root/root	usr/include/hphp/runtime/base/req-map.h
+-rw-r--r--	root/root	usr/include/hphp/runtime/base/req-memory.h
+-rw-r--r--	root/root	usr/include/hphp/runtime/base/req-optional.h
 -rw-r--r--	root/root	usr/include/hphp/runtime/base/req-ptr.h
 -rw-r--r--	root/root	usr/include/hphp/runtime/base/req-root.h
+-rw-r--r--	root/root	usr/include/hphp/runtime/base/req-tiny-vector.h
+-rw-r--r--	root/root	usr/include/hphp/runtime/base/req-vector.h
 -rw-r--r--	root/root	usr/include/hphp/runtime/base/request-event-handler.h
 -rw-r--r--	root/root	usr/include/hphp/runtime/base/request-injection-data-inl.h
 -rw-r--r--	root/root	usr/include/hphp/runtime/base/request-injection-data.h
@@ -228,6 +235,9 @@ drwxr-xr-x	root/root	usr/include/hphp/runtime/base/ini-parser/
 -rw-r--r--	root/root	usr/include/hphp/runtime/base/string-data-inl.h
 -rw-r--r--	root/root	usr/include/hphp/runtime/base/string-data-macros.h
 -rw-r--r--	root/root	usr/include/hphp/runtime/base/string-data.h
+-rw-r--r--	root/root	usr/include/hphp/runtime/base/string-functors.h
+-rw-r--r--	root/root	usr/include/hphp/runtime/base/string-hash-map.h
+-rw-r--r--	root/root	usr/include/hphp/runtime/base/string-hash-set.h
 -rw-r--r--	root/root	usr/include/hphp/runtime/base/string-holder.h
 -rw-r--r--	root/root	usr/include/hphp/runtime/base/string-util.h
 -rw-r--r--	root/root	usr/include/hphp/runtime/base/strings.h
@@ -404,8 +414,6 @@ drwxr-xr-x	root/root	usr/include/hphp/runtime/ext/domdocument/
 -rw-r--r--	root/root	usr/include/hphp/runtime/ext/domdocument/ext_domdocument_includes.h
 -rw-r--r--	root/root	usr/include/hphp/runtime/ext/extension-registry.h
 -rw-r--r--	root/root	usr/include/hphp/runtime/ext/extension.h
-drwxr-xr-x	root/root	usr/include/hphp/runtime/ext/factparse/
--rw-r--r--	root/root	usr/include/hphp/runtime/ext/factparse/parser.h
 drwxr-xr-x	root/root	usr/include/hphp/runtime/ext/fb/
 drwxr-xr-x	root/root	usr/include/hphp/runtime/ext/fb/FBSerialize/
 -rw-r--r--	root/root	usr/include/hphp/runtime/ext/fb/FBSerialize/FBSerialize-inl.h
@@ -579,7 +587,6 @@ drwxr-xr-x	root/root	usr/include/hphp/runtime/ext/std/
 -rw-r--r--	root/root	usr/include/hphp/runtime/ext/std/ext_std_errorfunc.h
 -rw-r--r--	root/root	usr/include/hphp/runtime/ext/std/ext_std_file.h
 -rw-r--r--	root/root	usr/include/hphp/runtime/ext/std/ext_std_function.h
--rw-r--r--	root/root	usr/include/hphp/runtime/ext/std/ext_std_intrinsics.h
 -rw-r--r--	root/root	usr/include/hphp/runtime/ext/std/ext_std_math.h
 -rw-r--r--	root/root	usr/include/hphp/runtime/ext/std/ext_std_misc.h
 -rw-r--r--	root/root	usr/include/hphp/runtime/ext/std/ext_std_network-internal.h
@@ -765,6 +772,8 @@ drwxr-xr-x	root/root	usr/include/hphp/runtime/vm/jit/
 -rw-r--r--	root/root	usr/include/hphp/runtime/vm/jit/func-guard-x64.h
 -rw-r--r--	root/root	usr/include/hphp/runtime/vm/jit/func-guard.h
 -rw-r--r--	root/root	usr/include/hphp/runtime/vm/jit/func-prologue.h
+-rw-r--r--	root/root	usr/include/hphp/runtime/vm/jit/guard-constraint-inl.h
+-rw-r--r--	root/root	usr/include/hphp/runtime/vm/jit/guard-constraint.h
 -rw-r--r--	root/root	usr/include/hphp/runtime/vm/jit/guard-constraints.h
 -rw-r--r--	root/root	usr/include/hphp/runtime/vm/jit/guard-type-profile.h
 -rw-r--r--	root/root	usr/include/hphp/runtime/vm/jit/hooks.h
@@ -779,6 +788,7 @@ drwxr-xr-x	root/root	usr/include/hphp/runtime/vm/jit/
 -rw-r--r--	root/root	usr/include/hphp/runtime/vm/jit/ir-unit-inl.h
 -rw-r--r--	root/root	usr/include/hphp/runtime/vm/jit/ir-unit.h
 -rw-r--r--	root/root	usr/include/hphp/runtime/vm/jit/irgen-arith.h
+-rw-r--r--	root/root	usr/include/hphp/runtime/vm/jit/irgen-basic.h
 -rw-r--r--	root/root	usr/include/hphp/runtime/vm/jit/irgen-builtin.h
 -rw-r--r--	root/root	usr/include/hphp/runtime/vm/jit/irgen-call.h
 -rw-r--r--	root/root	usr/include/hphp/runtime/vm/jit/irgen-control.h
@@ -869,8 +879,6 @@ drwxr-xr-x	root/root	usr/include/hphp/runtime/vm/jit/
 -rw-r--r--	root/root	usr/include/hphp/runtime/vm/jit/translator-runtime.h
 -rw-r--r--	root/root	usr/include/hphp/runtime/vm/jit/translator.h
 -rw-r--r--	root/root	usr/include/hphp/runtime/vm/jit/type-array-elem.h
--rw-r--r--	root/root	usr/include/hphp/runtime/vm/jit/type-constraint-inl.h
--rw-r--r--	root/root	usr/include/hphp/runtime/vm/jit/type-constraint.h
 -rw-r--r--	root/root	usr/include/hphp/runtime/vm/jit/type-inl.h
 -rw-r--r--	root/root	usr/include/hphp/runtime/vm/jit/type-profile.h
 -rw-r--r--	root/root	usr/include/hphp/runtime/vm/jit/type-source.h
@@ -916,6 +924,7 @@ drwxr-xr-x	root/root	usr/include/hphp/runtime/vm/jit/vtune/
 -rw-r--r--	root/root	usr/include/hphp/runtime/vm/litstr-table.h
 -rw-r--r--	root/root	usr/include/hphp/runtime/vm/member-key.h
 -rw-r--r--	root/root	usr/include/hphp/runtime/vm/member-operations.h
+-rw-r--r--	root/root	usr/include/hphp/runtime/vm/memo-cache.h
 -rw-r--r--	root/root	usr/include/hphp/runtime/vm/method-lookup.h
 -rw-r--r--	root/root	usr/include/hphp/runtime/vm/minstr-state.h
 -rw-r--r--	root/root	usr/include/hphp/runtime/vm/name-value-table.h
@@ -926,6 +935,7 @@ drwxr-xr-x	root/root	usr/include/hphp/runtime/vm/jit/vtune/
 -rw-r--r--	root/root	usr/include/hphp/runtime/vm/named-entity.h
 -rw-r--r--	root/root	usr/include/hphp/runtime/vm/native-data.h
 -rw-r--r--	root/root	usr/include/hphp/runtime/vm/native-func-caller.h
+-rw-r--r--	root/root	usr/include/hphp/runtime/vm/native-func-table.h
 -rw-r--r--	root/root	usr/include/hphp/runtime/vm/native-prop-handler.h
 -rw-r--r--	root/root	usr/include/hphp/runtime/vm/native.h
 -rw-r--r--	root/root	usr/include/hphp/runtime/vm/pc-filter.h
@@ -940,6 +950,7 @@ drwxr-xr-x	root/root	usr/include/hphp/runtime/vm/jit/vtune/
 -rw-r--r--	root/root	usr/include/hphp/runtime/vm/resumable.h
 -rw-r--r--	root/root	usr/include/hphp/runtime/vm/reverse-data-map.h
 -rw-r--r--	root/root	usr/include/hphp/runtime/vm/ringbuffer-print.h
+-rw-r--r--	root/root	usr/include/hphp/runtime/vm/runtime-compiler.h
 -rw-r--r--	root/root	usr/include/hphp/runtime/vm/runtime.h
 -rw-r--r--	root/root	usr/include/hphp/runtime/vm/srckey-inl.h
 -rw-r--r--	root/root	usr/include/hphp/runtime/vm/srckey.h
@@ -1039,7 +1050,8 @@ drwxr-xr-x	root/root	usr/include/hphp/util/deprecated/
 -rw-r--r--	root/root	usr/include/hphp/util/functional.h
 -rw-r--r--	root/root	usr/include/hphp/util/growable-vector.h
 -rw-r--r--	root/root	usr/include/hphp/util/hardware-counter.h
--rw-r--r--	root/root	usr/include/hphp/util/hash-map-typedefs.h
+-rw-r--r--	root/root	usr/include/hphp/util/hash-map.h
+-rw-r--r--	root/root	usr/include/hphp/util/hash-set.h
 -rw-r--r--	root/root	usr/include/hphp/util/hash.h
 -rw-r--r--	root/root	usr/include/hphp/util/hdf.h
 -rw-r--r--	root/root	usr/include/hphp/util/health-monitor-types.h
