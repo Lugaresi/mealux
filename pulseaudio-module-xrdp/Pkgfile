@@ -1,0 +1,23 @@
+# Description: RDP Server for X - PulseAudio sink Module
+# URL:         https://github.com/neutrinolabs/pulseaudio-module-xrdp/
+# Maintainer:  Lugaresi
+# Depends on:  pulseaudio
+
+name=pulseaudio-module-xrdp
+version=0.1
+release=1
+source=(https://github.com/neutrinolabs/$name/archive/v$version.tar.gz)
+
+build() {
+    # Pre-build step: Rebuild Pulseaudio
+    pa_dir=`prt-get info pulseaudio | grep Path | awk 'NF>1{print $NF}'`
+    pa_ver=`prt-get info pulseaudio | grep Version | awk 'NF>1{print $NF}'`
+    pa_src=$pa_dir/pulseaudio/work/src/pulseaudio-$pa_ver
+    (cd $pa_dir/pulseaudio && pkgmk -kw -f)
+    cd $name-$version
+    ./bootstrap
+    ./configure --prefix=/usr PULSE_DIR=$pa_src
+    make
+    make DESTDIR=$PKG install
+    (cd $pa_dir/pulseaudio && pkgmk -c)
+}

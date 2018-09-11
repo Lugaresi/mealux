@@ -1,0 +1,16 @@
+# Description: RDP Server for X - Xorg part
+# URL:         https://github.com/neutrinolabs/xorgxrdp/
+# Maintainer:  Lugaresi
+# Depends on:  xrdp nasm
+
+name=xorgxrdp
+version=0.2.7
+release=1
+source=(https://github.com/neutrinolabs/$name/releases/download/v$version/$name-$version.tar.gz)
+
+build() {
+    cd $name-$version
+    ./configure --prefix=/usr
+    make
+    make DESTDIR=$PKG install
+}

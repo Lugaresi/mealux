@@ -1,0 +1,20 @@
+# Description: RDP Server for X
+# URL:         https://github.com/neutrinolabs/xrdp/
+# Maintainer:  Lugaresi
+# Depends on:  xorg-libpixman lame fdk-aac opus fuse libjpeg-turbo
+
+name=xrdp
+version=0.9.7
+release=1
+source=(https://github.com/neutrinolabs/$name/releases/download/v$version/$name-$version.tar.gz xrdp)
+
+build() {
+    cd $name-$version
+    ./configure --prefix=/usr --enable-tjpeg --enable-fuse  --enable-mp3lame \
+     --enable-fdkaac --enable-pixman --enable-opus
+    make
+    make DESTDIR=$PKG install
+    rm -rf $PKG/etc/init.d
+    mkdir -p $PKG/etc/rc.d
+    install -m 755 $SRC/xrdp $PKG/etc/rc.d/ 
+}
