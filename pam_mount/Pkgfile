@@ -1,0 +1,20 @@
+# Description:	PAM Module to mount volumes on login
+# URL:		http://pam-mount.sourceforge.net/
+# Maintainer:	Stuka
+# Depends on:	linux-pam libhx
+
+name=pam_mount
+version=2.16
+release=1
+source=(https://sourceforge.net/projects/pam-mount/files/$name/$version/$name-$version.tar.xz)
+
+build() {
+        cd $name-$version
+	./configure \
+		--prefix=/usr \
+		--libdir=/lib \
+		--sysconfdir=/etc \
+		--mandir=/usr/man
+	make
+	make DESTDIR=$PKG install
+}

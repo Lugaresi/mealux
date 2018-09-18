@@ -1,0 +1,30 @@
+drwxr-xr-x	root/root	usr/
+drwxr-xr-x	root/root	usr/include/
+-rw-r--r--	root/root	usr/include/libHX.h
+drwxr-xr-x	root/root	usr/include/libHX/
+-rw-r--r--	root/root	usr/include/libHX/ctype_helper.h
+-rw-r--r--	root/root	usr/include/libHX/defs.h
+-rw-r--r--	root/root	usr/include/libHX/deque.h
+-rw-r--r--	root/root	usr/include/libHX/init.h
+-rw-r--r--	root/root	usr/include/libHX/io.h
+-rw-r--r--	root/root	usr/include/libHX/libxml_helper.h
+-rw-r--r--	root/root	usr/include/libHX/list.h
+-rw-r--r--	root/root	usr/include/libHX/map.h
+-rw-r--r--	root/root	usr/include/libHX/misc.h
+-rw-r--r--	root/root	usr/include/libHX/option.h
+-rw-r--r--	root/root	usr/include/libHX/proc.h
+-rw-r--r--	root/root	usr/include/libHX/string.h
+-rw-r--r--	root/root	usr/include/libHX/wx_helper.hpp
+drwxr-xr-x	root/root	usr/lib/
+-rwxr-xr-x	root/root	usr/lib/libHX.la
+lrwxrwxrwx	root/root	usr/lib/libHX.so -> libHX.so.28.3.0
+lrwxrwxrwx	root/root	usr/lib/libHX.so.28 -> libHX.so.28.3.0
+-rwxr-xr-x	root/root	usr/lib/libHX.so.28.3.0
+-rwxr-xr-x	root/root	usr/lib/libHX_rtcheck.la
+-rwxr-xr-x	root/root	usr/lib/libHX_rtcheck.so
+drwxr-xr-x	root/root	usr/lib/pkgconfig/
+-rw-r--r--	root/root	usr/lib/pkgconfig/libHX.pc
+drwxr-xr-x	root/root	usr/share/
+drwxr-xr-x	root/root	usr/share/doc/
+drwxr-xr-x	root/root	usr/share/doc/libhx/
+-rw-r--r--	root/root	usr/share/doc/libhx/libHX_Documentation.pdf

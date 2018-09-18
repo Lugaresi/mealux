@@ -1,0 +1,12 @@
+drwxr-xr-x	root/root	usr/
+drwxr-xr-x	root/root	usr/bin/
+-rwxr-xr-x	root/root	usr/bin/checkpoint
+-rwxr-xr-x	root/root	usr/bin/commit
+-rwxr-xr-x	root/root	usr/bin/cvssync
+-rwxr-xr-x	root/root	usr/bin/cvsver
+-rwxr-xr-x	root/root	usr/bin/tarup
+-rwxr-xr-x	root/root	usr/bin/vers_string
+drwxr-xr-x	root/root	usr/lib/
+drwxr-xr-x	root/root	usr/lib/perl5/
+drwxr-xr-x	root/root	usr/lib/perl5/5.26/
+-rw-r--r--	root/root	usr/lib/perl5/5.26/cvslib.pl

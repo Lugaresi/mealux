@@ -1,0 +1,16 @@
+# Description: C library that provides data structures and functions commonly needed.
+# URL:         http://libhx.sourceforge.net/
+# Maintainer:  Lugaresi
+# Depends on:  
+
+name=libhx
+version=3.23
+release=1
+source=(https://sourceforge.net/projects/$name/files/libHX/libHX-$version.tar.xz)
+
+build() {
+    cd libHX-$version
+    ./configure --prefix=/usr
+    make
+    make DESTDIR=$PKG install
+}

@@ -1,0 +1,20 @@
+# Description:
+# URL:         https://www.padl.com/OSS/CVSTools.html
+# Maintainer:  Stuka
+#
+# depends on: 
+
+name=cvstools
+version=21.1
+release=1
+source=(
+  http://www.padl.com/download/CVSTools.tar.gz
+)
+
+build() {
+  cd CVSTools-$version
+  sed -i Makefile -e s!/usr!$PKG/usr!g -e s!share!lib/perl5/5.26!g
+  mkdir -p $PKG/usr/bin
+  mkdir -p $PKG/usr/lib/perl5/5.26
+  make DESTDIR=$PKG install
+}
