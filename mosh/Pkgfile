@@ -1,0 +1,16 @@
+# Description: Remote terminal application that allows roaming.
+# URL:         https://mosh.org/
+# Maintainer:  Lugaresi
+# Depends on:  
+
+name=mosh
+version=1.3.2
+release=1
+source=(https://mosh.org/$name-$version.tar.gz)
+
+build() {
+    cd $name-$version
+    ./configure --prefix=/usr
+    make
+    make DESTDIR=$PKG install
+}
