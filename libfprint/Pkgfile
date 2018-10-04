@@ -1,0 +1,19 @@
+# Description: Library with support routines for C such as list, trees, hashes
+# URL:         http://www.gtk.org/
+# Maintainer:  Juergen Daubert, jue at crux dot nu
+# Packager:    Daniel Mueller, daniel at danm dot de
+# Depends on: pkg-config, nss, libusb, glib, gtk
+
+name=libfprint
+version=0.6.0
+release=1
+source=(http://people.freedesktop.org/~hadess/libfprint-$version.tar.xz x220.patch)
+
+build () {
+    cd libfprint-$version
+#    patch -p1 -i $SRC/x220.patch
+    CFLAGS=-I/usr/include/nspr ./configure --prefix=/usr
+    make
+    make DESTDIR=$PKG install
+    rm -rf $PKG/usr/info
+}

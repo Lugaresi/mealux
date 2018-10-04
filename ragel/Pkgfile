@@ -1,0 +1,18 @@
+# Description: Ragel compiles executable finite state machines from regular languages.
+# URL:         http://www.colm.net/open-source/ragel/
+# Maintainer:  Stuka
+# Packager:    Stuka
+# Depends on: 
+
+name=ragel
+version=6.9
+release=1
+source=(http://www.colm.net/files/ragel/$name-$version.tar.gz)
+
+build () {
+    cd $name-$version
+    ./configure --prefix=/usr
+    make
+    make DESTDIR=$PKG install
+    rm -rf $PKG/usr/info
+}

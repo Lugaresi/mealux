@@ -1,0 +1,19 @@
+drwxr-xr-x	root/root	bin/
+-rwxr-xr-x	root/root	bin/xwiishow
+drwxr-xr-x	root/root	include/
+-rw-r--r--	root/root	include/xwiimote.h
+drwxr-xr-x	root/root	lib/
+-rw-r--r--	root/root	lib/libxwiimote.a
+-rwxr-xr-x	root/root	lib/libxwiimote.la
+lrwxrwxrwx	root/root	lib/libxwiimote.so -> libxwiimote.so.2.0.0
+lrwxrwxrwx	root/root	lib/libxwiimote.so.2 -> libxwiimote.so.2.0.0
+-rwxr-xr-x	root/root	lib/libxwiimote.so.2.0.0
+drwxr-xr-x	root/root	lib/pkgconfig/
+-rw-r--r--	root/root	lib/pkgconfig/libxwiimote.pc
+drwxr-xr-x	root/root	share/
+drwxr-xr-x	root/root	share/man/
+drwxr-xr-x	root/root	share/man/man1/
+-rw-r--r--	root/root	share/man/man1/xwiishow.1.gz
+drwxr-xr-x	root/root	share/man/man7/
+-rw-r--r--	root/root	share/man/man7/libxwiimote.7.gz
+-rw-r--r--	root/root	share/man/man7/xwiimote.7.gz

@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=Netscape
+Comment=Netscape Communicator
+Exec=Netscape
+Icon=/usr/lib/Netscape-VERSION/chrome/icons/default/default48.png
+Categories=Application;Network;

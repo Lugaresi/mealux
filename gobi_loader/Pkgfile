@@ -1,0 +1,17 @@
+# Description: Firmware Loader for Qualcomm Gobi Cards
+# URL: http://www.codon.org.uk/~mjg59/gobi_loader/
+# Packager: Stuka
+# Maintainer: Stuka
+# Depends on: udev
+
+name=gobi_loader
+version=0.7
+release=1
+source=(http://www.codon.org.uk/~mjg59/gobi_loader/download/$name-$version.tar.gz)
+
+build() {
+    cd $name-$version
+    make
+    make prefix=$PKG install
+    rm -rf $PKG/usr/share/{doc,locale}
+}

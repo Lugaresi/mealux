@@ -1,0 +1,23 @@
+#!/bin/sh
+#
+# /etc/rc.d/fprint: start/stop fprint daemon
+#
+
+case $1 in
+	start)
+		/usr/libexec/fprintd > /var/log/fprintd.log 2>&1 &
+		;;
+	stop)
+		killall -q /usr/libexec/fprintd
+		;;
+	restart)
+		$0 stop
+		sleep 2
+		$0 start
+		;;
+	*)
+		echo "Usage: $0 [start|stop|restart]"
+		;;
+esac
+
+# End of file

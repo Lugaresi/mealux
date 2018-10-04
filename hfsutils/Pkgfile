@@ -1,0 +1,18 @@
+# Description: HFS utilities
+# URL: http://mars.org/home/rob/proj/hfs
+# Maintainer: Adrian Siekierka, kontakt at asie dot pl
+
+name=hfsutils
+version=3.2.6
+release=1
+source=(ftp://ftp.mars.org/pub/hfs/$name-$version.tar.gz)
+
+build() {
+	mkdir -p $PKG/usr/bin
+	mkdir -p $PKG/usr/man/man1
+
+	cd $name-$version/
+	./configure --prefix=$PKG/usr/
+	make
+	make install
+}
