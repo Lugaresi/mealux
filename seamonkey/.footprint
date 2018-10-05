@@ -80,9 +80,13 @@ drwxr-xr-x	root/root	usr/share/seamonkey/dictionaries/
 drwxr-xr-x	root/root	usr/share/seamonkey/extensions/
 -rw-r--r--	root/root	usr/share/seamonkey/extensions/modern@themes.mozilla.org.xpi
 -rw-r--r--	root/root	usr/share/seamonkey/extensions/{972ce4c6-7e08-4474-a285-3208198ce6fd}.xpi
+drwxr-xr-x	root/root	usr/share/seamonkey/fonts/
+-rw-r--r--	root/root	usr/share/seamonkey/fonts/EmojiOneMozilla.ttf
+drwxr-xr-x	root/root	usr/share/seamonkey/gtk2/
+-rwxr-xr-x	root/root	usr/share/seamonkey/gtk2/libmozgtk.so
 drwxr-xr-x	root/root	usr/share/seamonkey/icons/
 -rw-r--r--	root/root	usr/share/seamonkey/icons/updater.png
--rw-r--r--	root/root	usr/share/seamonkey/icudt56l.dat
+-rw-r--r--	root/root	usr/share/seamonkey/icudt58l.dat
 drwxr-xr-x	root/root	usr/share/seamonkey/isp/
 -rw-r--r--	root/root	usr/share/seamonkey/isp/Bogofilter.sfd
 -rw-r--r--	root/root	usr/share/seamonkey/isp/DSPAM.sfd
@@ -96,6 +100,10 @@ drwxr-xr-x	root/root	usr/share/seamonkey/isp/
 -rwxr-xr-x	root/root	usr/share/seamonkey/libldap60.so
 -rwxr-xr-x	root/root	usr/share/seamonkey/libldif60.so
 -rwxr-xr-x	root/root	usr/share/seamonkey/liblgpllibs.so
+-rwxr-xr-x	root/root	usr/share/seamonkey/libmozavcodec.so
+-rwxr-xr-x	root/root	usr/share/seamonkey/libmozavutil.so
+-rwxr-xr-x	root/root	usr/share/seamonkey/libmozgtk.so
+-rwxr-xr-x	root/root	usr/share/seamonkey/libmozsandbox.so
 -rwxr-xr-x	root/root	usr/share/seamonkey/libmozsqlite3.so
 -rwxr-xr-x	root/root	usr/share/seamonkey/libnspr4.so
 -rwxr-xr-x	root/root	usr/share/seamonkey/libnss3.so
