@@ -5,7 +5,6 @@ drwxr-xr-x	root/root	etc/cron/
 drwxr-xr-x	root/root	etc/cron/daily/
 -rwxr-xr-x	root/root	etc/cron/daily/pwck
 -rw-r--r--	root/root	etc/login.defs
--rw-r--r--	root/root	etc/login.defs.orig
 drwxr-xr-x	root/root	etc/pam.d/
 -rw-r--r--	root/root	etc/pam.d/chage
 -rw-r--r--	root/root	etc/pam.d/chfn
@@ -34,9 +33,9 @@ drwxr-xr-x	root/root	usr/bin/
 -rwxr-xr-x	root/root	usr/bin/faillog
 -rwxr-xr-x	root/root	usr/bin/groups
 -rwxr-xr-x	root/root	usr/bin/lastlog
--rwxr-xr-x	root/root	usr/bin/newgidmap
+-rwsr-xr-x	root/root	usr/bin/newgidmap
 -rwsr-xr-x	root/root	usr/bin/newgrp
--rwxr-xr-x	root/root	usr/bin/newuidmap
+-rwsr-xr-x	root/root	usr/bin/newuidmap
 -rwsr-xr-x	root/root	usr/bin/passwd
 lrwxrwxrwx	root/root	usr/bin/sg -> newgrp
 -rwsr-xr-x	root/root	usr/bin/su
