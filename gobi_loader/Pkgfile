@@ -6,12 +6,19 @@
 
 name=gobi_loader
 version=0.7
-release=1
-source=(http://www.codon.org.uk/~mjg59/gobi_loader/download/$name-$version.tar.gz)
+release=2
+source=(http://www.codon.org.uk/~mjg59/gobi_loader/download/$name-$version.tar.gz \
+https://github.com/jolicloud/linux-firmware/raw/master/gobi/amss.mbn \
+https://github.com/jolicloud/linux-firmware/raw/master/gobi/apps.mbn \
+https://github.com/jolicloud/linux-firmware/raw/master/gobi/UQCN.mbn)
 
 build() {
     cd $name-$version
     make
     make prefix=$PKG install
     rm -rf $PKG/usr/share/{doc,locale}
+    install -d -m755 "$PKG/usr/lib/firmware/gobi"
+    install -m644 "$SRC/amss.mbn" "$PKG/usr/lib/firmware/gobi"
+    install -m644 "$SRC/apps.mbn" "$PKG/usr/lib/firmware/gobi"
+    install -m644 "$SRC/UQCN.mbn" "$PKG/usr/lib/firmware/gobi"
 }
