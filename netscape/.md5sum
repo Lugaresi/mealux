@@ -1,6 +1,5 @@
-9506dcb13a42fab453443aec976abf64  Netscape-2.48.tar.bz2
+a1aa968ecbafeb296597be816715dd5b  Netscape-2.49.tar.bz2
 30a14ae304ee20977a179a03a6947210  mozconfig.nix
-acb0f827dad35b04914c3667adbb1ef2  netscape-2.48.diff
+a5c50fe555a9da029c8c34fce3579cc5  netscape-2.49.diff
 4b06aaa91b35af52a34ade55cb123a07  netscape.desktop
-4826896a045ef274a9ba0f7c2f3b692b  pre-install
-cf9ccf46be9359bd82e1931e083e942f  seamonkey-2.48.source.tar.xz
+5868179112ff4b2562f0ca22f4091bf0  seamonkey-2.49.4.source.tar.xz
