@@ -1,0 +1,27 @@
+# Description: Audacious Player - Your music, your way. No exceptions
+# URL:         https://www.audacious-media-player.org/
+# Maintainer:  Torsten Henschel, thenschel at henschelsoft dot de
+# Depends on:  alsa-lib audacious ffmpeg lame libogg libvorbis neon flac wavpack libcdio libcdio-paranoia faad2 libsamplerate fluidsynth libmms libcue
+# Optional:    pulseaudio
+
+name=audacious-plugins
+version=3.10
+release=1
+source=(http://distfiles.audacious-media-player.org/$name-$version.tar.bz2)
+
+build() {
+    cd $name-$version
+
+    ./configure \
+	--prefix=/usr \
+	--enable-flac=auto \
+	--enable-wavpack=auto \
+	--disable-nls \
+	--disable-gnomeshortcuts
+
+    make
+    make DESTDIR=$PKG install
+
+    # junk
+    rm -rf $PKG/usr/share/locale
+}

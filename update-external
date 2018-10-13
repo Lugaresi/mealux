@@ -11,3 +11,13 @@ mkdir -p /usr/ports/mealux/augeas
 wget -O /usr/ports/mealux/augeas/Pkgfile https://git.framasoft.org/t0b1nux/crux-ports/raw/master/augeas/Pkgfile
 wget -O /usr/ports/mealux/augeas/.md5sum https://git.framasoft.org/t0b1nux/crux-ports/raw/master/augeas/.md5sum
 wget -O /usr/ports/mealux/augeas/.footprint https://git.framasoft.org/t0b1nux/crux-ports/raw/master/augeas/.footprint
+
+mkdir -p /usr/ports/mealux/audacious
+wget -O /usr/ports/mealux/audacious/Pkgfile http://www.henschelsoft.de/cruxports/audacious/Pkgfile
+wget -O /usr/ports/mealux/audacious/.md5sum http://www.henschelsoft.de/cruxports/audacious/.md5sum
+wget -O /usr/ports/mealux/audacious/.footprint http://www.henschelsoft.de/cruxports/audacious/.footprint
+
+mkdir -p /usr/ports/mealux/audacious-plugins
+wget -O /usr/ports/mealux/audacious-plugins/Pkgfile http://www.henschelsoft.de/cruxports/audacious-plugins/Pkgfile
+wget -O /usr/ports/mealux/audacious-plugins/.md5sum http://www.henschelsoft.de/cruxports/audacious-plugins/.md5sum
+wget -O /usr/ports/mealux/audacious-plugins/.footprint http://www.henschelsoft.de/cruxports/audacious-plugins/.footprint

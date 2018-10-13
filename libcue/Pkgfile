@@ -1,0 +1,22 @@
+# Description: CUE sheet parser 
+# URL:         https://github.com/lipnitsk/libcue
+# Maintainer:  Stuka
+#
+# depends on: cmake
+
+name=libcue
+version=2.2.1
+release=1
+source=(
+  https://github.com/lipnitsk/libcue/archive/v$version.tar.gz
+)
+
+build() {
+  cd $name-$version
+
+  cmake -DCMAKE_INSTALL_PREFIX=/usr \
+        -DCMAKE_INSTALL_LIBDIR=/usr/lib \
+        -DCMAKE_C_FLAGS="-O2 -fPIC"
+  make
+  make DESTDIR=$PKG install
+}
