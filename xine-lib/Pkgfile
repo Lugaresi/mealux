@@ -1,0 +1,32 @@
+# Description: A multimedia playback engine
+# URL:         https://xine-project.org
+# Maintainer:  Torsten Henschel, thenschel dot henschelsoft dot de
+# Depends on:  alsa-lib ffmpeg glu gtk libdvdnav libmad libmng libvdpau libvpx xorg
+# Optional:    pulseaudio
+
+name=xine-lib
+version=1.2.9
+release=2
+source=(https://downloads.sourceforge.net/project/xine/$name/$version/$name-$version.tar.xz)
+
+build() {
+    cd $name-$version
+
+    sed -e 's/\(xcb-shape >= 1.0\)/xcb \1/' -i m4/video_out.m4
+
+    ./configure \
+	--prefix=/usr \
+	--disable-nls \
+	--disable-oss \
+	--disable-vcd \
+	--enable-antialiasing \
+	--enable-ipv6 \
+	--disable-dependency-tracking
+
+    make
+    make DESTDIR=$PKG install
+
+    chmod a-x $PKG/usr/lib/*.so
+    find $PKG/usr/lib/xine/plugins/ -type f -name '*.so' -exec chmod a-x {} \;
+    rm -r $PKG/usr/share/doc
+}

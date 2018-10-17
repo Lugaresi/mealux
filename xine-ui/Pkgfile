@@ -1,0 +1,22 @@
+# Description: A free video player for Unix
+# URL:         https://xine-project.org/
+# Maintainer:  Torsten Henschel, thenschel at henschelsoft dot de
+# Depends on:  xine-lib
+
+name=xine-ui
+version=0.99.10
+release=2
+source=(https://downloads.sourceforge.net/project/xine/$name/$version/xine-ui-$version.tar.xz)
+
+build() {
+    cd xine-ui-$version
+
+    ./configure \
+	--prefix=/usr \
+	--disable-nls
+
+    make
+    make DESTDIR=$PKG install
+
+    rm -fr $PKG/usr/share/{man/{??,man1/aaxine*},doc}
+}
