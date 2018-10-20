@@ -7,9 +7,7 @@ drwxr-xr-x	root/root	usr/include/
 drwxr-xr-x	root/root	usr/include/libfprint/
 -rw-r--r--	root/root	usr/include/libfprint/fprint.h
 drwxr-xr-x	root/root	usr/lib/
--rw-r--r--	root/root	usr/lib/libfprint.a
--rwxr-xr-x	root/root	usr/lib/libfprint.la
-lrwxrwxrwx	root/root	usr/lib/libfprint.so -> libfprint.so.0.0.0
+lrwxrwxrwx	root/root	usr/lib/libfprint.so -> libfprint.so.0
 lrwxrwxrwx	root/root	usr/lib/libfprint.so.0 -> libfprint.so.0.0.0
 -rwxr-xr-x	root/root	usr/lib/libfprint.so.0.0.0
 drwxr-xr-x	root/root	usr/lib/pkgconfig/
