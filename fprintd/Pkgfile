@@ -1,0 +1,23 @@
+# Description: fprintd is a D-Bus daemon that offers libfprint functionality over the D-Bus interprocess communication bus.
+# URL:         https://www.freedesktop.org/wiki/Software/fprint/fprintd/
+# Maintainer:  Stuka
+# Packager:    
+# Depends on:  glib, gtk, libfprint, p5-xml-parser, dbus-glib, linux-pam, gtk-doc
+
+name=fprintd
+version=0.8.1
+release=1
+gitver=9e32cd525724f21eebf2336a06b13a39c6616ab0
+source=(https://cgit.freedesktop.org/libfprint/fprintd/snapshot/fprintd-$gitver.tar.gz fprint)
+
+build () {
+    cd fprintd-$gitver
+    ./autogen.sh
+    ./configure --prefix=/usr --sysconfdir=/usr/etc --libdir=/lib --enable-pam --disable-nls
+    make
+    make DESTDIR=$PKG install
+    rm -rf $PKG/usr/info
+    mkdir -p $PKG/etc/rc.d
+    cp $SRC/fprint $PKG/etc/rc.d/
+    chmod +x $PKG/etc/rc.d/fprint
+}
