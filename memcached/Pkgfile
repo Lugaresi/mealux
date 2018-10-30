@@ -4,7 +4,7 @@
 # Depends on:  
 
 name=memcached
-version=1.5.6
+version=1.5.11
 release=1
 source=(https://memcached.org/files/$name-$version.tar.gz)
 

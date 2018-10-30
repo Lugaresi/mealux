@@ -1,6 +1,0 @@
-#!/bin/sh
-
-getent group citadel || /usr/sbin/groupadd -g 90 citadel
-getent passwd citadel || /usr/sbin/useradd -g citadel -u 90 -d /var/citadel -s /bin/false citadel
-/usr/bin/passwd -l citadel
-
