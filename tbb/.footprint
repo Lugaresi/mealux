@@ -11,6 +11,7 @@ drwxr-xr-x	root/root	usr/include/tbb/
 -rw-r--r--	root/root	usr/include/tbb/blocked_range.h
 -rw-r--r--	root/root	usr/include/tbb/blocked_range2d.h
 -rw-r--r--	root/root	usr/include/tbb/blocked_range3d.h
+-rw-r--r--	root/root	usr/include/tbb/blocked_rangeNd.h
 -rw-r--r--	root/root	usr/include/tbb/cache_aligned_allocator.h
 -rw-r--r--	root/root	usr/include/tbb/combinable.h
 drwxr-xr-x	root/root	usr/include/tbb/compat/
@@ -57,8 +58,9 @@ drwxr-xr-x	root/root	usr/include/tbb/internal/
 -rw-r--r--	root/root	usr/include/tbb/internal/_template_helpers.h
 -rw-r--r--	root/root	usr/include/tbb/internal/_x86_eliding_mutex_impl.h
 -rw-r--r--	root/root	usr/include/tbb/internal/_x86_rtm_rw_mutex_impl.h
+-rw-r--r--	root/root	usr/include/tbb/iterators.h
 drwxr-xr-x	root/root	usr/include/tbb/machine/
--rw-r--r--	root/root	usr/include/tbb/machine/gcc_armv7.h
+-rw-r--r--	root/root	usr/include/tbb/machine/gcc_arm.h
 -rw-r--r--	root/root	usr/include/tbb/machine/gcc_generic.h
 -rw-r--r--	root/root	usr/include/tbb/machine/gcc_ia32_common.h
 -rw-r--r--	root/root	usr/include/tbb/machine/gcc_itsx.h

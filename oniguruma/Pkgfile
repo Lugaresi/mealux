@@ -4,7 +4,7 @@
 # Depends on:  
 
 name=oniguruma
-version=6.7.1
+version=6.9.0
 release=1
 source=(https://github.com/kkos/$name/archive/v$version.tar.gz)
 

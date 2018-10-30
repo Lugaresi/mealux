@@ -4,7 +4,7 @@
 # Depends on:  
 
 name=tbb
-version=2018_U2
+version=2019_U1
 release=1
 source=(https://github.com/01org/tbb/archive/$version.tar.gz)
 
