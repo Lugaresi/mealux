@@ -1,16 +1,16 @@
-# Description: GNU compression utility (replacement for compress)
-# URL:         http://www.gzip.org/
-# Maintainer:  CRUX System Team, core-ports at crux dot nu
+# Description: Quick-and-easy way to make procedure calls over the Internet.
+# URL:         http://xmlrpc-c.sourceforge.net/
+# Maintainer:  Lugaresi
 # Depends on:  curl openssl
 
 name=xmlrpc-c
-version=1.51.00
+version=1.51.03
 release=1
-svnrev=2981
-source=(https://sourceforge.net/code-snapshots/svn/x/xm/$name/code/$name-code-$svnrev-trunk.zip)
+svnrev=3018
+source=(https://sourceforge.net/code-snapshots/svn/x/xm/$name/code/$name-code-r$svnrev-stable.zip)
 
 build() {
-    cd $name-code-$svnrev-trunk
+    cd $name-code-r$svnrev-stable
     ./configure --prefix=/usr
     make
     make DESTDIR=$PKG install

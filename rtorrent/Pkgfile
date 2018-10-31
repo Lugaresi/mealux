@@ -6,7 +6,7 @@
 name=rtorrent
 version=0.9.6
 release=1
-source=(http://rtorrent.net/downloads/rtorrent-$version.tar.gz)
+source=(http://rtorrent.net/downloads/rtorrent-$version.tar.gz rtorrent.s)
 
 build() {
   cd $name-$version
@@ -18,5 +18,5 @@ build() {
   ./configure --prefix=/usr --with-xmlrpc-c --mandir=/usr/man --enable-debug=no
   make
   make install DESTDIR=$PKG
-  #install -m 644 -D doc/old/rtorrent.1 $PKG/usr/share/man/man1/rtorrent.1
+  install -m 755 -D $SRC/rtorrent.s $PKG/etc/rc.d/rtorrent
 }
