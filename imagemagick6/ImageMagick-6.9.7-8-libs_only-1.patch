@@ -88,24 +88,6 @@ diff -Naur ImageMagick-6.9.6-3.orig/magick/ImageMagick-6.pc.in ImageMagick-6.9.6
 +Cflags:  -I${includearchdir} -I${includedir} @MAGICK_PCFLAGS@
 +Libs: -L${libdir} -l${libname}
 +Libs.private: -L${libdir} -l${libname} @MAGICK_LIBS@ @MATH_LIBS@
-diff -Naur ImageMagick-6.9.6-3.orig/magick/ImageMagick.pc.in ImageMagick-6.9.6-3/magick/ImageMagick.pc.in
---- ImageMagick-6.9.6-3.orig/magick/ImageMagick.pc.in	2017-01-07 01:58:35.942633448 +0000
-+++ ImageMagick-6.9.6-3/magick/ImageMagick.pc.in	1970-01-01 01:00:00.000000000 +0100
-@@ -1,14 +0,0 @@
--prefix=@prefix@
--exec_prefix=@exec_prefix@
--libdir=@libdir@
--includedir=@includedir@/ImageMagick-@MAGICK_MAJOR_VERSION@
--includearchdir=@INCLUDEARCH_DIR@/ImageMagick-@MAGICK_MAJOR_VERSION@
--libname=MagickCore-@MAGICK_MAJOR_VERSION@.@MAGICK_ABI_SUFFIX@
-- 
--Name: ImageMagick
--Description: ImageMagick - convert, edit, and compose images (ABI @MAGICK_ABI_SUFFIX@)
--URL: https://www.imagemagick.org
--Version: @PACKAGE_VERSION@
--Cflags:  -I${includearchdir} -I${includedir} @MAGICK_PCFLAGS@
--Libs: -L${libdir} -l${libname}
--Libs.private: -L${libdir} -l${libname} @MAGICK_LIBS@ @MATH_LIBS@
 diff -Naur ImageMagick-6.9.6-3.orig/magick/MagickCore-6.pc.in ImageMagick-6.9.6-3/magick/MagickCore-6.pc.in
 --- ImageMagick-6.9.6-3.orig/magick/MagickCore-6.pc.in	1970-01-01 01:00:00.000000000 +0100
 +++ ImageMagick-6.9.6-3/magick/MagickCore-6.pc.in	2017-01-07 22:13:31.500562039 +0000
@@ -125,25 +107,6 @@ diff -Naur ImageMagick-6.9.6-3.orig/magick/MagickCore-6.pc.in ImageMagick-6.9.6-
 +Cflags: -I${includearchdir} -I${includedir} @MAGICK_PCFLAGS@
 +Libs: -L${libdir} -l${libname}
 +Libs.private: -L${libdir} -l${libname} @MAGICK_LIBS@ @MATH_LIBS@
-diff -Naur ImageMagick-6.9.6-3.orig/magick/MagickCore.pc.in ImageMagick-6.9.6-3/magick/MagickCore.pc.in
---- ImageMagick-6.9.6-3.orig/magick/MagickCore.pc.in	2016-10-31 00:34:31.000000000 +0000
-+++ ImageMagick-6.9.6-3/magick/MagickCore.pc.in	1970-01-01 01:00:00.000000000 +0100
-@@ -1,15 +0,0 @@
--prefix=@prefix@
--exec_prefix=@exec_prefix@
--libdir=@libdir@
--includedir=@includedir@/ImageMagick-@MAGICK_MAJOR_VERSION@
--includearchdir=@INCLUDEARCH_DIR@/ImageMagick-@MAGICK_MAJOR_VERSION@
--libname=MagickCore-@MAGICK_MAJOR_VERSION@.@MAGICK_ABI_SUFFIX@
--moduledir=@libdir@/ImageMagick-@MAGICK_MAJOR_VERSION@.@MAGICK_MINOR_VERSION@.@MAGICK_MICRO_VERSION@/modules-@MAGICK_ABI_SUFFIX@
--
--Name: MagickCore
--Description: MagickCore - C API for ImageMagick (ABI @MAGICK_ABI_SUFFIX@)
--URL: https://www.imagemagick.org
--Version: @PACKAGE_VERSION@
--Cflags: -I${includearchdir} -I${includedir} @MAGICK_PCFLAGS@
--Libs: -L${libdir} -l${libname}
--Libs.private: -L${libdir} -l${libname} @MAGICK_LIBS@ @MATH_LIBS@
 diff -Naur ImageMagick-6.9.6-3.orig/Magick++/lib/ImageMagick++-6.pc.in ImageMagick-6.9.6-3/Magick++/lib/ImageMagick++-6.pc.in
 --- ImageMagick-6.9.6-3.orig/Magick++/lib/ImageMagick++-6.pc.in	1970-01-01 01:00:00.000000000 +0100
 +++ ImageMagick-6.9.6-3/Magick++/lib/ImageMagick++-6.pc.in	2017-01-07 22:11:59.637428232 +0000
@@ -430,25 +393,6 @@ diff -Naur ImageMagick-6.9.6-3.orig/wand/MagickWand-6.pc.in ImageMagick-6.9.6-3/
 +Cflags: -I${includearchdir} -I${includedir} @MAGICK_PCFLAGS@
 +Libs: -L${libdir} -l${libname} 
 +Libs.private: -L${libdir} -l${libname} @MAGICK_LIBS@ @MATH_LIBS@
-diff -Naur ImageMagick-6.9.6-3.orig/wand/MagickWand.pc.in ImageMagick-6.9.6-3/wand/MagickWand.pc.in
---- ImageMagick-6.9.6-3.orig/wand/MagickWand.pc.in	2016-10-31 00:34:31.000000000 +0000
-+++ ImageMagick-6.9.6-3/wand/MagickWand.pc.in	1970-01-01 01:00:00.000000000 +0100
-@@ -1,15 +0,0 @@
--prefix=@prefix@
--exec_prefix=@exec_prefix@
--libdir=@libdir@
--includedir=@includedir@/ImageMagick-@MAGICK_MAJOR_VERSION@
--includearchdir=@INCLUDEARCH_DIR@/ImageMagick-@MAGICK_MAJOR_VERSION@
--libname=MagickWand-@MAGICK_MAJOR_VERSION@.@MAGICK_ABI_SUFFIX@
-- 
--Name: MagickWand
--Description: MagickWand - C API for ImageMagick (ABI @MAGICK_ABI_SUFFIX@)
--URL: https://www.imagemagick.org
--Version: @PACKAGE_VERSION@
--Requires: MagickCore
--Cflags: -I${includearchdir} -I${includedir} @MAGICK_PCFLAGS@
--Libs: -L${libdir} -l${libname} 
--Libs.private: -L${libdir} -l${libname} @MAGICK_LIBS@ @MATH_LIBS@
 diff -Naur ImageMagick-6.9.6-3.orig/wand/Wand-6.pc.in ImageMagick-6.9.6-3/wand/Wand-6.pc.in
 --- ImageMagick-6.9.6-3.orig/wand/Wand-6.pc.in	1970-01-01 01:00:00.000000000 +0100
 +++ ImageMagick-6.9.6-3/wand/Wand-6.pc.in	2017-01-08 00:39:23.169642808 +0000

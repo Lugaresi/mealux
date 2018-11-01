@@ -1,11 +1,11 @@
 # Description: Image manipulation wizard - Legacy 6.x Version
 # URL:         http://www.imagemagick.org/
-# Maintainer:  Juergen Daubert, jue at crux dot nu
-# Packager:    danm, maol, jaeger, sip
+# Maintainer:  Lugaresi
+# Packager:    Lugaresi
 # Depends on:  util-linux lcms2 pango xorg-libxt
 
 name=imagemagick6
-version=6.9.9-20
+version=6.9.10-14
 release=1
 source=(ftp://ftp.imagemagick.org/pub/ImageMagick/releases/ImageMagick-$version.tar.xz ImageMagick-6.9.7-8-libs_only-1.patch)
 
