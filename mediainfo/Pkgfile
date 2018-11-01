@@ -4,7 +4,7 @@
 # Depends on:  
 
 name=mediainfo
-version=17.12
+version=18.08.1
 release=1
 source=(https://mediaarea.net/download/binary/mediainfo/$version/MediaInfo_CLI_$version\_GNU_FromSource.tar.bz2)
 
