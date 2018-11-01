@@ -4,17 +4,13 @@
 # Depends on:  elfutils
 
 name=libdwarf
-version=20180129
+version=20181024
 release=1
 source=(https://www.prevanders.net/$name-$version.tar.gz)
 
 build() {
-    cd dwarf-$version
+    cd libdwarf-$version
     ./configure --prefix=/usr
     make
-    mkdir -p $PKG/usr/bin $PKG/usr/lib $PKG/usr/include
-    cp dwarfdump/dwarfdump      $PKG/usr/bin
-    cp dwarfdump/dwarfdump.conf $PKG/usr/lib
-    cp libdwarf/libdwarf.a      $PKG/usr/lib
-    cp libdwarf/libdwarf.h	$PKG/usr/include
+    make install DESTDIR=$PKG
 }
