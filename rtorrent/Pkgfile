@@ -4,7 +4,7 @@
 # Depends on:  libtorrent xmlrpc-c
 
 name=rtorrent
-version=0.9.6
+version=0.9.7
 release=1
 source=(http://rtorrent.net/downloads/rtorrent-$version.tar.gz rtorrent.s)
 

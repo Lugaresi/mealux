@@ -16,6 +16,10 @@ drwxr-xr-x	root/root	usr/bin/
 -rwxr-xr-x	root/root	usr/bin/hhvm-repo-mode
 -rwxr-xr-x	root/root	usr/bin/hphpize
 drwxr-xr-x	root/root	usr/include/
+drwxr-xr-x	root/root	usr/include/build/
+drwxr-xr-x	root/root	usr/include/build/hphp/
+drwxr-xr-x	root/root	usr/include/build/hphp/util/
+-rw-r--r--	root/root	usr/include/build/hphp/util/low-ptr-def.h
 drwxr-xr-x	root/root	usr/include/hphp/
 drwxr-xr-x	root/root	usr/include/hphp/compiler/
 -rw-r--r--	root/root	usr/include/hphp/compiler/builtin_symbols.h
@@ -173,6 +177,7 @@ drwxr-xr-x	root/root	usr/include/hphp/runtime/base/ini-parser/
 -rw-r--r--	root/root	usr/include/hphp/runtime/base/mixed-array.h
 -rw-r--r--	root/root	usr/include/hphp/runtime/base/object-data-inl.h
 -rw-r--r--	root/root	usr/include/hphp/runtime/base/object-data.h
+-rw-r--r--	root/root	usr/include/hphp/runtime/base/object-iterator.h
 -rw-r--r--	root/root	usr/include/hphp/runtime/base/output-file.h
 -rw-r--r--	root/root	usr/include/hphp/runtime/base/packed-array-defs.h
 -rw-r--r--	root/root	usr/include/hphp/runtime/base/packed-array.h
@@ -190,6 +195,7 @@ drwxr-xr-x	root/root	usr/include/hphp/runtime/base/ini-parser/
 -rw-r--r--	root/root	usr/include/hphp/runtime/base/purger.h
 -rw-r--r--	root/root	usr/include/hphp/runtime/base/rds-header.h
 -rw-r--r--	root/root	usr/include/hphp/runtime/base/rds-inl.h
+-rw-r--r--	root/root	usr/include/hphp/runtime/base/rds-local.h
 -rw-r--r--	root/root	usr/include/hphp/runtime/base/rds-util.h
 -rw-r--r--	root/root	usr/include/hphp/runtime/base/rds.h
 -rw-r--r--	root/root	usr/include/hphp/runtime/base/ref-data.h
@@ -211,9 +217,9 @@ drwxr-xr-x	root/root	usr/include/hphp/runtime/base/ini-parser/
 -rw-r--r--	root/root	usr/include/hphp/runtime/base/req-tiny-vector.h
 -rw-r--r--	root/root	usr/include/hphp/runtime/base/req-vector.h
 -rw-r--r--	root/root	usr/include/hphp/runtime/base/request-event-handler.h
+-rw-r--r--	root/root	usr/include/hphp/runtime/base/request-info.h
 -rw-r--r--	root/root	usr/include/hphp/runtime/base/request-injection-data-inl.h
 -rw-r--r--	root/root	usr/include/hphp/runtime/base/request-injection-data.h
--rw-r--r--	root/root	usr/include/hphp/runtime/base/request-local.h
 -rw-r--r--	root/root	usr/include/hphp/runtime/base/resource-data.h
 -rw-r--r--	root/root	usr/include/hphp/runtime/base/root-map.h
 -rw-r--r--	root/root	usr/include/hphp/runtime/base/runtime-error.h
@@ -246,8 +252,6 @@ drwxr-xr-x	root/root	usr/include/hphp/runtime/base/ini-parser/
 -rw-r--r--	root/root	usr/include/hphp/runtime/base/sweepable.h
 -rw-r--r--	root/root	usr/include/hphp/runtime/base/system-profiler.h
 -rw-r--r--	root/root	usr/include/hphp/runtime/base/temp-file.h
--rw-r--r--	root/root	usr/include/hphp/runtime/base/thread-hooks.h
--rw-r--r--	root/root	usr/include/hphp/runtime/base/thread-info.h
 -rw-r--r--	root/root	usr/include/hphp/runtime/base/thread-safe-setlocale.h
 -rw-r--r--	root/root	usr/include/hphp/runtime/base/thrift-buffer.h
 -rw-r--r--	root/root	usr/include/hphp/runtime/base/timestamp.h
@@ -400,6 +404,7 @@ drwxr-xr-x	root/root	usr/include/hphp/runtime/ext/collections/
 -rw-r--r--	root/root	usr/include/hphp/runtime/ext/collections/ext_collections.h
 -rw-r--r--	root/root	usr/include/hphp/runtime/ext/collections/hash-collection.h
 drwxr-xr-x	root/root	usr/include/hphp/runtime/ext/curl/
+-rw-r--r--	root/root	usr/include/hphp/runtime/ext/curl/curl-multi-await.h
 -rw-r--r--	root/root	usr/include/hphp/runtime/ext/curl/curl-multi-resource.h
 -rw-r--r--	root/root	usr/include/hphp/runtime/ext/curl/curl-pool.h
 -rw-r--r--	root/root	usr/include/hphp/runtime/ext/curl/curl-resource.h
@@ -607,6 +612,7 @@ drwxr-xr-x	root/root	usr/include/hphp/runtime/ext/thrift/
 -rw-r--r--	root/root	usr/include/hphp/runtime/ext/thrift/ext_thrift.h
 -rw-r--r--	root/root	usr/include/hphp/runtime/ext/thrift/spec-holder.h
 -rw-r--r--	root/root	usr/include/hphp/runtime/ext/thrift/transport.h
+-rw-r--r--	root/root	usr/include/hphp/runtime/ext/thrift/util.h
 drwxr-xr-x	root/root	usr/include/hphp/runtime/ext/url/
 -rw-r--r--	root/root	usr/include/hphp/runtime/ext/url/ext_url.h
 drwxr-xr-x	root/root	usr/include/hphp/runtime/ext/vsdebug/
@@ -641,6 +647,7 @@ drwxr-xr-x	root/root	usr/include/hphp/runtime/server/
 -rw-r--r--	root/root	usr/include/hphp/runtime/server/access-log.h
 -rw-r--r--	root/root	usr/include/hphp/runtime/server/admin-request-handler.h
 -rw-r--r--	root/root	usr/include/hphp/runtime/server/cli-server.h
+-rw-r--r--	root/root	usr/include/hphp/runtime/server/compression.h
 -rw-r--r--	root/root	usr/include/hphp/runtime/server/external-clients-shim.h
 -rw-r--r--	root/root	usr/include/hphp/runtime/server/fake-transport.h
 drwxr-xr-x	root/root	usr/include/hphp/runtime/server/fastcgi/
@@ -695,6 +702,7 @@ drwxr-xr-x	root/root	usr/include/hphp/runtime/vm/
 -rw-r--r--	root/root	usr/include/hphp/runtime/vm/bytecode.h
 -rw-r--r--	root/root	usr/include/hphp/runtime/vm/class-inl.h
 -rw-r--r--	root/root	usr/include/hphp/runtime/vm/class.h
+-rw-r--r--	root/root	usr/include/hphp/runtime/vm/cls-ref.h
 drwxr-xr-x	root/root	usr/include/hphp/runtime/vm/debug/
 -rw-r--r--	root/root	usr/include/hphp/runtime/vm/debug/debug.h
 -rw-r--r--	root/root	usr/include/hphp/runtime/vm/debug/dwarf.h
@@ -762,6 +770,7 @@ drwxr-xr-x	root/root	usr/include/hphp/runtime/vm/jit/
 -rw-r--r--	root/root	usr/include/hphp/runtime/vm/jit/containers.h
 -rw-r--r--	root/root	usr/include/hphp/runtime/vm/jit/dce.h
 -rw-r--r--	root/root	usr/include/hphp/runtime/vm/jit/debugger.h
+-rw-r--r--	root/root	usr/include/hphp/runtime/vm/jit/decref-profile.h
 -rw-r--r--	root/root	usr/include/hphp/runtime/vm/jit/edge.h
 -rw-r--r--	root/root	usr/include/hphp/runtime/vm/jit/enter-tc.h
 -rw-r--r--	root/root	usr/include/hphp/runtime/vm/jit/extra-data.h
@@ -778,6 +787,7 @@ drwxr-xr-x	root/root	usr/include/hphp/runtime/vm/jit/
 -rw-r--r--	root/root	usr/include/hphp/runtime/vm/jit/guard-type-profile.h
 -rw-r--r--	root/root	usr/include/hphp/runtime/vm/jit/hooks.h
 -rw-r--r--	root/root	usr/include/hphp/runtime/vm/jit/id-set.h
+-rw-r--r--	root/root	usr/include/hphp/runtime/vm/jit/incref-profile.h
 -rw-r--r--	root/root	usr/include/hphp/runtime/vm/jit/inlining-decider.h
 -rw-r--r--	root/root	usr/include/hphp/runtime/vm/jit/ir-builder.h
 -rw-r--r--	root/root	usr/include/hphp/runtime/vm/jit/ir-instr-table.h
@@ -831,7 +841,6 @@ drwxr-xr-x	root/root	usr/include/hphp/runtime/vm/jit/
 -rw-r--r--	root/root	usr/include/hphp/runtime/vm/jit/prof-data-serialize.h
 -rw-r--r--	root/root	usr/include/hphp/runtime/vm/jit/prof-data.h
 -rw-r--r--	root/root	usr/include/hphp/runtime/vm/jit/prof-src-key.h
--rw-r--r--	root/root	usr/include/hphp/runtime/vm/jit/profile-refcount.h
 -rw-r--r--	root/root	usr/include/hphp/runtime/vm/jit/punt.h
 -rw-r--r--	root/root	usr/include/hphp/runtime/vm/jit/ref-deps.h
 -rw-r--r--	root/root	usr/include/hphp/runtime/vm/jit/reg-algorithms.h
@@ -943,6 +952,7 @@ drwxr-xr-x	root/root	usr/include/hphp/runtime/vm/jit/vtune/
 -rw-r--r--	root/root	usr/include/hphp/runtime/vm/preclass-emitter.h
 -rw-r--r--	root/root	usr/include/hphp/runtime/vm/preclass-inl.h
 -rw-r--r--	root/root	usr/include/hphp/runtime/vm/preclass.h
+-rw-r--r--	root/root	usr/include/hphp/runtime/vm/reified-generics.h
 -rw-r--r--	root/root	usr/include/hphp/runtime/vm/repo-global-data.h
 -rw-r--r--	root/root	usr/include/hphp/runtime/vm/repo-helpers.h
 -rw-r--r--	root/root	usr/include/hphp/runtime/vm/repo-status.h
@@ -952,6 +962,8 @@ drwxr-xr-x	root/root	usr/include/hphp/runtime/vm/jit/vtune/
 -rw-r--r--	root/root	usr/include/hphp/runtime/vm/ringbuffer-print.h
 -rw-r--r--	root/root	usr/include/hphp/runtime/vm/runtime-compiler.h
 -rw-r--r--	root/root	usr/include/hphp/runtime/vm/runtime.h
+-rw-r--r--	root/root	usr/include/hphp/runtime/vm/rx-inl.h
+-rw-r--r--	root/root	usr/include/hphp/runtime/vm/rx.h
 -rw-r--r--	root/root	usr/include/hphp/runtime/vm/srckey-inl.h
 -rw-r--r--	root/root	usr/include/hphp/runtime/vm/srckey.h
 -rw-r--r--	root/root	usr/include/hphp/runtime/vm/stats-opcodeDef.h
@@ -1016,7 +1028,6 @@ drwxr-xr-x	root/root	usr/include/hphp/util/cache/
 -rw-r--r--	root/root	usr/include/hphp/util/compact-vector.h
 -rw-r--r--	root/root	usr/include/hphp/util/compatibility.h
 -rw-r--r--	root/root	usr/include/hphp/util/compilation-flags.h
--rw-r--r--	root/root	usr/include/hphp/util/compression.h
 -rw-r--r--	root/root	usr/include/hphp/util/concurrent-lru-cache.h
 -rw-r--r--	root/root	usr/include/hphp/util/concurrent-scalable-cache.h
 -rw-r--r--	root/root	usr/include/hphp/util/conv-10.h
@@ -1049,6 +1060,7 @@ drwxr-xr-x	root/root	usr/include/hphp/util/deprecated/
 -rw-r--r--	root/root	usr/include/hphp/util/fixed-vector.h
 -rw-r--r--	root/root	usr/include/hphp/util/functional.h
 -rw-r--r--	root/root	usr/include/hphp/util/growable-vector.h
+-rw-r--r--	root/root	usr/include/hphp/util/gzip.h
 -rw-r--r--	root/root	usr/include/hphp/util/hardware-counter.h
 -rw-r--r--	root/root	usr/include/hphp/util/hash-map.h
 -rw-r--r--	root/root	usr/include/hphp/util/hash-set.h
@@ -1124,6 +1136,7 @@ drwxr-xr-x	root/root	usr/include/hphp/util/deprecated/
 -rw-r--r--	root/root	usr/include/hphp/util/unwind-itanium-msvc.h
 -rw-r--r--	root/root	usr/include/hphp/util/unwind-itanium.h
 -rw-r--r--	root/root	usr/include/hphp/util/word-mem.h
+-rw-r--r--	root/root	usr/include/hphp/util/zstd.h
 drwxr-xr-x	root/root	usr/include/hphp/vixl/
 drwxr-xr-x	root/root	usr/include/hphp/vixl/a64/
 -rw-r--r--	root/root	usr/include/hphp/vixl/a64/assembler-a64.h

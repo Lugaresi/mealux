@@ -4,7 +4,7 @@
 # Depends on:  cmake libxml2 bison gawk git boost bzip2 curl elfutils sqlite3 libxslt libgd glog libinotify mysql libevent libzip tbb oniguruma libedit libdwarf imagemagick fribidi libiconv libmcrypt libmemcached krb5 openldap jemalloc
 
 name=hhvm
-version=3.28.3
+version=3.30.1
 release=1
 
 source=(http://dl.hhvm.com/source/hhvm-$version.tar.gz \
@@ -14,7 +14,7 @@ source=(http://dl.hhvm.com/source/hhvm-$version.tar.gz \
 build() {
     cd hhvm-$version
     patch -p1 -i $SRC/dwarfhack.diff
-    patch -p1 -i $SRC/libxml-hack.diff
+#    patch -p1 -i $SRC/libxml-hack.diff
     patch -p1 -i $SRC/zip.diff
     mkdir build && cd build
     cmake -DCMAKE_INSTALL_PREFIX=/usr ..
