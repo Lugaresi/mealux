@@ -1,7 +1,7 @@
 # Description: Openswan is an IPsec implementation for Linux.
 # URL:         https://www.openswan.org/
 # Maintainer:  Lugaresi
-# Depends on:  nss libunbound xmlto
+# Depends on:  nss libunbound
 
 name=strongswan
 version=5.7.1
