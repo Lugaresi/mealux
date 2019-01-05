@@ -10,7 +10,14 @@ source=(https://download2.strongswan.org/$name-$version.tar.gz)
 
 build() {
     cd $name-$version
-    ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var
+    ./configure \
+	--enable-eap-identity --enable-eap-md5 --enable-eap-mschapv2 \
+	--enable-eap-tls --enable-eap-ttls --enable-eap-peap \
+	--enable-eap-tnc --enable-eap-dynamic --enable-eap-radius \
+	--enable-xauth-eap --enable-xauth-pam --enable-dhcp \
+	--enable-openssl --enable-addrblock --enable-unity \
+	--enable-certexpire --enable-radattr --enable-tools \
+	--prefix=/usr --sysconfdir=/etc --localstatedir=/var
     make
     make DESTDIR=$PKG install
 }
