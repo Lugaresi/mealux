@@ -7,7 +7,7 @@
 name=fprintd
 version=0.8.1
 release=1
-gitver=9e32cd525724f21eebf2336a06b13a39c6616ab0
+gitver=8de9164be0e4670cd8f3df3c9207a7555228efbf
 source=(https://cgit.freedesktop.org/libfprint/fprintd/snapshot/fprintd-$gitver.tar.gz fprint)
 
 build () {

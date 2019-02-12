@@ -1,11 +1,11 @@
-# Description: Library with support routines for C such as list, trees, hashes
-# URL:         http://www.gtk.org/
-# Maintainer:  Juergen Daubert, jue at crux dot nu
-# Packager:    Daniel Mueller, daniel at danm dot de
-# Depends on: pkg-config, nss, libusb, glib, gtk, meson
+# Description: Libfprint is the component which does the dirty work of talking to fingerprint reading devices, and processing fingerprint data.
+# URL:         https://fprint.freedesktop.org/
+# Maintainer:  Stu
+# Packager:    Stu
+# Depends on: pkg-config, nss, libusb, glib, gtk3, meson
 
 name=libfprint
-version=0.8.2
+version=0.99.0
 release=1
 dlver=`echo $version | sed -e s/[.]/_/g`
 source=(https://github.com/freedesktop/libfprint/archive/V_$dlver.tar.gz x220.patch)

@@ -3,6 +3,8 @@ drwxr-xr-x	root/root	lib/udev/
 drwxr-xr-x	root/root	lib/udev/rules.d/
 -rw-r--r--	root/root	lib/udev/rules.d/60-fprint-autosuspend.rules
 drwxr-xr-x	root/root	usr/
+drwxr-xr-x	root/root	usr/bin/
+-rwxr-xr-x	root/root	usr/bin/gtk-libfprint-test
 drwxr-xr-x	root/root	usr/include/
 drwxr-xr-x	root/root	usr/include/libfprint/
 -rw-r--r--	root/root	usr/include/libfprint/fprint.h
@@ -12,3 +14,10 @@ lrwxrwxrwx	root/root	usr/lib/libfprint.so.0 -> libfprint.so.0.0.0
 -rwxr-xr-x	root/root	usr/lib/libfprint.so.0.0.0
 drwxr-xr-x	root/root	usr/lib/pkgconfig/
 -rw-r--r--	root/root	usr/lib/pkgconfig/libfprint.pc
+drwxr-xr-x	root/root	usr/share/
+drwxr-xr-x	root/root	usr/share/applications/
+-rw-r--r--	root/root	usr/share/applications/org.freedesktop.libfprint.Demo.desktop
+drwxr-xr-x	root/root	usr/share/icons/
+-rw-r--r--	root/root	usr/share/icons/org.freedesktop.libfprint.Demo.png
+drwxr-xr-x	root/root	usr/share/metainfo/
+-rw-r--r--	root/root	usr/share/metainfo/org.freedesktop.libfprint.Demo.appdata.xml
