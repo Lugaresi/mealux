@@ -1,0 +1,9 @@
+drwxr-xr-x	root/root	opt/
+drwxr-xr-x	root/root	opt/telegram/
+-rwxr-xr-x	root/root	opt/telegram/Telegram
+-rwxr-xr-x	root/root	opt/telegram/Updater
+drwxr-xr-x	root/root	usr/
+drwxr-xr-x	root/root	usr/bin/
+drwxr-xr-x	root/root	usr/share/
+drwxr-xr-x	root/root	usr/share/applications/
+-rw-r--r--	root/root	usr/share/applications/telegramdesktop.desktop
