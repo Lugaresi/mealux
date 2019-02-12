@@ -31,6 +31,7 @@ drwxr-xr-x	root/root	usr/lib/audacious/General/
 -rwxr-xr-x	root/root	usr/lib/audacious/General/hotkey.so
 -rwxr-xr-x	root/root	usr/lib/audacious/General/lyricwiki.so
 -rwxr-xr-x	root/root	usr/lib/audacious/General/mpris2.so
+-rwxr-xr-x	root/root	usr/lib/audacious/General/notify.so
 -rwxr-xr-x	root/root	usr/lib/audacious/General/playlist-manager.so
 -rwxr-xr-x	root/root	usr/lib/audacious/General/scrobbler.so
 -rwxr-xr-x	root/root	usr/lib/audacious/General/search-tool.so
@@ -58,6 +59,7 @@ drwxr-xr-x	root/root	usr/lib/audacious/Output/
 -rwxr-xr-x	root/root	usr/lib/audacious/Output/filewriter.so
 -rwxr-xr-x	root/root	usr/lib/audacious/Output/oss4.so
 -rwxr-xr-x	root/root	usr/lib/audacious/Output/pulse_audio.so
+-rwxr-xr-x	root/root	usr/lib/audacious/Output/sdlout.so
 drwxr-xr-x	root/root	usr/lib/audacious/Transport/
 -rwxr-xr-x	root/root	usr/lib/audacious/Transport/gio.so
 -rwxr-xr-x	root/root	usr/lib/audacious/Transport/mms.so
