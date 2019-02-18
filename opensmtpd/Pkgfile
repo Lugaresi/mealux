@@ -2,21 +2,25 @@
 # URL:         https://www.opensmtpd.org
 # Maintainer:  Isak Andersson, contact at bitpuffin dot com
 #
-# depends on: libevent libasr
+# depends on: libevent libasr libbsd
 
 name=opensmtpd
-version=6.0.3p1
+version=6.4.1p2
 release=1
 source=(
   https://www.$name.org/archives/$name-$version.tar.gz
   $name.rc
+  https://github.com/OpenSMTPD/OpenSMTPD/commit/aac264575c39bae6b72c2a061b573c5bc7b7d99c.diff
 )
 
 build() {
   cd $name-$version
-
-  ./configure --prefix=/usr --mandir=/usr/man --sysconfdir=/etc --libexecdir=/usr/lib --with-pam --with-user-smtpd=mail --with-user-queue=mailq --with-group-queue=mail
-
+  patch -p1 -R -i $SRC/aac264575c39bae6b72c2a061b573c5bc7b7d99c.diff
+  aclocal
+  autoconf
+  ./configure --prefix=/usr --mandir=/usr/man --sysconfdir=/etc --libexecdir=/usr/lib --with-user-smtpd=mail --with-user-queue=mailq --with-group-queue=mail --with-ldflags=-lbsd
+  sed -e s/CERT/O_CERT/g -i $SRC/$name-$version/smtpd/parse.y
+  sed -e s/SSL_OP_NO_CLIENT_RENEGOTIATION/SSL_OP_NO_SESSION_RESUMPTION_ON_RENEGOTIATION/g -i $SRC/$name-$version/smtpd/ssl.c
   make
   make DESTDIR=$PKG install
   install -D -m 755 $SRC/$name.rc $PKG/etc/rc.d/$name

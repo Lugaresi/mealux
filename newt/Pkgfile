@@ -1,0 +1,21 @@
+# Description: Drop-in Dialog replacement and other stuff
+# URL:         https://pagure.io/newt
+# Maintainer:  Stuka
+#
+# depends on: popt slang
+
+name=newt
+version=0.52.20
+release=1
+source=(
+  https://github.com/mlichvar/newt/archive/r0-52-20.tar.gz
+)
+
+build() {
+  cd $name-r0-52-20
+  ./autogen.sh
+  ./configure --prefix=/usr --mandir=/usr/man --sysconfdir=/etc --libexecdir=/usr/lib
+
+  make
+  make DESTDIR=$PKG install
+}

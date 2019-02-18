@@ -1,0 +1,21 @@
+# Description: OpenIKED is the IKE initator for Openbsd. Portable Version
+# URL:         
+# Maintainer:  Lugaresi
+# Depends on:  
+
+name=openiked
+version=1.10-dd08785
+gitv=dd087853f51353d6a87ee38a21ad9a93128db123
+release=1
+source=(https://github.com/xcllnt/openiked/archive/$gitv.zip)
+
+build() {
+    cd $name-$gitv
+#    sed -e s#/usr/local#/usr#g -i Makefile.inc
+    sh ./bootstrap
+    ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var
+    make
+    make DESTDIR=$PKG install
+#    mv $PKG/etc/rc.d/init.d/ipsec $PKG/etc/rc.d/ipsec
+#    rm -rf $PKG/etc/rc.d/init.d
+}
