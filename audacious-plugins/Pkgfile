@@ -1,7 +1,7 @@
 # Description: Audacious Player - Your music, your way. No exceptions
 # URL:         https://www.audacious-media-player.org/
 # Maintainer:  Torsten Henschel, thenschel at henschelsoft dot de
-# Depends on:  alsa-lib audacious ffmpeg lame libogg libvorbis neon flac wavpack libcdio libcdio-paranoia faad2 libsamplerate fluidsynth libmms libcue
+# Depends on:  alsa-lib audacious ffmpeg lame libogg libvorbis neon flac wavpack libcdio libcdio-paranoia faad2 libsamplerate fluidsynth libmms libcue libnofity libsdl
 # Optional:    pulseaudio
 
 name=audacious-plugins
