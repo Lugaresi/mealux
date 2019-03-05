@@ -1,0 +1,15 @@
+# Description: Bootstraps a Debian system.
+# URL:         https://wiki.debian.org/Debootstrap
+# Maintainer:  Lugaresi
+# Depends on:  wget
+
+name=debootstrap
+version=1.0.89
+release=1
+source=(http://ftp.debian.org/debian/pool/main/d/$name/debootstrap_$version.tar.gz)
+
+build() {
+    cd $name
+    make
+    make DESTDIR=$PKG install
+}
