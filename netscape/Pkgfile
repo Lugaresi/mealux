@@ -1,7 +1,7 @@
 # Description: A Good Old-fashioned browser
 # URL: http://www.seamonkey-project.org/
 # Maintainer: Stuka
-# Depends on: gtk, mesa3d, libnotify, nss, nspr, autconf-2.13, startup-notification, libvpx
+# Depends on: gtk, mesa3d, libnotify, nss, nspr, autconf-2.13, startup-notification, libvpx, clang, rust
 
 name=netscape
 version=2.49
@@ -10,16 +10,14 @@ release=1
 source=(https://archive.mozilla.org/pub/seamonkey/releases/$version$patchver/source/seamonkey-$version$patchver.source.tar.xz \
         http://www.stukamanhpt4.com/Netscape/Netscape-$version.tar.bz2 \
 	http://www.stukamanhpt4.com/Netscape/netscape-$version.diff \
-#        https://hg.mozilla.org/releases/mozilla-esr45/raw-rev/bf0dd9ae6807 \
-#	icu-patch
+	nobuild-mp4parse
 	netscape.desktop mozconfig.nix)
 
 build () {
     if [ ! -z $patchver ]; then cp -rf seamonkey-$version/* seamonkey-$version$patchver/; fi
     cd seamonkey-$version$patchver
     patch -p1 -i $SRC/netscape-$version.diff
-#    patch -p1 -i $SRC/icu-patch
-#   (cd mozilla; patch -p1 -i $SRC/bf0dd9ae6807)
+   (cd mozilla; patch -p1 -i $SRC/nobuild-mp4parse)
     cp $SRC/mozconfig.nix .
     sed -i mozconfig.nix -e s!@TOPSRCDIR@!`pwd`!g
     export MOZCONFIG=$SRC/seamonkey-$version$patchver/mozconfig.nix

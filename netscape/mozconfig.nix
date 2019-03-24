@@ -5,11 +5,20 @@ ac_add_options --prefix=/usr
 #ac_add_options --target=x86_64-pc-mingw32
 #ac_add_options --host=x86_64-pc-mingw32
 
+# Clang
+CC="/usr/bin/clang"
+CXX="/usr/bin/clang++"
+CFLAGS="-fcolor-diagnostics"
+CXXFLAGS="-fcolor-diagnostics"
+LD="/usr/bin/ld.gold"
+
 # Build parameters
 mk_add_options MOZ_OBJDIR=@TOPSRCDIR@/objdir-sm-release
 ac_add_options --disable-debug
+ac_add_options --enable-optimize
 mk_add_options MOZ_MAKE_FLAGS="-j4"
 ac_add_options --enable-strip
+ac_add_options --enable-rust
 
 # Enabled Components
 ac_add_options --enable-application=suite

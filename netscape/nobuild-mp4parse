@@ -1,0 +1,29 @@
+--- a/media/libstagefright/binding/mp4parse-cargo.patch	2019-03-23 23:34:45.659972316 +0100
++++ b/media/libstagefright/binding/mp4parse-cargo.patch	2019-03-23 23:39:04.106635601 +0100
+@@ -25,12 +25,13 @@ diff --git a/media/libstagefright/bindin
+ index aeeebc65..5c0836a 100644
+ --- a/media/libstagefright/binding/mp4parse_capi/Cargo.toml
+ +++ b/media/libstagefright/binding/mp4parse_capi/Cargo.toml
+-@@ -18,17 +18,9 @@ exclude = [
++@@ -18,17 +18,11 @@ exclude = [
+    "*.mp4",
+  ]
+  
+ -build = "build.rs"
+--
+++build = false
++
+  [dependencies]
+  "mp4parse" = {version = "0.6.0", path = "../mp4parse"}
+  
+--- a/media/libstagefright/binding/mp4parse_capi/Cargo.toml	2019-03-23 23:54:42.543289989 +0100
++++ b/media/libstagefright/binding/mp4parse_capi/Cargo.toml	2019-03-23 23:54:57.066623132 +0100
+@@ -18,6 +18,8 @@ exclude = [
+   "*.mp4",
+ ]
+ 
++build = false
++
+ [dependencies]
+ "mp4parse" = {version = "0.6.0", path = "../mp4parse"}
+ 

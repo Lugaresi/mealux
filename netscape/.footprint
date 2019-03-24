@@ -2988,6 +2988,7 @@ drwxr-xr-x	root/root	usr/include/Netscape-2.49.4/mp4_demuxer/
 -rw-r--r--	root/root	usr/include/Netscape-2.49.4/mp4_demuxer/ResourceStream.h
 -rw-r--r--	root/root	usr/include/Netscape-2.49.4/mp4_demuxer/SinfParser.h
 -rw-r--r--	root/root	usr/include/Netscape-2.49.4/mp4_demuxer/Stream.h
+-rw-r--r--	root/root	usr/include/Netscape-2.49.4/mp4parse.h
 -rw-r--r--	root/root	usr/include/Netscape-2.49.4/msgCore.h
 -rw-r--r--	root/root	usr/include/Netscape-2.49.4/msgIDelegateList.h
 -rw-r--r--	root/root	usr/include/Netscape-2.49.4/msgIOAuth2Module.h
