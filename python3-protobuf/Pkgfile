@@ -1,0 +1,14 @@
+# Description: A pure python implementation of multicast DNS service discovery
+# URL: https://github.com/jstasiak/python-zeroconf
+# Maintainer: Brian Madonna, Bmadonnaster at gmail dot com
+# Depends on: python python-netifaces python-6 python-setuptools
+
+name=python3-protobuf
+version=3.7.0
+release=1
+source=(https://github.com/protocolbuffers/protobuf/releases/download/v3.7.0/protobuf-python-3.7.0.tar.gz)
+
+build() {
+	cd "${SRC}/protobuf-${version}/python"
+ python3 setup.py install --prefix=/usr --root="${PKG}" --optimize=1
+}

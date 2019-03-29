@@ -1,0 +1,14 @@
+# Description: Paste provides several pieces of middleware (or filters) that can be nested to build web applications.
+# URL: https://pypi.org/project/Paste/
+# Maintainer: Brian Madonna, Bmadonnaster at gmail dot com
+# Depends on: python3
+
+name=python3-paste
+version=3.0.8
+release=1
+source=(https://github.com/cdent/paste/archive/$version.tar.gz)
+
+build() {
+	cd "${SRC}/paste-${version}"
+ python3 setup.py install --prefix=/usr --root="${PKG}" --optimize=1
+}

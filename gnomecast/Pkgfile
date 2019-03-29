@@ -1,0 +1,15 @@
+# Description: Chromecast local files from Linux - supports MKV, subtitles and 4K! 
+# URL: https://github.com/keredson/gnomecast
+# Maintainer: Brian Madonna, Bmadonnaster at gmail dot com
+# Depends on: python3
+
+name=gnomecast
+version=1.7.1
+release=1
+source=(https://files.pythonhosted.org/packages/4c/92/6e55126243a0044577bf5589210a881e967498ea91db03657271527c2aad/gnomecast-1.7.1.tar.gz)
+
+build() {
+	cd "${SRC}/${name}-${version}"
+ sed -i setup.py -e 's/README.rst/README.md/g'
+ python3 setup.py install --prefix=/usr --root="${PKG}" --optimize=1
+}

@@ -1,0 +1,16 @@
+# Description: Yakuake is a drop-down terminal emulator based on KDE Konsole technology.
+# URL:         https://yakuake.kde.org/
+# Maintainer:  Lugaresi
+# Depends on:  kde5-meta-plasma
+
+name=yakuake
+version=3.0.5
+release=1
+source=(https://github.com/KDE/$name/archive/v$version.tar.gz)
+
+build() {
+    cd $name-$version
+    cmake -DCMAKE_INSTALL_PREFIX=/usr .
+    make
+    make DESTDIR=$PKG install
+}

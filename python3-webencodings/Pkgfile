@@ -1,0 +1,14 @@
+# Description: Character encoding for the web. 
+# URL: https://github.com/gsnedders/python-webencodings/
+# Maintainer: Brian Madonna, Bmadonnaster at gmail dot com
+# Depends on: python3
+
+name=python3-webencodings
+version=0.5.1
+release=1
+source=(https://github.com/gsnedders/python-webencodings/archive/v$version.tar.gz)
+
+build() {
+	cd "${SRC}/python-webencodings-${version}"
+ python3 setup.py install --prefix=/usr --root="${PKG}" --optimize=1
+}

@@ -1,0 +1,14 @@
+# Description: Paste provides several pieces of middleware (or filters) that can be nested to build web applications.
+# URL: https://pypi.org/project/Paste/
+# Maintainer: Brian Madonna, Bmadonnaster at gmail dot com
+# Depends on: python3
+
+name=python3-bs4
+version=4.7.1
+release=1
+source=(https://www.crummy.com/software/BeautifulSoup/bs4/download/4.7/beautifulsoup4-$version.tar.gz)
+
+build() {
+	cd "${SRC}/beautifulsoup4-${version}"
+ python3 setup.py install --prefix=/usr --root="${PKG}" --optimize=1
+}
