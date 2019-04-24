@@ -1,0 +1,29 @@
+# Description:	Power management for KDE Plasma Shell
+# URL:		https://www.kde.org/
+# Maintainer:	Torsten Henschel, thenschel at henschelsoft dot de
+# Depends on:	extra-cmake-modules kactivities kauth kconfig kdbusaddons kdelibs4support kglobalaccel ki18n kidletime kio knotifyconfig kwayland libkscreen qt5 solid xorg-libxcb bluez-qt
+
+name=bluedevil
+version=5.15.4
+release=1
+source=(https://download.kde.org/stable/plasma/$version/$name-$version.tar.xz)
+
+build() {
+	# remove all translations
+	rm -r $SRC/$name-$version/po/*
+
+	mkdir build
+	cd build
+	cmake ../$name-$version \
+		-DCMAKE_BUILD_TYPE=RELEASE \
+		-DCMAKE_INSTALL_PREFIX=/usr \
+		-DCMAKE_INSTALL_LIBEXECDIR=/usr/lib/kf5 \
+		-DBUILD_TESTING=OFF \
+		-Wno-dev
+	make
+	make DESTDIR=$PKG install
+
+
+	# junk
+	rmdir $PKG/usr/share/locale
+}
