@@ -1,0 +1,23 @@
+# Description: HP printer drivers for LaserJets
+# URL:         https://sourceforge.net/projects/hplip/files/
+# Maintainer:  Lugaresi
+# Depends on:  net-snmp cups sane
+
+name=hplip
+version=3.19.3
+release=1
+source=(https://sourceforge.net/projects/$name/files/$name/$version/$name-$version.tar.gz)
+
+build() {
+    cd hplip-$version
+    ./configure --prefix=/usr --enable-qt5 --disable-qt4 --enable-hpcups-install --enable-cups-drv-install --enable-pp-build 
+    make
+    make -j1 rulesdir=/etc/udev/rules.d DESTDIR=$PKG install
+
+    rm -rf $PKG/etc/{sane.d,xdg}
+    install -dm755 $PKG/etc/sane.d/dll.d
+    echo hpaio > $PKG/etc/sane.d/dll.d/hpaio
+    rm -vrf $PKG/usr/share/hal
+    rm -vrf $PKG/etc/init.d
+}
+
