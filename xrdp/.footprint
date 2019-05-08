@@ -8,6 +8,7 @@ drwxr-xr-x	root/root	etc/rc.d/
 drwxr-xr-x	root/root	etc/xrdp/
 -rw-------	root/root	etc/xrdp/cert.pem
 -rw-------	root/root	etc/xrdp/key.pem
+-rw-r--r--	root/root	etc/xrdp/km-00000406.ini
 -rw-r--r--	root/root	etc/xrdp/km-00000407.ini
 -rw-r--r--	root/root	etc/xrdp/km-00000409.ini
 -rw-r--r--	root/root	etc/xrdp/km-0000040a.ini
@@ -23,6 +24,7 @@ drwxr-xr-x	root/root	etc/xrdp/
 -rw-r--r--	root/root	etc/xrdp/km-0000041d.ini
 -rw-r--r--	root/root	etc/xrdp/km-00000807.ini
 -rw-r--r--	root/root	etc/xrdp/km-00000809.ini
+-rw-r--r--	root/root	etc/xrdp/km-0000080a.ini
 -rw-r--r--	root/root	etc/xrdp/km-0000080c.ini
 -rw-r--r--	root/root	etc/xrdp/km-00000813.ini
 -rw-r--r--	root/root	etc/xrdp/km-00000816.ini
