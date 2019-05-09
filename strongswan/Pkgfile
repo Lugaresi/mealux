@@ -1,10 +1,10 @@
-# Description: Openswan is an IPsec implementation for Linux.
-# URL:         https://www.openswan.org/
+# Description: strongSwan is an IPsec implementation for Linux.
+# URL:         https://www.strongswan.org/
 # Maintainer:  Lugaresi
 # Depends on:  nss libunbound
 
 name=strongswan
-version=5.7.1
+version=5.7.2
 release=1
 source=(https://download2.strongswan.org/$name-$version.tar.gz)
 
