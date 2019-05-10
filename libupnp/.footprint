@@ -1,0 +1,32 @@
+drwxr-xr-x	root/root	usr/
+drwxr-xr-x	root/root	usr/include/
+drwxr-xr-x	root/root	usr/include/upnp/
+-rw-r--r--	root/root	usr/include/upnp/FreeList.h
+-rw-r--r--	root/root	usr/include/upnp/LinkedList.h
+-rw-r--r--	root/root	usr/include/upnp/ThreadPool.h
+-rw-r--r--	root/root	usr/include/upnp/TimerThread.h
+-rw-r--r--	root/root	usr/include/upnp/UpnpGlobal.h
+-rw-r--r--	root/root	usr/include/upnp/UpnpInet.h
+-rw-r--r--	root/root	usr/include/upnp/UpnpString.h
+-rw-r--r--	root/root	usr/include/upnp/ithread.h
+-rw-r--r--	root/root	usr/include/upnp/ixml.h
+-rw-r--r--	root/root	usr/include/upnp/ixmldebug.h
+-rw-r--r--	root/root	usr/include/upnp/upnp.h
+-rw-r--r--	root/root	usr/include/upnp/upnpconfig.h
+-rw-r--r--	root/root	usr/include/upnp/upnpdebug.h
+-rw-r--r--	root/root	usr/include/upnp/upnptools.h
+drwxr-xr-x	root/root	usr/lib/
+-rwxr-xr-x	root/root	usr/lib/libixml.la
+lrwxrwxrwx	root/root	usr/lib/libixml.so -> libixml.so.2.0.6
+lrwxrwxrwx	root/root	usr/lib/libixml.so.2 -> libixml.so.2.0.6
+-rwxr-xr-x	root/root	usr/lib/libixml.so.2.0.6
+-rwxr-xr-x	root/root	usr/lib/libthreadutil.la
+lrwxrwxrwx	root/root	usr/lib/libthreadutil.so -> libthreadutil.so.3.2.3
+lrwxrwxrwx	root/root	usr/lib/libthreadutil.so.3 -> libthreadutil.so.3.2.3
+-rwxr-xr-x	root/root	usr/lib/libthreadutil.so.3.2.3
+-rwxr-xr-x	root/root	usr/lib/libupnp.la
+lrwxrwxrwx	root/root	usr/lib/libupnp.so -> libupnp.so.5.0.0
+lrwxrwxrwx	root/root	usr/lib/libupnp.so.5 -> libupnp.so.5.0.0
+-rwxr-xr-x	root/root	usr/lib/libupnp.so.5.0.0
+drwxr-xr-x	root/root	usr/lib/pkgconfig/
+-rw-r--r--	root/root	usr/lib/pkgconfig/libupnp.pc

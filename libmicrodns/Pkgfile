@@ -1,0 +1,18 @@
+# Description: Minimal mDNS resolver (and announcer) library
+# URL:         https://github.com/videolabs/libmicrodns
+# Maintainer:  Lugaresi
+# Depends on:  
+
+name=libmicrodns
+version=0.0.10
+release=1
+source=(https://github.com/videolabs/$name/releases/download/$version/microdns-$version.tar.gz)
+
+build() {
+    cd microdns-$version
+#    ./bootstrap
+    mkdir build && cd build
+    ../configure --prefix=/usr
+    make
+    make DESTDIR=$PKG install
+}
