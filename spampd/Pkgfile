@@ -4,15 +4,15 @@
 # Depends on:  
 
 name=spampd
-version=2.20
+version=2.53
 release=1
-source=(https://github.com/downloads/mpaperno/$name/$name-$version.tar.gz \
+source=(https://github.com/mpaperno/$name/archive/$version.tar.gz \
 	spampd-rh-rc-script)
 
 build() {
     cd $name-$version
     mkdir -p $PKG/usr/sbin
-    install -m 755 spampd $PKG/usr/sbin
+    install -m 755 spampd.pl $PKG/usr/sbin/spampd
     mkdir -p $PKG/etc/rc.d
     install -m 755 $SRC/spampd-rh-rc-script $PKG/etc/rc.d/spampd
 }
