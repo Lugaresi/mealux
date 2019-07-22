@@ -1,7 +1,7 @@
 # Description: SpamPD is used within an e-mail delivery system to detect spam.
 # URL:         https://github.com/mpaperno/spampd
 # Maintainer:  Lugaresi
-# Depends on:  
+# Depends on:  p5-net-server
 
 name=spampd
 version=2.53
