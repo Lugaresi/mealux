@@ -1,0 +1,22 @@
+# Description: An implementation of MTP.
+# URL: http://libmtp.sourceforge.net/
+# Maintainer: Danny Rawlins, crux at romster dot me
+# Packager: Hannes Mayer, kontakt at ecarux dot de
+# Depends on: libusb
+
+name=libmtp
+version=1.1.16
+release=1
+source=(http://downloads.sourceforge.net/project/$name/$name/$version/$name-$version.tar.gz)
+
+build() {
+	cd $name-$version
+
+	./configure \
+		--prefix=/usr \
+		--disable-dependency-tracking \
+		--with-udev=/etc/udev/
+
+	make
+	make DESTDIR=$PKG install
+}
