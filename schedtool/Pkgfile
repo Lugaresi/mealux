@@ -1,0 +1,21 @@
+# Description: schedtool interfaces with the Linux CPU scheduler
+# URL: http://freshmeat.net/projects/schedtool/
+# Maintainer: Danny Rawlins, crux at romster dot me
+# Packager: Younes Hafri, ycrux at club-internet dot fr
+# Depends on:
+
+name=schedtool
+version=1.3.0
+release=1
+source="http://freequaos.host.sk/schedtool/$name-$version.tar.bz2"
+
+build() {
+	cd $name-$version
+
+	make
+	sed -i "s,DESTPREFIX=/usr/local,DESTPREFIX=${PKG}/usr," Makefile
+	make install
+	mv $PKG/usr/share/man* $PKG/usr/
+	rm -r $PKG/usr/share/doc
+	rmdir $PKG/usr/share
+}
