@@ -1,24 +1,30 @@
 # Description: A Good Old-fashioned browser
 # URL: http://www.seamonkey-project.org/
 # Maintainer: Stuka
-# Depends on: gtk, mesa3d, libnotify, nss, nspr, autconf-2.13, startup-notification, libvpx, clang, rust
+# Depends on: gtk3, mesa3d, libnotify, nss, nspr, autconf-2.13, startup-notification, libvpx, clang, rust
 
 name=netscape
 version=2.49
-patchver=.4 # .1 usually, empty when not used
+patchver=.5 # .1 usually, empty when not used
 release=1
 source=(https://archive.mozilla.org/pub/seamonkey/releases/$version$patchver/source/seamonkey-$version$patchver.source.tar.xz \
-        http://www.stukamanhpt4.com/Netscape/Netscape-$version.tar.bz2 \
-	http://www.stukamanhpt4.com/Netscape/netscape-$version.diff \
-	nobuild-mp4parse
-	netscape.desktop mozconfig.nix)
+        https://archive.mozilla.org/pub/seamonkey/releases/$version$patchver/source/seamonkey-$version$patchver.source-l10n.tar.xz \
+        http://www.stukamanhpt4.com/Netscape/Netscape-$version$patchver.tar.bz2 \
+	http://www.stukamanhpt4.com/Netscape/netscape-$version$patchver.diff \
+	netscape.desktop )
 
 build () {
-    if [ ! -z $patchver ]; then cp -rf seamonkey-$version/* seamonkey-$version$patchver/; fi
+    #if [ ! -z $patchver ]; then cp -rf seamonkey-$version/* seamonkey-$version$patchver/; fi
+    mkdir seamonkey-$version$patchver/locales
+    for dir in */
+     do
+       if [ "$dir" == "seamonkey-$version$patchver/" ]; then
+         continue;
+       fi
+       mv $dir seamonkey-$version$patchver/locales
+     done
     cd seamonkey-$version$patchver
-    patch -p1 -i $SRC/netscape-$version.diff
-   (cd mozilla; patch -p1 -i $SRC/nobuild-mp4parse)
-    cp $SRC/mozconfig.nix .
+    patch -p1 -i $SRC/netscape-$version$patchver.diff
     sed -i mozconfig.nix -e s!@TOPSRCDIR@!`pwd`!g
     export MOZCONFIG=$SRC/seamonkey-$version$patchver/mozconfig.nix
     make -f client.mk build

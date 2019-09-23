@@ -1,6 +1,5 @@
-a1aa968ecbafeb296597be816715dd5b  Netscape-2.49.tar.bz2
-5e480516742f3491108364ce0abfaa9b  mozconfig.nix
-a5c50fe555a9da029c8c34fce3579cc5  netscape-2.49.diff
+4c5c1844d68f6c2e125bef5a5082f052  Netscape-2.49.5.tar.bz2
+c4a582eeb93735eb8b224058cefee201  netscape-2.49.5.diff
 4b06aaa91b35af52a34ade55cb123a07  netscape.desktop
-eda9d7cd06ce9bbae17f8b891bfe5378  nobuild-mp4parse
-5868179112ff4b2562f0ca22f4091bf0  seamonkey-2.49.4.source.tar.xz
+2779212dd507e26a0776d69903f1969e  seamonkey-2.49.5.source-l10n.tar.xz
+91f60a7aca6f8bc053ffddc7259ae4ec  seamonkey-2.49.5.source.tar.xz
