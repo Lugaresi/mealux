@@ -26,6 +26,9 @@ build () {
     cd seamonkey-$version$patchver
     patch -p1 -i $SRC/netscape-$version$patchver.diff
     sed -i mozconfig.nix -e s!@TOPSRCDIR@!`pwd`!g
+    # Errors in startup cache precompilation force me to do this
+    # Hopefully this can be removed soon.
+    echo "ac_add_options --disable-startupcache" >> mozconfig.nix
     export MOZCONFIG=$SRC/seamonkey-$version$patchver/mozconfig.nix
     make -f client.mk build
     make -f client.mk DESTDIR=$PKG install
