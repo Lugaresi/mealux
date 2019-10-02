@@ -4,34 +4,32 @@
 # Depends on: gtk3, mesa3d, libnotify, nss, nspr, autconf-2.13, startup-notification, libvpx, clang, rust
 
 name=netscape
-version=2.49
-patchver=.5 # .1 usually, empty when not used
+version=2.49.5
 release=1
-source=(https://archive.mozilla.org/pub/seamonkey/releases/$version$patchver/source/seamonkey-$version$patchver.source.tar.xz \
-        https://archive.mozilla.org/pub/seamonkey/releases/$version$patchver/source/seamonkey-$version$patchver.source-l10n.tar.xz \
-        http://www.stukamanhpt4.com/Netscape/Netscape-$version$patchver.tar.bz2 \
-	http://www.stukamanhpt4.com/Netscape/netscape-$version$patchver.diff \
+source=(https://archive.mozilla.org/pub/seamonkey/releases/$version$patchver/source/seamonkey-$version.source.tar.xz \
+        https://archive.mozilla.org/pub/seamonkey/releases/$version$patchver/source/seamonkey-$version.source-l10n.tar.xz \
+        http://www.stukamanhpt4.com/Netscape/Netscape-$version.tar.bz2 \
+	http://www.stukamanhpt4.com/Netscape/netscape-$version.diff \
 	netscape.desktop )
 
 build () {
-    #if [ ! -z $patchver ]; then cp -rf seamonkey-$version/* seamonkey-$version$patchver/; fi
-    mkdir seamonkey-$version$patchver/locales
+    mkdir seamonkey-$version/locales
     for dir in */
      do
-       if [ "$dir" == "seamonkey-$version$patchver/" ]; then
+       if [ "$dir" == "seamonkey-$version/" ]; then
          continue;
        fi
-       mv $dir seamonkey-$version$patchver/locales
+       mv $dir seamonkey-$version/locales
      done
-    cd seamonkey-$version$patchver
-    patch -p1 -i $SRC/netscape-$version$patchver.diff
+    cd seamonkey-$version
+    patch -p1 -i $SRC/netscape-$version.diff
     sed -i mozconfig.nix -e s!@TOPSRCDIR@!`pwd`!g
     # Errors in startup cache precompilation force me to do this
     # Hopefully this can be removed soon.
     echo "ac_add_options --disable-startupcache" >> mozconfig.nix
-    export MOZCONFIG=$SRC/seamonkey-$version$patchver/mozconfig.nix
+    export MOZCONFIG=$SRC/seamonkey-$version/mozconfig.nix
     make -f client.mk build
     make -f client.mk DESTDIR=$PKG install
-    sed -i s\/VERSION\/$version$patchver\/g $SRC/netscape.desktop
+    sed -i s\/VERSION\/$version\/g $SRC/netscape.desktop
     install -D -m0644 $SRC/netscape.desktop $PKG/usr/share/applications/netscape.desktop
 }
