@@ -4,7 +4,7 @@
 # Depends on:  pulseaudio
 
 name=pulseaudio-module-xrdp
-version=0.2
+version=0.3
 release=1
 source=(https://github.com/neutrinolabs/$name/archive/v$version.tar.gz)
 
@@ -13,7 +13,7 @@ build() {
     pa_dir=`prt-get info pulseaudio | grep Path | awk 'NF>1{print $NF}'`
     pa_ver=`prt-get info pulseaudio | grep Version | awk 'NF>1{print $NF}'`
     pa_src=$pa_dir/pulseaudio/work/src/pulseaudio-$pa_ver
-    (cd $pa_dir/pulseaudio && pkgmk -kw -f)
+    (cd $pa_dir/pulseaudio && pkgmk -kw -f -d)
     cd $name-$version
     ./bootstrap
     ./configure --prefix=/usr PULSE_DIR=$pa_src
