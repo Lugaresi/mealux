@@ -4,10 +4,10 @@
 # Maintainer: Stuka
 # Depends on: bluez
 
-name=xwiimote
-version=2
+name=xf86-input-xwiimote
+version=0.5
 release=1
-source=(https://github.com/dvdhrm/xwiimote/releases/download/$name-$version/$name-$version.tar.xz)
+source=(https://github.com/dvdhrm/xf86-input-xwiimote/releases/download/$name-$version/$name-$version.tar.xz)
 
 build() {
     cd $name-$version
