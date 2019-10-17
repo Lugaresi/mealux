@@ -4,7 +4,7 @@
 # Depends on:  kde5-meta-plasma
 
 name=yakuake
-version=3.0.5
+version=19.08.2
 release=1
 source=(https://github.com/KDE/$name/archive/v$version.tar.gz)
 
