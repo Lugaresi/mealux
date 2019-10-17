@@ -5,14 +5,14 @@
 # depends on: popt slang
 
 name=newt
-version=0.52.20
+version=0.52.21
 release=1
 source=(
-  https://github.com/mlichvar/newt/archive/r0-52-20.tar.gz
+  https://github.com/mlichvar/newt/archive/r0-52-21.tar.gz
 )
 
 build() {
-  cd $name-r0-52-20
+  cd $name-r0-52-21
   ./autogen.sh
   ./configure --prefix=/usr --mandir=/usr/man --sysconfdir=/etc --libexecdir=/usr/lib
 
