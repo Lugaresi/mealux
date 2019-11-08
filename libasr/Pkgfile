@@ -5,7 +5,7 @@
 # depends on: 
 
 name=libasr
-version=1.0.2
+version=1.0.3
 release=1
 source=(
   https://www.opensmtpd.org/archives/$name-$version.tar.gz
@@ -13,6 +13,9 @@ source=(
 
 build() {
   cd $name-$version
+
+  aclocal
+  automake
 
   ./configure --prefix=/usr
   make

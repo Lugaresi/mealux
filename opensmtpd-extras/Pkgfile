@@ -5,16 +5,15 @@
 # depends on: libevent libasr opensmtpd
 
 name=opensmtpd-extras
-version=201703132115
+version=6.6.0
 release=1
 source=(
-  https://www.opensmtpd.org/archives/$name-$version.tar.gz
-  https://github.com/OpenSMTPD/OpenSMTPD-extras/commit/5bffdb3ad0bfa3f57250cb6a5f015cd42e44b464.diff
+  https://github.com/OpenSMTPD/OpenSMTPD-extras/archive/$version.tar.gz
 )
 
 build() {
-  cd $name-$version
-  patch -p1 -i $SRC/5bffdb3ad0bfa3f57250cb6a5f015cd42e44b464.diff
+  cd OpenSMTPD-extras-$version
+  ./bootstrap 
   ./configure --prefix=/usr --libexecdir=/usr/lib --with-table-mysql --with-filter-stub --with-queue-ram --with-table-passwd
   make
   make DESTDIR=$PKG install

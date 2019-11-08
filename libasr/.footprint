@@ -4,6 +4,6 @@ drwxr-xr-x	root/root	usr/include/
 drwxr-xr-x	root/root	usr/lib/
 -rw-r--r--	root/root	usr/lib/libasr.a
 -rw-r--r--	root/root	usr/lib/libasr.la
-lrwxrwxrwx	root/root	usr/lib/libasr.so -> libasr.so.0.0.2
-lrwxrwxrwx	root/root	usr/lib/libasr.so.0 -> libasr.so.0.0.2
--rw-r--r--	root/root	usr/lib/libasr.so.0.0.2
+lrwxrwxrwx	root/root	usr/lib/libasr.so -> libasr.so.0.0.3
+lrwxrwxrwx	root/root	usr/lib/libasr.so.0 -> libasr.so.0.0.3
+-rw-r--r--	root/root	usr/lib/libasr.so.0.0.3
