@@ -1,7 +1,7 @@
 # Description: A Good Old-fashioned browser
 # URL: http://www.seamonkey-project.org/
 # Maintainer: Stuka
-# Depends on: gtk3, mesa3d, libnotify, nss, nspr, autconf-2.13, startup-notification, libvpx, clang, rust
+# Depends on: gtk3, mesa3d, libnotify, nss, nspr, autconf-2.13, startup-notification, libvpx, clang, rust, icu
 
 name=netscape
 version=2.49.5
