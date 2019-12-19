@@ -10,7 +10,7 @@ source=(http://www.pell.portland.or.us/~orc/Code/discount/$name-$version.tar.bz2
 
 build() {
     cd $name-$version
-    ./configure.sh --prefix=/usr
+    CFLAGS=-fPIC ./configure.sh --prefix=/usr
     make
     make DESTDIR=$PKG install
 }
