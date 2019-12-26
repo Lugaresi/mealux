@@ -1,0 +1,29 @@
+# Description:  The ultimate music player for Linux 
+# URL:          http://deadbeef.sourceforge.net/
+# Maintainer:   Stuka
+# Depends on:   faad2 libmad libsamplerate pulseaudio jansson
+
+name=deadbeef
+version=1.8.2
+release=1
+source=(https://github.com/DeaDBeeF-Player/$name/archive/$version.tar.gz)
+
+build() {
+  cd $name-$version
+
+  ./autogen.sh
+  ./configure --prefix=/usr --mandir=/usr/man \
+      --enable-alsa --enable-gtk2 --enable-vfs-curl --enable-supereq \
+      --enable-mad --enable-vorbis --enable-sndfile --enable-hotkeys \
+      --enable-mms --enable-m3u --enable-converter --enable-artwork \
+      --enable-wavpack --enable-musepack --enable-cdda --enable-ffap \
+      --enable-opus --enable-ffmpeg --enable-hotkeys --enable-notify \
+      --enable-dca --enable-aac --enable-mono2stereo --enable-alac --enable-wma \
+      --disable-static --disable-nls --disable-nullout --disable-oss \
+      --disable-coreaudio --disable-gtk3 --disable-lfm --disable-sid --disable-vtx \
+
+  make
+  make install DESTDIR=$PKG
+  rm -rf $PKG/usr/share/locale
+  rm -rf $PKG/usr/share/doc
+}
