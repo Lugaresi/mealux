@@ -3,21 +3,23 @@ drwxr-xr-x	root/root	lib/udev/
 drwxr-xr-x	root/root	lib/udev/rules.d/
 -rw-r--r--	root/root	lib/udev/rules.d/60-fprint-autosuspend.rules
 drwxr-xr-x	root/root	usr/
-drwxr-xr-x	root/root	usr/bin/
--rwxr-xr-x	root/root	usr/bin/gtk-libfprint-test
 drwxr-xr-x	root/root	usr/include/
+-rw-r--r--	root/root	usr/include/fp-enums.h
+-rw-r--r--	root/root	usr/include/fpi-enums.h
 drwxr-xr-x	root/root	usr/include/libfprint/
+-rw-r--r--	root/root	usr/include/libfprint/fp-context.h
+-rw-r--r--	root/root	usr/include/libfprint/fp-device.h
+-rw-r--r--	root/root	usr/include/libfprint/fp-image.h
+-rw-r--r--	root/root	usr/include/libfprint/fp-print.h
 -rw-r--r--	root/root	usr/include/libfprint/fprint.h
 drwxr-xr-x	root/root	usr/lib/
-lrwxrwxrwx	root/root	usr/lib/libfprint.so -> libfprint.so.0
-lrwxrwxrwx	root/root	usr/lib/libfprint.so.0 -> libfprint.so.0.0.0
--rwxr-xr-x	root/root	usr/lib/libfprint.so.0.0.0
+drwxr-xr-x	root/root	usr/lib/girepository-1.0/
+-rw-r--r--	root/root	usr/lib/girepository-1.0/FPrint-2.0.typelib
+lrwxrwxrwx	root/root	usr/lib/libfprint.so -> libfprint.so.2
+lrwxrwxrwx	root/root	usr/lib/libfprint.so.2 -> libfprint.so.2.0.0
+-rwxr-xr-x	root/root	usr/lib/libfprint.so.2.0.0
 drwxr-xr-x	root/root	usr/lib/pkgconfig/
--rw-r--r--	root/root	usr/lib/pkgconfig/libfprint.pc
+-rw-r--r--	root/root	usr/lib/pkgconfig/libfprint2.pc
 drwxr-xr-x	root/root	usr/share/
-drwxr-xr-x	root/root	usr/share/applications/
--rw-r--r--	root/root	usr/share/applications/org.freedesktop.libfprint.Demo.desktop
-drwxr-xr-x	root/root	usr/share/icons/
--rw-r--r--	root/root	usr/share/icons/org.freedesktop.libfprint.Demo.png
-drwxr-xr-x	root/root	usr/share/metainfo/
--rw-r--r--	root/root	usr/share/metainfo/org.freedesktop.libfprint.Demo.appdata.xml
+drwxr-xr-x	root/root	usr/share/gir-1.0/
+-rw-r--r--	root/root	usr/share/gir-1.0/FPrint-2.0.gir

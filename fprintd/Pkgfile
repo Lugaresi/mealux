@@ -2,18 +2,20 @@
 # URL:         https://www.freedesktop.org/wiki/Software/fprint/fprintd/
 # Maintainer:  Stuka
 # Packager:    
-# Depends on:  glib, gtk, libfprint, p5-xml-parser, dbus-glib, linux-pam, gtk-doc
+# Depends on:  glib, gtk3, libfprint, p5-xml-parser, dbus-glib, linux-pam, gtk-doc
 
 name=fprintd
-version=0.8.1
+version=0.9.0
 release=1
-gitver=8de9164be0e4670cd8f3df3c9207a7555228efbf
-source=(https://cgit.freedesktop.org/libfprint/fprintd/snapshot/fprintd-$gitver.tar.gz fprint)
+gitver=d0df422f9b5b2ad74e4b4ba90ab3af331ec372fe
+source=(https://gitlab.freedesktop.org/libfprint/fprintd/-/archive/$gitver/fprintd-$gitver.tar.bz2 fprint fuck-systemd.patch 74838f9efc5409fe6102f42c730478b1902a12c6.diff)
 
 build () {
     cd fprintd-$gitver
+    patch -p1 -i $SRC/fuck-systemd.patch
+    patch -p1 -R -i $SRC/74838f9efc5409fe6102f42c730478b1902a12c6.diff
     ./autogen.sh
-    ./configure --prefix=/usr --sysconfdir=/usr/etc --libdir=/lib --enable-pam --disable-nls
+    ./configure --prefix=/usr --sysconfdir=/usr/etc --libdir=/lib --enable-pam --disable-nls --disable-tests
     make
     make DESTDIR=$PKG install
     rm -rf $PKG/usr/info

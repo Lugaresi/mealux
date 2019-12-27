@@ -1,0 +1,18 @@
+# Description: The libgusb package contains the GObject wrappers for libusb-1.0.
+# URL:         https://fprint.freedesktop.org/
+# Maintainer:  Stu
+# Packager:    Stu
+# Depends on: glib, meson, libusb, vala
+
+name=libgusb
+version=0.3.1
+release=1
+source=(https://people.freedesktop.org/~hughsient/releases/$name-$version.tar.xz)
+
+build () {
+    cd $name-$version
+    meson --prefix=/usr --buildtype=release -Ddocs=false build && cd build
+    ninja
+    DESTDIR=$PKG ninja install
+    rm -rf $PKG/usr/info
+}

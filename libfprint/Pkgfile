@@ -2,19 +2,19 @@
 # URL:         https://fprint.freedesktop.org/
 # Maintainer:  Stu
 # Packager:    Stu
-# Depends on: pkg-config, nss, libusb, glib, gtk3, meson
+# Depends on: pkg-config, nss, glib, gtk3, meson, libgusb
 
 name=libfprint
-version=0.99.0
+version=1.90.0
 release=1
-dlver=`echo $version | sed -e s/[.]/_/g`
-source=(https://github.com/freedesktop/libfprint/archive/V_$dlver.tar.gz x220.patch)
+source=(https://gitlab.freedesktop.org/libfprint/libfprint/uploads/1bba17b5daa130aa548bc7ea96dc58c4/libfprint-$version.tar.xz)
 
 build () {
-    cd libfprint-V_$dlver
-#    patch -p1 -i $SRC/x220.patch
+    cd $name-$version
     meson --prefix=/usr --buildtype=release -Ddoc=false build && cd build
     ninja
     DESTDIR=$PKG ninja install
     rm -rf $PKG/usr/info
+    # Small fix for broken udev rules file. Regularly test for removal.
+    sed -e '1,2d' -i $PKG/lib/udev/rules.d/60-fprint-autosuspend.rules
 }
