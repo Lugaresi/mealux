@@ -5,7 +5,7 @@
 
 name=strongswan
 version=5.8.2
-release=1
+release=2
 source=(https://download2.strongswan.org/$name-$version.tar.gz)
 
 build() {
@@ -16,7 +16,7 @@ build() {
 	--enable-eap-tnc --enable-eap-dynamic --enable-eap-radius \
 	--enable-xauth-eap --enable-xauth-pam --enable-dhcp \
 	--enable-openssl --enable-addrblock --enable-unity \
-	--enable-forecast \
+	--enable-forecast --enable-connmark\
 	--enable-certexpire --enable-radattr --enable-tools \
 	--prefix=/usr --sysconfdir=/etc --localstatedir=/var
     make
