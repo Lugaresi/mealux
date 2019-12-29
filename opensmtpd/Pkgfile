@@ -6,27 +6,17 @@
 
 name=opensmtpd
 version=6.6.1p1
-libversion=3.0.2
-release=2
+release=3
 source=(
   https://www.$name.org/archives/$name-$version.tar.gz
-  https://ftp.openbsd.org/pub/OpenBSD/LibreSSL/libressl-$libversion.tar.gz
-  $name.rc sslbreakage.patch
+  $name.rc
 )
 
 build() {
-  cd libressl-$libversion
-  ./configure -prefix=$SRC/lssl --disable-shared --enable-static
-  make
-  make install
-  cd ..
   cd $name-$version
-  patch -p1 -i $SRC/sslbreakage.patch
   aclocal
   autoconf
-  ./configure --prefix=/usr --mandir=/usr/man --sysconfdir=/etc --libexecdir=/usr/lib --with-user-smtpd=mail --with-user-queue=mailq --with-group-queue=mail --with-ldflags=-lbsd  --with-libssl=$SRC/lssl
-  sed -e s/CERT/O_CERT/g -i $SRC/$name-$version/smtpd/parse.y
-  sed -e s/SSL_OP_NO_CLIENT_RENEGOTIATION/SSL_OP_NO_SESSION_RESUMPTION_ON_RENEGOTIATION/g -i $SRC/$name-$version/smtpd/ssl.c
+  ./configure --prefix=/usr --mandir=/usr/man --sysconfdir=/etc --libexecdir=/usr/lib --with-user-smtpd=mail --with-user-queue=mailq --with-group-queue=mail --with-ldflags=-lbsd
   make
   make DESTDIR=$PKG install
   install -D -m 755 $SRC/$name.rc $PKG/etc/rc.d/$name
