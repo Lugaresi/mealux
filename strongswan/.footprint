@@ -26,6 +26,7 @@ drwxr-xr-x	root/root	etc/strongswan.d/charon/
 -rw-r--r--	root/root	etc/strongswan.d/charon/des.conf
 -rw-r--r--	root/root	etc/strongswan.d/charon/dhcp.conf
 -rw-r--r--	root/root	etc/strongswan.d/charon/dnskey.conf
+-rw-r--r--	root/root	etc/strongswan.d/charon/drbg.conf
 -rw-r--r--	root/root	etc/strongswan.d/charon/eap-dynamic.conf
 -rw-r--r--	root/root	etc/strongswan.d/charon/eap-identity.conf
 -rw-r--r--	root/root	etc/strongswan.d/charon/eap-md5.conf
@@ -36,6 +37,7 @@ drwxr-xr-x	root/root	etc/strongswan.d/charon/
 -rw-r--r--	root/root	etc/strongswan.d/charon/eap-tnc.conf
 -rw-r--r--	root/root	etc/strongswan.d/charon/eap-ttls.conf
 -rw-r--r--	root/root	etc/strongswan.d/charon/fips-prf.conf
+-rw-r--r--	root/root	etc/strongswan.d/charon/forecast.conf
 -rw-r--r--	root/root	etc/strongswan.d/charon/gmp.conf
 -rw-r--r--	root/root	etc/strongswan.d/charon/hmac.conf
 -rw-r--r--	root/root	etc/strongswan.d/charon/kernel-netlink.conf
@@ -147,6 +149,8 @@ drwxr-xr-x	root/root	usr/lib/ipsec/plugins/
 -rwxr-xr-x	root/root	usr/lib/ipsec/plugins/libstrongswan-dhcp.so
 -rwxr-xr-x	root/root	usr/lib/ipsec/plugins/libstrongswan-dnskey.la
 -rwxr-xr-x	root/root	usr/lib/ipsec/plugins/libstrongswan-dnskey.so
+-rwxr-xr-x	root/root	usr/lib/ipsec/plugins/libstrongswan-drbg.la
+-rwxr-xr-x	root/root	usr/lib/ipsec/plugins/libstrongswan-drbg.so
 -rwxr-xr-x	root/root	usr/lib/ipsec/plugins/libstrongswan-eap-dynamic.la
 -rwxr-xr-x	root/root	usr/lib/ipsec/plugins/libstrongswan-eap-dynamic.so
 -rwxr-xr-x	root/root	usr/lib/ipsec/plugins/libstrongswan-eap-identity.la
@@ -167,6 +171,8 @@ drwxr-xr-x	root/root	usr/lib/ipsec/plugins/
 -rwxr-xr-x	root/root	usr/lib/ipsec/plugins/libstrongswan-eap-ttls.so
 -rwxr-xr-x	root/root	usr/lib/ipsec/plugins/libstrongswan-fips-prf.la
 -rwxr-xr-x	root/root	usr/lib/ipsec/plugins/libstrongswan-fips-prf.so
+-rwxr-xr-x	root/root	usr/lib/ipsec/plugins/libstrongswan-forecast.la
+-rwxr-xr-x	root/root	usr/lib/ipsec/plugins/libstrongswan-forecast.so
 -rwxr-xr-x	root/root	usr/lib/ipsec/plugins/libstrongswan-gmp.la
 -rwxr-xr-x	root/root	usr/lib/ipsec/plugins/libstrongswan-gmp.so
 -rwxr-xr-x	root/root	usr/lib/ipsec/plugins/libstrongswan-hmac.la
@@ -286,6 +292,7 @@ drwxr-xr-x	root/root	usr/share/strongswan/templates/config/plugins/
 -rw-r--r--	root/root	usr/share/strongswan/templates/config/plugins/des.conf
 -rw-r--r--	root/root	usr/share/strongswan/templates/config/plugins/dhcp.conf
 -rw-r--r--	root/root	usr/share/strongswan/templates/config/plugins/dnskey.conf
+-rw-r--r--	root/root	usr/share/strongswan/templates/config/plugins/drbg.conf
 -rw-r--r--	root/root	usr/share/strongswan/templates/config/plugins/eap-dynamic.conf
 -rw-r--r--	root/root	usr/share/strongswan/templates/config/plugins/eap-identity.conf
 -rw-r--r--	root/root	usr/share/strongswan/templates/config/plugins/eap-md5.conf
@@ -296,6 +303,7 @@ drwxr-xr-x	root/root	usr/share/strongswan/templates/config/plugins/
 -rw-r--r--	root/root	usr/share/strongswan/templates/config/plugins/eap-tnc.conf
 -rw-r--r--	root/root	usr/share/strongswan/templates/config/plugins/eap-ttls.conf
 -rw-r--r--	root/root	usr/share/strongswan/templates/config/plugins/fips-prf.conf
+-rw-r--r--	root/root	usr/share/strongswan/templates/config/plugins/forecast.conf
 -rw-r--r--	root/root	usr/share/strongswan/templates/config/plugins/gmp.conf
 -rw-r--r--	root/root	usr/share/strongswan/templates/config/plugins/hmac.conf
 -rw-r--r--	root/root	usr/share/strongswan/templates/config/plugins/kernel-netlink.conf

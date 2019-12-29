@@ -4,7 +4,7 @@
 # Depends on:  nss libunbound
 
 name=strongswan
-version=5.8.1
+version=5.8.2
 release=1
 source=(https://download2.strongswan.org/$name-$version.tar.gz)
 
@@ -16,6 +16,7 @@ build() {
 	--enable-eap-tnc --enable-eap-dynamic --enable-eap-radius \
 	--enable-xauth-eap --enable-xauth-pam --enable-dhcp \
 	--enable-openssl --enable-addrblock --enable-unity \
+	--enable-forecast \
 	--enable-certexpire --enable-radattr --enable-tools \
 	--prefix=/usr --sysconfdir=/etc --localstatedir=/var
     make
