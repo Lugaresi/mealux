@@ -4,7 +4,7 @@
 # Depends on:  xdg-utils
 
 name=telegram
-version=1.8.15
+version=1.9.3
 release=1
 source=(https://updates.tdesktop.com/tlinux/tsetup.$version.tar.xz telegramdesktop.desktop telegram48.png)
 
@@ -12,5 +12,8 @@ build() {
     mkdir -p $PKG/opt/telegram
     mkdir -p $PKG/usr/bin
     cp $SRC/Telegram/* $PKG/opt/telegram
+    cp $SRC/telegram48.png $PKG/opt/telegram/telegram48.png
     install -D -m0644 $SRC/telegramdesktop.desktop $PKG/usr/share/applications/telegramdesktop.desktop
+    install -m755 -d $PKG/usr/share/pixmaps
+    ln -s /opt/telegram/telegram48.png  $PKG/usr/share/pixmaps/telegram.png
 }
