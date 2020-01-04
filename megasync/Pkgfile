@@ -1,0 +1,22 @@
+name=megasync
+version=4.2.5.0
+sdkver=3.6.6
+release=1
+#depends: libraw libmediainfo crypto++ c-ares 
+source=(https://github.com/meganz/MEGAsync/archive/v${version}_Linux.tar.gz https://github.com/meganz/sdk/archive/v${sdkver}.tar.gz patch-oldsodium) 
+
+build() {
+  cd MEGAsync-${version}_Linux/src
+  mkdir -p MEGASync/mega
+  mv $SRC/sdk-3.6.6/* MEGASync/mega/
+  patch -p1 -i $SRC/patch-oldsodium
+  ./configure -i -z
+  qmake-qt5 MEGA.pro
+  lrelease-qt5 MEGASync/MEGASync.pro
+  make
+  make INSTALL_ROOT=${PKG} install
+  install -d 755 ${PKG}/usr/bin
+  install -m 755 -p MEGASync/megasync ${PKG}/usr/bin/megasync
+
+  rm -rf "${PKG}/usr/share/doc"
+}

@@ -1,0 +1,11 @@
+--- a/MEGASync/mega/contrib/build_sdk.sh	2020-01-04 00:33:03.961011676 +0100
++++ b/MEGASync/mega/contrib/build_sdk.sh	2020-01-04 00:33:24.000012235 +0100
+@@ -429,7 +429,7 @@ sodium_pkg() {
+     local install_dir=$2
+     local name="Sodium"
+     local sodium_ver="1.0.16"
+-    local sodium_url="https://download.libsodium.org/libsodium/releases/libsodium-$sodium_ver.tar.gz"
++    local sodium_url="https://download.libsodium.org/libsodium/releases/old/libsodium-$sodium_ver.tar.gz"
+     local sodium_md5="37b18839e57e7a62834231395c8e962b"
+     local sodium_file="sodium-$sodium_ver.tar.gz"
+     local sodium_dir="libsodium-$sodium_ver"

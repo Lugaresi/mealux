@@ -1,0 +1,14 @@
+name=libraw
+version=0.19.5
+release=1
+source=(https://github.com/LibRaw/LibRaw/archive/${version}.tar.gz)
+
+build() {
+  cd LibRaw-${version}
+  autoreconf -vi
+  ./configure --prefix=/usr
+  make
+  make DESTDIR=${PKG} install
+
+  rm -rf "${PKG}/usr/share/doc"
+}
