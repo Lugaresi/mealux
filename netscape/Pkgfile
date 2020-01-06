@@ -27,6 +27,8 @@ build () {
     # Errors in startup cache precompilation force me to do this
     # Hopefully this can be removed soon.
     echo "ac_add_options --disable-startupcache" >> mozconfig.nix
+    echo "export CC=clang" >> mozconfig.nix
+    echo "export CXX=clang++" >> mozconfig.nix
     export MOZCONFIG=$SRC/seamonkey-$version/mozconfig.nix
     make -f client.mk build
     make -f client.mk DESTDIR=$PKG install
