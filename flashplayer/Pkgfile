@@ -5,7 +5,7 @@
 # Depends on: 
 
 name=flashplayer
-version=32.0.0.303
+version=32.0.0.314
 release=1
 source=(https://fpdownload.adobe.com/get/flashplayer/pdc/$version/flash_player_npapi_linux.x86_64.tar.gz)
 build () {
