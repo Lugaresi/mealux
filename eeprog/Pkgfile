@@ -1,0 +1,17 @@
+# Description: Linux C program that allows you to read and write to 24Cxx EEPROM.
+# URL:         http://www.codesink.org/eeprog.html
+# Maintainer:  Lugaresi
+# Depends on:  
+
+name=eeprog
+version=0.7.7-tear12
+release=1
+source=(https://github.com/jsarenik/eeprog/archive/v$version.tar.gz fix-smash.diff)
+
+build() {
+    cd $name-$version
+    patch -p1 -i $SRC/fix-smash.diff
+    make
+    install -m 0755 -d $PKG/usr/bin
+    install -m 0755 eeprog $PKG/usr/bin/eeprog
+}

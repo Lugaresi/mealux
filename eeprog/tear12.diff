@@ -1,0 +1,1247 @@
+diff --git a/24cXX.c b/24cXX.c
+index 25db459..690527e 100644
+--- a/24cXX.c
++++ b/24cXX.c
+@@ -2,6 +2,9 @@
+     copyright            : (C) by 2003-2004 Stefano Barbato
+     email                : stefano@codesink.org
+ 
++    Copyright (C) 2011 by Kris Rusocki <kszysiu@gmail.com>
++    - support for user-defined write cycle time
++
+     $Id: 24cXX.c,v 1.5 2004/02/29 11:05:28 tat Exp $
+  ***************************************************************************/
+ 
+@@ -67,7 +70,7 @@ static int i2c_write_3b(struct eeprom *e, __u8 buf[3])
+ 		exit(1); } \
+ 	} while(0);
+ 
+-int eeprom_open(char *dev_fqn, int addr, int type, struct eeprom* e)
++int eeprom_open(char *dev_fqn, int addr, int type, int write_cycle_time, struct eeprom* e)
+ {
+ 	int funcs, fd, r;
+ 	e->fd = e->addr = 0;
+@@ -106,6 +109,7 @@ int eeprom_open(char *dev_fqn, int addr, int type, struct eeprom* e)
+ 	e->addr = addr;
+ 	e->dev = dev_fqn;
+ 	e->type = type;
++	e->write_cycle_time = write_cycle_time;
+ 	return 0;
+ }
+ 
+@@ -175,13 +179,23 @@ int eeprom_read_byte(struct eeprom* e, __u16 mem_addr)
+ 
+ int eeprom_write_byte(struct eeprom *e, __u16 mem_addr, __u8 data)
+ {
++	int ret;
++
+ 	if(e->type == EEPROM_TYPE_8BIT_ADDR) {
+ 		__u8 buf[2] = { mem_addr & 0x00ff, data };
+-		return i2c_write_2b(e, buf);
++		ret = i2c_write_2b(e, buf);
++		if (ret == 0 && e->write_cycle_time != 0) {
++			usleep(1000 * e->write_cycle_time);
++		}
++		return ret;
+ 	} else if(e->type == EEPROM_TYPE_16BIT_ADDR) {
+ 		__u8 buf[3] =
+ 			{ (mem_addr >> 8) & 0x00ff, mem_addr & 0x00ff, data };
+-		return i2c_write_3b(e, buf);
++		ret = i2c_write_3b(e, buf);
++		if (ret == 0 && e->write_cycle_time != 0) {
++			usleep(1000 * e->write_cycle_time);
++		}
++		return ret;
+ 	}
+ 	fprintf(stderr, "ERR: unknown eeprom type\n");
+ 	return -1;
+diff --git a/24cXX.h b/24cXX.h
+index fb695cc..4967ac8 100644
+--- a/24cXX.h
++++ b/24cXX.h
+@@ -2,6 +2,9 @@
+     copyright            : (C) by 2003-2004 Stefano Barbato
+     email                : stefano@codesink.org
+ 
++    Copyright (C) 2011 by Kris Rusocki <kszysiu@gmail.com>
++    - support for user-defined write cycle time
++
+     $Id: 24cXX.h,v 1.6 2004/02/29 11:05:28 tat Exp $
+  ***************************************************************************/
+ 
+@@ -27,13 +30,14 @@ struct eeprom
+ 	int addr;	// i2c address
+ 	int fd;		// file descriptor
+ 	int type; 	// eeprom type
++	int write_cycle_time;
+ };
+ 
+ /*
+  * opens the eeprom device at [dev_fqn] (i.e. /dev/i2c-N) whose address is
+  * [addr] and set the eeprom_24c32 [e]
+  */
+-int eeprom_open(char *dev_fqn, int addr, int type, struct eeprom*);
++int eeprom_open(char *dev_fqn, int addr, int type, int delay, struct eeprom*);
+ /*
+  * closees the eeprom device [e]
+  */
+diff --git a/Makefile b/Makefile
+index 7d04ac0..55a4318 100644
+--- a/Makefile
++++ b/Makefile
+@@ -1,12 +1,33 @@
+ CFLAGS ?= -g -O2
+ CFLAGS += -I. -Wall
++PREFIX ?= /usr/bin
+ 
+ all: eeprog
+ 
+-clean:
+-	-rm -fv eeprog eeprog-static eeprog.o 24cXX.o
+-
+ eeprog: eeprog.o 24cXX.o
+ 
+ eeprog-static: eeprog.o 24cXX.o
+ 	$(CC) -static -o $@ $?
++
++clean:
++	$(RM) eeprog eeprog.o 24cXX.o
++
++distclean: clean
++	$(RM) *~
++	$(RM) dist/*~
++
++install: eeprog
++	install -ps eeprog $(PREFIX)/eeprog-tear
++	install -p dist/eeprog-spd-dump $(PREFIX)
++	install -p dist/eeprog-spd-flash $(PREFIX)
++	install -p dist/eeprog-spd-dump-g34 $(PREFIX)
++	install -p dist/eeprog-spd-flash-g34 $(PREFIX)
++
++uninstall:
++	$(RM) $(PREFIX)/eeprog-tear
++	$(RM) $(PREFIX)/eeprog-spd-dump
++	$(RM) $(PREFIX)/eeprog-spd-flash
++	$(RM) $(PREFIX)/eeprog-spd-dump-g34
++	$(RM) $(PREFIX)/eeprog-spd-flash-g34
++
++.PHONY: all clean distclean install uninstall
+diff --git a/README b/README
+index 0f1ac23..9422cb3 100644
+--- a/README
++++ b/README
+@@ -2,10 +2,10 @@ Important! See the WARNING file.
+ 
+ eeprog reads and writes 24Cxx EEPROMs connected to I2C serial bus.
+ 
+-It uses the SMBus protocol used by most of the recent chipsets. Don't
+-forget to load your i2c chipset and the i2c-dev drivers.
++It uses the SMBus protocol used by most of the recent chipsets. Don't forget to load
++your i2c chipset and the i2c-dev drivers.
+ 
+-Use -8 switch for EEPROM smaller then 24C16 (8bit addressing mode).
++Use -16 switch for EEPROMs larger than 24C16 (16bit addressing mode).
+ 
+ Again, it's really important that you read the WARNING file.
+ 
+diff --git a/WARNING b/WARNING
+index f595f95..e380f9e 100644
+--- a/WARNING
++++ b/WARNING
+@@ -1,10 +1,10 @@
+-Writing on unknown EEPROMs can brake your computer.
++Writing to unknown EEPROMs can break your computer.
+ 
+-DIMMs contain an EEPROM and if you overwrite it somehow your computer
+-will not boot anymore.
++DIMMs contain an EEPROM and if you overwrite it, your computer
++may not boot anymore.
+ 
+-Reading using 16bit addressing (i.e. not using the -8 switch) on a 8bit EEPROM
+-can actually WRITE to the EEPROM. Be careful.
++Reading 8bit EEPROM using 16bit addressing may actually WRITE
++to the EEPROM. Be careful.
+ 
+ The following chips use 8bit mode:
+ 	24C01
+@@ -13,8 +13,8 @@ The following chips use 8bit mode:
+ 	24C08
+ 	24C16
+ 
+-Bigger ones use 16bit addressing so you must not use -8.
++Bigger ones use 16bit addressing so you must use -16.
+ 
+-More could need it, check data sheets.
++When in doubt, check data sheets.
+ 
+-If you are not sure about what you're doing DON'T use this tool.
++If you are not sure what you're doing, DO NOT use this tool.
+diff --git a/dist/eeprog-spd-dump b/dist/eeprog-spd-dump
+new file mode 100755
+index 0000000..8f6f6e7
+--- /dev/null
++++ b/dist/eeprog-spd-dump
+@@ -0,0 +1,115 @@
++#!/bin/bash
++#
++# eeprog-spd-dump 0.11, SPD dump utility
++#
++# Copyright (c) 2010-2014 by Kris Rusocki <kszysiu@gmail.com>
++# Licensed under GPLv2
++#
++# Boards supported: generic utility, YMMV
++#
++
++check_for()
++{
++	[ -z $1 ] && return 1
++	which $1 > /dev/null 2>&1 || return 1
++	return 0
++}
++
++missing_tool()
++{
++	echo
++	echo ERROR: \'$1\' is not available on your system. Please install package providing \'$1\'.
++}
++
++usage()
++{
++	echo Usage:
++	echo -e \\t"$0" \<index\>
++	echo -e \\t\\tdumps SPD at I2C address 0x50 + \<index\>
++	echo
++	echo -e \\t"$0" all
++	echo -e \\t\\tdumps all SPDs \(I2C addresses 0x50 through 0x57\)
++	exit 1
++}
++
++[ -z "$1" ] && usage
++
++INDEX=$1
++
++if [ "$INDEX" = "all" ]; then
++	START=0
++	END=7
++else
++	[ "$INDEX" != "$(echo $INDEX | tr -cd 0-9)" ] && INDEX=x
++	if [ "$INDEX" != $(($INDEX)) -o $(($INDEX)) -lt 0 -o $(($INDEX)) -gt 7 ]; then
++		echo \<index\> must be a number \(0-7\) or \"all\"
++		exit 1
++	fi
++	INDEX=$(($INDEX))
++	START=$INDEX
++	END=$INDEX
++fi
++
++DMIDECODE=dmidecode
++MODPROBE=modprobe
++EEPROG=eeprog-tear
++
++PREREQUISITES="id head $DMIDECODE $MODPROBE $EEPROG"
++
++ERRORS=0
++MISSING=1
++for i in $PREREQUISITES ; do
++	[ $MISSING -ne 0 ] && echo -n Checking for
++	echo -n \ $i
++	MISSING=0
++	if ! check_for $i ; then
++		MISSING=1
++		missing_tool $i
++		ERRORS=1
++	fi
++done
++echo \ ...done.
++if [ $ERRORS -ne 0 ]; then
++	exit 1
++fi
++
++if [ "$(id -ru)" != "0" ]; then
++	echo ERROR: need root privileges.
++	exit 1
++fi
++
++BOARD=$($DMIDECODE -s baseboard-product-name | head -1)
++
++if [ "$BOARD" = "H8QG6" -o "$BOARD" = "H8QGL" ]; then
++	$MODPROBE ipmi_si
++	if ls -d /sys/devices/platform/ipmi_bmc* > /dev/null 2>&1 ; then
++		echo ERROR: BMC\(s\) found. Please disable IPMI and try again.
++		exit 1
++	fi
++fi
++
++$MODPROBE -r eeprom 2> /dev/null
++$MODPROBE i2c_dev
++
++[ -z "$EEPROG_DEV" ] && EEPROG_DEV=/dev/i2c-0
++
++echo Processing ...
++for i in $(seq $((0x50+$START)) $((0x50+$END))) ; do
++	IHEX=0x$(printf '%x' $i)
++	OUT=spd-$BOARD-$IHEX.bin
++	echo -n Reading DIMM at address $IHEX ...
++	$EEPROG -8 -f -r 0:256  $EEPROG_DEV $i > "$OUT" 2> /dev/null
++	RET=$?
++	if [ $RET -eq 2 ]; then
++		echo
++		echo ERROR: cannot access $EEPROG_DEV
++		exit 1
++	fi
++	if [ $RET -ne 0 ]; then
++		echo
++		echo DIMM at address $IHEX not populated \(or encountered I2C error\)
++		rm "$OUT"
++	else
++		echo done.
++	fi
++done
+diff --git a/dist/eeprog-spd-dump-g34 b/dist/eeprog-spd-dump-g34
+new file mode 100755
+index 0000000..32a9129
+--- /dev/null
++++ b/dist/eeprog-spd-dump-g34
+@@ -0,0 +1,200 @@
++#!/bin/bash
++#
++# eeprog-spd-dump-g34 0.11, SPD dump utility for G34 boards
++#
++# Copyright (c) 2010-2014 by Kris Rusocki <kszysiu@gmail.com>
++# Licensed under GPLv2
++#
++# Boards supported: Tyan S8812, Supermicro H8QGi/H8QG6/H8QGL series
++#
++
++SMBUS=/proc/bus/pci/00/14.0
++
++read_smbus()
++{
++	local out
++	[ -z $1 ] && return 1
++	[ -z $SMBUS ] && return 1
++	[ $(($1 % 4)) -ne 0 ] && return 1
++	out=0x$(dd bs=4 if=$SMBUS skip=$(($1/4)) count=1 status=noxfer 2> /dev/null | od -tx1 -An | tr -d ' ')
++	[ $? -ne 0 ] && return 1
++	echo $out
++	return 0
++}
++
++write_smbus()
++{
++	[ -z $1 ] && return 1
++	[ -z $2 ] && return 1
++	[ -z $SMBUS ] && return 1
++	[ $(($1 % 4)) -ne 0 ] && return 1
++	echo -en $(printf '%08x' $2 | sed -e s/../\\\\x\&/g) | dd bs=4 of=$SMBUS conv=notrunc seek=$(($1/4)) status=noxfer 2> /dev/null
++	return $?
++}
++
++dimm_bank()
++{
++	[ -z $1 ] && return 1
++	[ -z "$BOARD" ] && return 1
++	[ -z "$I2CSET" ] && return 1
++	if [ "$BOARD" = "S8812" ]; then
++		$I2CSET -y 0 0x71 $(($1+4))
++		return $?
++	fi
++	if [ "$BOARD" = "H8QG6" -o "$BOARD" = "H8QGL" ]; then
++		local GPIO
++		GPIO=$(read_smbus 0x50)
++		[ $? -ne 0 ] && return 1
++		GPIO=$((($GPIO & 0xFFFFFCFF) | ($1 << 8)))
++		write_smbus 0x50 $GPIO
++		[ $? -ne 0 ] && return 1
++		return 0
++	fi
++	return 1
++}
++
++check_for()
++{
++	[ -z $1 ] && return 1
++	which $1 > /dev/null 2>&1 || return 1
++	return 0
++}
++
++missing_tool()
++{
++	echo
++	echo ERROR: \'$1\' is not available on your system. Please install package providing \'$1\'.
++}
++
++usage()
++{
++	echo Usage:
++	echo -e \\t"$0" \<cpu\>
++	echo -e \\t\\tdumps SPDs of all DIMM modules of given CPU
++	echo
++	echo -e \\t"$0" all
++	echo -e \\t\\tdumps SPDs of all DIMM modules
++	exit 1
++}
++
++[ -z "$1" ] && usage
++
++CPU=$1
++
++CPUMASK=0
++if [ "$CPU" = "all" ]; then
++	CPUMASK=15
++else
++	[ "$CPU" != "$(echo $CPU | tr -cd 0-9)" ] && CPU=x
++	if [ "$CPU" != $(($CPU)) -o $(($CPU)) -lt 0 -o $(($CPU)) -gt 3 ]; then
++		echo \<cpu\> must be a number \(0-3\) or \"all\"
++		exit 1
++	fi
++	CPU=$(($CPU))
++	CPUMASK=$((1 << $CPU))
++fi
++
++DMIDECODE=dmidecode
++MODPROBE=modprobe
++I2CSET=i2cset
++EEPROG=eeprog-tear
++
++PREREQUISITES="id head sed od tr seq dd find awk lspci $DMIDECODE $MODPROBE $I2CSET $EEPROG"
++
++ERRORS=0
++MISSING=1
++for i in $PREREQUISITES ; do
++	[ $MISSING -ne 0 ] && echo -n Checking for
++	echo -n \ $i
++	MISSING=0
++	if ! check_for $i ; then
++		MISSING=1
++		missing_tool $i
++		ERRORS=1
++	fi
++done
++echo \ ...done.
++if [ $ERRORS -ne 0 ]; then
++	exit 1
++fi
++
++if [ "$(id -ru)" != "0" ]; then
++	echo ERROR: need root privileges.
++	exit 1
++fi
++
++BOARD=$($DMIDECODE -s baseboard-product-name | head -1)
++
++if [ "$BOARD" != "S8812" -a "$BOARD" != "H8QG6" -a "$BOARD" != "H8QGL" ]; then
++	echo ERROR: unsupported board: \""$BOARD"\"
++fi
++
++if [ "$BOARD" = "H8QG6" -o "$BOARD" = "H8QGL" ]; then
++	$MODPROBE ipmi_si
++	if ls -d /sys/devices/platform/ipmi_bmc* > /dev/null 2>&1 ; then
++		echo ERROR: BMC\(s\) found. Please disable IPMI and try again.
++		exit 1
++	fi
++fi
++
++INCREMENT=1
++if [ "$BOARD" = "H8QGL" ]; then
++	INCREMENT=2
++fi
++
++$MODPROBE -r eeprom 2> /dev/null
++$MODPROBE i2c_dev
++
++if [ -z "$EEPROG_DEV" ]; then
++	echo Discovering i2c bus ...
++	# EEPROG_DEV=$(ls /sys/bus/pci/devices/0000:00:14.0/i2c-*/i2c-dev 2> /dev/null)
++	# EEPROG_DEV=$(ls /sys/bus/pci/devices/0000:$(lspci -nm | awk '/ "1002" "4385" / { print $1 }')/i2c-*/i2c-dev 2> /dev/null)
++	EEPROG_DEV=$(find /sys/bus/pci/devices/0000:$(lspci -nm | awk '/ "1002" "4385" / { print $1 }')/i2c-*/i2c-dev -mindepth 1 -maxdepth 1 -printf '%f ' | (read -a A ; if [ ${#A[*]} -gt 1 ]; then echo WARNING: multiple matching I2C interfaces found: ${A[*]}. Using ${A[0]}. Override with EEPROG_DEV if necessary. >&2 ; fi ; echo ${A[0]}))
++fi
++if [ -z "$EEPROG_DEV" ]; then
++	echo WARNING: PCI device 1002:4385 not found or has no I2C busses! Using i2c-0. >&2
++	EEPROG_DEV=i2c-0
++fi
++
++EEPROG_DEV=/dev/$EEPROG_DEV
++
++echo Using i2c bus at $EEPROG_DEV
++
++if [ "$BOARD" = "S8812" ]; then
++	# pre-set the Tyan
++	$I2CSET -y 0 0x72 0
++fi
++
++bit=1
++cpu=0
++while [ $cpu -lt 4 ]; do
++	if [ $(($bit & $CPUMASK)) -ne 0 ]; then
++		echo Processing CPU $cpu ...
++		dimm_bank $cpu
++		if [ $? -ne 0 ]; then
++			echo ERROR: dimm_bank $cpu failed
++			exit 1
++		fi
++		for i in $(seq $((0x50)) $INCREMENT $((0x57))) ; do
++			IHEX=0x$(printf '%x' $i)
++			OUT=spd-$BOARD-CPU-$cpu-$IHEX.bin
++			echo -n Reading DIMM at address $IHEX ...
++			$EEPROG -8 -f -r 0:256  $EEPROG_DEV $i > "$OUT" 2> /dev/null
++			RET=$?
++			if [ $RET -eq 2 ]; then
++				echo
++				echo ERROR: cannot access $EEPROG_DEV
++				exit 1
++			fi
++			if [ $RET -ne 0 ]; then
++				echo
++				echo DIMM at address $IHEX not populated \(or encountered I2C error\)
++				rm "$OUT"
++			else
++				echo done.
++			fi
++		done
++	fi
++	cpu=$(($cpu+1))
++	bit=$(($bit << 1))
++done
+diff --git a/dist/eeprog-spd-flash b/dist/eeprog-spd-flash
+new file mode 100755
+index 0000000..4f9f12c
+--- /dev/null
++++ b/dist/eeprog-spd-flash
+@@ -0,0 +1,143 @@
++#!/bin/bash
++#
++# eeprog-spd-flash 0.11, SPD flash utility
++#
++# Copyright (c) 2010-2014 by Kris Rusocki <kszysiu@gmail.com>
++# Licensed under GPLv2
++#
++# Boards supported: generic utility, YMMV
++#
++
++check_for()
++{
++	[ -z $1 ] && return 1
++	which $1 > /dev/null 2>&1 || return 1
++	return 0
++}
++
++missing_tool()
++{
++	echo
++	echo ERROR: \'$1\' is not available on your system. Please install package providing \'$1\'.
++}
++
++usage()
++{
++	echo Usage:
++	echo -e \\t"$0" all \<file\>
++	echo -e \\t\\tflashes all SPDs \(I2C addresses 0x50 through 0x57\) with given file
++	echo
++	echo -e \\t"$0" \<index\> \<file\>
++	echo -e \\t\\tflashes SPD at address 0x50 + \<index\> with given file
++	echo
++	echo -e \\t"$0" all
++	echo -e \\t\\tflashes SPDs with files, names of which follow the scheme:
++	echo -e \\t\\t\ \ spd-\<board model\>-0x\<I2C address in hex\>.bin
++	echo -e \\t\\tin other words, it does reverse of eeprog-spd-dump
++	echo
++	exit 1
++}
++
++[ -z "$1" ] && usage
++
++INDEX=$1
++FILE=$2
++
++if [ "$INDEX" = "all" ]; then
++	START=0
++	END=7
++else
++	[ -z "$FILE" ] && usage
++	[ "$INDEX" != "$(echo $INDEX | tr -cd 0-9)" ] && INDEX=x
++	if [ "$INDEX" != $(($INDEX)) -o $(($INDEX)) -lt 0 -o $(($INDEX)) -gt 7 ]; then
++		echo \<index\> must be a number \(0-7\) or \"all\"
++		exit 1
++	fi
++	INDEX=$(($INDEX))
++	START=$INDEX
++	END=$INDEX
++fi
++
++DMIDECODE=dmidecode
++MODPROBE=modprobe
++EEPROG=eeprog-tear
++
++PREREQUISITES="id head $DMIDECODE $MODPROBE $EEPROG"
++
++ERRORS=0
++MISSING=1
++for i in $PREREQUISITES ; do
++	[ $MISSING -ne 0 ] && echo -n Checking for
++	echo -n \ $i
++	MISSING=0
++	if ! check_for $i ; then
++		MISSING=1
++		missing_tool $i
++		ERRORS=1
++	fi
++done
++echo \ ...done.
++if [ $ERRORS -ne 0 ]; then
++	exit 1
++fi
++
++if [ "$(id -ru)" != "0" ]; then
++	echo ERROR: need root privileges.
++	exit 1
++fi
++
++BOARD=$($DMIDECODE -s baseboard-product-name | head -1)
++
++if [ "$BOARD" = "H8QG6" -o "$BOARD" = "H8QGL" ]; then
++	$MODPROBE ipmi_si
++	if ls -d /sys/devices/platform/ipmi_bmc* > /dev/null 2>&1 ; then
++		echo ERROR: BMC\(s\) found. Please disable IPMI and try again.
++		exit 1
++	fi
++fi
++
++echo
++echo Requested flashing of
++echo -en \\t
++[ "$INDEX" = "all" ] && echo -n all DIMMs || echo -n DIMM at index $INDEX
++echo
++echo with
++echo -en \\t
++[ -z "$FILE" ] && echo -n spd-$BOARD-\<I2C address in hex\>.bin files || echo -n "$FILE"
++echo 
++echo
++echo OK to proceed? Press ENTER to continue or Ctrl+C to exit.
++read CONFIRM
++
++$MODPROBE -r eeprom 2> /dev/null
++$MODPROBE i2c_dev
++
++[ -z "$EEPROG_DEV" ] && EEPROG_DEV=/dev/i2c-0
++
++flashed=0
++echo Processing ...
++for i in $(seq $((0x50+$START)) $((0x50+$END))) ; do
++	IHEX=0x$(printf '%x' $i)
++	[ -z "$FILE" ] && IN=spd-$BOARD-$IHEX.bin || IN=$FILE
++	if [ ! -r "$IN" ]; then
++		echo "$IN" does not exist or is not readable. Skipping DIMM at address $IHEX.
++		continue
++	fi
++	echo -n Writing "$IN" to DIMM at address $IHEX ...
++	$EEPROG -8 -f -w 0 -t 15 $EEPROG_DEV $i < "$IN" 2> /dev/null
++	RET=$?
++	if [ $RET -eq 2 ]; then
++		echo
++		echo ERROR: cannot access $EEPROG_DEV
++		exit 1
++	fi
++	if [ $RET -ne 0 ]; then
++		echo
++		echo DIMM at address $IHEX not populated \(or encountered I2C error\)
++	else
++		flashed=$(($flashed+1))
++		echo done.
++	fi
++done
++echo
++echo Flashed $flashed DIMM\(s\).
+diff --git a/dist/eeprog-spd-flash-g34 b/dist/eeprog-spd-flash-g34
+new file mode 100755
+index 0000000..5bf2df4
+--- /dev/null
++++ b/dist/eeprog-spd-flash-g34
+@@ -0,0 +1,230 @@
++#!/bin/bash
++#
++# eeprog-spd-flash-g34 0.11, SPD flash utility for 4p G34 boards
++#
++# Copyright (c) 2010-2014 by Kris Rusocki <kszysiu@gmail.com>
++# Licensed under GPLv2
++#
++# Boards supported: Tyan S8812, Supermicro H8QGi/H8QG6/H8QGL series
++#
++
++SMBUS=/proc/bus/pci/00/14.0
++
++read_smbus()
++{
++	local out
++	[ -z $1 ] && return 1
++	[ -z $SMBUS ] && return 1
++	[ $(($1 % 4)) -ne 0 ] && return 1
++	out=0x$(dd bs=4 if=$SMBUS skip=$(($1/4)) count=1 status=noxfer 2> /dev/null | od -tx1 -An | tr -d ' ')
++	[ $? -ne 0 ] && return 1
++	echo $out
++	return 0
++}
++
++write_smbus()
++{
++	[ -z $1 ] && return 1
++	[ -z $2 ] && return 1
++	[ -z $SMBUS ] && return 1
++	[ $(($1 % 4)) -ne 0 ] && return 1
++	echo -en $(printf '%08x' $2 | sed -e s/../\\\\x\&/g) | dd bs=4 of=$SMBUS conv=notrunc seek=$(($1/4)) status=noxfer 2> /dev/null
++	return $?
++}
++
++dimm_bank()
++{
++	[ -z $1 ] && return 1
++	[ -z "$BOARD" ] && return 1
++	[ -z "$I2CSET" ] && return 1
++	if [ "$BOARD" = "S8812" ]; then
++		$I2CSET -y 0 0x71 $(($1+4))
++		return $?
++	fi
++	if [ "$BOARD" = "H8QG6" -o "$BOARD" = "H8QGL" ]; then
++		local GPIO
++		GPIO=$(read_smbus 0x50)
++		[ $? -ne 0 ] && return 1
++		GPIO=$((($GPIO & 0xFFFFFCFF) | ($1 << 8)))
++		write_smbus 0x50 $GPIO
++		[ $? -ne 0 ] && return 1
++		return 0
++	fi
++	return 1
++}
++
++check_for()
++{
++	[ -z $1 ] && return 1
++	which $1 > /dev/null 2>&1 || return 1
++	return 0
++}
++
++missing_tool()
++{
++	echo
++	echo ERROR: \'$1\' is not available on your system. Please install package providing \'$1\'.
++}
++
++usage()
++{
++	echo Usage:
++	echo -e \\t"$0" all \<file\>
++	echo -e \\t\\tflashes SPDs of all DIMM modules with given file
++	echo
++	echo -e \\t"$0" \<cpu\> \<file\>
++	echo -e \\t\\tflashes SPDs of all DIMM modules of given CPU with given file
++	echo
++	echo -e \\t"$0" all
++	echo -e \\t\\tflashes SPDs with files, names of which follow the scheme:
++	echo -e \\t\\t\ \ spd-\<board model\>-CPU-\<cpu\>-0x\<I2C address in hex\>.bin
++	echo -e \\t\\tin other words, it does reverse of eeprog-spd-dump-g34
++	echo
++	echo -e \\t"$0" \<cpu\>
++	echo -e \\t\\tsame as above but only flashes SPDs of DIMM modules of given CPU
++	echo
++	exit 1
++}
++
++[ -z "$1" ] && usage
++
++CPU=$1
++FILE=$2
++
++CPUMASK=0
++if [ "$CPU" = "all" ]; then
++	CPUMASK=15
++else
++	[ "$CPU" != "$(echo $CPU | tr -cd 0-9)" ] && CPU=x
++	if [ "$CPU" != $(($CPU)) -o $(($CPU)) -lt 0 -o $(($CPU)) -gt 3 ]; then
++		echo \<cpu\> must be a number \(0-3\) or \"all\"
++		exit 1
++	fi
++	CPU=$(($CPU))
++	CPUMASK=$((1 << $CPU))
++fi
++
++DMIDECODE=dmidecode
++MODPROBE=modprobe
++I2CSET=i2cset
++EEPROG=eeprog-tear
++
++PREREQUISITES="id head sed od tr seq dd find awk lspci $DMIDECODE $MODPROBE $I2CSET $EEPROG"
++
++ERRORS=0
++MISSING=1
++for i in $PREREQUISITES ; do
++	[ $MISSING -ne 0 ] && echo -n Checking for
++	echo -n \ $i
++	MISSING=0
++	if ! check_for $i ; then
++		MISSING=1
++		missing_tool $i
++		ERRORS=1
++	fi
++done
++echo \ ...done.
++if [ $ERRORS -ne 0 ]; then
++	exit 1
++fi
++
++if [ "$(id -ru)" != "0" ]; then
++	echo ERROR: need root privileges.
++	exit 1
++fi
++
++BOARD=$($DMIDECODE -s baseboard-product-name | head -1)
++
++if [ "$BOARD" != "S8812" -a "$BOARD" != "H8QG6" -a "$BOARD" != "H8QGL" ]; then
++	echo ERROR: unsupported board: \""$BOARD"\"
++fi
++
++if [ "$BOARD" = "H8QG6" -o "$BOARD" = "H8QGL" ]; then
++	$MODPROBE ipmi_si
++	if ls -d /sys/devices/platform/ipmi_bmc* > /dev/null 2>&1 ; then
++		echo ERROR: BMC\(s\) found. Please disable IPMI and try again.
++		exit 1
++	fi
++fi
++
++echo
++echo Requested flashing of
++echo -en \\t
++[ "$CPU" = "all" ] && echo -n all DIMMs || echo -n CPU$CPU\'s DIMMs
++echo
++echo with
++echo -en \\t
++[ -z "$FILE" ] && echo -n spd-$BOARD-CPU-\<cpu\>-\<I2C address in hex\>.bin files || echo -n "$FILE"
++echo 
++echo
++echo OK to proceed? Press ENTER to continue or Ctrl+C to exit.
++read CONFIRM
++
++INCREMENT=1
++if [ "$BOARD" = "H8QGL" ]; then
++	INCREMENT=2
++fi
++
++$MODPROBE -r eeprom 2> /dev/null
++$MODPROBE i2c_dev
++
++if [ -z "$EEPROG_DEV" ]; then
++	echo Discovering i2c bus ...
++	# EEPROG_DEV=$(ls /sys/bus/pci/devices/0000:00:14.0/i2c-*/i2c-dev 2> /dev/null)
++	# EEPROG_DEV=$(ls /sys/bus/pci/devices/0000:$(lspci -nm | awk '/ "1002" "4385" / { print $1 }')/i2c-*/i2c-dev 2> /dev/null)
++	EEPROG_DEV=$(find /sys/bus/pci/devices/0000:$(lspci -nm | awk '/ "1002" "4385" / { print $1 }')/i2c-*/i2c-dev -mindepth 1 -maxdepth 1 -printf '%f ' | (read -a A ; if [ ${#A[*]} -gt 1 ]; then echo WARNING: multiple matching I2C interfaces found: ${A[*]}. Using ${A[0]}. Override with EEPROG_DEV if necessary. >&2 ; fi ; echo ${A[0]}))
++fi
++if [ -z "$EEPROG_DEV" ]; then
++	echo WARNING: PCI device 1002:4385 not found or has no I2C busses! Using i2c-0. >&2
++	EEPROG_DEV=i2c-0
++fi
++
++EEPROG_DEV=/dev/$EEPROG_DEV
++
++echo Using i2c bus at $EEPROG_DEV
++
++if [ "$BOARD" = "S8812" ]; then
++	# pre-set the Tyan
++	$I2CSET -y 0 0x72 0
++fi
++
++bit=1
++cpu=0
++flashed=0
++while [ $cpu -lt 4 ]; do
++	if [ $(($bit & $CPUMASK)) -ne 0 ]; then
++		echo Processing CPU $cpu ...
++		dimm_bank $cpu
++		if [ $? -ne 0 ]; then
++			echo ERROR: dimm_bank $cpu failed
++			exit 1
++		fi
++		for i in $(seq $((0x50)) $INCREMENT $((0x57))) ; do
++			IHEX=0x$(printf '%x' $i)
++			[ -z "$FILE" ] && IN=spd-$BOARD-CPU-$cpu-$IHEX.bin || IN=$FILE
++			if [ ! -r "$IN" ]; then
++				echo "$IN" does not exist or is not readable. Skipping DIMM at address $IHEX.
++				continue
++			fi
++			echo -n Writing "$IN" to DIMM at address $IHEX ...
++			$EEPROG -8 -f -w 0 -t 15 $EEPROG_DEV $i < "$IN" 2> /dev/null
++			RET=$?
++			if [ $RET -eq 2 ]; then
++				echo
++				echo ERROR: cannot access $EEPROG_DEV
++				exit 1
++			fi
++			if [ $RET -ne 0 ]; then
++				echo
++				echo DIMM at address $IHEX not populated \(or encountered I2C error\)
++			else
++				flashed=$(($flashed+1))
++				echo done.
++			fi
++		done
++	fi
++	cpu=$(($cpu+1))
++	bit=$(($bit << 1))
++done
++echo
++echo Flashed $flashed DIMM\(s\).
+diff --git a/eeprog.c b/eeprog.c
+index 92d4d44..603f967 100644
+--- a/eeprog.c
++++ b/eeprog.c
+@@ -2,6 +2,17 @@
+     copyright            : (C) by 2003-2004 Stefano Barbato
+     email                : stefano@codesink.org
+ 
++    Copyright (C) 2011 by Kris Rusocki <kszysiu@gmail.com>
++    - usage/strings cleanup
++    - misc cleanup: use "static" keyword where appropriate
++    - misc cleanup: have confirm_action() return void
++    - support custom input and output files
++    - support user-defined write cycle time
++    - ensure that stdin is a terminal when operating w/o -f
++    - do not allow reading data from a terminal w/o -f
++    - perform complete input validation before taking action
++    - use dedicated exit code when opening I2C device fails
++
+     $Id: eeprog.c,v 1.28 2004/02/29 11:06:41 tat Exp $
+  ***************************************************************************/
+ 
+@@ -24,34 +35,43 @@
+ #include <sys/stat.h>
+ #include "24cXX.h"
+ 
+-#define VERSION 	"0.7.6"
++#define VERSION 	"0.7.6-tear12"
+ 
+ #define ENV_DEV		"EEPROG_DEV"
+ #define ENV_I2C_ADDR	"EEPROG_I2C_ADDR"
+ 
+-int g_quiet;
++static int g_quiet;
+ 
+ #define usage_if(a) do { do_usage_if( a , __LINE__); } while(0);
+-void do_usage_if(int b, int line)
++static void do_usage_if(int b, int line)
+ {
+ const static char *eeprog_usage =
+ "eeprog " VERSION ", a 24Cxx EEPROM reader/writer\n"
+ "Copyright (c) 2003-2004 by Stefano Barbato - All rights reserved.\n"
+-"Usage: eeprog [-fqxdh] [-16|-8] [ -r addr[:count] | -w addr ]  /dev/i2c-N  i2c-address\n"
++"Copyright (c) 2011 by Kris Rusocki - All rights reserved.\n"
++"Usage:\n"
++"\teeprog [-fqxd] [-16|-8] -r addr[:count] [-o file] /dev/i2c-N  i2c-address\n"
++"\teeprog [-fqd] [-16|-8] -w addr [-i file] [-t tWC] /dev/i2c-N  i2c-address\n"
++"\teeprog -h\n"
+ "\n"
+ "  Address modes: \n"
+ "	-8		Use 8bit address mode for 24c0x...24C16 [default]\n"
+ "	-16		Use 16bit address mode for 24c32...24C256\n"
+ "  Actions: \n"
+ "	-r addr[:count]	Read [count] (1 if omitted) bytes from [addr]\n"
+-"			and print them to the standard output\n"
+-"	-w addr		Write input (stdin) at address [addr] of the EEPROM\n"
++"			and print them to the standard output (or file\n"
++"			specified by -o)\n"
++"	-w addr		Write stdin (or file specified by -i) starting\n"
++"			at address [addr] of the EEPROM\n"
+ "	-h		Print this help\n"
+ "  Options: \n"
++"	-i file		Read input from [file] (for use with -w)\n"
++"	-o file		Write output to [file] (for use with -r)\n"
+ "	-x		Set hex output mode\n"
+ "	-d		Dummy mode, display what *would* have been done\n"
+ "	-f		Disable warnings and don't ask confirmation\n"
+ "	-q		Quiet mode\n"
++"	-t tWC		Define chip's write cycle time to [tWC] miliseconds\n"
+ "\n"
+ "The following environment variables could be set instead of the command\n"
+ "line arguments:\n"
+@@ -67,7 +87,7 @@ const static char *eeprog_usage =
+ "		eeprog /dev/i2c-1 0x51 -x -r 0x22:0x20\n"
+ "	3- write the current timestamp at address 0x200 of the EEPROM on \n"
+ "	   bus 0 at address 0x33 \n"
+-"		date | eeprog /dev/i2c-0 0x33 -w 0x200\n";
++"		date | eeprog /dev/i2c-0 0x33 -w 0x200 -f\n";
+ 
+ 	if(!b)
+ 		return;
+@@ -76,49 +96,77 @@ const static char *eeprog_usage =
+ }
+ 
+ 
+-#define die_if(a, msg) do { do_die_if( a , msg, __LINE__); } while(0);
+-void do_die_if(int b, char* msg, int line)
++#define die_if3(a, msg, code) do { do_die_if( a , msg, __LINE__, code); } while(0)
++#define die_if(a, msg) die_if3(a, msg, 1)
++static void do_die_if(int b, char* msg, int line, int exitcode)
+ {
+ 	if(!b)
+ 		return;
+ 	fprintf(stderr, "Error at line %d: %s\n", line, msg);
+ 	//fprintf(stderr, "	sysmsg: %s\n", strerror(errno));
+-	exit(1);
++	exit(exitcode);
+ }
+ 
+-#define print_info(args...) do { if(!g_quiet) fprintf(stderr, args); } while(0);
++#define print_info(args...) do { if(!g_quiet) fprintf(stderr, args); } while(0)
+ 
+-void parse_arg(char *arg, int* paddr, int *psize)
++static int parse_arg(char *arg, int* paddr, int *psize)
+ {
+ 	char *end;
+-	*paddr = strtoul(arg, &end, 0);
+-	if(*end == ':')
+-		*psize = strtoul(++end, 0, 0);
++	unsigned int out_paddr, out_psize;
++
++	if(arg[0] == '\0')
++		return -1;
++
++	out_paddr = strtol(arg, &end, 0);
++	if(*end == '\0')
++	{
++		if(paddr)
++			*paddr = out_paddr;
++		return 1;
++	}
++
++	if(*end != ':')
++		return -1;
++
++	if(end[1] == '\0')
++		return -1;
++
++	out_psize = strtol(end + 1, &end, 0);
++	if(*end == '\0')
++	{
++		if (paddr)
++			*paddr = out_paddr;
++		if (psize)
++			*psize = out_psize;
++		return 2;
++	}
++
++	return -1;
+ }
+ 
+-int confirm_action()
++static void confirm_action()
+ {
+ 	fprintf(stderr,
+ 	"\n"
+ 	"____________________________WARNING____________________________\n"
+ 	"Erroneously writing to a system EEPROM (like DIMM SPD modules)\n"
+-	"can break your system.  It will NOT boot anymore so you'll not\n"
+-	"be able to fix it.\n"
++	"may break your system.  In such event, it will NOT boot anymore\n"
++	"and you may not be able to fix it.\n"
+ 	"\n"
+-	"Reading from 8bit EEPROMs (like that in your DIMM) without using\n"
+-	"the -8 switch can also UNEXPECTEDLY write to them, so be sure to\n"
+-	"use the -8 command param when required.\n"
++	"Reading from 8bit EEPROMs (like that in your DIMM) while using\n"
++	"-16 option can also UNEXPECTEDLY write to them so be sure to\n"
++	"use -16 option ONLY when required.\n"
+ 	"\n"
+ 	"Use -f to disable this warning message\n"
+ 	"\n"
+ 	"Press ENTER to continue or hit CTRL-C to exit\n"
+ 	"\n"
+ 	);
++
+ 	getchar();
+-	return 1;
+ }
+ 
+-int read_from_eeprom(struct eeprom *e, int addr, int size, int hex)
++static int read_from_eeprom(struct eeprom *e, FILE *fp, int addr, int size, int hex)
+ {
+ 	int ch, i;
+ 	for(i = 0; i < size; ++i, ++addr)
+@@ -127,23 +175,23 @@ int read_from_eeprom(struct eeprom *e, int addr, int size, int hex)
+ 		if(hex)
+ 		{
+ 			if( (i % 16) == 0 )
+-				printf("\n %.4x|  ", addr);
++				fprintf(fp, "\n %.4x|  ", addr);
+ 			else if( (i % 8) == 0 )
+-				printf("  ");
+-			printf("%.2x ", ch);
++				fprintf(fp, "  ");
++			fprintf(fp, "%.2x ", ch);
+ 		} else
+-			putchar(ch);
++			putc(ch, fp);
+ 	}
+ 	if(hex)
+-		printf("\n\n");
+-	fflush(stdout);
++		fprintf(fp, "\n\n");
++	fflush(fp);
+ 	return 0;
+ }
+ 
+-int write_to_eeprom(struct eeprom *e, int addr)
++static int write_to_eeprom(struct eeprom *e, FILE *fp, int addr)
+ {
+ 	int c;
+-	while((c = getchar()) != EOF)
++	while((c = fgetc(fp)) != EOF)
+ 	{
+ 		print_info(".");
+ 		fflush(stdout);
+@@ -156,15 +204,24 @@ int write_to_eeprom(struct eeprom *e, int addr)
+ int main(int argc, char** argv)
+ {
+ 	struct eeprom e;
+-	int ret, op, i2c_addr, memaddr, size, want_hex, dummy, force, sixteen;
++	int ret, op, i2c_addr, memaddr, size, want_hex, dummy, force, sixteen, write_cycle_time;
++
++	char *input_file, *output_file;
++	FILE *input_fp, *output_fp;
++
+ 	char *device, *arg = 0, *i2c_addr_s;
+ 	struct stat st;
+ 	int eeprom_type = 0;
+ 
+-	op = want_hex = dummy = force = sixteen = 0;
++	op = want_hex = dummy = force = sixteen = write_cycle_time = 0;
++	size = 1; // default
+ 	g_quiet = 0;
+ 
+-	while((ret = getopt(argc, argv, "1:8fr:qhw:xd")) != -1)
++	input_file = output_file = NULL;
++	input_fp = stdin;
++	output_fp = stdout;
++
++	while((ret = getopt(argc, argv, "1:8fr:qhw:xdt:i:o:")) != -1)
+ 	{
+ 		switch(ret)
+ 		{
+@@ -192,6 +249,15 @@ int main(int argc, char** argv)
+ 		case 'h':
+ 			usage_if(1);
+ 			break;
++		case 't':
++			die_if(parse_arg(optarg, &write_cycle_time, NULL) != 1 || write_cycle_time < 0, "-t -- invalid argument");
++			break;
++		case 'i':
++			input_file = optarg;
++			break;
++		case 'o':
++			output_file = optarg;
++			break;
+ 		default:
+ 			die_if(op != 0, "Both read and write requested");
+ 			arg = optarg;
+@@ -228,38 +294,87 @@ int main(int argc, char** argv)
+ 		usage_if(1);
+ 	}
+ 	usage_if(!device || !i2c_addr_s);
+-	i2c_addr = strtoul(i2c_addr_s, 0, 0);
++	die_if(parse_arg(i2c_addr_s, &i2c_addr, NULL) != 1 || i2c_addr < 0, "I2C address -- invalid argument");
++	ret = parse_arg(arg, &memaddr, &size);
++	die_if(op == 'r' && (ret == -1 || memaddr < 0 || size < 0), "-r -- invalid argument");
++	die_if(op == 'w' && (ret != 1 || memaddr < 0), "-w -- invalid argument");
+ 
+ 	print_info("eeprog %s, a 24Cxx EEPROM reader/writer\n", VERSION);
+ 	print_info("Copyright (c) 2003-2004 by Stefano Barbato - All rights reserved.\n");
+-	print_info("  Bus: %s, Address: 0x%x, Mode: %dbit\n",
++	print_info("Copyright (c) 2011 by Kris Rusocki - All rights reserved.\n");
++	print_info("  Bus: %s, Address: 0x%02x, Mode: %dbit\n",
+ 			device, i2c_addr,
+ 			(eeprom_type == EEPROM_TYPE_8BIT_ADDR ? 8 : 16) );
++	if(op == 'r')
++	{
++		print_info("  Operation: read %d bytes from offset %d, Output file: %s\n",
++				size, memaddr, output_file ? output_file : "<stdout>");
++	} else {
++		print_info("  Operation: write at offset %d, Input file: %s\n",
++				memaddr, input_file ? input_file : "<stdin>");
++		if(write_cycle_time != 0)
++			print_info("  Write cycle time: %d milliseconds\n", write_cycle_time);
++	}
++
+ 	if(dummy)
+ 	{
+ 		fprintf(stderr, "Dummy mode selected, nothing done.\n");
+ 		return 0;
+ 	}
+-	die_if(eeprom_open(device, i2c_addr, eeprom_type, &e) < 0,
+-			"unable to open eeprom device file "
++
++	if (input_file) {
++		die_if((input_fp = fopen(input_file, "rb")) == NULL,
++			"unable to open input file "
+ 			"(check that the file exists and that it's readable)");
++	} else {
++		input_file = "<stdin>";
++	}
++
++	if (output_file) {
++		die_if((output_fp = fopen(output_file, "wb")) == NULL,
++			"unable to create output file "
++			"(check that you have permissions to write the file)");
++	} else {
++		output_file = "<stdout>";
++	}
++
++	die_if3(eeprom_open(device, i2c_addr, eeprom_type, write_cycle_time, &e) < 0,
++			"unable to open eeprom device file "
++			"(check that the file exists and that it's readable)",
++			2);
+ 	switch(op)
+ 	{
+ 	case 'r':
+-		if(force == 0)
++		if(force == 0) {
++			/* Confirmation must come from a terminal */
++			die_if(isatty(0) == 0,
++				"stdin is not a terminal"
++			);
+ 			confirm_action();
+-		size = 1; // default
+-		parse_arg(arg, &memaddr, &size);
++		}
+ 		print_info("  Reading %d bytes from 0x%x\n", size, memaddr);
+-		read_from_eeprom(&e, memaddr, size, want_hex);
++		read_from_eeprom(&e, output_fp, memaddr, size, want_hex);
+ 		break;
+ 	case 'w':
+-		if(force == 0)
++		if(force == 0) {
++			/* Don't read data from a terminal */
++			die_if(isatty(fileno(input_fp)) == 1,
++				"refusing to read data from a terminal\n"
++				"\n"
++				"Use -i to provide input file or -f to force."
++			);
++
++			/* Confirmation must come from a terminal */
++			die_if(isatty(0) == 0,
++				"stdin is not a terminal"
++				"\n"
++				"Use -f to force."
++			);
+ 			confirm_action();
+-		parse_arg(arg, &memaddr, &size);
+-		print_info("  Writing stdin starting at address 0x%x\n",
+-			memaddr);
+-		write_to_eeprom(&e, memaddr);
++		}
++		print_info("  Writing %s starting at address 0x%x\n",
++			input_file, memaddr);
++		write_to_eeprom(&e, input_fp, memaddr);
+ 		break;
+ 	default:
+ 		usage_if(1);
+@@ -269,4 +384,3 @@ int main(int argc, char** argv)
+ 
+ 	return 0;
+ }
+-
