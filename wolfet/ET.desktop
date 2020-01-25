@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Exec=/usr/share/wolfet/bin/et.x86
+Path=/usr/share/wolfet
+Icon=ET.png
+Terminal=false
+StartupNotify=false
+Categories=Game
+Name=Wolfenstein: Enemy Territory
+GenericName=ET
