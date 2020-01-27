@@ -51,3 +51,18 @@ ac_add_options --with-system-sqlite
 ac_add_options --with-system-libvpx
 ac_add_options --with-system-libevent
 ac_add_options --enable-startup-notification
+
+# All of this stolen from mozconfig.lto in mozilla source tree
+# Use Clang as specified in manifest
+export AR="llvm-ar"
+export NM="llvm-nm"
+export RANLIB="llvm-ranlib"
+
+export CC="clang"
+export CXX="clang++"
+
+
+# Until Bug 1423822 is resolved
+ac_add_options --disable-elf-hack
+
+ac_add_options --enable-lto

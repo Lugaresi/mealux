@@ -5,4 +5,4 @@ edd1504da7968455951d50804e0172ad  seamonkey-2.49.5.source-l10n.tar.xz
 91f60a7aca6f8bc053ffddc7259ae4ec  seamonkey-2.49.5.source.tar.xz
 a8f7723b5f5fafd03b6421b8cf798d0d  rusturl-fix.diff
 49f0ae823ca445582b66d217b8e517e0  fix-nss.diff
-dec59c904ca86403849b22cd647ac178  mozconfig.nix
+4ff76ba36823fe0d105b004a56cd7a33  mozconfig.nix
