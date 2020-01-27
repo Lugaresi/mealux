@@ -10,7 +10,7 @@ source=(https://archive.mozilla.org/pub/seamonkey/releases/$version$patchver/sou
         https://archive.mozilla.org/pub/seamonkey/releases/$version$patchver/source/seamonkey-$version.source-l10n.tar.xz \
         http://www.stukamanhpt4.com/Netscape/Netscape-$version.tar.bz2 \
 	http://www.stukamanhpt4.com/Netscape/netscape-$version.diff \
-	netscape.desktop rusturl-fix.diff)
+	netscape.desktop rusturl-fix.diff fix-nss.diff mozconfig.nix)
 
 build () {
     mkdir seamonkey-$version/locales
@@ -23,17 +23,14 @@ build () {
      done
     cd seamonkey-$version
     patch -p1 -i $SRC/netscape-$version.diff
+    cp $SRC/mozconfig.nix mozconfig.nix
     sed -i mozconfig.nix -e s!@TOPSRCDIR@!`pwd`!g
-    # Errors in startup cache precompilation force me to do this
-    # Hopefully this can be removed soon.
-    echo "ac_add_options --disable-startupcache" >> mozconfig.nix
-    echo "export CC=clang" >> mozconfig.nix
-    echo "export CXX=clang++" >> mozconfig.nix
     # url lib became too old for rust 1.4.0
     (cd mozilla/third_party/rust/url; patch -p1 -i $SRC/rusturl-fix.diff; \
  	sed -e s/c3542aabc733f76a3b9c7d24b5c41e60e9eb84d2712660611300d1de0e7c2072/6314be3dc87914ada0e2e49ab4a3aee7538ad504a495fe25a798390aa819f049/g \
 	-e s/172922f2c51eb8dae0182d70e5e0c2969f1b5b7aac026720ced9f84059465999/b29023703c557576b28e752645614c22694dd176deb39cbd236834659001cee5/g \
 	-i .cargo-checksum.json )
+    (cd mozilla; patch -p1 -i $SRC/fix-nss.diff)
     export MOZCONFIG=$SRC/seamonkey-$version/mozconfig.nix
     make -f client.mk build
     make -f client.mk DESTDIR=$PKG install
