@@ -27,7 +27,7 @@ ac_add_options --disable-dbus
 ac_add_options --with-branding=suite/branding/Netscape
 
 # Localization
-ac_add_options --with-l10n-base=/usr/ports/mealux/netscape/work/src/seamonkey-2.49.5/locales
+ac_add_options --with-l10n-base=@TOPSRCDIR@/locales
 ac_add_options --enable-ui-locale=en-US
 mk_add_options MOZ_CO_LOCALES=all
 
@@ -51,18 +51,20 @@ ac_add_options --with-system-sqlite
 ac_add_options --with-system-libvpx
 ac_add_options --with-system-libevent
 ac_add_options --enable-startup-notification
+#ac_add_options --disable-startupcache
 
 # All of this stolen from mozconfig.lto in mozilla source tree
 # Use Clang as specified in manifest
-export AR="llvm-ar"
-export NM="llvm-nm"
-export RANLIB="llvm-ranlib"
+#export AR="llvm-ar"
+#export NM="llvm-nm"
+#export RANLIB="llvm-ranlib"
 
-export CC="clang"
-export CXX="clang++"
+#export CC="clang"
+#export CXX="clang++"
 
 
 # Until Bug 1423822 is resolved
-ac_add_options --disable-elf-hack
+#ac_add_options --disable-elf-hack
 
-ac_add_options --enable-lto
+#I guess it's too soon for this :(((
+#ac_add_options --enable-lto

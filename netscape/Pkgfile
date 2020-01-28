@@ -5,7 +5,7 @@
 
 name=netscape
 version=2.49.5
-release=3
+release=4
 source=(https://archive.mozilla.org/pub/seamonkey/releases/$version$patchver/source/seamonkey-$version.source.tar.xz \
         https://archive.mozilla.org/pub/seamonkey/releases/$version$patchver/source/seamonkey-$version.source-l10n.tar.xz \
         http://www.stukamanhpt4.com/Netscape/Netscape-$version.tar.bz2 \
