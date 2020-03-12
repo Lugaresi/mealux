@@ -1,0 +1,40 @@
+# Description: LSI/Avago/Broadcom Megaraid Utilities (MegaCLI & StorCLI)
+# URL:         https://docs.broadcom.com
+# Maintainer:  Stuka
+#
+# depends on: unzip rpm2targz
+
+name=megaraid
+version=20200312
+release=1
+source=(
+	https://docs.broadcom.com/docs-and-downloads/raid-controllers/raid-controllers-common-files/1-15-05_StorCLI.zip
+	https://docs.broadcom.com/docs-and-downloads/raid-controllers/raid-controllers-common-files/8-04-07_MegaCLI.zip
+)
+
+build() {
+    # Yes, I could use macro expansion to make all this way shorter
+    # and easier to upgrade, but not right now, can't be arsed.
+    unzip CLI_Lin_8.04.07.zip
+    unzip MegaCliLin.zip
+    unzip storcli_all_os.zip
+    rpm2targz Lib_Utils-1.00-09.noarch.rpm
+    rpm2targz MegaCli-8.04.07-1.noarch.rpm
+    rpm2targz storcli_all_os/Linux/storcli-1.15.05-1.noarch.rpm
+
+    cd $PKG
+    tar -xvzf $SRC/Lib_Utils-1.00-09.noarch.tar.gz
+    tar -xvzf $SRC/MegaCli-8.04.07-1.noarch.tar.gz
+    tar -xvzf $SRC/storcli_all_os/Linux/storcli-1.15.05-1.noarch.tar.gz 
+
+    # Cleanup
+    rm $PKG/opt/MegaRAID/storcli/storcli
+    rm $PKG/opt/MegaRAID/MegaCli/MegaCli
+    rm $PKG/opt/lsi/3rdpartylibs/libsysfs.so.2.0.2
+    rm -rf $PKG/opt/lsi/3rdpartylibs/src/
+
+    # Symlinks
+    mkdir -p $PKG/usr/bin
+    ln -s /opt/MegaRAID/storcli/storcli64 $PKG/usr/bin/storcli64
+    ln -s /opt/MegaRAID/MegaCli/MegaCli64 $PKG/usr/bin/MegaCli64
+}   
