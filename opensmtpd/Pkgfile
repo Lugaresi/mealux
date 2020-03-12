@@ -1,12 +1,12 @@
-# Description: 
+# Description: OpenSMTPD is a FREE implementation of the server-side SMTP protocol as defined by RFC 5321, with some additional standard extensions. 
 # URL:         https://www.opensmtpd.org
 # Maintainer:  Isak Andersson, contact at bitpuffin dot com
 #
 # depends on: libevent libasr libbsd
 
 name=opensmtpd
-version=6.6.1p1
-release=3
+version=6.6.4p1
+release=1
 source=(
   https://www.$name.org/archives/$name-$version.tar.gz
   $name.rc

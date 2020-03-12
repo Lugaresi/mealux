@@ -8,6 +8,7 @@ drwxr-xr-x	root/root	usr/bin/
 drwxr-xr-x	root/root	usr/lib/
 drwxr-xr-x	root/root	usr/lib/opensmtpd/
 -rwxr-xr-x	root/root	usr/lib/opensmtpd/encrypt
+-r-sr-xr-x	root/root	usr/lib/opensmtpd/lockspool
 -rwxr-xr-x	root/root	usr/lib/opensmtpd/mail.lmtp
 -rwxr-xr-x	root/root	usr/lib/opensmtpd/mail.local
 -rwxr-xr-x	root/root	usr/lib/opensmtpd/mail.maildir
