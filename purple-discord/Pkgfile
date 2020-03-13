@@ -1,0 +1,18 @@
+# Description: A libpurple/Pidgin plugin for Discord
+# URL: https://github.com/EionRobb/purple-discord
+# Maintainer: Stuka
+# Packager: Stuka
+# Depends on: pidgin
+
+name=purple-discord
+version=0.9-4e71974
+release=1
+source=()
+
+build() {
+        git clone git://github.com/EionRobb/purple-discord.git
+        cd purple-discord
+        git checkout 4e71974
+	make
+	make DESTDIR=$PKG install
+}
