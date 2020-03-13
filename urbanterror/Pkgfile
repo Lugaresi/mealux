@@ -1,0 +1,25 @@
+# Description:  Urban Terror is a free multiplayer first person shooter, that will run on any Quake III Arena compatible engine.
+# URL:         https://www.urbanterror.info/home/
+# Maintainer:  Lugaresi
+# Depends on:  sdl 
+
+name=urbanterror
+version=4.3.4
+release=1
+source=(
+    http://cdn.urbanterror.info/urt/43/releases/zips/UrbanTerror434_full.zip\
+    https://github.com/FrozenSand/ioq3-for-UrbanTerror-4/archive/release-4.3.4.tar.gz\
+     URT.desktop URT.png)
+
+
+build() {
+    rm -rf UrbanTerror43/*{.exe,.app,x86_64,i386}
+    cd ioq3-for-UrbanTerror-4-release-4.3.4
+    make
+    cp build/release-linux-x86_64/Quake3-UrT* ../UrbanTerror43/
+    cd ..
+    mkdir -p $PKG/opt
+    mv UrbanTerror43 $PKG/opt/
+    install -m 0755 -d $PKG/usr/share/pixmaps
+    install -m 0644 $SRC/URT.png $PKG/usr/share/pixmaps/URT.png
+}

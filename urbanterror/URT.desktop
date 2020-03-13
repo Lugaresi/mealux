@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Exec=/opt/UrbanTerror43/Quake3-UrT.x86_64
+Path=/opt/UrbanTerror43
+Icon=URT.png
+Terminal=false
+StartupNotify=false
+Categories=Game
+Name=Urban Terror
+GenericName=iourbanterror
