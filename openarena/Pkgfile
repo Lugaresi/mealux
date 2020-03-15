@@ -1,0 +1,30 @@
+# Description: OpenArena is a community-produced deathmatch FPS based on GPL idTech3 technology. 
+# URL:         http://www.openarena.ws/
+# Maintainer:  Lugaresi
+# Depends on:  sdl 
+
+name=openarena
+version=0.8.8
+release=1
+source=(
+    http://download.tuxfamily.org/openarena/rel/088/openarena-0.8.8.zip \
+#    http://files.poulsander.com/~poul19/public_files/oa/dev088/oa-0.8.8.tar.bz2 \
+    http://files.poulsander.com/~poul19/public_files/oa/dev088/openarena-engine-source-0.8.8.tar.bz2 \
+     OA.desktop OA.png)
+
+
+build() {
+    rm -rf openarena-0.8.8/*{.exe,.app,x86_64,i386,dll}
+    rm -rf openarena-0.8.8/__MACOSX
+    cd openarena-engine-source-0.8.8
+    make
+    cp build/release-linux-x86_64/*x86_64 ../openarena-0.8.8/
+    cd ..
+    mkdir -p $PKG/opt
+    mv openarena-0.8.8 $PKG/opt/
+    chmod 755 $PKG/opt/openarena-0.8.8{/,/baseoa/,/missionpack/}
+    install -m 0755 -d $PKG/usr/share/pixmaps
+    install -m 0644 $SRC/OA.png $PKG/usr/share/pixmaps/OA.png
+    install -m 0755 -d $PKG/usr/share/applications
+    install -m 0644 $SRC/OA.desktop $PKG/usr/share/applications/OA.desktop
+}

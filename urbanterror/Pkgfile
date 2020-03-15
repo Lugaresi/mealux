@@ -22,4 +22,6 @@ build() {
     mv UrbanTerror43 $PKG/opt/
     install -m 0755 -d $PKG/usr/share/pixmaps
     install -m 0644 $SRC/URT.png $PKG/usr/share/pixmaps/URT.png
+    install -m 0755 -d $PKG/usr/share/applications
+    install -m 0644 $SRC/URT.desktop $PKG/usr/share/applications/URT.desktop
 }

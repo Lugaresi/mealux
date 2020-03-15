@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Exec=/opt/openarena-0.8.8/openarena.x86_64
+Path=/opt/openarena-0.8.8
+Icon=OA.png
+Terminal=false
+StartupNotify=false
+Categories=Game
+Name=OpenArena
+GenericName=openarena
