@@ -1,0 +1,24 @@
+# Description: Cross-platform C libraries that allow you to easily implement VNC server or client functionality
+# URL:         https://libvnc.github.io/
+# Maintainer:  Stuka
+#
+# depends on: libpng libjpeg gnutls libgcript openssl libnsl
+
+name=libvncserver
+version=0.9.12
+release=1
+source=(
+    https://github.com/LibVNC/libvncserver/archive/LibVNCServer-$version.tar.gz
+    https://github.com/LibVNC/libvncserver/commit/d0a76539.patch
+    https://github.com/LibVNC/libvncserver/commit/15c4f144.patch
+)
+
+build() {
+  cd $name-LibVNCServer-$version
+  patch -p1 -i $SRC/d0a76539.patch
+  patch -p1 -i $SRC/15c4f144.patch
+  mkdir build && cd build
+  cmake -DCMAKE_INSTALL_PREFIX=/usr -DBUILD_TESTING=OFF ..
+  make
+  make DESTDIR=$PKG install
+}
