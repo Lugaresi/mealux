@@ -1,0 +1,22 @@
+# Description: Remote Desktop Client
+# URL:         https://kde.org/applications/internet/krdc/
+# Maintainer:  Stuka
+#
+# depends on: libvncserver freerdp2
+
+name=krdc
+version=19.12.3
+release=1
+source=(
+  https://download.kde.org/stable/release-service/$version/src/$name-$version.tar.xz
+  freerdp2.patch
+)
+
+build() {
+  cd $name-$version
+  patch -p1 -i $SRC/freerdp2.patch
+  mkdir build && cd build
+  cmake .. -DCMAKE_INSTALL_PREFIX=/usr -DBUILD_TESTING=OFF
+  make
+  make DESTDIR=$PKG install
+}
