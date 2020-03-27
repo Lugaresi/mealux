@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=Netscape Mail
+Comment=Netscape Mail
+Exec=Netscape -mail
+Icon=/usr/lib/Netscape-VERSION/chrome/icons/default/messengerWindow48.png
+Categories=Application;Network;

@@ -1,39 +1,41 @@
 # Description: A Good Old-fashioned browser
 # URL: http://www.seamonkey-project.org/
 # Maintainer: Stuka
-# Depends on: gtk3, mesa3d, libnotify, nss, nspr, autconf-2.13, startup-notification, libvpx, clang, rust, icu
+# Depends on: gtk3, mesa3d, libnotify, nss, nspr, autconf-2.13, startup-notification, libvpx, clang,  icu
 
 name=netscape
-version=2.49.5
-release=4
+version=2.53.1
+release=1
 source=(https://archive.mozilla.org/pub/seamonkey/releases/$version$patchver/source/seamonkey-$version.source.tar.xz \
-        https://archive.mozilla.org/pub/seamonkey/releases/$version$patchver/source/seamonkey-$version.source-l10n.tar.xz \
-        http://www.stukamanhpt4.com/Netscape/Netscape-$version.tar.bz2 \
+        http://www.stukamanhpt4.com/Netscape/Netscape-$version.tar.xz \
 	http://www.stukamanhpt4.com/Netscape/netscape-$version.diff \
-	netscape.desktop rusturl-fix.diff fix-nss.diff mozconfig.nix)
+	netscape.desktop nsmail.desktop vpx-compat.diff)
 
 build () {
-    mkdir seamonkey-$version/locales
-    for dir in */
-     do
-       if [ "$dir" == "seamonkey-$version/" ]; then
-         continue;
-       fi
-       mv $dir seamonkey-$version/locales
-     done
+    # We need to build against rust 1.37.0 as seen on the meetings. Also 1.42 doesn't.
+    wget -O rustup-init.sh https://sh.rustup.rs && chmod a+x rustup-init.sh
+    export RUSTUP_HOME=$SRC/rust && mkdir -p $RUSTUP_HOME
+    export CARGO_HOME=$SRC/cargo && mkdir -p $CARGO_HOME
+    ./rustup-init.sh -v -y --no-modify-path --default-toolchain 1.37.0
+    $CARGO_HOME/bin/rustup toolchain install 1.37.0
+
     cd seamonkey-$version
     patch -p1 -i $SRC/netscape-$version.diff
-    cp $SRC/mozconfig.nix mozconfig.nix
-    sed -i mozconfig.nix -e s!@TOPSRCDIR@!`pwd`!g
-    # url lib became too old for rust 1.4.0
-    (cd mozilla/third_party/rust/url; patch -p1 -i $SRC/rusturl-fix.diff; \
- 	sed -e s/c3542aabc733f76a3b9c7d24b5c41e60e9eb84d2712660611300d1de0e7c2072/6314be3dc87914ada0e2e49ab4a3aee7538ad504a495fe25a798390aa819f049/g \
-	-e s/172922f2c51eb8dae0182d70e5e0c2969f1b5b7aac026720ced9f84059465999/b29023703c557576b28e752645614c22694dd176deb39cbd236834659001cee5/g \
-	-i .cargo-checksum.json )
-    (cd mozilla; patch -p1 -i $SRC/fix-nss.diff)
+    sed -i mozconfig.nix -e s!@TOPSRCDIR@!`pwd`!g -e s!j4!j$(nproc)!g
+
+    echo export RUSTC="$CARGO_HOME/bin/rustc" >> mozconfig.nix
+    echo export CARGO="$CARGO_HOME/bin/cargo" >> mozconfig.nix
+    echo export RUSTDOC="$CARGO_HOME/bin/rustdoc" >> mozconfig.nix
+    echo export RUSTFMT="$CARGO_HOME/bin/rustfmt" >> mozconfig.nix
+
+    # Fix Building with System libvpx > 1.8
+    patch -p1 -i $SRC/vpx-compat.diff
+
     export MOZCONFIG=$SRC/seamonkey-$version/mozconfig.nix
     make -f client.mk build
     make -f client.mk DESTDIR=$PKG install
     sed -i s\/VERSION\/$version\/g $SRC/netscape.desktop
+    sed -i s\/VERSION\/$version\/g $SRC/nsmail.desktop
     install -D -m0644 $SRC/netscape.desktop $PKG/usr/share/applications/netscape.desktop
+    install -D -m0644 $SRC/nsmail.desktop $PKG/usr/share/applications/nsmail.desktop
 }

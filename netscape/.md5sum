@@ -1,8 +1,6 @@
-b82e37bf3a9cfce3b617c4d47f0f3a5b  Netscape-2.49.5.tar.bz2
-c4a582eeb93735eb8b224058cefee201  netscape-2.49.5.diff
+6abdf50e1be420c699690f21c4e7358b  Netscape-2.53.1.tar.xz
+3c1c6b25c5340c581741f1f20ff16a61  netscape-2.53.1.diff
 4b06aaa91b35af52a34ade55cb123a07  netscape.desktop
-edd1504da7968455951d50804e0172ad  seamonkey-2.49.5.source-l10n.tar.xz
-91f60a7aca6f8bc053ffddc7259ae4ec  seamonkey-2.49.5.source.tar.xz
-a8f7723b5f5fafd03b6421b8cf798d0d  rusturl-fix.diff
-49f0ae823ca445582b66d217b8e517e0  fix-nss.diff
-266bab717d9e1646c89c5bd1b3d0adab  mozconfig.nix
+4d5743d480b93e0f04b29d063f1736f3  nsmail.desktop
+0cb5b34ea2194ec1a7e48ba21049cf35  seamonkey-2.53.1.source.tar.xz
+634f9cca8112ab55d8e0ee77596ce083  vpx-compat.diff
