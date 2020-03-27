@@ -1,0 +1,28 @@
+# Description: Wolfenstein: Enemy Territory is a free and open-source multiplayer first-person shooter video game set during World War II.
+# URL:         https://www.splashdamage.com/games/wolfenstein-enemy-territory/
+# Maintainer:  Lugaresi
+# Depends on:  sdl ntp imagemagick
+
+name=etwolf
+version=2.60b
+release=1
+source=(https://cdn.splashdamage.com/downloads/games/wet/et260b.x86_full.zip ET.desktop et-sdl-sound.so et-sdl-sound)
+
+build() {
+	mkdir -p $SRC/et && cd $SRC/et
+        $SRC/et260b.x86_keygen_V03.run --tar xf
+        magick ET.xpm ET.png && rm ET.xpm
+	rm -rf setup.* makekey
+	mv bin/Linux/amd64/* bin/
+        mv $SRC/et-sdl-sound* bin/
+        chmod a+x bin/et-sdl-sound*
+        rm -rf bin/{FreeBSD,Linux,NetBSD,OpenBSD}
+	install -m 0755 -d $PKG/usr/share/pixmaps
+	install -m 0644 $SRC/et/ET.png $PKG/usr/share/pixmaps/ET.png
+	rm ET.png
+	cd $SRC
+	install -m 0755 -d $PKG/usr/share/et
+	mv $SRC/et/* $PKG/usr/share/et
+	install -m 0755 -d $PKG/usr/share/applications
+	install -m 0644 $SRC/ET.desktop $PKG/usr/share/applications/ET.desktop	
+}

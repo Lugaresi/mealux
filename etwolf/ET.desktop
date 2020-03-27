@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Exec=/usr/share/et/bin/et-sdl-sound
+Path=/usr/share/et
+Icon=ET.png
+Terminal=false
+StartupNotify=false
+Categories=Game
+Name=Wolfenstein: Enemy Territory
+GenericName=ET

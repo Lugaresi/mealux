@@ -1,0 +1,115 @@
+#!/bin/bash
+# et-sdl-sound - SDL sound system for Enemy Territory, RTCW and Q3
+# Copyright (C) 2007-2008  Pyry Haulos
+#
+# This program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
+# as published by the Free Software Foundation; either version 2
+# of the License, or (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+
+
+# Please fill in following variables or let this script
+# guess correct values.
+
+# Game installation directory
+#
+# You can set this in GAME_PATH environment variable
+GAME_PATH="/usr/share/et"
+
+# libSDL.so
+#
+# You can set this in LIBSDL environment variable
+# LIBSDL=""
+
+# Use 'find' if can't locate the game or libSDL otherwise
+USE_FIND="yes"
+
+# SDL audio driver
+SDL_AUDIODRIVER="pulse"
+
+# Do not touch anything below this line!
+SCRIPT_NAME='et-sdl-sound'
+GAME_BIN='et.x86'
+GAME_DIR='et'
+
+# info "message"
+info () {
+	echo -e "\033[34m[${SCRIPT_NAME}] \033[32minfo\033[0m   : $1"
+}
+
+# error "message"
+error () {
+	echo -e "\033[34m[${SCRIPT_NAME}] \033[31merror\033[0m  : $1"
+}
+
+# eend "message"
+eend () {
+	error "$1"
+	exit 1
+}
+
+# testlibsdl "path"
+testlibsdl () {
+	TRIED_LIBSDL="$TRIED_LIBSDL $1"
+	
+	READLINK=`readlink -f "$1"`
+	if [ "$LIBSDL" = "" -a "$READLINK" != "$1" ]; then
+		#info "$1 is a symbolic link to $READLINK"
+		testlibsdl "$READLINK"
+	fi
+	
+	if [ "$LIBSDL" = "" -a -f "$1" ]; then
+		if [ "`file -b "$1" | grep "ELF 32-bit LSB shared object"`" != "" ]; then
+			info "32-bit libSDL.so is installed to $1"
+			LIBSDL="$1"
+		fi
+	fi
+}
+
+[ "$LIBSDL" = "" ] && testlibsdl "/usr/lib/libSDL.so"
+[ "$LIBSDL" = "" ] && testlibsdl "/usr/lib/libSDL-1.2.so.0"
+[ "$LIBSDL" = "" ] && testlibsdl "/usr/lib32/libSDL.so"
+[ "$LIBSDL" = "" ] && testlibsdl "/usr/lib32/libSDL-1.2.so.0"
+if [ "$LIBSDL" = "" ]; then
+	LOCATE_LIBSDL=`locate -r libSDL[^_]*so[^_]* 2> /dev/null`
+	for i in $LOCATE_LIBSDL; do
+		testlibsdl $i
+		[ "$LIBSDL" != "" ] && break
+	done
+fi
+if [ "$LIBSDL" = "" -a "$USE_FIND" = "yes" ]; then
+	FIND_LIBSDL=`find /usr/lib/ /usr/lib32/ -type f -name libSDL[^_]*so[^_]*`
+	for i in $FIND_LIBSDL; do
+		testlibsdl $i
+		[ "$LIBSDL" != "" ] && break
+	done
+fi
+if [ "$LIBSDL" = "" ]; then
+	error "can't locate libSDL.so"
+	info "tried following files"
+	for i in $TRIED_LIBSDL; do
+		FILE_INFO=`file -b "$i"`
+		info "$i"
+		info "   $FILE_INFO"
+	done
+	exit 1
+fi
+
+info "launching the game..."
+cd "$GAME_PATH"
+
+export ETSDL_SDL_LIB="$LIBSDL"
+export SDL_AUDIODRIVER="$SDL_AUDIODRIVER"
+LD_PRELOAD="${LD_PRELOAD}:${GAME_PATH}/bin/et-sdl-sound.so" ./bin/$GAME_BIN $*
+
+
+info "done"
