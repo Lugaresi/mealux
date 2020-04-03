@@ -1,0 +1,24 @@
+# Description: Direct3D 12 to Vulkan translation library By WineHQ.
+# URL: https://github.com/d3d12/vkd3d
+# Maintainer: Danny Rawlins, crux at romster dot me
+# Depends on: vkd3d vulkan-loader-32 xorg-xcb-util-keysyms-32
+
+name=vkd3d-32
+version=1.1+git20200331
+release=2
+source=()
+
+build() {
+	git clone git://source.winehq.org/git/vkd3d.git
+	cd ${name%-*}
+        git checkout e57ad512ffda1d49f0a5ef1be1da7b215bc308e7
+	./autogen.sh
+	./configure \
+		--prefix=/usr \
+		--libdir=/usr/lib32
+
+	make
+	make DESTDIR=$PKG install
+
+	rm -r $PKG/usr/include
+}
