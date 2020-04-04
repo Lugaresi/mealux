@@ -4,7 +4,7 @@
 # Depends on:   faad2 libmad libsamplerate pulseaudio jansson
 
 name=deadbeef
-version=1.8.2
+version=1.8.3
 release=1
 source=(https://github.com/DeaDBeeF-Player/$name/archive/$version.tar.gz)
 

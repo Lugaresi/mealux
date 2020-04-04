@@ -1,0 +1,19 @@
+# Description: A fork of zykure's deadbeef file browser plugin which adds Activate events (Return appends items to playlist) 
+# URL:         https://github.com/dbordak/deadbeef-librarybrowser
+# Maintainer:  Lugaresi
+# Depends on:  deadbeef git bash
+
+name=deadbeef-fb
+version=0.7git
+release=1
+source=()
+
+build() {
+    git clone https://github.com/dbordak/deadbeef-librarybrowser/
+    cd deadbeef-librarybrowser
+    ./autogen.sh
+    sed -e s/-Werror//g -i Makefile.in
+    bash configure --prefix=/usr --disable-gtk3 --enable-gtk2
+    make
+    make DESTDIR=$PKG install
+}
