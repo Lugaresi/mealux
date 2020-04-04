@@ -4,8 +4,8 @@
 # Depends on:  nss libunbound
 
 name=strongswan
-version=5.8.2
-release=2
+version=5.8.4
+release=1
 source=(https://download2.strongswan.org/$name-$version.tar.gz)
 
 build() {
