@@ -1,0 +1,20 @@
+# Description: The uWSGI project aims at developing a full stack for building hosting services.
+# URL: https://uwsgi-docs.readthedocs.io/en/latest/
+# Maintainer: Stuka
+
+name=uwsgi
+version=2.0.18
+release=1
+source=(https://projects.unbit.it/downloads/uwsgi-2.0.18.tar.gz)
+
+build() {
+	cd $name-$version/
+	python3 uwsgiconfig.py --build
+	python3 uwsgiconfig.py --plugin plugins/http
+	python3 uwsgiconfig.py --plugin plugins/cgi
+	python3 uwsgiconfig.py --plugin plugins/python
+	install -Dm 0755 uwsgi $PKG/usr/bin/uwsgi
+	install -Dm 0755 http_plugin.so $PKG/usr/lib/uwsgi/plugins/http_plugin.so
+	install -Dm 0755 cgi_plugin.so $PKG/usr/lib/uwsgi/plugins/cgi_plugin.so
+	install -Dm 0755 python_plugin.so $PKG/usr/lib/uwsgi/plugins/python_plugin.so
+}

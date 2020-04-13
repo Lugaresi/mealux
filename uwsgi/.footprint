@@ -1,0 +1,9 @@
+drwxr-xr-x	root/root	usr/
+drwxr-xr-x	root/root	usr/bin/
+-rwxr-xr-x	root/root	usr/bin/uwsgi
+drwxr-xr-x	root/root	usr/lib/
+drwxr-xr-x	root/root	usr/lib/uwsgi/
+drwxr-xr-x	root/root	usr/lib/uwsgi/plugins/
+-rwxr-xr-x	root/root	usr/lib/uwsgi/plugins/cgi_plugin.so
+-rwxr-xr-x	root/root	usr/lib/uwsgi/plugins/http_plugin.so
+-rwxr-xr-x	root/root	usr/lib/uwsgi/plugins/python_plugin.so
