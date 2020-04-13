@@ -4,7 +4,7 @@
 # Depends on:  
 
 name=libmicrodns
-version=0.0.10
+version=0.1.0
 release=1
 source=(https://github.com/videolabs/$name/releases/download/$version/microdns-$version.tar.gz)
 
