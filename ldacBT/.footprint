@@ -1,0 +1,15 @@
+drwxr-xr-x	root/root	usr/
+drwxr-xr-x	root/root	usr/include/
+drwxr-xr-x	root/root	usr/include/ldac/
+-rw-r--r--	root/root	usr/include/ldac/ldacBT.h
+-rw-r--r--	root/root	usr/include/ldac/ldacBT_abr.h
+drwxr-xr-x	root/root	usr/lib/
+lrwxrwxrwx	root/root	usr/lib/libldacBT_abr.so -> libldacBT_abr.so.2
+lrwxrwxrwx	root/root	usr/lib/libldacBT_abr.so.2 -> libldacBT_abr.so.2.0.2.3
+-rwxr-xr-x	root/root	usr/lib/libldacBT_abr.so.2.0.2.3
+lrwxrwxrwx	root/root	usr/lib/libldacBT_enc.so -> libldacBT_enc.so.2
+lrwxrwxrwx	root/root	usr/lib/libldacBT_enc.so.2 -> libldacBT_enc.so.2.0.2.3
+-rwxr-xr-x	root/root	usr/lib/libldacBT_enc.so.2.0.2.3
+drwxr-xr-x	root/root	usr/lib/pkgconfig/
+-rw-r--r--	root/root	usr/lib/pkgconfig/ldacBT-abr.pc
+-rw-r--r--	root/root	usr/lib/pkgconfig/ldacBT-enc.pc

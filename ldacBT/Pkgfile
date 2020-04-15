@@ -1,0 +1,20 @@
+# Description:	Power management for KDE Plasma Shell
+# URL:		https://www.kde.org/
+# Maintainer:	Torsten Henschel, thenschel at henschelsoft dot de
+# Depends on:e
+
+name=ldacBT
+version=2.0.2.3
+release=1
+source=(https://github.com/EHfive/$name/releases/download/v$version/$name-$version.tar.gz)
+
+build() {
+	mkdir build
+	cd build
+	cmake ../$name \
+		-DCMAKE_BUILD_TYPE=RELEASE \
+		-DCMAKE_INSTALL_PREFIX=/usr 
+	make
+	make DESTDIR=$PKG install
+
+}
