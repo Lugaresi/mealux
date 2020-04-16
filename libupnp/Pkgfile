@@ -4,9 +4,9 @@
 # Packager: Danny Rawlins, crux at romster dot me
 
 name=libupnp
-version=1.6.10
+version=1.12.1
 release=1
-source=(http://downloads.sourceforge.net/project/pupnp/pupnp/libUPnP%20$version/$name-$version.tar.bz2)
+source=(http://downloads.sourceforge.net/project/pupnp/pupnp/$name-$version/$name-$version.tar.bz2)
 
 build() {
 	cd $name-$version

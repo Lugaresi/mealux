@@ -1,7 +1,7 @@
-# Description:	Power management for KDE Plasma Shell
-# URL:		https://www.kde.org/
-# Maintainer:	Torsten Henschel, thenschel at henschelsoft dot de
-# Depends on:e
+# Description:	A dispatcher for AOSP libldac
+# URL:		https://github.com/EHfive/ldacBT
+# Maintainer:	Stuka
+# Depends on:
 
 name=ldacBT
 version=2.0.2.3
