@@ -1,0 +1,45 @@
+# Description: Xonotic is an addictive, arena-style first person shooter with crisp movement and a wide array of weapons. 
+# URL:         https://xonotic.org/
+# Maintainer:  Stuka
+# Depends on:  sdl libjpeg-turbo
+
+name=xonotic
+version=0.8.2
+release=1
+source=(
+     https://dl.xonotic.org/$name-$version.zip \
+     Xonotic.desktop 0d3d1f2655901776b2fc3e911eb78478412f789a.diff)
+
+
+build() {
+    rm -rf Xonotic/{*.exe,*.app,bin32,bin64}
+    rm Xonotic/xonotic-{linux32,linux64,osx}-*
+    cd Xonotic/source/d0_blind_id
+    patch -p1 -i $SRC/0d3d1f2655901776b2fc3e911eb78478412f789a.diff
+    autoreconf -fi
+    ./configure --prefix=$SRC/d0_blind_id --disable-shared --enable-static
+    make
+    make install
+    cd ../darkplaces
+    make release CFLAGS_EXTRA="-DSUPPORTIPV6" DP_FS_BASEDIR="/opt/Xonotic" CFLAGS_CRYPTO="-I$SRC/d0_blind_id/include -DCRYPTO_STATIC" \
+		 LIB_CRYPTO="-L$SRC/d0_blind_id/lib -ld0_blind_id" CFLAGS_CRYPTO_RIJNDAEL="-I$SRC/d0_blind_id/include -DCRYPTO_RIJNDAEL_STATIC" \
+		 LIB_CRYPTO_RIJNDAEL="-L$SRC/d0_blind_id/lib -ld0_rijndael"
+    mv darkplaces-sdl ../../xonotic-sdl
+    mv darkplaces-glx ../../xonotic-glx
+    mv darkplaces-dedicated ../../xonotic-dedicated
+    cd ../../
+    sed -e s/xonotic-\$\{arch\}-\$\{mode\}/xonotic-\$\{mode\}/g -i xonotic-linux-sdl.sh
+    sed -e s/xonotic-\$\{arch\}-\$\{mode\}/xonotic-\$\{mode\}/g -i xonotic-linux-glx.sh
+    cd ..
+
+    mkdir -p $PKG/opt
+    mv Xonotic $PKG/opt/
+    chmod 755 $PKG/opt/Xonotic{/,/data/,/server/}
+    
+    install -m 0755 -d $PKG/usr/share/pixmaps
+    install -m 0644 $PKG/opt/Xonotic/misc/logos/xonotic_icon.svg $PKG/usr/share/pixmaps/Xonotic.svg
+    install -m 0755 -d $PKG/usr/share/applications
+    install -m 0644 $SRC/Xonotic.desktop $PKG/usr/share/applications/Xonotic.desktop
+
+    rm -rf $PKG/opt/Xonotic/{source,gmqcc,Makefile,Docs,misc}
+}

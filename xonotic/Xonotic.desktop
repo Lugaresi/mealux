@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Exec=/opt/Xonotic/xonotic-linux-sdl.sh
+Path=/opt/Xonotic
+Icon=Xonotic.svg
+Terminal=false
+StartupNotify=false
+Categories=Game
+Name=Xonotic
+GenericName=xonotic
