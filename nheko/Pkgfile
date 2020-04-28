@@ -1,0 +1,30 @@
+# Description:	Desktop client for Matrix using Qt and C++14.
+# URL:		https://github.com/Nheko-Reborn/nheko
+# Maintainer:	Stuka
+# Depends on:   qt5 openssl boost
+
+name=nheko
+version=0.7.1
+release=1
+source=(https://github.com/Nheko-Reborn/$name/archive/v$version.tar.gz)
+
+build() {
+	mkdir hunter
+	mkdir build
+	cd build
+	cmake ../$name-$version \
+		-DCMAKE_BUILD_TYPE=RELEASE \
+		-DCMAKE_INSTALL_PREFIX=/usr \
+		-DBUILD_SHARED_LIBS=OFF \
+		-DHUNTER_ENABLED=ON \
+		-DHUNTER_ROOT=$SRC/hunter \
+		-DUSE_BUNDLED_BOOST=OFF \
+		-DUSE_BUNDLED_OPENSSL=OFF 
+	make
+	# Get your shit together, libolm
+	cp -r _deps/olm-src/include ../$name-$version/
+	make DESTDIR=$PKG install
+	#Cleanup
+	rm -rf $PKG/usr/{include,lib,share/man}/
+	rm $PKG/usr/bin/cmark
+}
