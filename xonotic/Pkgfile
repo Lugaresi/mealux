@@ -1,11 +1,11 @@
 # Description: Xonotic is an addictive, arena-style first person shooter with crisp movement and a wide array of weapons. 
 # URL:         https://xonotic.org/
 # Maintainer:  Stuka
-# Depends on:  sdl libjpeg-turbo
+# Depends on:  sdl libjpeg-turbo ode
 
 name=xonotic
 version=0.8.2
-release=2
+release=3
 source=(
      https://dl.xonotic.org/$name-$version.zip \
      Xonotic.desktop 0d3d1f2655901776b2fc3e911eb78478412f789a.diff)
@@ -22,7 +22,7 @@ build() {
     cd ../darkplaces
     make release CFLAGS_EXTRA="-DSUPPORTIPV6" DP_FS_BASEDIR="/opt/Xonotic" CFLAGS_CRYPTO="-I$SRC/Xonotic/source -DLINK_TO_CRYPTO-" \
 		 LIB_CRYPTO="-L$SRC/Xonotic/source/d0_blind_id/.libs -ld0_blind_id -lgmp" CFLAGS_CRYPTO_RIJNDAEL="-I$SRC/Xonotic/source -DLINK_TO_CRYPTO_RIJNDAEL" \
-		 LIB_CRYPTO_RIJNDAEL="-L$SRC/Xonotic/source/d0_blind_id/.libs -ld0_rijndael -lgmp"
+		 LIB_CRYPTO_RIJNDAEL="-L$SRC/Xonotic/source/d0_blind_id/.libs -ld0_rijndael -lgmp" DP_LINK_ODE=shared 
     mv darkplaces-sdl ../../xonotic-sdl
     mv darkplaces-glx ../../xonotic-glx
     mv darkplaces-dedicated ../../xonotic-dedicated
