@@ -1,0 +1,20 @@
+# Description:	Perl interface to the MD4 Algorithm
+# URL:		http://search.cpan.org/~gaas/Digest-MD4/
+# Maintainer:	Stuka
+# Depends on:	perl
+
+name=p5-digest-md4
+version=1.9
+release=1
+source=(https://cpan.metacpan.org/authors/id/M/MI/MIKEM/DigestMD4/Digest-MD4-$version.tar.gz)
+
+build() {
+	cd Digest-MD4-$version
+
+	perl Makefile.PL
+	make OPTIMIZE="$CFLAGS" DESTDIR="$PKG" install
+
+	find "$PKG" -depth \
+		-type f \( -name .packlist -o -name \*.bs -o -name autosplit.ix -o -name perllocal.pod \) -delete , \
+		-type d -empty -exec rmdir {} +
+}
