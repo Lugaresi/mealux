@@ -1,0 +1,17 @@
+# Description: Tool to support multiple binary formats
+# URL:         
+# Maintainer:  Lugaresi
+# Depends on:  
+
+name=binfmt-support
+version=2.2.1
+release=1
+source=(https://git.savannah.gnu.org/cgit/binfmt-support.git/snapshot/$name-$version.tar.gz)
+
+build() {
+    cd $name-$version
+    ./bootstrap
+    ./configure --prefix=/usr
+    make
+    make DESTDIR=$PKG install
+}

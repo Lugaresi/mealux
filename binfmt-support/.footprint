@@ -1,0 +1,17 @@
+drwxr-xr-x	root/root	usr/
+drwxr-xr-x	root/root	usr/etc/
+drwxr-xr-x	root/root	usr/etc/init/
+-rw-r--r--	root/root	usr/etc/init/binfmt-support.conf
+drwxr-xr-x	root/root	usr/libexec/
+drwxr-xr-x	root/root	usr/libexec/binfmt-support/
+-rwxr-xr-x	root/root	usr/libexec/binfmt-support/run-detectors
+drwxr-xr-x	root/root	usr/sbin/
+-rwxr-xr-x	root/root	usr/sbin/update-binfmts
+drwxr-xr-x	root/root	usr/share/
+drwxr-xr-x	root/root	usr/share/binfmts/
+drwxr-xr-x	root/root	usr/share/man/
+drwxr-xr-x	root/root	usr/share/man/man8/
+-rw-r--r--	root/root	usr/share/man/man8/update-binfmts.8.gz
+drwxr-xr-x	root/root	usr/var/
+drwxr-xr-x	root/root	usr/var/lib/
+drwxr-xr-x	root/root	usr/var/lib/binfmts/
