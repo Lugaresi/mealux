@@ -37,7 +37,6 @@ drwxr-xr-x	root/root	etc/xrdp/pulse/
 -rw-r--r--	root/root	etc/xrdp/sesman.ini
 -rwxr-xr-x	root/root	etc/xrdp/startwm.sh
 -rw-r--r--	root/root	etc/xrdp/xrdp.ini
--rwxr-xr-x	root/root	etc/xrdp/xrdp.sh
 -rw-r--r--	root/root	etc/xrdp/xrdp_keyboard.ini
 drwxr-xr-x	root/root	usr/
 drwxr-xr-x	root/root	usr/bin/
@@ -47,6 +46,14 @@ drwxr-xr-x	root/root	usr/bin/
 -rwxr-xr-x	root/root	usr/bin/xrdp-sesadmin
 -rwxr-xr-x	root/root	usr/bin/xrdp-sesrun
 drwxr-xr-x	root/root	usr/include/
+-rw-r--r--	root/root	usr/include/ms-erref.h
+-rw-r--r--	root/root	usr/include/ms-fscc.h
+-rw-r--r--	root/root	usr/include/ms-rdpbcgr.h
+-rw-r--r--	root/root	usr/include/ms-rdpefs.h
+-rw-r--r--	root/root	usr/include/ms-rdpegdi.h
+-rw-r--r--	root/root	usr/include/ms-rdpele.h
+-rw-r--r--	root/root	usr/include/ms-rdperp.h
+-rw-r--r--	root/root	usr/include/ms-smb2.h
 -rw-r--r--	root/root	usr/include/painter.h
 -rw-r--r--	root/root	usr/include/rfxcodec_common.h
 -rw-r--r--	root/root	usr/include/rfxcodec_decode.h
