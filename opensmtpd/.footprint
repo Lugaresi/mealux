@@ -30,5 +30,5 @@ drwxr-xr-x	root/root	usr/man/man8/
 -rw-r--r--	root/root	usr/man/man8/smtpd.8.gz
 drwxr-xr-x	root/root	usr/sbin/
 lrwxrwxrwx	root/root	usr/sbin/sendmail -> /usr/sbin/smtpctl
--r-xr-sr-x	root/root	usr/sbin/smtpctl
+-rwxr-sr-x	root/mail	usr/sbin/smtpctl
 -rwxr-xr-x	root/root	usr/sbin/smtpd

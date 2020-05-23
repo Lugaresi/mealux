@@ -8,7 +8,7 @@ start)
   /usr/sbin/smtpd
   ;;
 stop)
-  /usr/sbin/smtpctl stop
+  /usr/bin/pkill smtpd
   ;;
 restart)
   $0 stop

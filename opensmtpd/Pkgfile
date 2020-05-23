@@ -5,7 +5,7 @@
 # depends on: libevent libasr libbsd
 
 name=opensmtpd
-version=6.6.4p1
+version=6.7.1p1
 release=1
 source=(
   https://www.$name.org/archives/$name-$version.tar.gz
@@ -19,6 +19,8 @@ build() {
   ./configure --prefix=/usr --mandir=/usr/man --sysconfdir=/etc --libexecdir=/usr/lib --with-user-smtpd=mail --with-user-queue=mailq --with-group-queue=mail --with-ldflags=-lbsd
   make
   make DESTDIR=$PKG install
+  chown root:mail $PKG/usr/sbin/smtpctl
+  chmod 2755 $PKG/usr/sbin/smtpctl
   install -D -m 755 $SRC/$name.rc $PKG/etc/rc.d/$name
   ln -s /usr/sbin/smtpctl $PKG/usr/sbin/sendmail
 }
