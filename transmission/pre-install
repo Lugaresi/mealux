@@ -1,0 +1,4 @@
+#!/bin/sh
+
+getent passwd transmission || /usr/sbin/useradd -g daemon -u 95 -d /home/transmission -m -s /bin/false transmission
+/usr/bin/passwd -l transmission

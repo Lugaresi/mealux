@@ -1,0 +1,36 @@
+#!/bin/sh
+#
+# /etc/rc.d/opensmptd: start/stop opensmtpd daemon
+#
+
+pidfile=/home/transmission/transmission.pid
+
+case $1 in
+start)
+  /usr/bin/su -c "/usr/bin/transmission-daemon --auth --log-error --pid-file $pidfile" -s /bin/sh transmission
+  ;;
+stop)
+  if [ -f "$pidfile" ]; then
+     /usr/bin/pkill --pidfile $pidfile
+  else
+     echo "Service not running"
+  fi
+  ;;
+restart)
+  $0 stop
+  sleep 2
+  $0 start
+  ;;
+reload)
+  if [ -f "$pidfile" ]; then
+     /usr/bin/pkill -hup --pidfile $pidfile
+  else
+     echo "Service not running"
+  fi
+  ;;
+*)
+  echo "usage: $0 [start|stop|restart|reload]"
+  ;;
+esac
+
+# End of file
