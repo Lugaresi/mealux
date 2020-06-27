@@ -1,0 +1,21 @@
+# Description:	Tools for the Flash-Friendly File System (F2FS)
+# URL:		https://www.mankier.com/package/f2fs-tools
+# Packager:
+# Maintainer:	Lin SiFuh, #crux at freenode dot net 	
+# Depends on:	util-linux
+
+name=f2fs-tools
+version=1.13.0
+release=1
+source=(http://git.kernel.org/cgit/linux/kernel/git/jaegeuk/$name.git/snapshot/$name-$version.tar.gz)
+
+build() {
+
+	cd $name-$version
+	autoreconf -fi
+
+	./configure --prefix=/usr
+	make
+	make DESTDIR=$PKG install
+
+}
