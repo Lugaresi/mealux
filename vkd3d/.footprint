@@ -8,6 +8,7 @@ drwxr-xr-x	root/root	usr/include/vkd3d/
 -rw-r--r--	root/root	usr/include/vkd3d/vkd3d_dxgibase.h
 -rw-r--r--	root/root	usr/include/vkd3d/vkd3d_dxgiformat.h
 -rw-r--r--	root/root	usr/include/vkd3d/vkd3d_shader.h
+-rw-r--r--	root/root	usr/include/vkd3d/vkd3d_sonames.h
 -rw-r--r--	root/root	usr/include/vkd3d/vkd3d_types.h
 -rw-r--r--	root/root	usr/include/vkd3d/vkd3d_utils.h
 -rw-r--r--	root/root	usr/include/vkd3d/vkd3d_windows.h
