@@ -1,0 +1,20 @@
+# Description: Qt-based client-side and server-side SOAP component.
+# URL:         https://github.com/KDAB/KDSoap
+# Maintainer:  Stuka
+#
+# depends on: qt5 cmake
+
+name=kdsoap
+version=1.9.0
+release=1
+source=(
+  https://github.com/KDAB/KDSoap/releases/download/$name-$version/$name-$version.tar.gz
+)
+
+build() {
+  cd $name-$version
+  mkdir build && cd build
+  cmake .. -DCMAKE_INSTALL_PREFIX=/usr
+  make
+  make DESTDIR=$PKG install
+}
