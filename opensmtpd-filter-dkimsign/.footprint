@@ -1,0 +1,7 @@
+drwxr-xr-x	root/root	usr/
+drwxr-xr-x	root/root	usr/lib/
+drwxr-xr-x	root/root	usr/lib/opensmtpd/
+-rwxr-xr-x	root/root	usr/lib/opensmtpd/filter-dkimsign
+drwxr-xr-x	root/root	usr/man/
+drwxr-xr-x	root/root	usr/man/man8/
+-rw-r--r--	root/root	usr/man/man8/filter-dkimsign.8.gz

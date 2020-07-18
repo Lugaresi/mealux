@@ -1,0 +1,19 @@
+# Description: library for writing opensmtpd filters
+# URL: http://imperialat.at/dev/libopensmtpd/
+# Maintainer: Stuka
+# Packager: Stuka
+# Depends on: subversion
+
+name=libopensmtpd
+version=0.4
+release=1
+source=()
+
+build() {
+	svn co http://imperialat.at/dev/$name/
+	cd $name
+	LDFLAGS=" -rdynamic -Wl,-E -Wl,--out-implib,libopensmtpd.a" make -f Makefile.gnu
+	install -d -m 0755 $PKG/usr/{lib,include}
+        install -m 0644 opensmtpd.h $PKG/usr/include
+	install -m 0644 libopensmtpd.{so,a} $PKG/usr/lib
+}

@@ -1,0 +1,15 @@
+Index: main.c
+===================================================================
+--- main.c	(revision 54)
++++ main.c	(working copy)
+@@ -187,8 +187,10 @@
+ 	if ((hash_md = EVP_get_digestbyname(hashalg)) == NULL)
+ 		osmtpd_errx(1, "Can't find hash: %s", hashalg);
+ 
++#if defined(__OpenBSD__)
+ 	if (pledge("tmppath stdio", NULL) == -1)
+ 		osmtpd_err(1, "pledge");
++#endif
+ 
+ 	if (domain == NULL || selector == NULL || pkey == NULL)
+ 		usage();
