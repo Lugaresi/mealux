@@ -1,11 +1,11 @@
 # Description: The libgusb package contains the GObject wrappers for libusb-1.0.
-# URL:         https://fprint.freedesktop.org/
+# URL:         https://github.com/hughsie/libgusb
 # Maintainer:  Stu
 # Packager:    Stu
 # Depends on: glib, meson, libusb, vala
 
 name=libgusb
-version=0.3.1
+version=0.3.5
 release=1
 source=(https://people.freedesktop.org/~hughsient/releases/$name-$version.tar.xz)
 

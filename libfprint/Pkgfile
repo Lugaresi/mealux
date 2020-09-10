@@ -5,16 +5,14 @@
 # Depends on: pkg-config, nss, glib, gtk3, meson, libgusb
 
 name=libfprint
-version=1.90.0
+version=1.90.2
 release=1
-source=(https://gitlab.freedesktop.org/libfprint/libfprint/uploads/1bba17b5daa130aa548bc7ea96dc58c4/libfprint-$version.tar.xz)
+source=(https://gitlab.freedesktop.org/libfprint/libfprint/-/archive/v$version/libfprint-v$version.tar.bz2)
 
 build () {
-    cd $name-$version
+    cd $name-v$version
     meson --prefix=/usr --buildtype=release -Ddoc=false build && cd build
     ninja
     DESTDIR=$PKG ninja install
     rm -rf $PKG/usr/info
-    # Small fix for broken udev rules file. Regularly test for removal.
-    sed -e '1,2d' -i $PKG/lib/udev/rules.d/60-fprint-autosuspend.rules
 }
