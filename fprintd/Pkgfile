@@ -6,14 +6,20 @@
 
 name=fprintd
 version=0.9.0
-release=1
+release=2
 gitver=d0df422f9b5b2ad74e4b4ba90ab3af331ec372fe
-source=(https://gitlab.freedesktop.org/libfprint/fprintd/-/archive/$gitver/fprintd-$gitver.tar.bz2 fprint fuck-systemd.patch 74838f9efc5409fe6102f42c730478b1902a12c6.diff)
+source=(https://gitlab.freedesktop.org/libfprint/fprintd/-/archive/$gitver/fprintd-$gitver.tar.bz2 \
+	74838f9efc5409fe6102f42c730478b1902a12c6.diff \
+	deb3c25e5144f16cc340feed9c7b926dc8426e75.diff \
+	fuck-systemd.patch \
+	fprint )
 
 build () {
     cd fprintd-$gitver
     patch -p1 -i $SRC/fuck-systemd.patch
     patch -p1 -R -i $SRC/74838f9efc5409fe6102f42c730478b1902a12c6.diff
+    patch -p1 -i $SRC/deb3c25e5144f16cc340feed9c7b926dc8426e75.diff
+    sed -e 's/libfprint2/libfprint-2/g' -i configure.ac
     ./autogen.sh
     ./configure --prefix=/usr --sysconfdir=/usr/etc --libdir=/lib --enable-pam --disable-nls --disable-tests
     make
