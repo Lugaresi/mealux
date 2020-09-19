@@ -1,0 +1,32 @@
+# Description: Lightweight userspace bandwidth shaper
+# URL:         https://github.com/mariusae/trickle
+# Maintainer:  Stuka
+#
+# depends on: libevent libtirpc
+
+name=trickle
+version=1.0.7
+gitver=a2aeb9f30aa3c651580b9be9ba3c9c13bf51a416
+release=1
+source=(
+   https://github.com/mariusae/trickle/archive/$gitver.tar.gz fix-crasher.patch
+)
+
+build() {
+  cd $name-$gitver
+  sed -i 's|^_select(int|select(int|' trickle-overload.c
+  patch -p1 -i $SRC/fix-crasher.patch
+  
+  CPPFLAGS+=" -I/usr/include/tirpc/" \
+  LDFLAGS+=" -ltirpc" \
+  ./configure --prefix=/usr \
+       --mandir=/usr/man \
+       --sysconfdir=/etc \
+       --libexecdir=/usr/lib \
+       --build=x86_64-pc-linux-gnu
+
+  sed -i "s|.*in_addr_t.*||g" config.h
+
+  make -j1
+  make DESTDIR=$PKG install
+}

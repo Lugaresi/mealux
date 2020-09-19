@@ -1,0 +1,15 @@
+drwxr-xr-x	root/root	usr/
+drwxr-xr-x	root/root	usr/bin/
+-rwxr-xr-x	root/root	usr/bin/trickle
+-rwxr-xr-x	root/root	usr/bin/tricklectl
+-rwxr-xr-x	root/root	usr/bin/trickled
+drwxr-xr-x	root/root	usr/lib/
+drwxr-xr-x	root/root	usr/lib/trickle/
+-rw-r--r--	root/root	usr/lib/trickle/trickle-overload.so
+drwxr-xr-x	root/root	usr/man/
+drwxr-xr-x	root/root	usr/man/man1/
+-rw-r--r--	root/root	usr/man/man1/trickle.1.gz
+drwxr-xr-x	root/root	usr/man/man5/
+-rw-r--r--	root/root	usr/man/man5/trickled.conf.5.gz
+drwxr-xr-x	root/root	usr/man/man8/
+-rw-r--r--	root/root	usr/man/man8/trickled.8.gz
