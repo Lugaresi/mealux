@@ -38,6 +38,7 @@ drwxr-xr-x	root/root	usr/share/xine/oxine/
 -rw-r--r--	root/root	usr/share/xine/oxine/mainmenu
 -rw-r--r--	root/root	usr/share/xine/oxine/mediamarks
 drwxr-xr-x	root/root	usr/share/xine/skins/
+-rw-r--r--	root/root	usr/share/xine/skins/xine-ui_logo.mpg
 -rw-r--r--	root/root	usr/share/xine/skins/xine-ui_logo.png
 -rw-r--r--	root/root	usr/share/xine/skins/xine_splash.png
 drwxr-xr-x	root/root	usr/share/xine/skins/xinetic/
