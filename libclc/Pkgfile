@@ -1,0 +1,24 @@
+# Description: Library requirements of the OpenCL C programming language (git version)
+# URL:         http://libclc.llvm.org/
+# Maintainer:  Stu
+# Packager:    Stu
+# Depends on: llvm, clang
+
+name=libclc
+version=0.2.0+git20190827
+release=1
+source=(http://deb.debian.org/debian/pool/main/libc/libclc/libclc_$version.orig.tar.gz)
+
+build () {
+    cd $name-$version
+    mkdir build2 && cd build2
+    cmake .. -G Ninja \
+    -DCMAKE_BUILD_TYPE=Release \
+    -DCMAKE_INSTALL_DATADIR=/usr/lib \
+    -DLIBCLC_TARGETS_TO_BUILD="amdgcn--;r600--;"
+    ninja all
+    DESTDIR=$PKG ninja install
+    mv $PKG/usr/local/include $PKG/usr
+    rm -rf $PKG/usr/local
+    rm -rf $PKG/usr/info
+}

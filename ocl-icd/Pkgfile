@@ -1,0 +1,17 @@
+# Description: OpenCL ICD Bindings
+# URL:         https://github.com/OCL-dev/ocl-icd
+# Maintainer:  Lugaresi
+# Depends on:  
+
+name=ocl-icd
+version=2.2.13
+release=1
+source=(https://github.com/OCL-dev/$name/archive/v$version.tar.gz)
+
+build() {
+    cd $name-$version
+    autoreconf -fiv
+    CFLAGS="-O2 -fcommon" ./configure --prefix=/usr
+    make
+    make DESTDIR=$PKG install
+}
