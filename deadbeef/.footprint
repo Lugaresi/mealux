@@ -23,7 +23,9 @@ drwxr-xr-x	root/root	usr/lib/deadbeef/
 -rwxr-xr-x	root/root	usr/lib/deadbeef/converter_gtk2.la
 -rwxr-xr-x	root/root	usr/lib/deadbeef/converter_gtk2.so
 drwxr-xr-x	root/root	usr/lib/deadbeef/convpresets/
--rw-r--r--	root/root	usr/lib/deadbeef/convpresets/AAC_(Nero_FAAC).txt
+-rw-r--r--	root/root	usr/lib/deadbeef/convpresets/AAC_VBR_192Kbps_(Nero_FAAC).txt
+-rw-r--r--	root/root	usr/lib/deadbeef/convpresets/AAC_VBR_256Kbps_(Nero_FAAC).txt
+-rw-r--r--	root/root	usr/lib/deadbeef/convpresets/AAC_VBR_320Kbps_(Nero_FAAC).txt
 -rw-r--r--	root/root	usr/lib/deadbeef/convpresets/ALAC.txt
 -rw-r--r--	root/root	usr/lib/deadbeef/convpresets/FLAC_(compression_level_5).txt
 -rw-r--r--	root/root	usr/lib/deadbeef/convpresets/File_Copy.txt
@@ -33,7 +35,9 @@ drwxr-xr-x	root/root	usr/lib/deadbeef/convpresets/
 -rw-r--r--	root/root	usr/lib/deadbeef/convpresets/MS_RIFF_WAV.txt
 -rw-r--r--	root/root	usr/lib/deadbeef/convpresets/MusePack.txt
 -rw-r--r--	root/root	usr/lib/deadbeef/convpresets/Ogg_FLAC.txt
--rw-r--r--	root/root	usr/lib/deadbeef/convpresets/Ogg_Vorbis_(-q_5).txt
+-rw-r--r--	root/root	usr/lib/deadbeef/convpresets/Ogg_VBR_192Kbps.txt
+-rw-r--r--	root/root	usr/lib/deadbeef/convpresets/Ogg_VBR_256Kbps.txt
+-rw-r--r--	root/root	usr/lib/deadbeef/convpresets/Ogg_VBR_320Kbps.txt
 -rw-r--r--	root/root	usr/lib/deadbeef/convpresets/Opus.txt
 -rw-r--r--	root/root	usr/lib/deadbeef/convpresets/TTA.txt
 -rw-r--r--	root/root	usr/lib/deadbeef/convpresets/WavPack.txt
@@ -144,6 +148,8 @@ drwxr-xr-x	root/root	usr/lib/deadbeef/data68/Replay/
 -rwxr-xr-x	root/root	usr/lib/deadbeef/ddb_mono2stereo.so
 -rwxr-xr-x	root/root	usr/lib/deadbeef/ddb_shn.la
 -rwxr-xr-x	root/root	usr/lib/deadbeef/ddb_shn.so
+-rwxr-xr-x	root/root	usr/lib/deadbeef/ddb_soundtouch.la
+-rwxr-xr-x	root/root	usr/lib/deadbeef/ddb_soundtouch.so
 -rwxr-xr-x	root/root	usr/lib/deadbeef/dsp_libsrc.la
 -rwxr-xr-x	root/root	usr/lib/deadbeef/dsp_libsrc.so
 -rwxr-xr-x	root/root	usr/lib/deadbeef/ffap.la
@@ -188,6 +194,8 @@ drwxr-xr-x	root/root	usr/lib/deadbeef/data68/Replay/
 -rwxr-xr-x	root/root	usr/lib/deadbeef/tta.so
 -rwxr-xr-x	root/root	usr/lib/deadbeef/vfs_curl.la
 -rwxr-xr-x	root/root	usr/lib/deadbeef/vfs_curl.so
+-rwxr-xr-x	root/root	usr/lib/deadbeef/vfs_zip.la
+-rwxr-xr-x	root/root	usr/lib/deadbeef/vfs_zip.so
 -rwxr-xr-x	root/root	usr/lib/deadbeef/vorbis.la
 -rwxr-xr-x	root/root	usr/lib/deadbeef/vorbis.so
 -rwxr-xr-x	root/root	usr/lib/deadbeef/wildmidi.la

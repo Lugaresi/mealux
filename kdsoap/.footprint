@@ -65,14 +65,17 @@ drwxr-xr-x	root/root	usr/lib64/cmake/KDSoap/
 -rw-r--r--	root/root	usr/lib64/cmake/KDSoap/KDSoapMacros.cmake
 -rw-r--r--	root/root	usr/lib64/cmake/KDSoap/KDSoapTargets-debug.cmake
 -rw-r--r--	root/root	usr/lib64/cmake/KDSoap/KDSoapTargets.cmake
-lrwxrwxrwx	root/root	usr/lib64/libkdsoap-server.so -> libkdsoap-server.so.1.9.0
--rwxr-xr-x	root/root	usr/lib64/libkdsoap-server.so.1.9.0
-lrwxrwxrwx	root/root	usr/lib64/libkdsoap.so -> libkdsoap.so.1.9.0
--rwxr-xr-x	root/root	usr/lib64/libkdsoap.so.1.9.0
+lrwxrwxrwx	root/root	usr/lib64/libkdsoap-server.so -> libkdsoap-server.so.1
+lrwxrwxrwx	root/root	usr/lib64/libkdsoap-server.so.1 -> libkdsoap-server.so.1.9.1
+-rwxr-xr-x	root/root	usr/lib64/libkdsoap-server.so.1.9.1
+lrwxrwxrwx	root/root	usr/lib64/libkdsoap.so -> libkdsoap.so.1
+lrwxrwxrwx	root/root	usr/lib64/libkdsoap.so.1 -> libkdsoap.so.1.9.1
+-rwxr-xr-x	root/root	usr/lib64/libkdsoap.so.1.9.1
 drwxr-xr-x	root/root	usr/share/
 drwxr-xr-x	root/root	usr/share/doc/
 drwxr-xr-x	root/root	usr/share/doc/KDSoap/
 -rw-r--r--	root/root	usr/share/doc/KDSoap/LICENSE.GPL.txt
+-rw-r--r--	root/root	usr/share/doc/KDSoap/LICENSE.US.txt
 -rw-r--r--	root/root	usr/share/doc/KDSoap/LICENSE.txt
 -rw-r--r--	root/root	usr/share/doc/KDSoap/README.txt
 -rw-r--r--	root/root	usr/share/doc/KDSoap/kdsoap.pri

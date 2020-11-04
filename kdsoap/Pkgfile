@@ -5,7 +5,7 @@
 # depends on: qt5 cmake
 
 name=kdsoap
-version=1.9.0
+version=1.9.1
 release=1
 source=(
   https://github.com/KDAB/KDSoap/releases/download/$name-$version/$name-$version.tar.gz
