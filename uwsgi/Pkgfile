@@ -3,9 +3,9 @@
 # Maintainer: Stuka
 
 name=uwsgi
-version=2.0.18
+version=2.0.19.1
 release=1
-source=(https://projects.unbit.it/downloads/uwsgi-2.0.18.tar.gz)
+source=(https://projects.unbit.it/downloads/$name-$version.tar.gz)
 
 build() {
 	cd $name-$version/
