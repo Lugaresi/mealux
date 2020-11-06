@@ -1,6 +1,6 @@
 name=megasync
-version=4.3.1.0
-sdkver=3.6.8
+version=4.3.5.0
+sdkver=3.7.4
 release=1
 #depends: libraw libmediainfo crypto++ c-ares 
 source=(https://github.com/meganz/MEGAsync/archive/v${version}_Linux.tar.gz https://github.com/meganz/sdk/archive/v${sdkver}.tar.gz patch-oldsodium) 

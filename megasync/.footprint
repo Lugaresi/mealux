@@ -23,6 +23,7 @@ drwxr-xr-x	root/root	usr/share/icons/hicolor/48x48/apps/
 -rw-r--r--	root/root	usr/share/icons/hicolor/48x48/apps/mega.png
 drwxr-xr-x	root/root	usr/share/icons/hicolor/scalable/
 drwxr-xr-x	root/root	usr/share/icons/hicolor/scalable/status/
+-rw-r--r--	root/root	usr/share/icons/hicolor/scalable/status/megaalert.svg
 -rw-r--r--	root/root	usr/share/icons/hicolor/scalable/status/megalogging.svg
 -rw-r--r--	root/root	usr/share/icons/hicolor/scalable/status/megapaused.svg
 -rw-r--r--	root/root	usr/share/icons/hicolor/scalable/status/megasynching.svg
@@ -31,6 +32,7 @@ drwxr-xr-x	root/root	usr/share/icons/hicolor/scalable/status/
 drwxr-xr-x	root/root	usr/share/icons/ubuntu-mono-dark/
 drwxr-xr-x	root/root	usr/share/icons/ubuntu-mono-dark/status/
 drwxr-xr-x	root/root	usr/share/icons/ubuntu-mono-dark/status/24/
+-rw-r--r--	root/root	usr/share/icons/ubuntu-mono-dark/status/24/megaalert.svg
 -rw-r--r--	root/root	usr/share/icons/ubuntu-mono-dark/status/24/megalogging.svg
 -rw-r--r--	root/root	usr/share/icons/ubuntu-mono-dark/status/24/megapaused.svg
 -rw-r--r--	root/root	usr/share/icons/ubuntu-mono-dark/status/24/megasynching.svg
