@@ -9,15 +9,13 @@ drwxr-xr-x	root/root	usr/include/krdc/
 -rw-r--r--	root/root	usr/include/krdccore_export.h
 drwxr-xr-x	root/root	usr/lib/
 lrwxrwxrwx	root/root	usr/lib/libkrdccore.so -> libkrdccore.so.5
--rwxr-xr-x	root/root	usr/lib/libkrdccore.so.19.12.3
-lrwxrwxrwx	root/root	usr/lib/libkrdccore.so.5 -> libkrdccore.so.19.12.3
+-rwxr-xr-x	root/root	usr/lib/libkrdccore.so.20.08.3
+lrwxrwxrwx	root/root	usr/lib/libkrdccore.so.5 -> libkrdccore.so.20.08.3
 drwxr-xr-x	root/root	usr/lib/qt5/
 drwxr-xr-x	root/root	usr/lib/qt5/plugins/
 drwxr-xr-x	root/root	usr/lib/qt5/plugins/krdc/
 drwxr-xr-x	root/root	usr/lib/qt5/plugins/krdc/kcms/
--rwxr-xr-x	root/root	usr/lib/qt5/plugins/krdc/kcms/libkcm_krdc_rdpplugin.so
 -rwxr-xr-x	root/root	usr/lib/qt5/plugins/krdc/kcms/libkcm_krdc_vncplugin.so
--rwxr-xr-x	root/root	usr/lib/qt5/plugins/krdc/libkrdc_rdpplugin.so
 -rwxr-xr-x	root/root	usr/lib/qt5/plugins/krdc/libkrdc_testplugin.so
 -rwxr-xr-x	root/root	usr/lib/qt5/plugins/krdc/libkrdc_vncplugin.so
 drwxr-xr-x	root/root	usr/share/
@@ -31,8 +29,6 @@ drwxr-xr-x	root/root	usr/share/doc/HTML/ca/
 drwxr-xr-x	root/root	usr/share/doc/HTML/ca/krdc/
 -rw-r--r--	root/root	usr/share/doc/HTML/ca/krdc/index.cache.bz2
 -rw-r--r--	root/root	usr/share/doc/HTML/ca/krdc/index.docbook
--rw-r--r--	root/root	usr/share/doc/HTML/ca/krdc/view-fullscreen.png
--rw-r--r--	root/root	usr/share/doc/HTML/ca/krdc/view-restore.png
 drwxr-xr-x	root/root	usr/share/doc/HTML/de/
 drwxr-xr-x	root/root	usr/share/doc/HTML/de/krdc/
 -rw-r--r--	root/root	usr/share/doc/HTML/de/krdc/address_input.png
@@ -80,8 +76,16 @@ drwxr-xr-x	root/root	usr/share/doc/HTML/fr/krdc/
 -rw-r--r--	root/root	usr/share/doc/HTML/fr/krdc/vnc_preferences.png
 drwxr-xr-x	root/root	usr/share/doc/HTML/it/
 drwxr-xr-x	root/root	usr/share/doc/HTML/it/krdc/
+-rw-r--r--	root/root	usr/share/doc/HTML/it/krdc/address_input.png
+-rw-r--r--	root/root	usr/share/doc/HTML/it/krdc/bookmarks_menu.png
+-rw-r--r--	root/root	usr/share/doc/HTML/it/krdc/general_preferences.png
 -rw-r--r--	root/root	usr/share/doc/HTML/it/krdc/index.cache.bz2
 -rw-r--r--	root/root	usr/share/doc/HTML/it/krdc/index.docbook
+-rw-r--r--	root/root	usr/share/doc/HTML/it/krdc/krdc_mainwindow.png
+-rw-r--r--	root/root	usr/share/doc/HTML/it/krdc/password_entry.png
+-rw-r--r--	root/root	usr/share/doc/HTML/it/krdc/rdp_preferences.png
+-rw-r--r--	root/root	usr/share/doc/HTML/it/krdc/vnc_host_configuration.png
+-rw-r--r--	root/root	usr/share/doc/HTML/it/krdc/vnc_preferences.png
 drwxr-xr-x	root/root	usr/share/doc/HTML/nl/
 drwxr-xr-x	root/root	usr/share/doc/HTML/nl/krdc/
 -rw-r--r--	root/root	usr/share/doc/HTML/nl/krdc/index.cache.bz2
@@ -122,16 +126,8 @@ drwxr-xr-x	root/root	usr/share/doc/HTML/uk/
 drwxr-xr-x	root/root	usr/share/doc/HTML/uk/krdc/
 -rw-r--r--	root/root	usr/share/doc/HTML/uk/krdc/index.cache.bz2
 -rw-r--r--	root/root	usr/share/doc/HTML/uk/krdc/index.docbook
-drwxr-xr-x	root/root	usr/share/krdc/
-drwxr-xr-x	root/root	usr/share/krdc/pics/
--rw-r--r--	root/root	usr/share/krdc/pics/pointcursor.png
--rw-r--r--	root/root	usr/share/krdc/pics/pointcursormask.png
 drwxr-xr-x	root/root	usr/share/kservices5/
-drwxr-xr-x	root/root	usr/share/kservices5/ServiceMenus/
--rw-r--r--	root/root	usr/share/kservices5/ServiceMenus/smb2rdc.desktop
--rw-r--r--	root/root	usr/share/kservices5/krdc_rdp_config.desktop
 -rw-r--r--	root/root	usr/share/kservices5/krdc_vnc_config.desktop
--rw-r--r--	root/root	usr/share/kservices5/rdp.protocol
 -rw-r--r--	root/root	usr/share/kservices5/vnc.protocol
 drwxr-xr-x	root/root	usr/share/kxmlgui5/
 drwxr-xr-x	root/root	usr/share/kxmlgui5/krdc/
