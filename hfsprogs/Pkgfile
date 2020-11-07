@@ -1,31 +1,27 @@
 # $Id$
-# Maintainer: Muflone http://www.muflone.com/contacts/english/
-# Contributor: Rustam Tsurik <rustam.tsurik@gmail.com>
-# Contributor: Prashant Vaibhav <mercurysquad+arch@gmail.com>
-# Contributor: Alessio 'mOLOk' Bolognino <themolok@gmail.com>
-# Contributor: Rubin Simons <rubin@xs4all.nl>
+# Maintainer: Stuka
 
 name=hfsprogs
-version=332.25
-release=14
-source=(https://opensource.apple.com/tarballs/diskdev_cmds/diskdev_cmds-$version.tar.gz \
-        http://ftp.de.debian.org/debian/pool/main/h/hfsprogs/hfsprogs_$version-11.debian.tar.gz \
+version=540.1
+release=1
+source=(http://ftp.de.debian.org/debian/pool/main/h/hfsprogs/hfsprogs_$version.linux3.orig.tar.gz \
+        http://ftp.de.debian.org/debian/pool/main/h/hfsprogs/hfsprogs_$version.linux3-1.debian.tar.xz \
         license \
-        makefile.patch)
+        )
 
 build() {
   # To build the package more than once you have to clear your sources tree after first build
   # or to use the same sources without patching them again (makepkg -e)
   #
   # Apply patches
-  cd diskdev_cmds-${version}
-  for patch in ../debian/patches/*.patch ../makefile.patch
+  cd diskdev_cmds-${version}.linux3
+  for patch in ../debian/patches/*.patch 
   do
     echo "Applying patch $patch..."
     patch -Np1 -i "$patch"
   done
 
-  make -f Makefile.lnx
+  make
 
   # Create required package directories
   install -m 755 -d $PKG/usr/bin
@@ -38,7 +34,7 @@ build() {
   install -m 755 "newfs_hfs.tproj/newfs_hfs" "$PKG/usr/bin/mkfs.hfsplus"
   install -m 755 "fsck_hfs.tproj/fsck_hfs" "$PKG/usr/bin/fsck.hfsplus"
   # Copy shared data
-  install -m 644 "newfs_hfs.tproj/hfsbootdata.img" "$PKG/usr/share/${name}/hfsbootdata"
+  #install -m 644 "newfs_hfs.tproj/hfsbootdata.img" "$PKG/usr/share/${name}/hfsbootdata"
   # Copy man pages
   install -m 644 "newfs_hfs.tproj/newfs_hfs.8" "$PKG/usr/share/man/man8/mkfs.hfsplus.8"
   install -m 644 "fsck_hfs.tproj/fsck_hfs.8" "$PKG/usr/share/man/man8/fsck.hfsplus.8"

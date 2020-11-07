@@ -4,7 +4,6 @@ drwxr-xr-x	root/root	usr/bin/
 -rwxr-xr-x	root/root	usr/bin/mkfs.hfsplus
 drwxr-xr-x	root/root	usr/share/
 drwxr-xr-x	root/root	usr/share/hfsprogs/
--rw-r--r--	root/root	usr/share/hfsprogs/hfsbootdata
 drwxr-xr-x	root/root	usr/share/licenses/
 drwxr-xr-x	root/root	usr/share/licenses/hfsprogs/
 -rw-r--r--	root/root	usr/share/licenses/hfsprogs/APSL
