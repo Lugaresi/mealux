@@ -4,17 +4,17 @@
 # Depends on:	extra-cmake-modules kactivities kauth kconfig kdbusaddons kdelibs4support kglobalaccel ki18n kidletime kio knotifyconfig kwayland libkscreen qt5 solid xorg-libxcb bluez-qt
 
 name=bluedevil
-version=5.18.4
+version=5.20.2
 release=1
-source=(https://download.kde.org/stable/plasma/$version/$name-$version.1.tar.xz)
+source=(https://download.kde.org/stable/plasma/$version/$name-$version.tar.xz)
 
 build() {
 	# remove all translations
-	rm -r $SRC/$name-$version.1/po/*
+	rm -r $SRC/$name-$version/po/*
 
 	mkdir build
 	cd build
-	cmake ../$name-$version.1 \
+	cmake ../$name-$version \
 		-DCMAKE_BUILD_TYPE=RELEASE \
 		-DCMAKE_INSTALL_PREFIX=/usr \
 		-DCMAKE_INSTALL_LIBEXECDIR=/usr/lib/kf5 \
