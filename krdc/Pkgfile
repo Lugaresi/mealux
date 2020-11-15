@@ -9,12 +9,10 @@ version=20.08.3
 release=1
 source=(
   https://download.kde.org/stable/release-service/$version/src/$name-$version.tar.xz
-  freerdp2.patch
 )
 
 build() {
   cd $name-$version
-  patch -p1 -i $SRC/freerdp2.patch
   mkdir build && cd build
   cmake .. -DCMAKE_INSTALL_PREFIX=/usr -DBUILD_TESTING=OFF
   make
