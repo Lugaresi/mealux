@@ -30,6 +30,7 @@ drwxr-xr-x	root/root	etc/xrdp/
 -rw-r--r--	root/root	etc/xrdp/km-00000816.ini
 -rw-r--r--	root/root	etc/xrdp/km-0000100c.ini
 -rw-r--r--	root/root	etc/xrdp/km-00010409.ini
+-rw-r--r--	root/root	etc/xrdp/km-19360409.ini
 drwxr-xr-x	root/root	etc/xrdp/pulse/
 -rw-r--r--	root/root	etc/xrdp/pulse/default.pa
 -rwxr-xr-x	root/root	etc/xrdp/reconnectwm.sh
