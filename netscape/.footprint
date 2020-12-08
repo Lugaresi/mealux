@@ -99,6 +99,7 @@ drwxr-xr-x	root/root	usr/lib/Netscape/isp/
 -rwxr-xr-x	root/root	usr/lib/Netscape/libmozavutil.so
 -rwxr-xr-x	root/root	usr/lib/Netscape/libmozgtk.so
 -rwxr-xr-x	root/root	usr/lib/Netscape/libmozsandbox.so
+-rwxr-xr-x	root/root	usr/lib/Netscape/libmozsqlite3.so
 -rwxr-xr-x	root/root	usr/lib/Netscape/libprldap60.so
 -rwxr-xr-x	root/root	usr/lib/Netscape/libxul.so
 -rw-r--r--	root/root	usr/lib/Netscape/license.txt
