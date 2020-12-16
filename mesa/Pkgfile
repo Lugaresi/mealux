@@ -4,7 +4,7 @@
 # Depends on: elfutils libdrm libglvnd libvdpau llvm python3-mako xorg-libxdamage xorg-libxrandr xorg-libxshmfence xorg-libxvmc xorg-libxxf86vm
 # Optional: libva
 
-name=mesa3d
+name=mesa
 version=20.2.4
 release=1
 source=(https://mesa.freedesktop.org/archive/mesa-$version.tar.xz)
