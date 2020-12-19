@@ -5,20 +5,18 @@
 # Depends on: llvm, clang
 
 name=libclc
-version=0.2.0+git20190827
+version=11.0.0
 release=1
-source=(http://deb.debian.org/debian/pool/main/libc/libclc/libclc_$version.orig.tar.gz)
+source=(https://github.com/llvm/llvm-project/releases/download/llvmorg-$version/$name-$version.src.tar.xz)
 
 build () {
-    cd $name-$version
+    cd $name-$version.src
     mkdir build2 && cd build2
     cmake .. -G Ninja \
     -DCMAKE_BUILD_TYPE=Release \
-    -DCMAKE_INSTALL_DATADIR=/usr/lib \
-    -DLIBCLC_TARGETS_TO_BUILD="amdgcn--;r600--;"
+    -DCMAKE_INSTALL_PREFIX=/usr \
+    -DLIBCLC_TARGETS_TO_BUILD="amdgcn-mesa-mesa3d;r600-mesa-mesa3d;" \
+    -DLLVM_CONFIG=/usr/bin/llvm-config
     ninja all
     DESTDIR=$PKG ninja install
-    mv $PKG/usr/local/include $PKG/usr
-    rm -rf $PKG/usr/local
-    rm -rf $PKG/usr/info
 }
