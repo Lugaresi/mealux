@@ -298,41 +298,28 @@ drwxr-xr-x	root/root	usr/include/clc/workitem/
 -rw-r--r--	root/root	usr/include/clc/workitem/get_local_size.h
 -rw-r--r--	root/root	usr/include/clc/workitem/get_num_groups.h
 -rw-r--r--	root/root	usr/include/clc/workitem/get_work_dim.h
-drwxr-xr-x	root/root	usr/lib/
-drwxr-xr-x	root/root	usr/lib/clc/
-lrwxrwxrwx	root/root	usr/lib/clc/aruba-r600--.bc -> cayman-r600--.bc
--rw-r--r--	root/root	usr/lib/clc/barts-r600--.bc
-lrwxrwxrwx	root/root	usr/lib/clc/bonaire-amdgcn--.bc -> tahiti-amdgcn--.bc
-lrwxrwxrwx	root/root	usr/lib/clc/caicos-r600--.bc -> barts-r600--.bc
-lrwxrwxrwx	root/root	usr/lib/clc/carrizo-amdgcn--.bc -> tahiti-amdgcn--.bc
--rw-r--r--	root/root	usr/lib/clc/cayman-r600--.bc
--rw-r--r--	root/root	usr/lib/clc/cedar-r600--.bc
--rw-r--r--	root/root	usr/lib/clc/cypress-r600--.bc
-lrwxrwxrwx	root/root	usr/lib/clc/fiji-amdgcn--.bc -> tahiti-amdgcn--.bc
-lrwxrwxrwx	root/root	usr/lib/clc/gfx900-amdgcn--.bc -> tahiti-amdgcn--.bc
-lrwxrwxrwx	root/root	usr/lib/clc/gfx902-amdgcn--.bc -> tahiti-amdgcn--.bc
-lrwxrwxrwx	root/root	usr/lib/clc/gfx904-amdgcn--.bc -> tahiti-amdgcn--.bc
-lrwxrwxrwx	root/root	usr/lib/clc/gfx906-amdgcn--.bc -> tahiti-amdgcn--.bc
-lrwxrwxrwx	root/root	usr/lib/clc/hainan-amdgcn--.bc -> tahiti-amdgcn--.bc
-lrwxrwxrwx	root/root	usr/lib/clc/hawaii-amdgcn--.bc -> tahiti-amdgcn--.bc
-lrwxrwxrwx	root/root	usr/lib/clc/hemlock-r600--.bc -> cypress-r600--.bc
-lrwxrwxrwx	root/root	usr/lib/clc/iceland-amdgcn--.bc -> tahiti-amdgcn--.bc
-lrwxrwxrwx	root/root	usr/lib/clc/juniper-r600--.bc -> cedar-r600--.bc
-lrwxrwxrwx	root/root	usr/lib/clc/kabini-amdgcn--.bc -> tahiti-amdgcn--.bc
-lrwxrwxrwx	root/root	usr/lib/clc/kaveri-amdgcn--.bc -> tahiti-amdgcn--.bc
-lrwxrwxrwx	root/root	usr/lib/clc/mullins-amdgcn--.bc -> tahiti-amdgcn--.bc
-lrwxrwxrwx	root/root	usr/lib/clc/oland-amdgcn--.bc -> tahiti-amdgcn--.bc
-lrwxrwxrwx	root/root	usr/lib/clc/palm-r600--.bc -> cedar-r600--.bc
-lrwxrwxrwx	root/root	usr/lib/clc/pitcairn-amdgcn--.bc -> tahiti-amdgcn--.bc
-lrwxrwxrwx	root/root	usr/lib/clc/polaris10-amdgcn--.bc -> tahiti-amdgcn--.bc
-lrwxrwxrwx	root/root	usr/lib/clc/polaris11-amdgcn--.bc -> tahiti-amdgcn--.bc
-lrwxrwxrwx	root/root	usr/lib/clc/redwood-r600--.bc -> cedar-r600--.bc
-lrwxrwxrwx	root/root	usr/lib/clc/stoney-amdgcn--.bc -> tahiti-amdgcn--.bc
-lrwxrwxrwx	root/root	usr/lib/clc/sumo-r600--.bc -> cedar-r600--.bc
-lrwxrwxrwx	root/root	usr/lib/clc/sumo2-r600--.bc -> cedar-r600--.bc
--rw-r--r--	root/root	usr/lib/clc/tahiti-amdgcn--.bc
-lrwxrwxrwx	root/root	usr/lib/clc/tonga-amdgcn--.bc -> tahiti-amdgcn--.bc
-lrwxrwxrwx	root/root	usr/lib/clc/turks-r600--.bc -> barts-r600--.bc
-lrwxrwxrwx	root/root	usr/lib/clc/verde-amdgcn--.bc -> tahiti-amdgcn--.bc
-drwxr-xr-x	root/root	usr/lib/pkgconfig/
--rw-r--r--	root/root	usr/lib/pkgconfig/libclc.pc
+drwxr-xr-x	root/root	usr/share/
+drwxr-xr-x	root/root	usr/share/clc/
+lrwxrwxrwx	root/root	usr/share/clc/bonaire-amdgcn-mesa-mesa3d.bc -> tahiti-amdgcn-mesa-mesa3d.bc
+lrwxrwxrwx	root/root	usr/share/clc/carrizo-amdgcn-mesa-mesa3d.bc -> tahiti-amdgcn-mesa-mesa3d.bc
+lrwxrwxrwx	root/root	usr/share/clc/fiji-amdgcn-mesa-mesa3d.bc -> tahiti-amdgcn-mesa-mesa3d.bc
+lrwxrwxrwx	root/root	usr/share/clc/gfx900-amdgcn-mesa-mesa3d.bc -> tahiti-amdgcn-mesa-mesa3d.bc
+lrwxrwxrwx	root/root	usr/share/clc/gfx902-amdgcn-mesa-mesa3d.bc -> tahiti-amdgcn-mesa-mesa3d.bc
+lrwxrwxrwx	root/root	usr/share/clc/gfx904-amdgcn-mesa-mesa3d.bc -> tahiti-amdgcn-mesa-mesa3d.bc
+lrwxrwxrwx	root/root	usr/share/clc/gfx906-amdgcn-mesa-mesa3d.bc -> tahiti-amdgcn-mesa-mesa3d.bc
+lrwxrwxrwx	root/root	usr/share/clc/hainan-amdgcn-mesa-mesa3d.bc -> tahiti-amdgcn-mesa-mesa3d.bc
+lrwxrwxrwx	root/root	usr/share/clc/hawaii-amdgcn-mesa-mesa3d.bc -> tahiti-amdgcn-mesa-mesa3d.bc
+lrwxrwxrwx	root/root	usr/share/clc/iceland-amdgcn-mesa-mesa3d.bc -> tahiti-amdgcn-mesa-mesa3d.bc
+lrwxrwxrwx	root/root	usr/share/clc/kabini-amdgcn-mesa-mesa3d.bc -> tahiti-amdgcn-mesa-mesa3d.bc
+lrwxrwxrwx	root/root	usr/share/clc/kaveri-amdgcn-mesa-mesa3d.bc -> tahiti-amdgcn-mesa-mesa3d.bc
+lrwxrwxrwx	root/root	usr/share/clc/mullins-amdgcn-mesa-mesa3d.bc -> tahiti-amdgcn-mesa-mesa3d.bc
+lrwxrwxrwx	root/root	usr/share/clc/oland-amdgcn-mesa-mesa3d.bc -> tahiti-amdgcn-mesa-mesa3d.bc
+lrwxrwxrwx	root/root	usr/share/clc/pitcairn-amdgcn-mesa-mesa3d.bc -> tahiti-amdgcn-mesa-mesa3d.bc
+lrwxrwxrwx	root/root	usr/share/clc/polaris10-amdgcn-mesa-mesa3d.bc -> tahiti-amdgcn-mesa-mesa3d.bc
+lrwxrwxrwx	root/root	usr/share/clc/polaris11-amdgcn-mesa-mesa3d.bc -> tahiti-amdgcn-mesa-mesa3d.bc
+lrwxrwxrwx	root/root	usr/share/clc/stoney-amdgcn-mesa-mesa3d.bc -> tahiti-amdgcn-mesa-mesa3d.bc
+-rw-r--r--	root/root	usr/share/clc/tahiti-amdgcn-mesa-mesa3d.bc
+lrwxrwxrwx	root/root	usr/share/clc/tonga-amdgcn-mesa-mesa3d.bc -> tahiti-amdgcn-mesa-mesa3d.bc
+lrwxrwxrwx	root/root	usr/share/clc/verde-amdgcn-mesa-mesa3d.bc -> tahiti-amdgcn-mesa-mesa3d.bc
+drwxr-xr-x	root/root	usr/share/pkgconfig/
+-rw-r--r--	root/root	usr/share/pkgconfig/libclc.pc
