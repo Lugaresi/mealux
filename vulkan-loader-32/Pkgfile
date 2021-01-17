@@ -4,7 +4,7 @@
 # Depends on: vulkan-loader xorg-libxrandr-32
 
 name=vulkan-loader-32
-version=1.2.162
+version=1.2.166
 release=1
 source=(https://github.com/KhronosGroup/Vulkan-Loader/archive/v$version/Vulkan-Loader-v$version.tar.gz)
 

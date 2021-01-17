@@ -4,14 +4,14 @@
 # Depends on: spirv-headers vulkan-loader xorg-xcb-util-keysyms
 
 name=vkd3d
-version=1.2+git20201209
+version=1.2+git20210114
 release=1
 source=()
 
 build() {
 	git clone git://source.winehq.org/git/vkd3d.git
 	cd $name
-        git checkout a9abb0d7eb51fed9edb7be4fe251822269ad84eb
+        git checkout d33a8964031274576dc7b713a8dd5d6355f9d587
 	./autogen.sh
 	./configure --prefix=/usr CPPFLAGS="-DNDEBUG -DVKD3D_NO_TRACE_MESSAGES"
 
