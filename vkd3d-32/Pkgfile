@@ -4,14 +4,14 @@
 # Depends on: vkd3d vulkan-loader-32 xorg-xcb-util-keysyms-32
 
 name=vkd3d-32
-version=1.2+git20210114
+version=1.2+git20210305
 release=1
 source=()
 
 build() {
 	git clone git://source.winehq.org/git/vkd3d.git
 	cd ${name%-*}
-        git checkout d33a8964031274576dc7b713a8dd5d6355f9d587 
+        git checkout 405f2db4d97b1a8c46e70e1797a3a5e8f779c96f
 	./autogen.sh
 	./configure \
 		--prefix=/usr \
