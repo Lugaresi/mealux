@@ -26,6 +26,9 @@ drwxr-xr-x	root/root	usr/lib/Netscape/chrome/icons/default/
 -rw-r--r--	root/root	usr/lib/Netscape/chrome/icons/default/bookmarkproperties.png
 -rw-r--r--	root/root	usr/lib/Netscape/chrome/icons/default/bookmarkproperties16.png
 -rw-r--r--	root/root	usr/lib/Netscape/chrome/icons/default/bookmarkproperties48.png
+-rw-r--r--	root/root	usr/lib/Netscape/chrome/icons/default/chatzilla-window.png
+-rw-r--r--	root/root	usr/lib/Netscape/chrome/icons/default/chatzilla-window16.png
+-rw-r--r--	root/root	usr/lib/Netscape/chrome/icons/default/chatzilla-window48.png
 -rw-r--r--	root/root	usr/lib/Netscape/chrome/icons/default/default.png
 -rw-r--r--	root/root	usr/lib/Netscape/chrome/icons/default/default128.png
 -rw-r--r--	root/root	usr/lib/Netscape/chrome/icons/default/default16.png
@@ -58,6 +61,9 @@ drwxr-xr-x	root/root	usr/lib/Netscape/chrome/icons/default/
 -rw-r--r--	root/root	usr/lib/Netscape/chrome/icons/default/places.png
 -rw-r--r--	root/root	usr/lib/Netscape/chrome/icons/default/places16.png
 -rw-r--r--	root/root	usr/lib/Netscape/chrome/icons/default/places48.png
+-rw-r--r--	root/root	usr/lib/Netscape/chrome/icons/default/winInspectorMain.png
+-rw-r--r--	root/root	usr/lib/Netscape/chrome/icons/default/winInspectorMain16.png
+-rw-r--r--	root/root	usr/lib/Netscape/chrome/icons/default/winInspectorMain48.png
 drwxr-xr-x	root/root	usr/lib/Netscape/defaults/
 drwxr-xr-x	root/root	usr/lib/Netscape/defaults/messenger/
 -rw-r--r--	root/root	usr/lib/Netscape/defaults/messenger/mailViews.dat

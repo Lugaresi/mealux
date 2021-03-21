@@ -4,7 +4,7 @@
 # Depends on: gtk3, mesa3d, libnotify, nss, nspr, autconf-2.13, startup-notification, libvpx, clang,  icu
 
 name=netscape
-version=2.53.5.1
+version=2.53.6
 release=1
 source=(https://archive.mozilla.org/pub/seamonkey/releases/$version$patchver/source/seamonkey-$version.source.tar.xz \
         http://www.stukamanhpt4.com/Netscape/Netscape-$version.tar.xz \
@@ -12,24 +12,24 @@ source=(https://archive.mozilla.org/pub/seamonkey/releases/$version$patchver/sou
 	netscape.desktop nsmail.desktop vpx-compat.diff)
 
 build () {
-    # We need to build against rust 1.37.0 as seen on the meetings. Also 1.42 doesn't.
-    wget -O rustup-init.sh https://sh.rustup.rs && chmod a+x rustup-init.sh
-    export RUSTUP_HOME=$SRC/rust && mkdir -p $RUSTUP_HOME
-    export CARGO_HOME=$SRC/cargo && mkdir -p $CARGO_HOME
-    ./rustup-init.sh -v -y --no-modify-path --default-toolchain 1.37.0
-    $CARGO_HOME/bin/rustup toolchain install 1.37.0
-
     cd seamonkey-$version
     patch -p1 -i $SRC/netscape-$version.diff
+    # Fix building with System libvpx > 1.8
+    patch -p1 -i $SRC/vpx-compat.diff
+
     sed -i mozconfig.nix -e s!@TOPSRCDIR@!`pwd`!g -e s!j4!j$(nproc)!g
 
-    echo export RUSTC="$CARGO_HOME/bin/rustc" >> mozconfig.nix
-    echo export CARGO="$CARGO_HOME/bin/cargo" >> mozconfig.nix
-    echo export RUSTDOC="$CARGO_HOME/bin/rustdoc" >> mozconfig.nix
-    echo export RUSTFMT="$CARGO_HOME/bin/rustfmt" >> mozconfig.nix
+    # We need to build against rust 1.37.0 as seen on the meetings. Also 1.42 doesn't.
+    # wget -O rustup-init.sh https://sh.rustup.rs && chmod a+x rustup-init.sh
+    # export RUSTUP_HOME=$SRC/rust && mkdir -p $RUSTUP_HOME
+    # export CARGO_HOME=$SRC/cargo && mkdir -p $CARGO_HOME
+    # ./rustup-init.sh -v -y --no-modify-path --default-toolchain 1.37.0
+    # $CARGO_HOME/bin/rustup toolchain install 1.37.0
 
-    # Fix Building with System libvpx > 1.8
-    patch -p1 -i $SRC/vpx-compat.diff
+    # echo export RUSTC="$CARGO_HOME/bin/rustc" >> mozconfig.nix
+    # echo export CARGO="$CARGO_HOME/bin/cargo" >> mozconfig.nix
+    # echo export RUSTDOC="$CARGO_HOME/bin/rustdoc" >> mozconfig.nix
+    # echo export RUSTFMT="$CARGO_HOME/bin/rustfmt" >> mozconfig.nix
 
     export MOZCONFIG=$SRC/seamonkey-$version/mozconfig.nix
     make -f client.mk build

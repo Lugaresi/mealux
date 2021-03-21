@@ -1,5 +1,5 @@
---- a/mozilla/media/webrtc/trunk/webrtc/modules/video_coding/codecs/vp9/vp9_impl.cc	2020-03-27 00:00:43.845036771 +0100
-+++ b/mozilla/media/webrtc/trunk/webrtc/modules/video_coding/codecs/vp9/vp9_impl.cc	2020-03-27 00:04:59.442049773 +0100
+--- a/media/webrtc/trunk/webrtc/modules/video_coding/codecs/vp9/vp9_impl.cc	2020-03-27 00:00:43.845036771 +0100
++++ b/media/webrtc/trunk/webrtc/modules/video_coding/codecs/vp9/vp9_impl.cc	2020-03-27 00:04:59.442049773 +0100
 @@ -80,7 +80,6 @@ VP9EncoderImpl::VP9EncoderImpl()
        num_spatial_layers_(0),
        num_cores_(0),
@@ -190,8 +190,8 @@
  int VP9EncoderImpl::SetChannelParameters(uint32_t packet_loss, int64_t rtt) {
    return WEBRTC_VIDEO_CODEC_OK;
  }
---- a/mozilla/media/webrtc/trunk/webrtc/modules/video_coding/codecs/vp9/vp9_impl.h	2020-03-27 00:05:44.023052041 +0100
-+++ b/mozilla/media/webrtc/trunk/webrtc/modules/video_coding/codecs/vp9/vp9_impl.h	2020-03-27 00:06:34.050054586 +0100
+--- a/media/webrtc/trunk/webrtc/modules/video_coding/codecs/vp9/vp9_impl.h	2020-03-27 00:05:44.023052041 +0100
++++ b/media/webrtc/trunk/webrtc/modules/video_coding/codecs/vp9/vp9_impl.h	2020-03-27 00:06:34.050054586 +0100
 @@ -82,15 +82,6 @@ class VP9EncoderImpl : public VP9Encoder
    bool ExplicitlyConfiguredSpatialLayers() const;
    bool SetSvcRates();
@@ -217,8 +217,8 @@
    uint8_t num_ref_pics_[kMaxVp9NumberOfSpatialLayers];
    uint8_t p_diff_[kMaxVp9NumberOfSpatialLayers][kMaxVp9RefPics];
    std::unique_ptr<ScreenshareLayersVP9> spatial_layer_;
---- a/mozilla/media/webrtc/trunk/webrtc/modules/video_coding/video_codec_initializer.cc	2020-03-27 00:07:17.780056810 +0100
-+++ b/mozilla/media/webrtc/trunk/webrtc/modules/video_coding/video_codec_initializer.cc	2020-03-27 00:08:11.185059527 +0100
+--- a/media/webrtc/trunk/webrtc/modules/video_coding/video_codec_initializer.cc	2020-03-27 00:07:17.780056810 +0100
++++ b/media/webrtc/trunk/webrtc/modules/video_coding/video_codec_initializer.cc	2020-03-27 00:08:11.185059527 +0100
 @@ -136,7 +136,9 @@ VideoCodec VideoCodecInitializer::VideoE
          *video_codec.VP9() = VideoEncoder::GetDefaultVp9Settings();
        if (video_codec.mode == kScreensharing &&
