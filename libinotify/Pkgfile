@@ -1,5 +1,5 @@
-# Description: C++ implementation of the Google loggingmodule.
-# URL:         https://github.com/google/glog/
+# Description: Provides an inotify emulation layer on kqueue/kevent interface
+# URL:         https://github.com/libinotify-kqueue/
 # Maintainer:  Lugaresi
 # Depends on:  
 
