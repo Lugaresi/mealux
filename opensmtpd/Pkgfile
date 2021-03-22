@@ -5,7 +5,7 @@
 # depends on: libevent libasr libbsd
 
 name=opensmtpd
-version=6.7.1p1
+version=6.8.0p2
 release=1
 source=(
   https://www.$name.org/archives/$name-$version.tar.gz
