@@ -2,17 +2,17 @@
 # URL: http://imperialat.at/dev/libopensmtpd/
 # Maintainer: Stuka
 # Packager: Stuka
-# Depends on: subversion
+# Depends on: opensmtpd
 
 name=libopensmtpd
-version=0.4
+version=0.5
 release=1
-source=()
+source=(https://distfiles.sigtrap.nl/$name-$version.tar.gz)
 
 build() {
-	svn co http://imperialat.at/dev/$name/
-	cd $name
-	LDFLAGS=" -rdynamic -Wl,-E -Wl,--out-implib,libopensmtpd.a" make -f Makefile.gnu
+	cd $name-$version
+	LDFLAGS=" -rdynamic -Wl,-E -Wl,--out-implib,libopensmtpd.a" \
+        LIBopensmtpd_VERSION="$version" make -f Makefile.gnu
 	install -d -m 0755 $PKG/usr/{lib,include}
         install -m 0644 opensmtpd.h $PKG/usr/include
 	install -m 0644 libopensmtpd.{so,a} $PKG/usr/lib

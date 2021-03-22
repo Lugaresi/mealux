@@ -2,18 +2,17 @@
 # URL: http://imperialat.at/dev/libopensmtpd/
 # Maintainer: Stuka
 # Packager: Stuka
-# Depends on: subversion libopensmtpd
+# Depends on: libopensmtpd
 
 name=opensmtpd-filter-dkimsign
-version=0.2
+version=0.3
 release=1
-source=(pledge.patch)
+source=(https://distfiles.sigtrap.nl/filter-dkimsign-$version.tar.gz pledge.patch)
 
 build() {
-	svn co http://imperialat.at/dev/filter-dkimsign/
-	cd filter-dkimsign
+	cd filter-dkimsign-$version
 	patch -p0 -i $SRC/pledge.patch
-	gcc -o filter-dkimsign -O2 -lopensmtpd -lcrypto main.c
+	gcc -o filter-dkimsign -O2 -lopensmtpd -lcrypto main.c mheader.c
 	gzip filter-dkimsign.8
 	install -d -m 0755 $PKG/usr/{lib/opensmtpd,man/man8}
         install -m 0755 filter-dkimsign $PKG/usr/lib/opensmtpd
