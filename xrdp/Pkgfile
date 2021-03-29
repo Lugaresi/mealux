@@ -4,13 +4,12 @@
 # Depends on:  xorg-libpixman lame fdk-aac opus fuse libjpeg-turbo
 
 name=xrdp
-version=0.9.14
+version=0.9.15
 release=1
-source=(https://github.com/neutrinolabs/$name/releases/download/v$version/$name-$version.tar.gz xrdp 61b9a42fc52dd8106e44f54fe3b7e433a710ece7.diff)
+source=(https://github.com/neutrinolabs/$name/releases/download/v$version/$name-$version.tar.gz xrdp)
 
 build() {
     cd $name-$version
-    patch -p1 -i $SRC/61b9a42fc52dd8106e44f54fe3b7e433a710ece7.diff
     ./configure --prefix=/usr --enable-tjpeg --enable-fuse  --enable-mp3lame \
      --enable-fdkaac --enable-pixman --enable-opus
     make
