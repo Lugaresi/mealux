@@ -79,13 +79,11 @@ drwxr-xr-x	root/root	usr/lib/Netscape/defaults/profile/chrome/
 drwxr-xr-x	root/root	usr/lib/Netscape/dictionaries/
 -rw-r--r--	root/root	usr/lib/Netscape/dictionaries/en-US.aff
 -rw-r--r--	root/root	usr/lib/Netscape/dictionaries/en-US.dic
-drwxr-xr-x	root/root	usr/lib/Netscape/distribution/
-drwxr-xr-x	root/root	usr/lib/Netscape/distribution/extensions/
--rw-r--r--	root/root	usr/lib/Netscape/distribution/extensions/{e2fda1a4-762b-4020-b5ad-a41df1933103}.xpi
 drwxr-xr-x	root/root	usr/lib/Netscape/extensions/
 -rw-r--r--	root/root	usr/lib/Netscape/extensions/communicator@themes.mozilla.org.xpi
 -rw-r--r--	root/root	usr/lib/Netscape/extensions/modern@themes.mozilla.org.xpi
 -rw-r--r--	root/root	usr/lib/Netscape/extensions/{972ce4c6-7e08-4474-a285-3208198ce6fd}.xpi
+-rw-r--r--	root/root	usr/lib/Netscape/extensions/{e2fda1a4-762b-4020-b5ad-a41df1933103}.xpi
 drwxr-xr-x	root/root	usr/lib/Netscape/fonts/
 -rw-r--r--	root/root	usr/lib/Netscape/fonts/TwemojiMozilla.ttf
 drwxr-xr-x	root/root	usr/lib/Netscape/gtk2/
