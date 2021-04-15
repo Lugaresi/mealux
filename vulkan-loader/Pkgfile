@@ -4,22 +4,23 @@
 # Depends on: vulkan-headers xorg-libxrandr
 
 name=vulkan-loader
-version=1.2.171
+version=1.2.174
 release=1
-source=(https://github.com/KhronosGroup/Vulkan-Loader/archive/v$version/Vulkan-Loader-v$version.tar.gz)
+source=(https://github.com/KhronosGroup/Vulkan-Loader/archive/v$version/Vulkan-Loader-$version.tar.gz)
 
 build() {
-	cmake -SVulkan-Loader-$version -Bbuild -GNinja \
-		-DCMAKE_INSTALL_PREFIX=/usr \
-		-DCMAKE_INSTALL_LIBDIR=lib \
-		-DCMAKE_BUILD_TYPE=Release \
-		-DCMAKE_SKIP_RPATH=True \
-		-DBUILD_TESTS=False \
-		-DBUILD_LOADER=True \
-		-DBUILD_WSI_XCB_SUPPORT=True \
-		-DBUILD_WSI_XLIB_SUPPORT=True \
-		-DBUILD_WSI_WAYLAND_SUPPORT="$(prt-get isinst wayland &> /dev/null && echo ON || echo OFF)"
+	prt-get isinst ninja && PKGMK_VULKAN_LOADER+=' -G Ninja'
+	prt-get isinst wayland || PKGMK_VULKAN_LOADER+=' -D BUILD_WSI_WAYLAND_SUPPORT=OFF'
+
+	cmake -S Vulkan-Loader-$version -B build $PKGMK_VULKAN_LOADER \
+		-D CMAKE_INSTALL_PREFIX=/usr \
+		-D CMAKE_INSTALL_LIBDIR=lib \
+		-D CMAKE_BUILD_TYPE=Release \
+		-D CMAKE_C_FLAGS_RELEASE="${CFLAGS}" \
+		-D CMAKE_CXX_FLAGS_RELEASE="${CXXFLAGS}" \
+		-D CMAKE_SKIP_RPATH=ON \
+		-D BUILD_TESTS=OFF
 
 	cmake --build build
-	DESTDIR=$PKG cmake --build build --target install
+	DESTDIR=$PKG cmake --install build
 }
