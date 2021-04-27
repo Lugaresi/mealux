@@ -1,9 +1,0 @@
-drwxr-xr-x	root/root	usr/
-drwxr-xr-x	root/root	usr/lib/
-drwxr-xr-x	root/root	usr/lib/pulse-14.0/
-drwxr-xr-x	root/root	usr/lib/pulse-14.0/modules/
--rwxr-xr-x	root/root	usr/lib/pulse-14.0/modules/libbluez5-util.so
--rwxr-xr-x	root/root	usr/lib/pulse-14.0/modules/module-bluetooth-discover.so
--rwxr-xr-x	root/root	usr/lib/pulse-14.0/modules/module-bluetooth-policy.so
--rwxr-xr-x	root/root	usr/lib/pulse-14.0/modules/module-bluez5-device.so
--rwxr-xr-x	root/root	usr/lib/pulse-14.0/modules/module-bluez5-discover.so
