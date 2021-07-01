@@ -4,13 +4,13 @@
 # Depends on: python3
 
 name=opencl-headers
-version=2.2.20200616
+version=2.2.20210630
 release=1
-source=(https://github.com/KhronosGroup/OpenCL-Headers/archive/v2020.06.16.tar.gz
-	https://github.com/KhronosGroup/OpenCL-CLHPP/archive/v2.0.12.tar.gz)
+source=(https://github.com/KhronosGroup/OpenCL-Headers/archive/v2021.06.30.tar.gz
+	https://github.com/KhronosGroup/OpenCL-CLHPP/archive/v2.0.15.tar.gz)
 
 build() {
-	cd OpenCL-Headers-2020.06.16/CL
+	cd OpenCL-Headers-2021.06.30/CL
 
 	install -dm755 $PKG/usr/include/CL
 
@@ -21,7 +21,7 @@ build() {
 	# remove useless headers
 	rm $PKG/usr/include/CL/{cl_d3d,cl_dx9}*.h
 
-	cd $SRC/OpenCL-CLHPP-2.0.12
+	cd $SRC/OpenCL-CLHPP-2.0.15
 
 	# /usr/bin/python3 gen_cl_hpp.py -i input_cl.hpp -o cl.hpp
 	# install -m 644 cl.hpp $PKG/usr/include/CL/
