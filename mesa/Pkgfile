@@ -5,9 +5,9 @@
 # Optional: libva
 
 name=mesa
-version=20.3.5
+version=21.1.3
 release=1
-source=(https://mesa.freedesktop.org/archive/$name-$version.tar.xz)
+source=(https://archive.mesa3d.org/$name-$version.tar.xz)
 
 build() {
 	meson setup build mesa-$version \
@@ -19,7 +19,7 @@ build() {
 		-D gbm=enabled \
 		-D gles1=enabled \
 		-D gles2=enabled \
-		-D osmesa=gallium \
+		-D osmesa=true \
 		-D gallium-xa=enabled \
 		-D gallium-vdpau=enabled \
 		-D gallium-opencl=icd \
