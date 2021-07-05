@@ -4,16 +4,16 @@
 # Depends on:   qt5 openssl boost
 
 name=nheko
-version=0.7.2+git20201219
+version=0.8.2
 release=1
-# source=(https://github.com/Nheko-Reborn/$name/archive/v$version.tar.gz)
-source=(https://github.com/Nheko-Reborn/nheko/archive/100b5e0371f9485ec6fbbdc69a0efd9aa84d26d3.zip)
+source=(https://github.com/Nheko-Reborn/$name/archive/v$version.tar.gz)
+# source=(https://github.com/Nheko-Reborn/nheko/archive/100b5e0371f9485ec6fbbdc69a0efd9aa84d26d3.zip)
 
 build() {
 	mkdir hunter
 	mkdir build
 	cd build
-	cmake ../$name-100b5e0371f9485ec6fbbdc69a0efd9aa84d26d3 \
+	cmake ../$name-$version \
 		-DCMAKE_BUILD_TYPE=RELEASE \
 		-DCMAKE_INSTALL_PREFIX=/usr \
 		-DBUILD_SHARED_LIBS=OFF \
@@ -23,10 +23,10 @@ build() {
 		-DUSE_BUNDLED_OPENSSL=OFF 
 	make
 	# Get your shit together, libolm
-	#cp -r _deps/olm-src/include ../$name-$version/
-	cp -r _deps/olm-src/include ../$name-100b5e0371f9485ec6fbbdc69a0efd9aa84d26d3/
+	cp -r _deps/olm-src/include ../$name-$version/
+	#cp -r _deps/olm-src/include ../$name-100b5e0371f9485ec6fbbdc69a0efd9aa84d26d3/
 	make DESTDIR=$PKG install
 	#Cleanup
-	rm -rf $PKG/usr/{include,lib,share/man}/
+	rm -rf $PKG/usr/{include,lib,lib64,share/man}/
 	rm $PKG/usr/bin/cmark
 }
