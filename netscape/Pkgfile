@@ -4,7 +4,7 @@
 # Depends on: gtk3, mesa3d, libnotify, nss, nspr, autconf-2.13, startup-notification, libvpx, clang,  icu
 
 name=netscape
-version=2.53.7.1
+version=2.53.8
 release=1
 source=(https://archive.mozilla.org/pub/seamonkey/releases/$version$patchver/source/seamonkey-$version.source.tar.xz \
         http://www.stukamanhpt4.com/Netscape/Netscape-$version.tar.xz \
@@ -32,8 +32,10 @@ build () {
     # echo export RUSTFMT="$CARGO_HOME/bin/rustfmt" >> mozconfig.nix
 
     export MOZCONFIG=$SRC/seamonkey-$version/mozconfig.nix
-    make -f client.mk build
-    make -f client.mk DESTDIR=$PKG install
+    export MACH_USE_SYSTEM_PYTHON=1
+    ./mach configure
+    ./mach build
+    DESTDIR=$PKG ./mach install
     sed -i s\/VERSION\/$version\/g $SRC/netscape.desktop
     sed -i s\/VERSION\/$version\/g $SRC/nsmail.desktop
     install -D -m0644 $SRC/netscape.desktop $PKG/usr/share/applications/netscape.desktop

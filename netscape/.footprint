@@ -29,9 +29,12 @@ drwxr-xr-x	root/root	usr/lib/Netscape/chrome/icons/default/
 -rw-r--r--	root/root	usr/lib/Netscape/chrome/icons/default/chatzilla-window.png
 -rw-r--r--	root/root	usr/lib/Netscape/chrome/icons/default/chatzilla-window16.png
 -rw-r--r--	root/root	usr/lib/Netscape/chrome/icons/default/chatzilla-window48.png
--rw-r--r--	root/root	usr/lib/Netscape/chrome/icons/default/default.png
 -rw-r--r--	root/root	usr/lib/Netscape/chrome/icons/default/default128.png
 -rw-r--r--	root/root	usr/lib/Netscape/chrome/icons/default/default16.png
+-rw-r--r--	root/root	usr/lib/Netscape/chrome/icons/default/default22.png
+-rw-r--r--	root/root	usr/lib/Netscape/chrome/icons/default/default24.png
+-rw-r--r--	root/root	usr/lib/Netscape/chrome/icons/default/default256.png
+-rw-r--r--	root/root	usr/lib/Netscape/chrome/icons/default/default32.png
 -rw-r--r--	root/root	usr/lib/Netscape/chrome/icons/default/default48.png
 -rw-r--r--	root/root	usr/lib/Netscape/chrome/icons/default/default64.png
 -rw-r--r--	root/root	usr/lib/Netscape/chrome/icons/default/downloadManager.png
@@ -49,9 +52,6 @@ drwxr-xr-x	root/root	usr/lib/Netscape/chrome/icons/default/
 -rw-r--r--	root/root	usr/lib/Netscape/chrome/icons/default/history-window.png
 -rw-r--r--	root/root	usr/lib/Netscape/chrome/icons/default/history-window16.png
 -rw-r--r--	root/root	usr/lib/Netscape/chrome/icons/default/history-window48.png
--rw-r--r--	root/root	usr/lib/Netscape/chrome/icons/default/main-window.png
--rw-r--r--	root/root	usr/lib/Netscape/chrome/icons/default/main-window16.png
--rw-r--r--	root/root	usr/lib/Netscape/chrome/icons/default/main-window48.png
 -rw-r--r--	root/root	usr/lib/Netscape/chrome/icons/default/messengerWindow.png
 -rw-r--r--	root/root	usr/lib/Netscape/chrome/icons/default/messengerWindow16.png
 -rw-r--r--	root/root	usr/lib/Netscape/chrome/icons/default/messengerWindow48.png
@@ -108,7 +108,6 @@ drwxr-xr-x	root/root	usr/lib/Netscape/isp/
 -rwxr-xr-x	root/root	usr/lib/Netscape/libxul.so
 -rw-r--r--	root/root	usr/lib/Netscape/license.txt
 -rw-r--r--	root/root	usr/lib/Netscape/omni.ja
--rwxr-xr-x	root/root	usr/lib/Netscape/pingsender
 -rw-r--r--	root/root	usr/lib/Netscape/platform.ini
 -rwxr-xr-x	root/root	usr/lib/Netscape/plugin-container
 -rw-r--r--	root/root	usr/lib/Netscape/removed-files
