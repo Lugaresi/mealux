@@ -4,7 +4,7 @@
 # Depends on:  xdg-utils
 
 name=telegram
-version=2.4.6
+version=2.9.0
 release=1
 source=(https://updates.tdesktop.com/tlinux/tsetup.$version.tar.xz telegramdesktop.desktop telegram48.png)
 
