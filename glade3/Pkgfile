@@ -1,0 +1,26 @@
+# Description: GTK Interface Builder - GTK2 version.
+# URL: https://glade.gnome.org/
+# Maintainer: Stuka
+# Depends on: gtk2 itstool
+# Optional: webkitgtk gtk-doc python3-gobject
+
+name=glade3
+version=3.8.6
+release=1
+source=(https://download.gnome.org/sources/$name/${version::3}/$name-$version.tar.xz)
+
+build() {
+	cd $name-$version
+	sed -e s/doc\ help/doc/g -i Makefile.in
+        ./configure \
+		--prefix=/usr \
+		--disable-doc-html \
+		--disable-nls \
+		--disable-man \
+		--disable-gnome
+
+	make
+	DESTDIR=$PKG make install
+
+	rm -r $PKG/usr/share/locale
+}
