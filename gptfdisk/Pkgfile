@@ -1,0 +1,19 @@
+# Description: A text-mode partitioning tool that works on GUID Partition Table (GPT) disks
+# URL:  http://www.rodsbooks.com/gdisk/
+# Maintainer: Brian Madonna bmadonnaster at gmail dot comt
+# Depends on: gcc popt util-linux ncurses
+
+name=gptfdisk
+version=1.0.8
+release=1
+source=(http://downloads.sourceforge.net/project/$name/$name/$version/$name-$version.tar.gz)
+
+build() {
+	cd $name-$version
+	sed -e s#ncursesw/##g -i gptcurses.cc
+	make
+	install -d "$PKG"/usr/{bin,share/{doc/gdisk,man/man8}}
+	install -t "$PKG/usr/bin" {,c,s}gdisk fixparts
+	install -m644 -t "$PKG/usr/share/man/man8" {{,c,s}gdisk,fixparts}.8
+	install -m644 -t "$PKG/usr/share/doc/gdisk" README NEWS
+}
