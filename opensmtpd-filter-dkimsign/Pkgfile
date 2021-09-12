@@ -1,20 +1,23 @@
 # Description: dkim signer integration to the OpenSMTPD daemon
-# URL: http://imperialat.at/dev/libopensmtpd/
+# URL: http://imperialat.at/dev/filter-dkimsign/
 # Maintainer: Stuka
 # Packager: Stuka
 # Depends on: libopensmtpd
 
 name=opensmtpd-filter-dkimsign
-version=0.4
+version=0.5
 release=1
 source=(https://distfiles.sigtrap.nl/filter-dkimsign-$version.tar.gz pledge.patch)
 
 build() {
 	cd filter-dkimsign-$version
 	patch -p0 -i $SRC/pledge.patch
-	gcc -o filter-dkimsign -O2 -lopensmtpd -lcrypto main.c mheader.c
-	gzip filter-dkimsign.8
-	install -d -m 0755 $PKG/usr/{lib/opensmtpd,man/man8}
-        install -m 0755 filter-dkimsign $PKG/usr/lib/opensmtpd
-	install -m 0644 filter-dkimsign.8.gz $PKG/usr/man/man8
+	make -f Makefile.gnu 
+	make -f Makefile.gnu install DESTDIR=$PKG
+	mkdir -p $PKG/usr/lib/
+	mv $PKG/usr/libexec/* $PKG/usr/lib
+	rm -rf $PKG/usr/libexec
+	mkdir -p $PKG/usr/man/
+	mv $PKG/usr/share/man/* $PKG/usr/man
+	rm -rf $PKG/usr/share
 }

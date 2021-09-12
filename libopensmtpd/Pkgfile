@@ -5,7 +5,7 @@
 # Depends on: opensmtpd
 
 name=libopensmtpd
-version=0.5
+version=0.6
 release=1
 source=(https://distfiles.sigtrap.nl/$name-$version.tar.gz)
 
