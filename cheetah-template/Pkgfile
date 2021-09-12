@@ -1,0 +1,17 @@
+# Description: template engine and code generation tool
+# URL: http://cheetahtemplate.org/
+# Maintainer: David Brooke, crux at dbrooke dot me dot uk
+# Depends on: python 
+
+name=cheetah-template
+version=3.2.6.post2
+release=1
+source=(https://files.pythonhosted.org/packages/c0/97/c3fa47e223207e6ca6b501a954c5c959ed3e99f2a1ceec9918238ce38418/Cheetah3-3.2.6.post2.tar.gz)
+
+build() {
+	cd Cheetah3-$version
+
+	/usr/bin/python setup.py build
+	/usr/bin/python setup.py install --root=$PKG
+	find $PKG -name '*egg-info' | xargs rm -r
+}

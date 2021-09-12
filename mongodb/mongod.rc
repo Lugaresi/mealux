@@ -1,0 +1,37 @@
+#!/bin/sh
+PATH="/sbin:/usr/sbin:/bin:/usr/bin"
+
+NAME="mongod"
+USER="mongo"
+GROUP="mongo"
+RUNDIR="/var/run/$NAME"
+PIDFILE="$RUNDIR/$NAME.pid"
+PROG="/usr/bin/mongod"
+ARGS="--config /etc/$NAME/$NAME.conf --pidfilepath $PIDFILE --fork"
+
+case $1 in
+start)
+	install -d -m 755 -o $USER -g $GROUP $RUNDIR || exit 1
+	start-stop-daemon --start --chuid $USER:$GROUP --pidfile $PIDFILE --exec $PROG -- $ARGS
+	;;
+stop)
+	start-stop-daemon --stop --retry 360 --pidfile $PIDFILE
+	;;
+restart)
+	$0 stop
+	$0 start
+	;;
+status)
+	start-stop-daemon --status --pidfile $PIDFILE
+	case $? in
+	0) echo "$PROG running with pid: $(cat $PIDFILE)" ;;
+	1) echo "$PROG not running, stale pidfile: $PIDFILE" ;;
+	3) echo "$PROG not running" ;;
+	4) echo "Unable to determine program status" ;;
+	esac
+	;;
+*)
+	echo "usage: $0 [start|stop|restart|status]"
+	;;
+esac
+

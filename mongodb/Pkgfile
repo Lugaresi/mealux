@@ -1,0 +1,46 @@
+# Description: A high-performance, open source, schema-free document-oriented database
+# Maintainer:  Alan Mizrahi, alan at mizrahi dot com dot ve
+# URL:         https://www.mongodb.com/
+# Depends on:  curl libpcap libstemmer ncurses pcre py-cheetah python2-regex python2-requests python2-setuptools python-typing python3-yaml readline scons yaml-cpp python3-psutil cheetah-template
+
+name=mongodb
+version=4.4.6
+release=1
+source=(
+http://downloads.mongodb.org/src/mongodb-src-r$version.tar.gz
+mongod.conf
+mongod.rc
+)
+
+build(){
+	cd "$SRC/$name-src-r$version"
+	
+	SCONSFLAGS="$MAKEFLAGS" \
+	scons core install --prefix="$PKG/usr" \
+		--install-mode=legacy \
+		--disable-warnings-as-errors \
+		--use-system-pcre \
+		--use-system-zlib \
+		--use-sasl-client \
+		--ssl
+  # --use-system-yaml       # to-do
+  # --use-system-wiredtiger # to-do
+  # --use-system-stemmer    # to-do
+  # --use-system-boost      # doesn't compile
+  # --use-system-mongo-c    # doesn't compile
+  # --use-system-sqlite     # not used
+	
+	# Install manpages
+	install -Dm644 "debian/mongo.1" "${PKG}/usr/share/man/man1/mongo.1"
+	install -Dm644 "debian/mongod.1" "${PKG}/usr/share/man/man1/mongod.1"
+	install -Dm644 "debian/mongos.1" "${PKG}/usr/share/man/man1/mongos.1"
+
+	# startup script / config file
+	install -D $SRC/mongod.rc $PKG/etc/rc.d/mongod
+	install -D $SRC/mongod.conf $PKG/etc/mongod/mongod.conf
+
+	# data dir
+	install -d -m 750 -o mongo -g mongo $PKG/var/lib/mongo
+
+	rm "$PKG/usr/bin/install_compass"
+}
