@@ -1,5 +1,5 @@
 # CRUX Mea Lux
 
 NAME=mealux
-URL=https://github.com/Lugaresi/mealux
+URL=git@github.com:Lugaresi/mealux.git
 BRANCH=master
