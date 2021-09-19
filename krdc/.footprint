@@ -8,9 +8,6 @@ drwxr-xr-x	root/root	usr/include/krdc/
 -rw-r--r--	root/root	usr/include/krdc/remoteviewfactory.h
 -rw-r--r--	root/root	usr/include/krdccore_export.h
 drwxr-xr-x	root/root	usr/lib/
-lrwxrwxrwx	root/root	usr/lib/libkrdccore.so -> libkrdccore.so.5
--rwxr-xr-x	root/root	usr/lib/libkrdccore.so.20.08.3
-lrwxrwxrwx	root/root	usr/lib/libkrdccore.so.5 -> libkrdccore.so.20.08.3
 drwxr-xr-x	root/root	usr/lib/qt5/
 drwxr-xr-x	root/root	usr/lib/qt5/plugins/
 drwxr-xr-x	root/root	usr/lib/qt5/plugins/krdc/
@@ -20,6 +17,10 @@ drwxr-xr-x	root/root	usr/lib/qt5/plugins/krdc/kcms/
 -rwxr-xr-x	root/root	usr/lib/qt5/plugins/krdc/libkrdc_rdpplugin.so
 -rwxr-xr-x	root/root	usr/lib/qt5/plugins/krdc/libkrdc_testplugin.so
 -rwxr-xr-x	root/root	usr/lib/qt5/plugins/krdc/libkrdc_vncplugin.so
+drwxr-xr-x	root/root	usr/lib64/
+lrwxrwxrwx	root/root	usr/lib64/libkrdccore.so -> libkrdccore.so.5
+-rwxr-xr-x	root/root	usr/lib64/libkrdccore.so.21.08.1
+lrwxrwxrwx	root/root	usr/lib64/libkrdccore.so.5 -> libkrdccore.so.21.08.1
 drwxr-xr-x	root/root	usr/share/
 drwxr-xr-x	root/root	usr/share/applications/
 -rwxr-xr-x	root/root	usr/share/applications/org.kde.krdc.desktop
@@ -133,15 +134,15 @@ drwxr-xr-x	root/root	usr/share/kservices5/ServiceMenus/
 -rw-r--r--	root/root	usr/share/kservices5/ServiceMenus/smb2rdc.desktop
 -rw-r--r--	root/root	usr/share/kservices5/krdc_rdp_config.desktop
 -rw-r--r--	root/root	usr/share/kservices5/krdc_vnc_config.desktop
--rw-r--r--	root/root	usr/share/kservices5/rdp.protocol
--rw-r--r--	root/root	usr/share/kservices5/vnc.protocol
-drwxr-xr-x	root/root	usr/share/kxmlgui5/
-drwxr-xr-x	root/root	usr/share/kxmlgui5/krdc/
--rw-r--r--	root/root	usr/share/kxmlgui5/krdc/krdcui.rc
+drwxr-xr-x	root/root	usr/share/kservicetypes5/
+-rw-r--r--	root/root	usr/share/kservicetypes5/krdc_plugin.desktop
 drwxr-xr-x	root/root	usr/share/locale/
 drwxr-xr-x	root/root	usr/share/locale/ar/
 drwxr-xr-x	root/root	usr/share/locale/ar/LC_MESSAGES/
 -rw-r--r--	root/root	usr/share/locale/ar/LC_MESSAGES/krdc.mo
+drwxr-xr-x	root/root	usr/share/locale/be/
+drwxr-xr-x	root/root	usr/share/locale/be/LC_MESSAGES/
+-rw-r--r--	root/root	usr/share/locale/be/LC_MESSAGES/krdc.mo
 drwxr-xr-x	root/root	usr/share/locale/bg/
 drwxr-xr-x	root/root	usr/share/locale/bg/LC_MESSAGES/
 -rw-r--r--	root/root	usr/share/locale/bg/LC_MESSAGES/krdc.mo
@@ -268,18 +269,30 @@ drwxr-xr-x	root/root	usr/share/locale/ro/LC_MESSAGES/
 drwxr-xr-x	root/root	usr/share/locale/ru/
 drwxr-xr-x	root/root	usr/share/locale/ru/LC_MESSAGES/
 -rw-r--r--	root/root	usr/share/locale/ru/LC_MESSAGES/krdc.mo
+drwxr-xr-x	root/root	usr/share/locale/se/
+drwxr-xr-x	root/root	usr/share/locale/se/LC_MESSAGES/
+-rw-r--r--	root/root	usr/share/locale/se/LC_MESSAGES/krdc.mo
 drwxr-xr-x	root/root	usr/share/locale/sk/
 drwxr-xr-x	root/root	usr/share/locale/sk/LC_MESSAGES/
 -rw-r--r--	root/root	usr/share/locale/sk/LC_MESSAGES/krdc.mo
 drwxr-xr-x	root/root	usr/share/locale/sl/
 drwxr-xr-x	root/root	usr/share/locale/sl/LC_MESSAGES/
 -rw-r--r--	root/root	usr/share/locale/sl/LC_MESSAGES/krdc.mo
+drwxr-xr-x	root/root	usr/share/locale/sq/
+drwxr-xr-x	root/root	usr/share/locale/sq/LC_MESSAGES/
+-rw-r--r--	root/root	usr/share/locale/sq/LC_MESSAGES/krdc.mo
 drwxr-xr-x	root/root	usr/share/locale/sr/
 drwxr-xr-x	root/root	usr/share/locale/sr/LC_MESSAGES/
 -rw-r--r--	root/root	usr/share/locale/sr/LC_MESSAGES/krdc.mo
 drwxr-xr-x	root/root	usr/share/locale/sv/
 drwxr-xr-x	root/root	usr/share/locale/sv/LC_MESSAGES/
 -rw-r--r--	root/root	usr/share/locale/sv/LC_MESSAGES/krdc.mo
+drwxr-xr-x	root/root	usr/share/locale/ta/
+drwxr-xr-x	root/root	usr/share/locale/ta/LC_MESSAGES/
+-rw-r--r--	root/root	usr/share/locale/ta/LC_MESSAGES/krdc.mo
+drwxr-xr-x	root/root	usr/share/locale/tg/
+drwxr-xr-x	root/root	usr/share/locale/tg/LC_MESSAGES/
+-rw-r--r--	root/root	usr/share/locale/tg/LC_MESSAGES/krdc.mo
 drwxr-xr-x	root/root	usr/share/locale/tr/
 drwxr-xr-x	root/root	usr/share/locale/tr/LC_MESSAGES/
 -rw-r--r--	root/root	usr/share/locale/tr/LC_MESSAGES/krdc.mo
@@ -289,6 +302,9 @@ drwxr-xr-x	root/root	usr/share/locale/ug/LC_MESSAGES/
 drwxr-xr-x	root/root	usr/share/locale/uk/
 drwxr-xr-x	root/root	usr/share/locale/uk/LC_MESSAGES/
 -rw-r--r--	root/root	usr/share/locale/uk/LC_MESSAGES/krdc.mo
+drwxr-xr-x	root/root	usr/share/locale/vi/
+drwxr-xr-x	root/root	usr/share/locale/vi/LC_MESSAGES/
+-rw-r--r--	root/root	usr/share/locale/vi/LC_MESSAGES/krdc.mo
 drwxr-xr-x	root/root	usr/share/locale/zh_CN/
 drwxr-xr-x	root/root	usr/share/locale/zh_CN/LC_MESSAGES/
 -rw-r--r--	root/root	usr/share/locale/zh_CN/LC_MESSAGES/krdc.mo
@@ -297,3 +313,5 @@ drwxr-xr-x	root/root	usr/share/locale/zh_TW/LC_MESSAGES/
 -rw-r--r--	root/root	usr/share/locale/zh_TW/LC_MESSAGES/krdc.mo
 drwxr-xr-x	root/root	usr/share/metainfo/
 -rw-r--r--	root/root	usr/share/metainfo/org.kde.krdc.appdata.xml
+drwxr-xr-x	root/root	usr/share/qlogging-categories5/
+-rw-r--r--	root/root	usr/share/qlogging-categories5/krdc.categories

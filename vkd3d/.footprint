@@ -6,8 +6,10 @@ drwxr-xr-x	root/root	usr/include/vkd3d/
 -rw-r--r--	root/root	usr/include/vkd3d/vkd3d.h
 -rw-r--r--	root/root	usr/include/vkd3d/vkd3d_d3d12.h
 -rw-r--r--	root/root	usr/include/vkd3d/vkd3d_d3d12sdklayers.h
+-rw-r--r--	root/root	usr/include/vkd3d/vkd3d_d3d9types.h
 -rw-r--r--	root/root	usr/include/vkd3d/vkd3d_d3dcommon.h
 -rw-r--r--	root/root	usr/include/vkd3d/vkd3d_d3dcompiler.h
+-rw-r--r--	root/root	usr/include/vkd3d/vkd3d_d3dx9shader.h
 -rw-r--r--	root/root	usr/include/vkd3d/vkd3d_dxgibase.h
 -rw-r--r--	root/root	usr/include/vkd3d/vkd3d_dxgiformat.h
 -rw-r--r--	root/root	usr/include/vkd3d/vkd3d_shader.h

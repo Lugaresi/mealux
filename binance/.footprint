@@ -99,6 +99,12 @@ drwxr-xr-x	root/root	opt/Binance/resources/icons/
 -rw-r--r--	root/root	opt/Binance/resources/icons/icon.ico
 drwxr-xr-x	root/root	opt/Binance/resources/icons/size/
 -rw-r--r--	root/root	opt/Binance/resources/icons/size/512x512.png
+drwxr-xr-x	root/root	opt/Binance/resources/icons/tray/
+-rw-r--r--	root/root	opt/Binance/resources/icons/tray/binance-logo.png
+-rw-r--r--	root/root	opt/Binance/resources/icons/tray/binance-logo@1x.png
+-rw-r--r--	root/root	opt/Binance/resources/icons/tray/binance-logo@2x.png
+-rw-r--r--	root/root	opt/Binance/resources/icons/tray/binance-logo@3x.png
+-rw-r--r--	root/root	opt/Binance/resources/icons/tray/transparent.png
 -rw-r--r--	root/root	opt/Binance/snapshot_blob.bin
 drwxr-xr-x	root/root	opt/Binance/swiftshader/
 -rwxr-xr-x	root/root	opt/Binance/swiftshader/libEGL.so

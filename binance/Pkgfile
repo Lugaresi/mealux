@@ -4,7 +4,7 @@
 # Depends on:  
 
 name=binance
-version=1.22.0
+version=1.23.0
 release=1
 source=(https://ftp.binance.com/electron-desktop/linux/production/binance-amd64-linux.deb)
 

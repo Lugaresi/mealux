@@ -1,12 +1,12 @@
 # Description:  The cross-platform media player and streaming server
 # URL:          https://www.videolan.org/vlc/
-# Maintainer:   Lin SiFuh, #crux at freenode dot net
-# Depends on:   ffmpeg liba52 libdvdnav libgcrypt libmad qt5 
+# Maintainer:   Lin SiFuh, #crux at irc dot libera dot chat
+# Depends on:   ffmpeg liba52 libdvdnav libgcrypt libmad qt5 lua
 # Nice to have: opus libvorbis x264 libogg libmtp libtheora flac libvdpau
 
 name=vlc
-version=3.0.12
-release=5
+version=3.0.16
+release=1
 source=(https://download.videolan.org/pub/videolan/${name}/${version}/${name}-${version}.tar.xz
         0001-freerdp-2.patch
         0002-fdk-aac-2.0.0.patch
@@ -25,33 +25,43 @@ build() {
   # https://bugs.gentoo.org/758062
   patch -Np1 < "${SRC}"/0004-srt_c.patch
 
+#  ./bootstrap
+
   [[ -z $(pkg-config --libs --static libavutil | grep -- '-lvdpau') ]] && \
     PKGMK_VLC+=' --disable-vdpau'
 
   autoreconf -fi
 
+#  export LUAC=/usr/bin/luac5.2
+#  export LUA_LIBS="$(pkg-config --libs lua5.2)"
   export RCC=/usr/bin/rcc-qt5
   eval PKGMK_VLC="($PKGMK_VLC)"
 
   sed -e 's|-Werror-implicit-function-declaration||g' -i configure
 
-  BUILDCC="gcc -std=gnu11"          \
+  rm -rf src/contrib/fribidi
+
+  BUILDCC="gcc -std=c++11"          \
   ./configure "${PKGMK_VLC[@]}"     \
               --prefix=/usr         \
               --disable-nls         \
               --enable-alsa         \
               --disable-dbus        \
               --disable-fribidi     \
-              --disable-lua         \
               --disable-update-check 
 
-  V=1 ./compile
+#  V=1 ./compile
 
+  make
   make DESTDIR="${PKG}" install
 
   rm -rf "${PKG}"/usr/share/{doc,kde4}
+  rm "${PKG}"/usr/share/vlc/lua/http/requests/README.txt
 
   sed -i 's/--started-from-file//g'                 \
          "${PKG}"/usr/share/applications/vlc.desktop
+
+  # Remove broken modules
+  rm -r "${PKG}"/usr/lib/vlc/lua/sd
 
 }

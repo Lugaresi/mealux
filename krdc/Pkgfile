@@ -5,7 +5,7 @@
 # depends on: libvncserver freerdp2
 
 name=krdc
-version=20.08.3
+version=21.08.1
 release=1
 source=(
   https://download.kde.org/stable/release-service/$version/src/$name-$version.tar.xz

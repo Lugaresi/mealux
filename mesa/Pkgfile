@@ -5,7 +5,7 @@
 # Optional: libva
 
 name=mesa
-version=21.1.3
+version=21.2.1
 release=1
 source=(https://archive.mesa3d.org/$name-$version.tar.xz)
 
@@ -24,7 +24,7 @@ build() {
 		-D gallium-vdpau=enabled \
 		-D gallium-opencl=icd \
 		-D platforms=x11 \
-		-D gallium-drivers=r300,r600,svga,swrast,radeonsi,nouveau \
+		-D gallium-drivers=r300,r600,svga,swrast,radeonsi,nouveau,iris,virgl \
 		-D vulkan-drivers=amd,intel \
 		-D glvnd=true
 
