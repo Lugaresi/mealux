@@ -50,6 +50,8 @@ drwxr-xr-x	root/root	usr/include/
 -rw-r--r--	root/root	usr/include/ms-erref.h
 -rw-r--r--	root/root	usr/include/ms-fscc.h
 -rw-r--r--	root/root	usr/include/ms-rdpbcgr.h
+-rw-r--r--	root/root	usr/include/ms-rdpeclip.h
+-rw-r--r--	root/root	usr/include/ms-rdpedisp.h
 -rw-r--r--	root/root	usr/include/ms-rdpefs.h
 -rw-r--r--	root/root	usr/include/ms-rdpegdi.h
 -rw-r--r--	root/root	usr/include/ms-rdpele.h
