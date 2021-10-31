@@ -1,0 +1,22 @@
+# Description: Concurrent Versions System
+# URL:         https://www.cvshome.org/
+# Maintainer:  Moritz Wilhelmy, moritz plus crux at wzff dot de
+# Packager:    Antti Nykanen, aon at iki dot fi
+
+name=cvs
+version=1.11.23
+release=3
+source=(http://ftp.gnu.org/gnu/non-gnu/cvs/source/stable/$version/$name-$version.tar.bz2 \
+        CVE-2010-3846.diff getline-x86_64.diff)
+
+build() {
+    cd $name-$version
+    patch -N src/rcs.c $SRC/CVE-2010-3846.diff
+    patch -Np1 < $SRC/getline-x86_64.diff
+    ./configure --prefix=/usr --mandir=/usr/man --disable-server
+    make
+    make DESTDIR=$PKG install
+    make -C man DESTDIR=$PKG install-man
+    rm -rf $PKG/usr/{share,info,man/man8} \
+      $PKG/usr/bin/{cvsbug,rcs2log}
+}
