@@ -1,15 +1,20 @@
+# Description: MEGA Sync
+# URL:         https://github.com/meganz/MEGAsync/
+# Maintainer:  Stu
+# Packager:    Stu
+# Depends on:  libraw libmediainfo crypto++ c-ares freeimage
+
 name=megasync
-version=4.3.5.0
-sdkver=3.7.4
+version=4.5.3.0
+sdkver=3.8.2c
 release=1
-#depends: libraw libmediainfo crypto++ c-ares 
-source=(https://github.com/meganz/MEGAsync/archive/v${version}_Linux.tar.gz https://github.com/meganz/sdk/archive/v${sdkver}.tar.gz patch-oldsodium) 
+source=(https://github.com/meganz/MEGAsync/archive/v${version}_Linux.tar.gz https://github.com/meganz/sdk/archive/v${sdkver}.tar.gz patch-ffmpeg44.diff) 
 
 build() {
   cd MEGAsync-${version}_Linux/src
   mkdir -p MEGASync/mega
   mv $SRC/sdk-${sdkver}/* MEGASync/mega/
-#  patch -p1 -i $SRC/patch-oldsodium
+  patch -p2 -i $SRC/patch-ffmpeg44.diff
   ./configure -i -z
   qmake-qt5 MEGA.pro
   lrelease-qt5 MEGASync/MEGASync.pro

@@ -1,0 +1,22 @@
+--- a/src/MEGASync/mega/src/gfx/freeimage.cpp	2021-10-25 23:38:54.835112485 +0200
++++ b/src/MEGASync/mega/src/gfx/freeimage.cpp	2021-10-25 23:43:52.609120791 +0200
+@@ -252,8 +252,7 @@ bool GfxProcFreeImage::readbitmapFfmpeg(
+     }
+ 
+     // Force seeking to key frames
+-    formatContext->seek2any = false;
+-    videoStream->skip_to_keyframe = true;
++    formatContext->seek2any = true;
+     if (decoder->capabilities & CAP_TRUNCATED)
+     {
+         codecContext->flags |= CAP_TRUNCATED;
+--- a/src/MEGASync/mega/src/gfx/qt.cpp	2021-10-31 01:40:38.341289753 +0200
++++ b/src/MEGASync/mega/src/gfx/qt.cpp	2021-10-31 01:40:52.657289616 +0200
+@@ -1209,7 +1209,6 @@ QImageReader *GfxProcQT::readbitmapFfmpe
+ 
+     // Force seeking to key frames
+     formatContext->seek2any = false;
+-    videoStream->skip_to_keyframe = true;
+     if (decoder->capabilities & CAP_TRUNCATED)
+     {
+         codecContext.flags |= CAP_TRUNCATED;
