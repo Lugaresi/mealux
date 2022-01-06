@@ -5,7 +5,7 @@
 # Optional: libva libvdpau wayland-protocols
 
 name=mesa
-version=21.2.2
+version=21.3.2
 release=1
 source=(https://archive.mesa3d.org/$name-$version.tar.xz)
 
@@ -16,7 +16,6 @@ build() {
 	## for future references
 	#prt-get isinst xorg-libxdamage xorg-libxrandr xorg-libxshmfence xorg-libxvmc xorg-libxxf86vm && PKGMK_MESA_PLATFORMS+=',x11'
 	PKGMK_MESA_PLATFORMS+=',x11'
-
 
 	meson setup build mesa-$version $PKGMK_MESA \
 		--prefix=/usr \
