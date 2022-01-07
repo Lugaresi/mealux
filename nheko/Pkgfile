@@ -1,10 +1,10 @@
 # Description:	Desktop client for Matrix using Qt and C++14.
 # URL:		https://github.com/Nheko-Reborn/nheko
 # Maintainer:	Stuka
-# Depends on:   qt5 openssl boost
+# Depends on:   qt5 qtkeychain openssl boost spdlog libolm lmdb nlohmann-json cmark libevent
 
 name=nheko
-version=0.8.2
+version=0.9.1
 release=1
 source=(https://github.com/Nheko-Reborn/$name/archive/v$version.tar.gz)
 # source=(https://github.com/Nheko-Reborn/nheko/archive/100b5e0371f9485ec6fbbdc69a0efd9aa84d26d3.zip)
@@ -19,14 +19,19 @@ build() {
 		-DBUILD_SHARED_LIBS=OFF \
 		-DHUNTER_ENABLED=ON \
 		-DHUNTER_ROOT=$SRC/hunter \
-		-DUSE_BUNDLED_BOOST=OFF \
-		-DUSE_BUNDLED_OPENSSL=OFF 
+		-DUSE_BUNDLED_OPENSSL=OFF \
+		-DUSE_BUNDLED_SPDLOG=OFF \
+		-DUSE_BUNDLED_OLM=OFF \
+		-DUSE_BUNDLED_CMARK=OFF \
+		-DUSE_BUNDLED_JSON=OFF \
+		-DUSE_BUNDLED_LIBEVENT=OFF \
+		-DUSE_BUNDLED_LIBCURL=OFF \
+		-DUSE_BUNDLED_QTKEYCHAIN=OFF \
+		-DUSE_BUNDLED_LMDB=OFF \
+		-DVOIP=OFF \
+		-DCOMPILE_QML=ON
 	make
-	# Get your shit together, libolm
-	cp -r _deps/olm-src/include ../$name-$version/
-	#cp -r _deps/olm-src/include ../$name-100b5e0371f9485ec6fbbdc69a0efd9aa84d26d3/
 	make DESTDIR=$PKG install
 	#Cleanup
 	rm -rf $PKG/usr/{include,lib,lib64,share/man}/
-	rm $PKG/usr/bin/cmark
 }
