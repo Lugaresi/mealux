@@ -1,12 +1,12 @@
 # Description: Thermal daemon.
-# URL:         https://github.com/01org/thermal_daemon
+# URL:         https://github.com/intel/thermal_daemon
 # Maintainer:  Tudor Roman, tudurom at gmail dot com
-# Depends on:  dbus dbus-glib
+# Depends on:  dbus dbus-glib autoconf-archive
 
 name=thermald
-version=1.9.1
+version=2.4.6
 release=1
-source=(https://github.com/01org/thermal_daemon/archive/v$version.tar.gz thermald.s)
+source=(https://github.com/intel/thermal_daemon/archive/v$version.tar.gz thermald.s)
 
 build() {
 	cd thermal_daemon-$version
