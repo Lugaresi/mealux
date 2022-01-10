@@ -1,0 +1,18 @@
+# Description:	A tool to test PAM applications and PAM modules
+# URL:		https://cwrap.org/pam_wrapper.html
+# Maintainer:	Stuka
+# Depends on:	linux-pam cmake ninja cmocka
+
+name=pam_wrapper
+version=1.1.4
+release=1
+source=(https://ftp.samba.org/pub/cwrap/$name-$version.tar.gz)
+
+build() {
+        cmake -S $name-$version -B build -G Ninja \
+		-DCMAKE_BUILD_TYPE=None \
+   		-DCMAKE_INSTALL_PREFIX=/usr \
+    		-DUNIT_TESTING=true
+	cmake --build build
+	DESTDIR=$PKG cmake --install build
+}

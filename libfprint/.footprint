@@ -1,7 +1,9 @@
 drwxr-xr-x	root/root	lib/
 drwxr-xr-x	root/root	lib/udev/
+drwxr-xr-x	root/root	lib/udev/hwdb.d/
+-rw-r--r--	root/root	lib/udev/hwdb.d/60-autosuspend-libfprint-2.hwdb
 drwxr-xr-x	root/root	lib/udev/rules.d/
--rw-r--r--	root/root	lib/udev/rules.d/60-libfprint-2-autosuspend.rules
+-rw-r--r--	root/root	lib/udev/rules.d/70-libfprint-2.rules
 drwxr-xr-x	root/root	usr/
 drwxr-xr-x	root/root	usr/include/
 drwxr-xr-x	root/root	usr/include/libfprint-2/

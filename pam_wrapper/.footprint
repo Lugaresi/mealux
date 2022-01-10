@@ -1,0 +1,42 @@
+drwxr-xr-x	root/root	usr/
+drwxr-xr-x	root/root	usr/include/
+-rw-r--r--	root/root	usr/include/libpamtest.h
+drwxr-xr-x	root/root	usr/lib/
+drwxr-xr-x	root/root	usr/lib/python2.7/
+drwxr-xr-x	root/root	usr/lib/python2.7/site-packages/
+-rwxr-xr-x	root/root	usr/lib/python2.7/site-packages/pypamtest.so
+drwxr-xr-x	root/root	usr/lib/python3.9/
+drwxr-xr-x	root/root	usr/lib/python3.9/site-packages/
+-rwxr-xr-x	root/root	usr/lib/python3.9/site-packages/pypamtest.so
+drwxr-xr-x	root/root	usr/lib64/
+drwxr-xr-x	root/root	usr/lib64/cmake/
+drwxr-xr-x	root/root	usr/lib64/cmake/pam_wrapper/
+-rw-r--r--	root/root	usr/lib64/cmake/pam_wrapper/pam_wrapper-config-version.cmake
+-rw-r--r--	root/root	usr/lib64/cmake/pam_wrapper/pam_wrapper-config.cmake
+drwxr-xr-x	root/root	usr/lib64/cmake/pamtest/
+-rw-r--r--	root/root	usr/lib64/cmake/pamtest/pamtest-config-none.cmake
+-rw-r--r--	root/root	usr/lib64/cmake/pamtest/pamtest-config-version.cmake
+-rw-r--r--	root/root	usr/lib64/cmake/pamtest/pamtest-config.cmake
+lrwxrwxrwx	root/root	usr/lib64/libpam_wrapper.so -> libpam_wrapper.so.0
+lrwxrwxrwx	root/root	usr/lib64/libpam_wrapper.so.0 -> libpam_wrapper.so.0.0.7
+-rwxr-xr-x	root/root	usr/lib64/libpam_wrapper.so.0.0.7
+lrwxrwxrwx	root/root	usr/lib64/libpamtest.so -> libpamtest.so.0
+lrwxrwxrwx	root/root	usr/lib64/libpamtest.so.0 -> libpamtest.so.0.0.7
+-rwxr-xr-x	root/root	usr/lib64/libpamtest.so.0.0.7
+drwxr-xr-x	root/root	usr/lib64/pam_wrapper/
+-rwxr-xr-x	root/root	usr/lib64/pam_wrapper/pam_chatty.so
+-rwxr-xr-x	root/root	usr/lib64/pam_wrapper/pam_get_items.so
+-rwxr-xr-x	root/root	usr/lib64/pam_wrapper/pam_matrix.so
+-rwxr-xr-x	root/root	usr/lib64/pam_wrapper/pam_set_items.so
+drwxr-xr-x	root/root	usr/lib64/pkgconfig/
+-rw-r--r--	root/root	usr/lib64/pkgconfig/libpamtest.pc
+-rw-r--r--	root/root	usr/lib64/pkgconfig/pam_wrapper.pc
+drwxr-xr-x	root/root	usr/share/
+drwxr-xr-x	root/root	usr/share/man/
+drwxr-xr-x	root/root	usr/share/man/man1/
+-rw-r--r--	root/root	usr/share/man/man1/pam_wrapper.1.gz
+drwxr-xr-x	root/root	usr/share/man/man8/
+-rw-r--r--	root/root	usr/share/man/man8/pam_chatty.8.gz
+-rw-r--r--	root/root	usr/share/man/man8/pam_get_items.8.gz
+-rw-r--r--	root/root	usr/share/man/man8/pam_matrix.8.gz
+-rw-r--r--	root/root	usr/share/man/man8/pam_set_items.8.gz

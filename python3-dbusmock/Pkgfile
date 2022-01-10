@@ -1,0 +1,17 @@
+# Description: Python binding of MusicBrainz libdiscid
+# URL: https://github.com/martinpitt/python-dbusmock/
+# Maintainer: Tim Biermann, tbier at posteo dot de
+# Depends on: python3-dbus
+
+name=python3-dbusmock
+version=0.25.0
+release=1
+source=(https://github.com/martinpitt/python-dbusmock/releases/download/0.25.0/python-dbusmock-0.25.0.tar.gz)
+
+build() {
+  cd python-dbusmock-$version
+  /usr/bin/python3 setup.py build
+  /usr/bin/python3 setup.py install --skip-build \
+    --root=$PKG \
+    --optimize=1
+}

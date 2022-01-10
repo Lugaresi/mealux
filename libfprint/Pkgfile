@@ -5,7 +5,7 @@
 # Depends on: pkg-config, nss, glib, gtk3, meson, libgusb
 
 name=libfprint
-version=1.90.2
+version=1.94.2
 release=1
 source=(https://gitlab.freedesktop.org/libfprint/libfprint/-/archive/v$version/libfprint-v$version.tar.bz2)
 
