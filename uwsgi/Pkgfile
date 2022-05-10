@@ -3,7 +3,7 @@
 # Maintainer: Stuka
 
 name=uwsgi
-version=2.0.19.1
+version=2.0.20
 release=1
 source=(https://projects.unbit.it/downloads/$name-$version.tar.gz)
 
