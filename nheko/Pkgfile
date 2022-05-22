@@ -1,10 +1,10 @@
 # Description:	Desktop client for Matrix using Qt and C++14.
 # URL:		https://github.com/Nheko-Reborn/nheko
 # Maintainer:	Stuka
-# Depends on:   qt5 qtkeychain openssl boost spdlog libolm lmdb nlohmann-json cmark libevent
+# Depends on:   qt5 qtkeychain openssl boost spdlog libolm lmdb nlohmann-json cmark libevent asciidoc
 
 name=nheko
-version=0.9.1
+version=0.9.3
 release=1
 source=(https://github.com/Nheko-Reborn/$name/archive/v$version.tar.gz)
 # source=(https://github.com/Nheko-Reborn/nheko/archive/100b5e0371f9485ec6fbbdc69a0efd9aa84d26d3.zip)

@@ -1,15 +1,15 @@
 # Description: Binance Desktop Client
-# URL:         https://www.binance.com
+# URL:         https://github.com/binance/desktop
 # Maintainer:  Stuka
 # Depends on:  
 
 name=binance
-version=1.25.0
+version=1.35.0
 release=1
-source=(https://ftp.binance.com/electron-desktop/linux/production/binance-amd64-linux.deb)
+source=(https://github.com/binance/desktop/releases/download/v$version/$name-$version-amd64-linux.deb)
 
 build() {
-	ar -x binance-amd64-linux.deb
+	ar -x $name-$version-amd64-linux.deb
 	mkdir -p $PKG && cd $PKG
 	tar -xf $SRC/data.tar.xz
 	rm -rf $PKG/usr/share/doc

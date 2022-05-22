@@ -86,8 +86,6 @@ drwxr-xr-x	root/root	usr/lib/Netscape/extensions/
 -rw-r--r--	root/root	usr/lib/Netscape/extensions/{e2fda1a4-762b-4020-b5ad-a41df1933103}.xpi
 drwxr-xr-x	root/root	usr/lib/Netscape/fonts/
 -rw-r--r--	root/root	usr/lib/Netscape/fonts/TwemojiMozilla.ttf
-drwxr-xr-x	root/root	usr/lib/Netscape/gtk2/
--rwxr-xr-x	root/root	usr/lib/Netscape/gtk2/libmozgtk.so
 drwxr-xr-x	root/root	usr/lib/Netscape/isp/
 -rw-r--r--	root/root	usr/lib/Netscape/isp/Bogofilter.sfd
 -rw-r--r--	root/root	usr/lib/Netscape/isp/DSPAM.sfd
