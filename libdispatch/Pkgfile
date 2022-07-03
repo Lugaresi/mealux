@@ -4,18 +4,17 @@
 # Depends on: clang ninja 
 
 name=libdispatch
-#version=5.5
-version=2022-06-02-a
+version=5.5
 release=1
-#source=(https://github.com/apple/swift-corelibs-libdispatch/archive/refs/tags/swift-$version-RELEASE.tar.gz)
-source=(https://github.com/apple/swift-corelibs-libdispatch/archive/refs/tags/swift-DEVELOPMENT-SNAPSHOT-$version.tar.gz)
-
+source=(https://github.com/apple/swift-corelibs-libdispatch/archive/refs/tags/swift-$version-RELEASE.tar.gz
+	refcount-unused.diff)
 build() {
-#    cd swift-corelibs-libdispatch-swift-$version-RELEASE
-    cd swift-corelibs-libdispatch-swift-DEVELOPMENT-SNAPSHOT-$version
+    cd swift-corelibs-libdispatch-swift-$version-RELEASE
+    patch  -p1 -i $SRC/refcount-unused.diff
     mkdir build && cd build
     cmake -G Ninja -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ \
-    -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_INSTALL_PREFIX=/usr ..
+    -DBlocksRuntime_INCLUDE_DIR=/usr/include DBlocksRuntime_LIBRARIES=/usr/lib/libBlocksRuntime.so \
+    -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_INSTALL_PREFIX=/usr -DBUILD_TESTING=OFF ..
     ninja
     DESTDIR=$PKG ninja install
 }

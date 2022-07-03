@@ -18,6 +18,8 @@ drwxr-xr-x	root/root	usr/lib/deadbeef/
 -rwxr-xr-x	root/root	usr/lib/deadbeef/alsa.so
 -rwxr-xr-x	root/root	usr/lib/deadbeef/artwork.la
 -rwxr-xr-x	root/root	usr/lib/deadbeef/artwork.so
+-rwxr-xr-x	root/root	usr/lib/deadbeef/cdda.la
+-rwxr-xr-x	root/root	usr/lib/deadbeef/cdda.so
 -rwxr-xr-x	root/root	usr/lib/deadbeef/converter.la
 -rwxr-xr-x	root/root	usr/lib/deadbeef/converter.so
 -rwxr-xr-x	root/root	usr/lib/deadbeef/converter_gtk2.la
@@ -198,6 +200,8 @@ drwxr-xr-x	root/root	usr/lib/deadbeef/data68/Replay/
 -rwxr-xr-x	root/root	usr/lib/deadbeef/vfs_zip.so
 -rwxr-xr-x	root/root	usr/lib/deadbeef/vorbis.la
 -rwxr-xr-x	root/root	usr/lib/deadbeef/vorbis.so
+-rwxr-xr-x	root/root	usr/lib/deadbeef/wavpack.la
+-rwxr-xr-x	root/root	usr/lib/deadbeef/wavpack.so
 -rwxr-xr-x	root/root	usr/lib/deadbeef/wildmidi.la
 -rwxr-xr-x	root/root	usr/lib/deadbeef/wildmidi.so
 -rwxr-xr-x	root/root	usr/lib/deadbeef/wma.la

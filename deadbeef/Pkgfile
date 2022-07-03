@@ -1,17 +1,18 @@
 # Description:  The ultimate music player for Linux 
 # URL:          http://deadbeef.sourceforge.net/
 # Maintainer:   Stuka
-# Depends on:   faad2 libmad libsamplerate pulseaudio jansson
+# Depends on:   faad2 libmad libsamplerate pulseaudio jansson libdispatch
 
 name=deadbeef
-version=1.8.4
+version=1.9.1
 release=1
-source=(https://github.com/DeaDBeeF-Player/$name/archive/$version.tar.gz)
+source=(https://sourceforge.net/projects/deadbeef/files/travis/linux/${version}/deadbeef-${version}.tar.bz2)
 
 build() {
   cd $name-$version
 
-  ./autogen.sh
+#  ./autogen.sh
+  CC=clang CXX=clang++ \
   ./configure --prefix=/usr --mandir=/usr/man \
       --enable-alsa --enable-gtk2 --enable-vfs-curl --enable-supereq \
       --enable-mad --enable-vorbis --enable-sndfile --enable-hotkeys \
