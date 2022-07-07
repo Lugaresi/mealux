@@ -2,7 +2,7 @@
 # URL:         https://docs.broadcom.com
 # Maintainer:  Stuka
 #
-# depends on: unzip rpm2targz
+# depends on: unzip rpm2targz patchelf
 
 name=megaraid
 version=20200312
@@ -32,6 +32,9 @@ build() {
     rm $PKG/opt/MegaRAID/MegaCli/MegaCli
     rm $PKG/opt/lsi/3rdpartylibs/libsysfs.so.2.0.2
     rm -rf $PKG/opt/lsi/3rdpartylibs/src/
+
+    # Patching
+    patchelf --replace-needed libncurses.so.5 libncurses.so.6 $PKG/opt/MegaRAID/MegaCli/MegaCli64
 
     # Symlinks
     mkdir -p $PKG/usr/bin
