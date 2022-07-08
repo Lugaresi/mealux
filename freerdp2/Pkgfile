@@ -1,0 +1,30 @@
+# Description: Remote desktop protocol implementation.
+# URL: https://www.freerdp.com/
+# Maintainer: CRUX System Team, core-ports at crux dot nu
+# Depends on: cmake glib xorg-libxcursor xorg-libxinerama xorg-libxkbfile xorg-libxrandr xorg-libxv
+# Optional: alsa-lib cups directfb ffmpeg gst-plugins-base libxslt neon pulseaudio wayland xmlto
+
+name=freerdp2
+version=2.7.0
+release=1
+source=(https://pub.freerdp.com/releases/freerdp-$version.tar.gz)
+
+build() {
+	prt-get isinst ccache && PATH="$(echo ${PATH} | awk -v RS=: -v ORS=: '/ccache/ {next} {print}' | sed 's/:*$//')"
+
+	prt-get isinst libxslt && PKGMK_FREERDP+=' -D WITH_MANPAGES=ON' || PKGMK_FREERDP+=' -D WITH_MANPAGES=OFF'
+	prt-get isinst ninja && PKGMK_FREERDP+=' -G Ninja'
+
+	cmake -S freerdp-$version -B build $PKGMK_FREERDP \
+		-D CMAKE_BUILD_TYPE=RELEASE \
+		-D CMAKE_C_FLAGS_RELEASE="$CFLAGS" \
+		-D CMAKE_INSTALL_PREFIX=/usr \
+		-D CMAKE_INSTALL_LIBDIR=lib \
+		-D CMAKE_SKIP_RPATH=ON \
+		-D WITH_SERVER=OFF \
+		-D WITH_CLIENT=ON \
+		-D WITH_LIBSYSTEMD=OFF \
+		-Wno-dev
+	cmake --build build -j ${JOBS:-1}
+	DESTDIR=$PKG cmake --install build
+}
