@@ -4,7 +4,7 @@
 # Depends on:  pulseaudio
 
 name=pulseaudio-module-xrdp
-version=0.5
+version=0.6
 release=1
 source=(https://github.com/neutrinolabs/$name/archive/v$version.tar.gz)
 
@@ -13,15 +13,12 @@ build() {
     pa_dir=`prt-get info pulseaudio | grep Path | awk 'NF>1{print $NF}'`
     pa_ver=`prt-get info pulseaudio | grep Version | awk 'NF>1{print $NF}'`
     pa_src=$pa_dir/pulseaudio/work/src/pulseaudio-$pa_ver
+    pa_cfg=$pa_dir/pulseaudio/work/src/build
     (cd $pa_dir/pulseaudio && pkgmk -kw -f -d)
     cd $name-$version
     ./bootstrap
     # Workaround 1: Use bash to avoid (maybe) non blocking errors due to bashisms.
-    bash configure --prefix=/usr PULSE_DIR=$pa_src
-    # Workaround 2: PA 15 throws a warning using #warn and breaks compilation.
-    sed -e s/#warn/#warning/g -i $pa_src/src/pulsecore/atomic.h
-    # Workaround 3: config.h does not exist, but config_ac.h does.
-    cp config_ac.h config.h
+    bash configure --prefix=/usr PULSE_CONFIG_DIR=$pa_cfg PULSE_DIR=$pa_src
     make
     make DESTDIR=$PKG install
     (cd $pa_dir/pulseaudio && pkgmk -c)
