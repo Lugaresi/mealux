@@ -1,0 +1,16 @@
+# Description: diffstat reads the output of diff and displays a histogram of the insertions, deletions, and modifications per-file.
+# URL: https://invisible-island.net/diffstat/
+# Maintainer: Stuka
+
+name=diffstat
+version=1.64
+release=1
+source=(https://invisible-island.net/archives/$name/$name-$version.tgz)
+
+build() {
+
+	cd $name-$version/
+	./configure --prefix=/usr
+	make
+	make DESTDIR=$PKG install
+}
