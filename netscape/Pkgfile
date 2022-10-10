@@ -1,10 +1,10 @@
 # Description: A Good Old-fashioned browser
 # URL: http://www.seamonkey-project.org/
 # Maintainer: Stuka
-# Depends on: gtk3, mesa3d, libnotify, nss, nspr, autconf-2.13, startup-notification, libvpx, clang,  icu
+# Depends on: gtk3, mesa3d, libnotify, nss, nspr, autconf-2.13, startup-notification, libvpx, clang,  icu, pulseaudio, zip autoconf-2.13 cbindgen
 
 name=netscape
-version=2.53.12
+version=2.53.14
 release=1
 source=(https://archive.mozilla.org/pub/seamonkey/releases/$version$patchver/source/seamonkey-$version.source.tar.xz \
         http://www.stukamanhpt4.com/Netscape/Netscape-$version.tar.xz \
