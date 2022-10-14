@@ -1,16 +1,15 @@
 # Description: Mesa 3D Graphics Library
 # URL: https://www.mesa3d.org/
 # Maintainer: CRUX Xorg Team, xorg-ports at crux dot nu
-# Depends on: elfutils libdrm libglvnd llvm python3-mako xorg-libxdamage xorg-libxrandr xorg-libxshmfence xorg-libxvmc xorg-libxxf86vm
+# Depends on: elfutils glslang libdrm libglvnd llvm python3-mako xorg-libxdamage xorg-libxrandr xorg-libxshmfence xorg-libxvmc xorg-libxxf86vm
 # Optional: libva libvdpau wayland-protocols
 
 name=mesa
-version=22.1.7
+version=22.2.1
 release=1
 source=(https://archive.mesa3d.org/$name-$version.tar.xz)
 
 build() {
-	prt-get isinst glslang && PKGMK_MESA+=' -D vulkan-layers=device-select,intel-nullhw,overlay'
 	prt-get isinst vulkan-loader && PKGMK_MESA_GALLIUM+='zink,'
 	prt-get isinst libvdpau && PKGMK_MESA+=' -D gallium-vdpau=enabled' || PKGMK_MESA+=' -D gallium-vdpau=disabled'
 	prt-get isinst wayland-protocols && PKGMK_MESA_PLATFORMS+='wayland'
@@ -43,6 +42,8 @@ build() {
 		-D platforms=${PKGMK_MESA_PLATFORMS#,} \
 		-D shared-glapi=enabled \
 		-D vulkan-drivers=amd,intel \
+		-D vulkan-layers=device-select,intel-nullhw,overlay \
+		-D video-codecs=vc1dec,h264dec,h264enc,h265dec,h265enc \
 		-D glvnd=true
 
 	meson compile -C build -j ${JOBS:-1}
