@@ -1,0 +1,29 @@
+#!/bin/sh
+#
+# /etc/rc.d/ntpd: start/stop ntp daemon
+#
+
+RUNDIR="/var/run/ntpd"
+PIDFILE="$RUNDIR/ntpd.pid"
+PROG="/usr/bin/ntpd"
+ARGS="-g -u ntp:ntp -p $PIDFILE"
+
+case $1 in
+start)
+	$PROG $ARGS
+	;;
+stop)
+	killall $PROG
+	;;
+restart)
+	$0 stop
+	$0 start
+	;;
+status)
+	ps -fp $(cat $PIDFILE)
+	;;
+*)
+	echo "usage: $0 [start|stop|restart|status]"
+	;;
+esac
+

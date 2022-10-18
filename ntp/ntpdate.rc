@@ -1,0 +1,17 @@
+#!/bin/sh
+#
+# /etc/rc.d/ntpdate: run ntpdate once
+#
+# NOTE: this slews the clock abruptly no matter how far out of sync.
+#       -B causes this. -b will do it more gently but can run for hours
+#       if the clock is way out of sync
+
+case $1 in
+start)
+	/usr/bin/ntpdate -B 2.north-america.pool.ntp.org
+	;;
+*)
+	echo "usage: $0 start"
+	;;
+esac
+
