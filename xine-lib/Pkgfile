@@ -6,15 +6,17 @@
 
 name=xine-lib
 version=1.2.12
-release=2
-#source=(https://downloads.sourceforge.net/project/xine/$name/$version/$name-$version.tar.xz) 
-source=(https://sourceforge.net/code-snapshots/hg/x/xi/xine/xine-lib-1.2/xine-xine-lib-1.2-96ed295e0a228ae5a25701a97d7238919728017b.zip)
+release=3
+source=(https://downloads.sourceforge.net/project/xine/$name/$version/$name-$version.tar.xz
+        dav1d.patch ffmpeg-compat.patch)
 
 build() {
-   # cd $name-$version
-    cd xine-$name-1.2-96ed295e0a228ae5a25701a97d7238919728017b
+    cd $name-$version
 
     sed -e 's/\(xcb-shape >= 1.0\)/xcb \1/' -i m4/video_out.m4
+
+    patch -p1 -i $SRC/dav1d.patch
+    patch -p1 -i $SRC/ffmpeg-compat.patch
 
     bash autogen.sh
 
