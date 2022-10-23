@@ -1,0 +1,87 @@
+Avoid build errors when using with glibc version 2.34 or greater, caused by the
+removal from the <bits/local_lim.h> glibc header file of the definition for the
+pthread stack size and the new support for dynamic stack size.
+
+  CC       work_thread.o
+In file included from /usr/include/pthread.h:33,
+                 from work_thread.c:14:
+work_thread.c:46:57: error: missing binary operator before token "("
+   46 | #if defined(PTHREAD_STACK_MIN) && THREAD_MINSTACKSIZE < PTHREAD_STACK_MIN
+      |                                                         ^~~~~~~~~~~~~~~~~
+make[3]: *** [Makefile:893: work_thread.o] Error 1
+
+Signed-off-by: Guido Trentalancia <guido@trentalancia.com>
+---
+ libntp/work_thread.c |   54 +++++++++++++++++++++++++++++++++++++--------------
+ 1 file changed, 40 insertions(+), 14 deletions(-)
+
+--- ntp-4.2.8p15-orig/libntp/work_thread.c	2018-08-14 12:51:06.000000000 +0100
++++ ntp-4.2.8p15/libntp/work_thread.c	2022-06-26 15:21:34.436973108 +0100
+@@ -35,27 +35,53 @@
+ #define RESPONSES_ALLOC_INC	4
+ 
+ /* Fiddle with min/max stack sizes. 64kB minimum seems to work, so we
+- * set the maximum to 256kB. If the minimum goes below the
+- * system-defined minimum stack size, we have to adjust accordingly.
++ * set the maximum to 256kB.
+  */
+ #ifndef THREAD_MINSTACKSIZE
+ # define THREAD_MINSTACKSIZE	(64U * 1024)
+ #endif
+-#ifndef __sun
+-#if defined(PTHREAD_STACK_MIN) && THREAD_MINSTACKSIZE < PTHREAD_STACK_MIN
+-# undef THREAD_MINSTACKSIZE
+-# define THREAD_MINSTACKSIZE PTHREAD_STACK_MIN
+-#endif
+-#endif
+-
+ #ifndef THREAD_MAXSTACKSIZE
+-# define THREAD_MAXSTACKSIZE	(256U * 1024)
+-#endif
+-#if THREAD_MAXSTACKSIZE < THREAD_MINSTACKSIZE
+-# undef  THREAD_MAXSTACKSIZE
+-# define THREAD_MAXSTACKSIZE THREAD_MINSTACKSIZE
++# define THREAD_MAXSTACKSIZE    (256U * 1024)
+ #endif
+ 
++/*
++ * If the minimum stack size goes below the system-defined minimum
++ * stack size, we have to adjust accordingly.
++ *
++ * Similarly, if the maximum stack size goes below the minimum stack
++ * size, we have to adjust accordingly.
++ *
++ * Note that, starting from GLIBC 2.34, when __USE_DYNAMIC_STACK_SIZE
++ * is defined and equal to 1, then PTHREAD_STACK_MIN is no longer
++ * constant, so the limits cannot be directly compared using the C
++ * preprocessor directives.
++ */
++#ifndef __sun
++# if defined(PTHREAD_STACK_MIN)
++#  if defined(__USE_DYNAMIC_STACK_SIZE)
++#   if __USE_DYNAMIC_STACK_SIZE
++#    undef THREAD_MINSTACKSIZE
++#    define THREAD_MINSTACKSIZE PTHREAD_STACK_MIN
++#   endif	/* __USE_DYNAMIC_STACK_SIZE (variable GLIBC minimum limit) */
++#   if !__USE_DYNAMIC_STACK_SIZE
++#    if THREAD_MINSTACKSIZE < PTHREAD_STACK_MIN
++#     undef THREAD_MINSTACKSIZE
++#     define THREAD_MINSTACKSIZE PTHREAD_STACK_MIN
++#    endif	/* invalid constant minimum limit */
++#    if THREAD_MAXSTACKSIZE < THREAD_MINSTACKSIZE
++#     undef  THREAD_MAXSTACKSIZE
++#     define THREAD_MAXSTACKSIZE THREAD_MINSTACKSIZE
++#    endif /* invalid constant maximum limit */
++#   endif	/* !__USE_DYNAMIC_STACK_SIZE */
++#  else		/* !defined(__USE_DYNAMIC_STACK_SIZE) */
++#   if THREAD_MAXSTACKSIZE < THREAD_MINSTACKSIZE
++#    undef  THREAD_MAXSTACKSIZE
++#    define THREAD_MAXSTACKSIZE THREAD_MINSTACKSIZE
++#   endif /* invalid constant maximum limit */
++#  endif		/* defined(__USE_DYNAMIC_STACK_SIZE) */
++# endif		/* defined(PTHREAD_STACK_MIN) */
++#endif		/* !defined(__sun) */
++
+ /* need a good integer to store a pointer... */
+ #ifndef UINTPTR_T
+ # if defined(UINTPTR_MAX)
