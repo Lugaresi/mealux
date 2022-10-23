@@ -17,6 +17,7 @@ build() {
         mv $SRC/et-sdl-sound* bin/
         chmod a+x bin/et-sdl-sound*
         rm -rf bin/{FreeBSD,Linux,NetBSD,OpenBSD}
+	chown -R root:root .
 	install -m 0755 -d $PKG/usr/share/pixmaps
 	install -m 0644 $SRC/et/ET.png $PKG/usr/share/pixmaps/ET.png
 	rm ET.png
