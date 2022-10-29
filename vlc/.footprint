@@ -259,6 +259,8 @@ drwxr-xr-x	root/root	usr/lib/vlc/plugins/access_output/
 -rwxr-xr-x	root/root	usr/lib/vlc/plugins/access_output/libaccess_output_livehttp_plugin.so
 -rwxr-xr-x	root/root	usr/lib/vlc/plugins/access_output/libaccess_output_rist_plugin.la
 -rwxr-xr-x	root/root	usr/lib/vlc/plugins/access_output/libaccess_output_rist_plugin.so
+-rwxr-xr-x	root/root	usr/lib/vlc/plugins/access_output/libaccess_output_shout_plugin.la
+-rwxr-xr-x	root/root	usr/lib/vlc/plugins/access_output/libaccess_output_shout_plugin.so
 -rwxr-xr-x	root/root	usr/lib/vlc/plugins/access_output/libaccess_output_udp_plugin.la
 -rwxr-xr-x	root/root	usr/lib/vlc/plugins/access_output/libaccess_output_udp_plugin.so
 drwxr-xr-x	root/root	usr/lib/vlc/plugins/audio_filter/
@@ -343,6 +345,8 @@ drwxr-xr-x	root/root	usr/lib/vlc/plugins/codec/
 -rwxr-xr-x	root/root	usr/lib/vlc/plugins/codec/libcdg_plugin.so
 -rwxr-xr-x	root/root	usr/lib/vlc/plugins/codec/libcvdsub_plugin.la
 -rwxr-xr-x	root/root	usr/lib/vlc/plugins/codec/libcvdsub_plugin.so
+-rwxr-xr-x	root/root	usr/lib/vlc/plugins/codec/libdav1d_plugin.la
+-rwxr-xr-x	root/root	usr/lib/vlc/plugins/codec/libdav1d_plugin.so
 -rwxr-xr-x	root/root	usr/lib/vlc/plugins/codec/libdca_plugin.la
 -rwxr-xr-x	root/root	usr/lib/vlc/plugins/codec/libdca_plugin.so
 -rwxr-xr-x	root/root	usr/lib/vlc/plugins/codec/libddummy_plugin.la
@@ -419,10 +423,6 @@ drwxr-xr-x	root/root	usr/lib/vlc/plugins/codec/
 -rwxr-xr-x	root/root	usr/lib/vlc/plugins/codec/libttml_plugin.so
 -rwxr-xr-x	root/root	usr/lib/vlc/plugins/codec/libuleaddvaudio_plugin.la
 -rwxr-xr-x	root/root	usr/lib/vlc/plugins/codec/libuleaddvaudio_plugin.so
--rwxr-xr-x	root/root	usr/lib/vlc/plugins/codec/libvaapi_drm_plugin.la
--rwxr-xr-x	root/root	usr/lib/vlc/plugins/codec/libvaapi_drm_plugin.so
--rwxr-xr-x	root/root	usr/lib/vlc/plugins/codec/libvaapi_plugin.la
--rwxr-xr-x	root/root	usr/lib/vlc/plugins/codec/libvaapi_plugin.so
 -rwxr-xr-x	root/root	usr/lib/vlc/plugins/codec/libvorbis_plugin.la
 -rwxr-xr-x	root/root	usr/lib/vlc/plugins/codec/libvorbis_plugin.so
 -rwxr-xr-x	root/root	usr/lib/vlc/plugins/codec/libvpx_plugin.la
@@ -704,6 +704,8 @@ drwxr-xr-x	root/root	usr/lib/vlc/plugins/stream_out/
 -rwxr-xr-x	root/root	usr/lib/vlc/plugins/stream_out/libstream_out_autodel_plugin.so
 -rwxr-xr-x	root/root	usr/lib/vlc/plugins/stream_out/libstream_out_bridge_plugin.la
 -rwxr-xr-x	root/root	usr/lib/vlc/plugins/stream_out/libstream_out_bridge_plugin.so
+-rwxr-xr-x	root/root	usr/lib/vlc/plugins/stream_out/libstream_out_chromaprint_plugin.la
+-rwxr-xr-x	root/root	usr/lib/vlc/plugins/stream_out/libstream_out_chromaprint_plugin.so
 -rwxr-xr-x	root/root	usr/lib/vlc/plugins/stream_out/libstream_out_chromecast_plugin.la
 -rwxr-xr-x	root/root	usr/lib/vlc/plugins/stream_out/libstream_out_chromecast_plugin.so
 -rwxr-xr-x	root/root	usr/lib/vlc/plugins/stream_out/libstream_out_cycle_plugin.la
