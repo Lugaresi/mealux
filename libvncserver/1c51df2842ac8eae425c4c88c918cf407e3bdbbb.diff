@@ -1,0 +1,12 @@
+diff --git a/client_examples/vnc2mpg.c b/client_examples/vnc2mpg.c
+index ebde6890..375370d3 100644
+--- a/client_examples/vnc2mpg.c
++++ b/client_examples/vnc2mpg.c
+@@ -29,6 +29,7 @@
+ #include <math.h>
+ #include <signal.h>
+ #include <sys/time.h>
++#include <libavcodec/avcodec.h>
+ #include <libavformat/avformat.h>
+ #include <libswscale/swscale.h>
+ #include <rfb/rfbclient.h>
