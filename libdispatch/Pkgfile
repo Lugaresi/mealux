@@ -5,12 +5,13 @@
 
 name=libdispatch
 version=5.5
-release=1
+release=2
 source=(https://github.com/apple/swift-corelibs-libdispatch/archive/refs/tags/swift-$version-RELEASE.tar.gz
-	refcount-unused.diff)
+	refcount-unused.diff 915f25141a7c57b6a2a3bc8697572644af181ec5.diff)
 build() {
     cd swift-corelibs-libdispatch-swift-$version-RELEASE
-    patch  -p1 -i $SRC/refcount-unused.diff
+    patch -p1 -i $SRC/refcount-unused.diff
+    patch -p1 -i $SRC/915f25141a7c57b6a2a3bc8697572644af181ec5.diff
     mkdir build && cd build
     cmake -G Ninja -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ \
     -DBlocksRuntime_INCLUDE_DIR=/usr/include DBlocksRuntime_LIBRARIES=/usr/lib/libBlocksRuntime.so \
