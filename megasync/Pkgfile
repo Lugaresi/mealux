@@ -2,11 +2,11 @@
 # URL:         https://github.com/meganz/MEGAsync/
 # Maintainer:  Stu
 # Packager:    Stu
-# Depends on:  libraw libmediainfo crypto++ c-ares freeimage
+# Depends on:  libraw libmediainfo crypto++ c-ares freeimage qt5 openmp
 
 name=megasync
-version=4.5.3.0
-sdkver=3.8.2c
+version=4.6.7.0
+sdkver=3.9.16a
 release=1
 source=(https://github.com/meganz/MEGAsync/archive/v${version}_Linux.tar.gz https://github.com/meganz/sdk/archive/v${sdkver}.tar.gz patch-ffmpeg44.diff) 
 
@@ -15,7 +15,7 @@ build() {
   mkdir -p MEGASync/mega
   mv $SRC/sdk-${sdkver}/* MEGASync/mega/
   patch -p2 -i $SRC/patch-ffmpeg44.diff
-  ./configure -i -z
+  CC=gcc CXX=g++ ./configure -i -z
   qmake-qt5 MEGA.pro
   lrelease-qt5 MEGASync/MEGASync.pro
   make

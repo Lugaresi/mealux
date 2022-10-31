@@ -1,6 +1,15 @@
---- a/src/MEGASync/mega/src/gfx/freeimage.cpp	2021-10-25 23:38:54.835112485 +0200
-+++ b/src/MEGASync/mega/src/gfx/freeimage.cpp	2021-10-25 23:43:52.609120791 +0200
-@@ -252,8 +252,7 @@ bool GfxProcFreeImage::readbitmapFfmpeg(
+--- a/src/MEGASync/mega/src/gfx/freeimage.cpp.old	2022-10-30 21:31:53.816333597 +0100
++++ b/src/MEGASync/mega/src/gfx/freeimage.cpp	2022-10-30 21:39:59.862347155 +0100
+@@ -313,7 +313,7 @@ bool GfxProviderFreeImage::readbitmapFfm
+ 
+     // Find decoder for video stream
+     AVCodecID codecId = codecParm->codec_id;
+-    AVCodec* decoder = avcodec_find_decoder(codecId);
++    const AVCodec* decoder = avcodec_find_decoder(codecId);
+     if (!decoder)
+     {
+         LOG_warn << "Codec not found: " << codecId;
+@@ -329,8 +329,7 @@ bool GfxProviderFreeImage::readbitmapFfm
      }
  
      // Force seeking to key frames
@@ -10,13 +19,3 @@
      if (decoder->capabilities & CAP_TRUNCATED)
      {
          codecContext->flags |= CAP_TRUNCATED;
---- a/src/MEGASync/mega/src/gfx/qt.cpp	2021-10-31 01:40:38.341289753 +0200
-+++ b/src/MEGASync/mega/src/gfx/qt.cpp	2021-10-31 01:40:52.657289616 +0200
-@@ -1209,7 +1209,6 @@ QImageReader *GfxProcQT::readbitmapFfmpe
- 
-     // Force seeking to key frames
-     formatContext->seek2any = false;
--    videoStream->skip_to_keyframe = true;
-     if (decoder->capabilities & CAP_TRUNCATED)
-     {
-         codecContext.flags |= CAP_TRUNCATED;

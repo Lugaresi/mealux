@@ -4,19 +4,22 @@
 # Packager:    Stu
 # Depends on: llvm, clang
 
-name=libclc
+name=openmp
 version=15.0.3
 release=1
-source=(https://github.com/llvm/llvm-project/releases/download/llvmorg-$version/$name-$version.src.tar.xz)
+source=(https://github.com/llvm/llvm-project/releases/download/llvmorg-$version/$name-$version.src.tar.xz
+        https://github.com/llvm/llvm-project/releases/download/llvmorg-$version/cmake-$version.src.tar.xz)
 
 build () {
     cd $name-$version.src
     mkdir build2 && cd build2
     cmake .. -G Ninja \
+    -DCMAKE_C_COMPILER=clang  -DCMAKE_CXX_COMPILER=clang++ \
+    -DCMAKE_MODULE_PATH=$SRC/cmake-$version.src/Modules \
     -DCMAKE_BUILD_TYPE=Release \
     -DCMAKE_INSTALL_PREFIX=/usr \
-    -DLIBCLC_TARGETS_TO_BUILD="amdgcn-mesa-mesa3d;r600-mesa-mesa3d;" \
     -DLLVM_CONFIG=/usr/bin/llvm-config
     ninja all
     DESTDIR=$PKG ninja install
+    rm $PKG/usr/lib/libgomp.so
 }
