@@ -4,19 +4,17 @@
 # Depends on:  sdl libjpeg-turbo ode
 
 name=xonotic
-version=0.8.2
-release=3
+version=0.8.5
+release=1
 source=(
      https://dl.xonotic.org/$name-$version.zip \
-     Xonotic.desktop 0d3d1f2655901776b2fc3e911eb78478412f789a.diff)
+     Xonotic.desktop)
 
 
 build() {
     rm -rf Xonotic/{*.exe,*.app,bin32,bin64}
-    rm Xonotic/xonotic-{linux32,linux64,osx}-*
+    rm Xonotic/xonotic-{linux64,osx}-*
     cd Xonotic/source/d0_blind_id
-    patch -p1 -i $SRC/0d3d1f2655901776b2fc3e911eb78478412f789a.diff
-    autoreconf -fi
     ./configure --disable-shared --enable-static
     make
     cd ../darkplaces
