@@ -17,9 +17,9 @@ drwxr-xr-x	root/root	usr/include/libHX/
 -rw-r--r--	root/root	usr/include/libHX/wx_helper.hpp
 drwxr-xr-x	root/root	usr/lib/
 -rwxr-xr-x	root/root	usr/lib/libHX.la
-lrwxrwxrwx	root/root	usr/lib/libHX.so -> libHX.so.28.3.0
-lrwxrwxrwx	root/root	usr/lib/libHX.so.28 -> libHX.so.28.3.0
--rwxr-xr-x	root/root	usr/lib/libHX.so.28.3.0
+lrwxrwxrwx	root/root	usr/lib/libHX.so -> libHX.so.32.0.0
+lrwxrwxrwx	root/root	usr/lib/libHX.so.32 -> libHX.so.32.0.0
+-rwxr-xr-x	root/root	usr/lib/libHX.so.32.0.0
 -rwxr-xr-x	root/root	usr/lib/libHX_rtcheck.la
 -rwxr-xr-x	root/root	usr/lib/libHX_rtcheck.so
 drwxr-xr-x	root/root	usr/lib/pkgconfig/
