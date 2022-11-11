@@ -5,7 +5,7 @@
 
 name=pulseaudio-module-xrdp
 version=0.6
-release=1
+release=2
 source=(https://github.com/neutrinolabs/$name/archive/v$version.tar.gz)
 
 build() {
