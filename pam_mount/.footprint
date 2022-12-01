@@ -10,13 +10,6 @@ drwxr-xr-x	root/root	lib/pkgconfig/
 -rw-r--r--	root/root	lib/pkgconfig/libcryptmount.pc
 drwxr-xr-x	root/root	lib/security/
 -rwxr-xr-x	root/root	lib/security/pam_mount.so
-drwxr-xr-x	root/root	sbin/
--rwxr-xr-x	root/root	sbin/mount.crypt
-lrwxrwxrwx	root/root	sbin/mount.crypt_LUKS -> mount.crypt
-lrwxrwxrwx	root/root	sbin/mount.crypto_LUKS -> mount.crypt
-lrwxrwxrwx	root/root	sbin/umount.crypt -> mount.crypt
-lrwxrwxrwx	root/root	sbin/umount.crypt_LUKS -> mount.crypt
-lrwxrwxrwx	root/root	sbin/umount.crypto_LUKS -> mount.crypt
 drwxr-xr-x	root/root	usr/
 drwxr-xr-x	root/root	usr/include/
 -rw-r--r--	root/root	usr/include/libcryptmount.h
@@ -34,7 +27,14 @@ drwxr-xr-x	root/root	usr/man/man8/
 -rw-r--r--	root/root	usr/man/man8/umount.crypt_LUKS.8.gz
 -rw-r--r--	root/root	usr/man/man8/umount.crypto_LUKS.8.gz
 drwxr-xr-x	root/root	usr/sbin/
+-rwxr-xr-x	root/root	usr/sbin/mount.crypt
+lrwxrwxrwx	root/root	usr/sbin/mount.crypt_LUKS -> mount.crypt
+lrwxrwxrwx	root/root	usr/sbin/mount.crypto_LUKS -> mount.crypt
+-rwxr-xr-x	root/root	usr/sbin/pmt-ehd
 -rwxr-xr-x	root/root	usr/sbin/pmvarrun
+lrwxrwxrwx	root/root	usr/sbin/umount.crypt -> mount.crypt
+lrwxrwxrwx	root/root	usr/sbin/umount.crypt_LUKS -> mount.crypt
+lrwxrwxrwx	root/root	usr/sbin/umount.crypto_LUKS -> mount.crypt
 drwxr-xr-x	root/root	usr/var/
 drwxr-xr-x	root/root	usr/var/run/
 drwxr-xr-x	root/root	usr/var/run/pam_mount/
