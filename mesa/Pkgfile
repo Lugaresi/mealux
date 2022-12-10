@@ -5,7 +5,7 @@
 # Optional: libva libvdpau wayland-protocols
 
 name=mesa
-version=22.2.2
+version=22.3.0
 release=1
 source=(https://archive.mesa3d.org/$name-$version.tar.xz)
 
@@ -17,15 +17,15 @@ build() {
 	#prt-get isinst xorg-libxdamage xorg-libxrandr xorg-libxshmfence xorg-libxvmc xorg-libxxf86vm && PKGMK_MESA_PLATFORMS+=',x11'
 	PKGMK_MESA_PLATFORMS+=',x11'
 
-	CFLAGS+=' -mtls-dialect=gnu'
-	CXXFLAGS+=' -mtls-dialect=gnu'
+#	CFLAGS+=' -mtls-dialect=gnu'
+#	CXXFLAGS+=' -mtls-dialect=gnu'
 
-	meson setup build mesa-$version $PKGMK_MESA \
+
+	CC=clang CXX=clang++ meson setup build mesa-$version $PKGMK_MESA \
 		--prefix=/usr \
 		--sysconfdir=/etc \
 		--buildtype=plain \
 		--wrap-mode nodownload \
-		-D b_lto=true \
 		-D b_pie=true \
 		-D dri3=enabled \
 		-D egl=enabled \

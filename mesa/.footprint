@@ -7,7 +7,7 @@ drwxr-xr-x	root/root	usr/bin/
 -r-xr-xr-x	root/root	usr/bin/mesa-overlay-control.py
 drwxr-xr-x	root/root	usr/include/
 drwxr-xr-x	root/root	usr/include/EGL/
--rw-r--r--	root/root	usr/include/EGL/eglextchromium.h
+-rw-r--r--	root/root	usr/include/EGL/eglext_angle.h
 -rw-r--r--	root/root	usr/include/EGL/eglmesaext.h
 drwxr-xr-x	root/root	usr/include/GL/
 drwxr-xr-x	root/root	usr/include/GL/internal/
@@ -31,6 +31,7 @@ drwxr-xr-x	root/root	usr/lib/dri/
 -rwxr-xr-x	root/root	usr/lib/dri/radeonsi_drv_video.so
 -rwxr-xr-x	root/root	usr/lib/dri/swrast_dri.so
 -rwxr-xr-x	root/root	usr/lib/dri/virtio_gpu_dri.so
+-rwxr-xr-x	root/root	usr/lib/dri/virtio_gpu_drv_video.so
 -rwxr-xr-x	root/root	usr/lib/dri/vmwgfx_dri.so
 -rwxr-xr-x	root/root	usr/lib/dri/zink_dri.so
 drwxr-xr-x	root/root	usr/lib/gallium-pipe/
@@ -58,14 +59,6 @@ lrwxrwxrwx	root/root	usr/lib/libOSMesa.so.8 -> libOSMesa.so.8.0.0
 -rwxr-xr-x	root/root	usr/lib/libVkLayer_INTEL_nullhw.so
 -rwxr-xr-x	root/root	usr/lib/libVkLayer_MESA_device_select.so
 -rwxr-xr-x	root/root	usr/lib/libVkLayer_MESA_overlay.so
-lrwxrwxrwx	root/root	usr/lib/libXvMCnouveau.so -> libXvMCnouveau.so.1.0.0
-lrwxrwxrwx	root/root	usr/lib/libXvMCnouveau.so.1 -> libXvMCnouveau.so.1.0.0
-lrwxrwxrwx	root/root	usr/lib/libXvMCnouveau.so.1.0 -> libXvMCnouveau.so.1.0.0
--rwxr-xr-x	root/root	usr/lib/libXvMCnouveau.so.1.0.0
-lrwxrwxrwx	root/root	usr/lib/libXvMCr600.so -> libXvMCr600.so.1.0.0
-lrwxrwxrwx	root/root	usr/lib/libXvMCr600.so.1 -> libXvMCr600.so.1.0.0
-lrwxrwxrwx	root/root	usr/lib/libXvMCr600.so.1.0 -> libXvMCr600.so.1.0.0
--rwxr-xr-x	root/root	usr/lib/libXvMCr600.so.1.0.0
 lrwxrwxrwx	root/root	usr/lib/libgbm.so -> libgbm.so.1
 lrwxrwxrwx	root/root	usr/lib/libgbm.so.1 -> libgbm.so.1.0.0
 -rwxr-xr-x	root/root	usr/lib/libgbm.so.1.0.0
@@ -99,6 +92,10 @@ lrwxrwxrwx	root/root	usr/lib/vdpau/libvdpau_radeonsi.so -> libvdpau_radeonsi.so.
 lrwxrwxrwx	root/root	usr/lib/vdpau/libvdpau_radeonsi.so.1 -> libvdpau_radeonsi.so.1.0.0
 lrwxrwxrwx	root/root	usr/lib/vdpau/libvdpau_radeonsi.so.1.0 -> libvdpau_radeonsi.so.1.0.0
 -rwxr-xr-x	root/root	usr/lib/vdpau/libvdpau_radeonsi.so.1.0.0
+lrwxrwxrwx	root/root	usr/lib/vdpau/libvdpau_virtio_gpu.so -> libvdpau_virtio_gpu.so.1.0.0
+lrwxrwxrwx	root/root	usr/lib/vdpau/libvdpau_virtio_gpu.so.1 -> libvdpau_virtio_gpu.so.1.0.0
+lrwxrwxrwx	root/root	usr/lib/vdpau/libvdpau_virtio_gpu.so.1.0 -> libvdpau_virtio_gpu.so.1.0.0
+-rwxr-xr-x	root/root	usr/lib/vdpau/libvdpau_virtio_gpu.so.1.0.0
 drwxr-xr-x	root/root	usr/share/
 drwxr-xr-x	root/root	usr/share/drirc.d/
 -rw-r--r--	root/root	usr/share/drirc.d/00-mesa-defaults.conf
