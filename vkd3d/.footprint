@@ -19,19 +19,19 @@ drwxr-xr-x	root/root	usr/include/vkd3d/
 drwxr-xr-x	root/root	usr/lib/
 -rw-r--r--	root/root	usr/lib/libvkd3d-shader.a
 -rwxr-xr-x	root/root	usr/lib/libvkd3d-shader.la
-lrwxrwxrwx	root/root	usr/lib/libvkd3d-shader.so -> libvkd3d-shader.so.1.1.0
-lrwxrwxrwx	root/root	usr/lib/libvkd3d-shader.so.1 -> libvkd3d-shader.so.1.1.0
--rwxr-xr-x	root/root	usr/lib/libvkd3d-shader.so.1.1.0
+lrwxrwxrwx	root/root	usr/lib/libvkd3d-shader.so -> libvkd3d-shader.so.1.4.0
+lrwxrwxrwx	root/root	usr/lib/libvkd3d-shader.so.1 -> libvkd3d-shader.so.1.4.0
+-rwxr-xr-x	root/root	usr/lib/libvkd3d-shader.so.1.4.0
 -rw-r--r--	root/root	usr/lib/libvkd3d-utils.a
 -rwxr-xr-x	root/root	usr/lib/libvkd3d-utils.la
-lrwxrwxrwx	root/root	usr/lib/libvkd3d-utils.so -> libvkd3d-utils.so.1.2.0
-lrwxrwxrwx	root/root	usr/lib/libvkd3d-utils.so.1 -> libvkd3d-utils.so.1.2.0
--rwxr-xr-x	root/root	usr/lib/libvkd3d-utils.so.1.2.0
+lrwxrwxrwx	root/root	usr/lib/libvkd3d-utils.so -> libvkd3d-utils.so.1.3.2
+lrwxrwxrwx	root/root	usr/lib/libvkd3d-utils.so.1 -> libvkd3d-utils.so.1.3.2
+-rwxr-xr-x	root/root	usr/lib/libvkd3d-utils.so.1.3.2
 -rw-r--r--	root/root	usr/lib/libvkd3d.a
 -rwxr-xr-x	root/root	usr/lib/libvkd3d.la
-lrwxrwxrwx	root/root	usr/lib/libvkd3d.so -> libvkd3d.so.1.3.0
-lrwxrwxrwx	root/root	usr/lib/libvkd3d.so.1 -> libvkd3d.so.1.3.0
--rwxr-xr-x	root/root	usr/lib/libvkd3d.so.1.3.0
+lrwxrwxrwx	root/root	usr/lib/libvkd3d.so -> libvkd3d.so.1.6.0
+lrwxrwxrwx	root/root	usr/lib/libvkd3d.so.1 -> libvkd3d.so.1.6.0
+-rwxr-xr-x	root/root	usr/lib/libvkd3d.so.1.6.0
 drwxr-xr-x	root/root	usr/lib/pkgconfig/
 -rw-r--r--	root/root	usr/lib/pkgconfig/libvkd3d-shader.pc
 -rw-r--r--	root/root	usr/lib/pkgconfig/libvkd3d-utils.pc
