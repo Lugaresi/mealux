@@ -1,11 +1,11 @@
 # Description: Desktop Sharing
-# URL:         https://www.kde.org/applications/system/krfb
+# URL:         https://apps.kde.org/krfb/
 # Maintainer:  Stuka
 #
 # depends on: libvncserver
 
 name=krfb
-version=22.08.2
+version=22.12.0
 release=1
 source=(
   https://download.kde.org/stable/release-service/$version/src/$name-$version.tar.xz

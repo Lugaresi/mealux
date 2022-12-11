@@ -89,6 +89,10 @@ drwxr-xr-x	root/root	usr/share/doc/HTML/sr/
 drwxr-xr-x	root/root	usr/share/doc/HTML/sr/krfb/
 -rw-r--r--	root/root	usr/share/doc/HTML/sr/krfb/index.cache.bz2
 -rw-r--r--	root/root	usr/share/doc/HTML/sr/krfb/index.docbook
+drwxr-xr-x	root/root	usr/share/doc/HTML/sr@latin/
+drwxr-xr-x	root/root	usr/share/doc/HTML/sr@latin/krfb/
+-rw-r--r--	root/root	usr/share/doc/HTML/sr@latin/krfb/index.cache.bz2
+-rw-r--r--	root/root	usr/share/doc/HTML/sr@latin/krfb/index.docbook
 drwxr-xr-x	root/root	usr/share/doc/HTML/sv/
 drwxr-xr-x	root/root	usr/share/doc/HTML/sv/krfb/
 -rw-r--r--	root/root	usr/share/doc/HTML/sv/krfb/configuration_access.png
