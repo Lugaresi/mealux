@@ -1,0 +1,16 @@
+# Description: Cleo allows you to create beautiful and testable command-line interfaces.
+# URL: https://github.com/python-poetry/cleo
+# Maintainer: Tim Biermann, tbier at posteo dot de
+# Depends on: python3-clikit
+
+name=python3-mongo
+version=4.3.3
+release=1
+source=(https://files.pythonhosted.org/packages/source/p/pymongo/pymongo-$version.tar.gz)
+
+build() {
+  cd pymongo-$version
+
+  python3 setup.py build
+  python3 setup.py install --root=$PKG
+}

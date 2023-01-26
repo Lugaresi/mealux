@@ -1,37 +1,43 @@
 # Description: A high-performance, open source, schema-free document-oriented database
 # Maintainer:  Alan Mizrahi, alan at mizrahi dot com dot ve
 # URL:         https://www.mongodb.com/
-# Depends on:  curl libpcap libstemmer ncurses pcre py-cheetah python2-regex python2-requests python2-setuptools python-typing python3-yaml readline scons yaml-cpp python3-psutil cheetah-template
+# Depends on:  libpcap ncurses pcre readline yaml-cpp python3-psutil cheetah-template zstd libunwind python3-mongo clang
 
 name=mongodb
-version=4.4.6
+version=6.0.4
 release=1
 source=(
 http://downloads.mongodb.org/src/mongodb-src-r$version.tar.gz
 mongod.conf
 mongod.rc
+plan_stats.diff
+mongodb-6.0.0-gcc12.patch
 )
 
 build(){
 	cd "$SRC/$name-src-r$version"
+	patch -p1 -i $SRC/plan_stats.diff
+	patch -p1 -i $SRC/mongodb-6.0.0-gcc12.patch
 	
 	SCONSFLAGS="$MAKEFLAGS" \
-	scons core install --prefix="$PKG/usr" \
-		--install-mode=legacy \
+	scons DESTDIR=$PKG PREFIX=/usr \
+		CFLAGS="-mno-avx -mno-avx2" CXXFLAGS="-mno-avx -mno-avx2" \
+		install-core \
 		--disable-warnings-as-errors \
 		--use-system-pcre \
+		--use-system-zstd \
+		--use-system-libunwind \
 		--use-system-zlib \
+		--use-system-yaml \
 		--use-sasl-client \
 		--ssl
-  # --use-system-yaml       # to-do
   # --use-system-wiredtiger # to-do
   # --use-system-stemmer    # to-do
   # --use-system-boost      # doesn't compile
   # --use-system-mongo-c    # doesn't compile
-  # --use-system-sqlite     # not used
-	
+  # --use-system-sqlite     # not usedo
+
 	# Install manpages
-	install -Dm644 "debian/mongo.1" "${PKG}/usr/share/man/man1/mongo.1"
 	install -Dm644 "debian/mongod.1" "${PKG}/usr/share/man/man1/mongod.1"
 	install -Dm644 "debian/mongos.1" "${PKG}/usr/share/man/man1/mongos.1"
 
@@ -42,5 +48,6 @@ build(){
 	# data dir
 	install -d -m 750 -o mongo -g mongo $PKG/var/lib/mongo
 
-	rm "$PKG/usr/bin/install_compass"
+	# Cleanup
+	rm $PKG/usr/{LICENSE-Community.txt,MPL-2,README,THIRD-PARTY-NOTICES}
 }

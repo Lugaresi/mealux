@@ -5,13 +5,12 @@ drwxr-xr-x	root/root	etc/rc.d/
 -rwxr-xr-x	root/root	etc/rc.d/mongod
 drwxr-xr-x	root/root	usr/
 drwxr-xr-x	root/root	usr/bin/
--rwxr-xr-x	root/root	usr/bin/mongo
 -rwxr-xr-x	root/root	usr/bin/mongod
 -rwxr-xr-x	root/root	usr/bin/mongos
+-rwxr--r--	root/root	usr/bin/resmoke.py
 drwxr-xr-x	root/root	usr/share/
 drwxr-xr-x	root/root	usr/share/man/
 drwxr-xr-x	root/root	usr/share/man/man1/
--rw-r--r--	root/root	usr/share/man/man1/mongo.1.gz
 -rw-r--r--	root/root	usr/share/man/man1/mongod.1.gz
 -rw-r--r--	root/root	usr/share/man/man1/mongos.1.gz
 drwxr-xr-x	root/root	var/

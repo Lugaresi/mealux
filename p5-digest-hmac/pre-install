@@ -1,0 +1,8 @@
+#!/bin/sh
+
+USER=spamd
+GROUP=spamd
+
+getent group $GROUP || /usr/sbin/groupadd --system $GROUP
+getent passwd $USER || /usr/sbin/useradd --system --gid $GROUP --home-dir /var/empty --shell /bin/false $USER && passwd --lock $USER
+

@@ -7,7 +7,7 @@ pidfile=/home/transmission/transmission.pid
 
 case $1 in
 start)
-  /usr/bin/su -c "/usr/bin/transmission-daemon --auth --log-error --pid-file $pidfile" -s /bin/sh transmission
+  /usr/bin/su -c "/usr/bin/transmission-daemon --auth --log-level=error --pid-file $pidfile" -s /bin/sh transmission
   ;;
 stop)
   if [ -f "$pidfile" ]; then

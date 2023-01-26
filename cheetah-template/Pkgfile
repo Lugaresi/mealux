@@ -4,12 +4,12 @@
 # Depends on: python 
 
 name=cheetah-template
-version=3.2.6.post2
+version=3.3.1
 release=1
-source=(https://files.pythonhosted.org/packages/c0/97/c3fa47e223207e6ca6b501a954c5c959ed3e99f2a1ceec9918238ce38418/Cheetah3-3.2.6.post2.tar.gz)
+source=(https://files.pythonhosted.org/packages/50/db/5070c9f6bffe4c4cab2fb3a85b47a358ffb9fe670e25aa676d34976a7352/CT3-3.3.1.tar.gz)
 
 build() {
-	cd Cheetah3-$version
+	cd CT3-$version
 
 	/usr/bin/python setup.py build
 	/usr/bin/python setup.py install --root=$PKG

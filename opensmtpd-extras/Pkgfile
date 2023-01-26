@@ -14,7 +14,7 @@ source=(
 build() {
   cd OpenSMTPD-extras-$version
   ./bootstrap 
-  ./configure --prefix=/usr --libexecdir=/usr/lib --with-table-mysql --with-filter-stub --with-queue-ram --with-table-passwd
+  ./configure --prefix=/usr --libexecdir=/usr/lib --with-filter-stub --with-queue-ram --with-table-passwd
   make
   make DESTDIR=$PKG install
 }

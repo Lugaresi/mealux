@@ -1,3 +1,5 @@
 17d8ae39171f0de1f5daf7019de5c05d  mongod.conf
 43fb82d15090d450e99c0da6bebd403a  mongod.rc
-075472baacc89e74219beaa08a9d287d  mongodb-src-r4.4.6.tar.gz
+84c9e55ef38894fb4e049290794f3e12  mongodb-6.0.0-gcc12.patch
+b521b8446b7096d63f67bff00a010be0  mongodb-src-r6.0.4.tar.gz
+b53de714d981ad41b7be66d8f8221987  plan_stats.diff

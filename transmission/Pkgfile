@@ -4,21 +4,31 @@
 # Depends on:  curl libevent
 
 name=transmission
-version=3.00
+version=4.0.0-beta.3
 release=1
-source=(https://github.com/transmission/transmission-releases/raw/master/transmission-$version.tar.xz transmission.rc)
+#source=(https://github.com/transmission/transmission-releases/raw/master/transmission-$version.tar.xz transmission.rc)
+source=(https://github.com/transmission/transmission/releases/download/4.0.0-beta.3/transmission-4.0.0-beta.3+r634b1e8fc1.tar.xz
+	transmission.rc)
 
 build() {
-    cd $name-$version
+#    cd $name-$version
+	cd $name-4.0.0-beta.3+r634b1e8fc1
+	mkdir build && cd build
+	cmake .. \
+		-DCMAKE_BUILD_TYPE=Release \
+		-DCMAKE_INSTALL_PREFIX=/usr \
+		-DENABLE_CLI=ON \
+		-DENABLE_DAEMON=ON \
+		-DENABLE_GTK=OFF \
+		-DENABLE_NLS=OFF \
+		-DENABLE_QT=OFF \
+		-DENABLE_TESTS=OFF \
+		-DENABLE_UTILS=ON \
+		-DINSTALL_DOC=ON \
+		-DUSE_QT5=OFF
+	make
+	make DESTDIR=$PKG install
 
-    ./configure --prefix=/usr \
-                --disable-nls \
-                --enable-cli \
-                --enable-daemon \
-                --without-gtk
-    make
-    make DESTDIR=$PKG install
-
-    install -D -m 755 $SRC/$name.rc $PKG/etc/rc.d/$name
-    rm $PKG/usr/share/transmission/web/LICENSE
+	rm -rf $PKG/usr/share/doc
+	install -D -m 755 $SRC/$name.rc $PKG/etc/rc.d/$name
 }

@@ -1,0 +1,30 @@
+# Description:	Mail filter to identify spam
+# URL:		http://www.spamassassin.org
+# Maintainer:	Alan Mizrahi, alan at mizrahi dot com dot ve
+# Depends on:	p5-digest-sha1 p5-net-dns p5-lwp p5-netaddr-ip gnupg
+# Optional:	re2c razor-agents p5-mail-spf p5-io-socket-ip p5-io-socket-inet6 p5-io-socket-ssl p5-mail-dkim p5-encode-detect p5-net-patricia
+
+name=spamassassin
+version=3.4.6
+release=3
+source=(
+https://www.apache.org/dist/spamassassin/source/Mail-SpamAssassin-$version.tar.bz2
+spamd.rc
+)
+
+build(){
+  cd Mail-SpamAssassin-$version
+
+  export PERL_USE_UNSAFE_INC=1
+  PERL_MM_USE_DEFAULT=1 perl Makefile.PL INSTALLDIRS=vendor CONFDIR=/etc/"$name"
+  make
+  make DESTDIR="$PKG" install
+
+  install -d -o spamd -g spamd -m 755 $PKG/var/lib/spamassassin
+  install -D -m755 "$SRC"/spamd.rc "$PKG"/etc/rc.d/spamd
+
+  find "$PKG/usr/lib" -depth \
+    -type f \( -name .packlist -o -name \*.bs -o -name perllocal.pod \) -delete , \
+    -type f -name autosplit.ix \( -exec grep -q '^[[:space:]]*package' {} \; -o -delete \) , \
+    -type d -empty -exec rmdir {} +
+}

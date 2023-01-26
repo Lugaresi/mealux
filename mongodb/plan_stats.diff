@@ -1,0 +1,10 @@
+--- a/src/mongo/db/exec/plan_stats.h	2021-05-03 21:32:31.309222261 -0700
++++ b/src/mongo/db/exec/plan_stats.h	2021-05-03 20:16:17.854204705 -0700
+@@ -33,6 +33,7 @@ 
+ #include <cstdlib>
+ #include <string>
+ #include <vector>
++#include <optional>
+ 
+ #include "mongo/db/index/multikey_paths.h"
+ #include "mongo/db/jsobj.h"
