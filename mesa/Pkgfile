@@ -5,9 +5,10 @@
 # Optional: libva libvdpau wayland-protocols
 
 name=mesa
-version=22.3.0
+version=22.3.4
 release=1
-source=(https://archive.mesa3d.org/$name-$version.tar.xz)
+source=(https://archive.mesa3d.org/$name-$version.tar.xz
+  0001-anv-force-MEDIA_INTERFACE_DESCRIPTOR_LOAD-reemit-aft.patch)
 
 build() {
 	prt-get isinst vulkan-loader && PKGMK_MESA_GALLIUM+='zink,'
@@ -20,6 +21,7 @@ build() {
 #	CFLAGS+=' -mtls-dialect=gnu'
 #	CXXFLAGS+=' -mtls-dialect=gnu'
 
+	patch -Np1 -d mesa-$version -i $SRC/0001-anv-force-MEDIA_INTERFACE_DESCRIPTOR_LOAD-reemit-aft.patch
 
 	CC=clang CXX=clang++ meson setup build mesa-$version $PKGMK_MESA \
 		--prefix=/usr \
@@ -38,7 +40,7 @@ build() {
 		-D osmesa=true \
 		-D gallium-xa=enabled \
 		-D gallium-opencl=icd \
-		-D gallium-drivers=${PKGMK_MESA_GALLIUM}crocus,iris,nouveau,r300,r600,radeonsi,svga,swrast,virgl \
+		-D gallium-drivers=${PKGMK_MESA_GALLIUM}crocus,iris,nouveau,r300,r600,radeonsi,svga,swrast,virgl,i915 \
 		-D platforms=${PKGMK_MESA_PLATFORMS#,} \
 		-D shared-glapi=enabled \
 		-D vulkan-drivers=amd,intel \

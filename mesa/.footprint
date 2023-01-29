@@ -20,6 +20,7 @@ drwxr-xr-x	root/root	usr/include/GL/internal/
 drwxr-xr-x	root/root	usr/lib/
 drwxr-xr-x	root/root	usr/lib/dri/
 -rwxr-xr-x	root/root	usr/lib/dri/crocus_dri.so
+-rwxr-xr-x	root/root	usr/lib/dri/i915_dri.so
 -rwxr-xr-x	root/root	usr/lib/dri/iris_dri.so
 -rwxr-xr-x	root/root	usr/lib/dri/kms_swrast_dri.so
 -rwxr-xr-x	root/root	usr/lib/dri/nouveau_dri.so
@@ -36,6 +37,7 @@ drwxr-xr-x	root/root	usr/lib/dri/
 -rwxr-xr-x	root/root	usr/lib/dri/zink_dri.so
 drwxr-xr-x	root/root	usr/lib/gallium-pipe/
 -rwxr-xr-x	root/root	usr/lib/gallium-pipe/pipe_crocus.so
+-rwxr-xr-x	root/root	usr/lib/gallium-pipe/pipe_i915.so
 -rwxr-xr-x	root/root	usr/lib/gallium-pipe/pipe_iris.so
 -rwxr-xr-x	root/root	usr/lib/gallium-pipe/pipe_nouveau.so
 -rwxr-xr-x	root/root	usr/lib/gallium-pipe/pipe_r300.so
