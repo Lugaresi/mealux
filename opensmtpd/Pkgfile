@@ -6,17 +6,24 @@
 
 name=opensmtpd
 version=6.8.0p2
-release=1
+libversion=3.6.1
+release=2
 source=(
   https://www.$name.org/archives/$name-$version.tar.gz
+  https://ftp.openbsd.org/pub/OpenBSD/LibreSSL/libressl-$libversion.tar.gz
   $name.rc
 )
 
 build() {
+  cd libressl-$libversion
+  ./configure -prefix=$SRC/lssl --disable-shared --enable-static
+  make
+  make install
+  cd ..
   cd $name-$version
   aclocal
   autoconf
-  ./configure --prefix=/usr --mandir=/usr/man --sysconfdir=/etc --libexecdir=/usr/lib --with-user-smtpd=mail --with-user-queue=mailq --with-group-queue=mail --with-ldflags=-lbsd
+  ./configure --prefix=/usr --mandir=/usr/man --sysconfdir=/etc --libexecdir=/usr/lib --with-user-smtpd=mail --with-user-queue=mailq --with-group-queue=mail --with-ldflags=-lbsd --with-libssl=$SRC/lssl
   make
   make DESTDIR=$PKG install
   chown root:mail $PKG/usr/sbin/smtpctl
