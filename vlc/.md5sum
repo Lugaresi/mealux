@@ -1,5 +1,3 @@
 e13da29bab44d766658570f4962a0822  0001-freerdp-2.patch
 72ce6ef477acf116ad7728eafc047529  0002-fdk-aac-2.0.0.patch
-afff5d88a49157aba773bbde71b75c26  0003-lua-script-compatibility-to-lua-5.4.patch
-39eda6d70148058c04979abf020a494a  0004-dav1d-compat.patch
-951878d524e089bf4c80614c93c68c0c  vlc-3.0.17.4.tar.xz
+f3c031357c0eeffb41e928eca220a803  vlc-3.0.18.tar.xz

@@ -110,13 +110,13 @@ drwxr-xr-x	root/root	usr/include/vlc/plugins/
 -rw-r--r--	root/root	usr/include/vlc/vlc.h
 drwxr-xr-x	root/root	usr/lib/
 -rwxr-xr-x	root/root	usr/lib/libvlc.la
-lrwxrwxrwx	root/root	usr/lib/libvlc.so -> libvlc.so.5.6.0
-lrwxrwxrwx	root/root	usr/lib/libvlc.so.5 -> libvlc.so.5.6.0
--rwxr-xr-x	root/root	usr/lib/libvlc.so.5.6.0
+lrwxrwxrwx	root/root	usr/lib/libvlc.so -> libvlc.so.5.6.1
+lrwxrwxrwx	root/root	usr/lib/libvlc.so.5 -> libvlc.so.5.6.1
+-rwxr-xr-x	root/root	usr/lib/libvlc.so.5.6.1
 -rwxr-xr-x	root/root	usr/lib/libvlccore.la
-lrwxrwxrwx	root/root	usr/lib/libvlccore.so -> libvlccore.so.9.0.0
-lrwxrwxrwx	root/root	usr/lib/libvlccore.so.9 -> libvlccore.so.9.0.0
--rwxr-xr-x	root/root	usr/lib/libvlccore.so.9.0.0
+lrwxrwxrwx	root/root	usr/lib/libvlccore.so -> libvlccore.so.9.0.1
+lrwxrwxrwx	root/root	usr/lib/libvlccore.so.9 -> libvlccore.so.9.0.1
+-rwxr-xr-x	root/root	usr/lib/libvlccore.so.9.0.1
 drwxr-xr-x	root/root	usr/lib/pkgconfig/
 -rw-r--r--	root/root	usr/lib/pkgconfig/libvlc.pc
 -rw-r--r--	root/root	usr/lib/pkgconfig/vlc-plugin.pc
@@ -429,6 +429,8 @@ drwxr-xr-x	root/root	usr/lib/vlc/plugins/codec/
 -rwxr-xr-x	root/root	usr/lib/vlc/plugins/codec/libvpx_plugin.so
 -rwxr-xr-x	root/root	usr/lib/vlc/plugins/codec/libwebvtt_plugin.la
 -rwxr-xr-x	root/root	usr/lib/vlc/plugins/codec/libwebvtt_plugin.so
+-rwxr-xr-x	root/root	usr/lib/vlc/plugins/codec/libx26410b_plugin.la
+-rwxr-xr-x	root/root	usr/lib/vlc/plugins/codec/libx26410b_plugin.so
 -rwxr-xr-x	root/root	usr/lib/vlc/plugins/codec/libx264_plugin.la
 -rwxr-xr-x	root/root	usr/lib/vlc/plugins/codec/libx264_plugin.so
 -rwxr-xr-x	root/root	usr/lib/vlc/plugins/codec/libx265_plugin.la

@@ -5,9 +5,10 @@
 # Optional: alsa-lib cups directfb ffmpeg gst-plugins-base libxslt neon pulseaudio wayland xmlto
 
 name=freerdp2
-version=2.8.1
+version=2.10.0
 release=1
-source=(https://pub.freerdp.com/releases/freerdp-$version.tar.gz)
+source=(https://pub.freerdp.com/releases/freerdp-$version.tar.gz
+	ffmpeg-new.patch)
 
 build() {
 	prt-get isinst ccache && PATH="$(echo ${PATH} | awk -v RS=: -v ORS=: '/ccache/ {next} {print}' | sed 's/:*$//')"
@@ -15,15 +16,25 @@ build() {
 	prt-get isinst libxslt && PKGMK_FREERDP+=' -D WITH_MANPAGES=ON' || PKGMK_FREERDP+=' -D WITH_MANPAGES=OFF'
 	prt-get isinst ninja && PKGMK_FREERDP+=' -G Ninja'
 
+	(cd freerdp-$version && patch -p1 -i ../ffmpeg-new.patch)
+
 	cmake -S freerdp-$version -B build $PKGMK_FREERDP \
 		-D CMAKE_BUILD_TYPE=RELEASE \
 		-D CMAKE_C_FLAGS_RELEASE="$CFLAGS" \
 		-D CMAKE_INSTALL_PREFIX=/usr \
 		-D CMAKE_INSTALL_LIBDIR=lib \
 		-D CMAKE_SKIP_RPATH=ON \
-		-D WITH_SERVER=OFF \
 		-D WITH_CLIENT=ON \
 		-D WITH_LIBSYSTEMD=OFF \
+        	-D WITH_DSP_FFMPEG=ON \
+	        -D WITH_FFMPEG=ON \
+	        -D WITH_PULSE=ON \
+	        -D WITH_CUPS=ON \
+	        -D WITH_PCSC=ON \
+	        -D WITH_JPEG=ON \
+	        -D WITH_SERVER=ON \
+	        -D WITH_SWSCALE=ON \
+	        -D WITH_CHANNELS=ON \
 		-Wno-dev
 	cmake --build build -j ${JOBS:-1}
 	DESTDIR=$PKG cmake --install build

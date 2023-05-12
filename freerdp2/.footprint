@@ -1,5 +1,7 @@
 drwxr-xr-x	root/root	usr/
 drwxr-xr-x	root/root	usr/bin/
+-rwxr-xr-x	root/root	usr/bin/freerdp-proxy
+-rwxr-xr-x	root/root	usr/bin/freerdp-shadow-cli
 -rwxr-xr-x	root/root	usr/bin/winpr-hash
 -rwxr-xr-x	root/root	usr/bin/winpr-makecert
 -rwxr-xr-x	root/root	usr/bin/wlfreerdp
@@ -161,6 +163,7 @@ drwxr-xr-x	root/root	usr/include/freerdp2/freerdp/utils/
 -rw-r--r--	root/root	usr/include/freerdp2/freerdp/utils/ringbuffer.h
 -rw-r--r--	root/root	usr/include/freerdp2/freerdp/utils/signal.h
 -rw-r--r--	root/root	usr/include/freerdp2/freerdp/utils/stopwatch.h
+-rw-r--r--	root/root	usr/include/freerdp2/freerdp/utils/string.h
 -rw-r--r--	root/root	usr/include/freerdp2/freerdp/version.h
 -rw-r--r--	root/root	usr/include/freerdp2/freerdp/window.h
 drwxr-xr-x	root/root	usr/include/uwac0/
@@ -181,6 +184,7 @@ drwxr-xr-x	root/root	usr/include/winpr2/winpr/
 -rw-r--r--	root/root	usr/include/winpr2/winpr/credui.h
 -rw-r--r--	root/root	usr/include/winpr2/winpr/crt.h
 -rw-r--r--	root/root	usr/include/winpr2/winpr/crypto.h
+-rw-r--r--	root/root	usr/include/winpr2/winpr/custom-crypto.h
 -rw-r--r--	root/root	usr/include/winpr2/winpr/debug.h
 -rw-r--r--	root/root	usr/include/winpr2/winpr/dsparse.h
 -rw-r--r--	root/root	usr/include/winpr2/winpr/endian.h
@@ -231,6 +235,7 @@ drwxr-xr-x	root/root	usr/include/winpr2/winpr/tools/
 -rw-r--r--	root/root	usr/include/winpr2/winpr/tools/makecert.h
 -rw-r--r--	root/root	usr/include/winpr2/winpr/user.h
 -rw-r--r--	root/root	usr/include/winpr2/winpr/version.h
+-rw-r--r--	root/root	usr/include/winpr2/winpr/wincrypt.h
 -rw-r--r--	root/root	usr/include/winpr2/winpr/windows.h
 -rw-r--r--	root/root	usr/include/winpr2/winpr/winhttp.h
 -rw-r--r--	root/root	usr/include/winpr2/winpr/winpr.h
@@ -246,6 +251,16 @@ drwxr-xr-x	root/root	usr/lib/cmake/FreeRDP-Client2/
 -rw-r--r--	root/root	usr/lib/cmake/FreeRDP-Client2/FreeRDP-ClientConfigVersion.cmake
 -rw-r--r--	root/root	usr/lib/cmake/FreeRDP-Client2/FreeRDP-ClientTargets-release.cmake
 -rw-r--r--	root/root	usr/lib/cmake/FreeRDP-Client2/FreeRDP-ClientTargets.cmake
+drwxr-xr-x	root/root	usr/lib/cmake/FreeRDP-Server2/
+-rw-r--r--	root/root	usr/lib/cmake/FreeRDP-Server2/FreeRDP-ServerConfig.cmake
+-rw-r--r--	root/root	usr/lib/cmake/FreeRDP-Server2/FreeRDP-ServerConfigVersion.cmake
+-rw-r--r--	root/root	usr/lib/cmake/FreeRDP-Server2/FreeRDP-ServerTargets-release.cmake
+-rw-r--r--	root/root	usr/lib/cmake/FreeRDP-Server2/FreeRDP-ServerTargets.cmake
+drwxr-xr-x	root/root	usr/lib/cmake/FreeRDP-Shadow2/
+-rw-r--r--	root/root	usr/lib/cmake/FreeRDP-Shadow2/FreeRDP-ShadowConfig.cmake
+-rw-r--r--	root/root	usr/lib/cmake/FreeRDP-Shadow2/FreeRDP-ShadowConfigVersion.cmake
+-rw-r--r--	root/root	usr/lib/cmake/FreeRDP-Shadow2/FreeRDP-ShadowTargets-release.cmake
+-rw-r--r--	root/root	usr/lib/cmake/FreeRDP-Shadow2/FreeRDP-ShadowTargets.cmake
 drwxr-xr-x	root/root	usr/lib/cmake/FreeRDP2/
 -rw-r--r--	root/root	usr/lib/cmake/FreeRDP2/FreeRDPConfig.cmake
 -rw-r--r--	root/root	usr/lib/cmake/FreeRDP2/FreeRDPConfigVersion.cmake
@@ -262,22 +277,33 @@ drwxr-xr-x	root/root	usr/lib/cmake/uwac0/
 -rw-r--r--	root/root	usr/lib/cmake/uwac0/uwacConfig.cmake
 -rw-r--r--	root/root	usr/lib/cmake/uwac0/uwacConfigVersion.cmake
 lrwxrwxrwx	root/root	usr/lib/libfreerdp-client2.so -> libfreerdp-client2.so.2
-lrwxrwxrwx	root/root	usr/lib/libfreerdp-client2.so.2 -> libfreerdp-client2.so.2.8.1
--rwxr-xr-x	root/root	usr/lib/libfreerdp-client2.so.2.8.1
+lrwxrwxrwx	root/root	usr/lib/libfreerdp-client2.so.2 -> libfreerdp-client2.so.2.10.0
+-rwxr-xr-x	root/root	usr/lib/libfreerdp-client2.so.2.10.0
+lrwxrwxrwx	root/root	usr/lib/libfreerdp-server2.so -> libfreerdp-server2.so.2
+lrwxrwxrwx	root/root	usr/lib/libfreerdp-server2.so.2 -> libfreerdp-server2.so.2.10.0
+-rwxr-xr-x	root/root	usr/lib/libfreerdp-server2.so.2.10.0
+lrwxrwxrwx	root/root	usr/lib/libfreerdp-shadow-subsystem2.so -> libfreerdp-shadow-subsystem2.so.2
+lrwxrwxrwx	root/root	usr/lib/libfreerdp-shadow-subsystem2.so.2 -> libfreerdp-shadow-subsystem2.so.2.10.0
+-rwxr-xr-x	root/root	usr/lib/libfreerdp-shadow-subsystem2.so.2.10.0
+lrwxrwxrwx	root/root	usr/lib/libfreerdp-shadow2.so -> libfreerdp-shadow2.so.2
+lrwxrwxrwx	root/root	usr/lib/libfreerdp-shadow2.so.2 -> libfreerdp-shadow2.so.2.10.0
+-rwxr-xr-x	root/root	usr/lib/libfreerdp-shadow2.so.2.10.0
 lrwxrwxrwx	root/root	usr/lib/libfreerdp2.so -> libfreerdp2.so.2
-lrwxrwxrwx	root/root	usr/lib/libfreerdp2.so.2 -> libfreerdp2.so.2.8.1
--rwxr-xr-x	root/root	usr/lib/libfreerdp2.so.2.8.1
+lrwxrwxrwx	root/root	usr/lib/libfreerdp2.so.2 -> libfreerdp2.so.2.10.0
+-rwxr-xr-x	root/root	usr/lib/libfreerdp2.so.2.10.0
 lrwxrwxrwx	root/root	usr/lib/libuwac0.so -> libuwac0.so.0
 lrwxrwxrwx	root/root	usr/lib/libuwac0.so.0 -> libuwac0.so.0.1.1
 -rwxr-xr-x	root/root	usr/lib/libuwac0.so.0.1.1
 lrwxrwxrwx	root/root	usr/lib/libwinpr-tools2.so -> libwinpr-tools2.so.2
-lrwxrwxrwx	root/root	usr/lib/libwinpr-tools2.so.2 -> libwinpr-tools2.so.2.8.1
--rwxr-xr-x	root/root	usr/lib/libwinpr-tools2.so.2.8.1
+lrwxrwxrwx	root/root	usr/lib/libwinpr-tools2.so.2 -> libwinpr-tools2.so.2.10.0
+-rwxr-xr-x	root/root	usr/lib/libwinpr-tools2.so.2.10.0
 lrwxrwxrwx	root/root	usr/lib/libwinpr2.so -> libwinpr2.so.2
-lrwxrwxrwx	root/root	usr/lib/libwinpr2.so.2 -> libwinpr2.so.2.8.1
--rwxr-xr-x	root/root	usr/lib/libwinpr2.so.2.8.1
+lrwxrwxrwx	root/root	usr/lib/libwinpr2.so.2 -> libwinpr2.so.2.10.0
+-rwxr-xr-x	root/root	usr/lib/libwinpr2.so.2.10.0
 drwxr-xr-x	root/root	usr/lib/pkgconfig/
 -rw-r--r--	root/root	usr/lib/pkgconfig/freerdp-client2.pc
+-rw-r--r--	root/root	usr/lib/pkgconfig/freerdp-server2.pc
+-rw-r--r--	root/root	usr/lib/pkgconfig/freerdp-shadow2.pc
 -rw-r--r--	root/root	usr/lib/pkgconfig/freerdp2.pc
 -rw-r--r--	root/root	usr/lib/pkgconfig/uwac0.pc
 -rw-r--r--	root/root	usr/lib/pkgconfig/winpr-tools2.pc
@@ -285,6 +311,7 @@ drwxr-xr-x	root/root	usr/lib/pkgconfig/
 drwxr-xr-x	root/root	usr/share/
 drwxr-xr-x	root/root	usr/share/man/
 drwxr-xr-x	root/root	usr/share/man/man1/
+-rw-r--r--	root/root	usr/share/man/man1/freerdp-shadow-cli.1.gz
 -rw-r--r--	root/root	usr/share/man/man1/winpr-hash.1.gz
 -rw-r--r--	root/root	usr/share/man/man1/winpr-makecert.1.gz
 -rw-r--r--	root/root	usr/share/man/man1/wlfreerdp.1.gz

@@ -5,13 +5,11 @@
 # Nice to have: opus libvorbis x264 libogg libmtp libtheora flac libvdpau
 
 name=vlc
-version=3.0.17.4
+version=3.0.18
 release=1
 source=(https://download.videolan.org/pub/videolan/${name}/${version}/${name}-${version}.tar.xz
         0001-freerdp-2.patch
         0002-fdk-aac-2.0.0.patch
-        0003-lua-script-compatibility-to-lua-5.4.patch
-	0004-dav1d-compat.patch
         )
 
 build() {
@@ -22,8 +20,6 @@ build() {
   patch -Np1 < "${SRC}"/0001-freerdp-2.patch
   # https://bugs.gentoo.org/672290
   patch -Np1 < "${SRC}"/0002-fdk-aac-2.0.0.patch
-  patch -Np1 < "${SRC}"/0003-lua-script-compatibility-to-lua-5.4.patch
-  patch -p1 -i $SRC/0004-dav1d-compat.patch
 
 #  ./bootstrap
 
