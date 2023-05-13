@@ -4,9 +4,9 @@
 # Depends on:	perl
 
 name=p5-digest-hmac
-version=1.03
+version=1.04
 release=1
-source=(http://search.cpan.org/CPAN/authors/id/G/GA/GAAS/Digest-HMAC-$version.tar.gz)
+source=(https://www.cpan.org/authors/id/A/AR/ARODLAND/Digest-HMAC-$version.tar.gz)
 
 build() {
 	cd Digest-HMAC-$version

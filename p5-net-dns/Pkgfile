@@ -5,7 +5,7 @@
 # Optional:	p5-digest-bubblebabble p5-net-libidn2
 
 name=p5-net-dns
-version=1.33
+version=1.38
 release=1
 source=(http://search.cpan.org/CPAN/authors/id/N/NL/NLNETLABS/Net-DNS-${version}.tar.gz)
 

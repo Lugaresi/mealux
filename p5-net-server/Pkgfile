@@ -5,7 +5,7 @@
 
 name=p5-net-server
 distname=Net-Server
-version=2.009
+version=2.014
 release=1
 source=(http://search.cpan.org/CPAN/authors/id/R/RH/RHANDOM/$distname-$version.tar.gz)
 
