@@ -12,6 +12,7 @@ drwxr-xr-x	root/root	etc/spamassassin/
 -rw-r--r--	root/root	etc/spamassassin/v341.pre
 -rw-r--r--	root/root	etc/spamassassin/v342.pre
 -rw-r--r--	root/root	etc/spamassassin/v343.pre
+-rw-r--r--	root/root	etc/spamassassin/v400.pre
 drwxr-xr-x	root/root	usr/
 drwxr-xr-x	root/root	usr/bin/
 -r-xr-xr-x	root/root	usr/bin/sa-awl
@@ -33,7 +34,7 @@ drwxr-xr-x	root/root	usr/lib/perl5/site_perl/5.36/Mail/SpamAssassin/
 -r--r--r--	root/root	usr/lib/perl5/site_perl/5.36/Mail/SpamAssassin/AICache.pm
 -r--r--r--	root/root	usr/lib/perl5/site_perl/5.36/Mail/SpamAssassin/ArchiveIterator.pm
 -r--r--r--	root/root	usr/lib/perl5/site_perl/5.36/Mail/SpamAssassin/AsyncLoop.pm
--r--r--r--	root/root	usr/lib/perl5/site_perl/5.36/Mail/SpamAssassin/AutoWhitelist.pm
+-r--r--r--	root/root	usr/lib/perl5/site_perl/5.36/Mail/SpamAssassin/AutoWelcomelist.pm
 -r--r--r--	root/root	usr/lib/perl5/site_perl/5.36/Mail/SpamAssassin/Bayes.pm
 drwxr-xr-x	root/root	usr/lib/perl5/site_perl/5.36/Mail/SpamAssassin/Bayes/
 -r--r--r--	root/root	usr/lib/perl5/site_perl/5.36/Mail/SpamAssassin/Bayes/CombineChi.pm
@@ -57,6 +58,7 @@ drwxr-xr-x	root/root	usr/lib/perl5/site_perl/5.36/Mail/SpamAssassin/Conf/
 -r--r--r--	root/root	usr/lib/perl5/site_perl/5.36/Mail/SpamAssassin/DBBasedAddrList.pm
 -r--r--r--	root/root	usr/lib/perl5/site_perl/5.36/Mail/SpamAssassin/Dns.pm
 -r--r--r--	root/root	usr/lib/perl5/site_perl/5.36/Mail/SpamAssassin/DnsResolver.pm
+-r--r--r--	root/root	usr/lib/perl5/site_perl/5.36/Mail/SpamAssassin/GeoDB.pm
 -r--r--r--	root/root	usr/lib/perl5/site_perl/5.36/Mail/SpamAssassin/HTML.pm
 -r--r--r--	root/root	usr/lib/perl5/site_perl/5.36/Mail/SpamAssassin/Locales.pm
 -r--r--r--	root/root	usr/lib/perl5/site_perl/5.36/Mail/SpamAssassin/Locker.pm
@@ -87,6 +89,7 @@ drwxr-xr-x	root/root	usr/lib/perl5/site_perl/5.36/Mail/SpamAssassin/Plugin/
 -r--r--r--	root/root	usr/lib/perl5/site_perl/5.36/Mail/SpamAssassin/Plugin/AccessDB.pm
 -r--r--r--	root/root	usr/lib/perl5/site_perl/5.36/Mail/SpamAssassin/Plugin/AntiVirus.pm
 -r--r--r--	root/root	usr/lib/perl5/site_perl/5.36/Mail/SpamAssassin/Plugin/AskDNS.pm
+-r--r--r--	root/root	usr/lib/perl5/site_perl/5.36/Mail/SpamAssassin/Plugin/AuthRes.pm
 -r--r--r--	root/root	usr/lib/perl5/site_perl/5.36/Mail/SpamAssassin/Plugin/AutoLearnThreshold.pm
 -r--r--r--	root/root	usr/lib/perl5/site_perl/5.36/Mail/SpamAssassin/Plugin/Bayes.pm
 -r--r--r--	root/root	usr/lib/perl5/site_perl/5.36/Mail/SpamAssassin/Plugin/BodyEval.pm
@@ -94,13 +97,15 @@ drwxr-xr-x	root/root	usr/lib/perl5/site_perl/5.36/Mail/SpamAssassin/Plugin/
 -r--r--r--	root/root	usr/lib/perl5/site_perl/5.36/Mail/SpamAssassin/Plugin/Check.pm
 -r--r--r--	root/root	usr/lib/perl5/site_perl/5.36/Mail/SpamAssassin/Plugin/DCC.pm
 -r--r--r--	root/root	usr/lib/perl5/site_perl/5.36/Mail/SpamAssassin/Plugin/DKIM.pm
+-r--r--r--	root/root	usr/lib/perl5/site_perl/5.36/Mail/SpamAssassin/Plugin/DMARC.pm
 -r--r--r--	root/root	usr/lib/perl5/site_perl/5.36/Mail/SpamAssassin/Plugin/DNSEval.pm
+-r--r--r--	root/root	usr/lib/perl5/site_perl/5.36/Mail/SpamAssassin/Plugin/DecodeShortURLs.pm
+-r--r--r--	root/root	usr/lib/perl5/site_perl/5.36/Mail/SpamAssassin/Plugin/ExtractText.pm
 -r--r--r--	root/root	usr/lib/perl5/site_perl/5.36/Mail/SpamAssassin/Plugin/FreeMail.pm
 -r--r--r--	root/root	usr/lib/perl5/site_perl/5.36/Mail/SpamAssassin/Plugin/FromNameSpoof.pm
 -r--r--r--	root/root	usr/lib/perl5/site_perl/5.36/Mail/SpamAssassin/Plugin/HTMLEval.pm
 -r--r--r--	root/root	usr/lib/perl5/site_perl/5.36/Mail/SpamAssassin/Plugin/HTTPSMismatch.pm
 -r--r--r--	root/root	usr/lib/perl5/site_perl/5.36/Mail/SpamAssassin/Plugin/HashBL.pm
--r--r--r--	root/root	usr/lib/perl5/site_perl/5.36/Mail/SpamAssassin/Plugin/Hashcash.pm
 -r--r--r--	root/root	usr/lib/perl5/site_perl/5.36/Mail/SpamAssassin/Plugin/HeaderEval.pm
 -r--r--r--	root/root	usr/lib/perl5/site_perl/5.36/Mail/SpamAssassin/Plugin/ImageInfo.pm
 -r--r--r--	root/root	usr/lib/perl5/site_perl/5.36/Mail/SpamAssassin/Plugin/MIMEEval.pm
@@ -130,7 +135,7 @@ drwxr-xr-x	root/root	usr/lib/perl5/site_perl/5.36/Mail/SpamAssassin/Plugin/
 -r--r--r--	root/root	usr/lib/perl5/site_perl/5.36/Mail/SpamAssassin/Plugin/URILocalBL.pm
 -r--r--r--	root/root	usr/lib/perl5/site_perl/5.36/Mail/SpamAssassin/Plugin/VBounce.pm
 -r--r--r--	root/root	usr/lib/perl5/site_perl/5.36/Mail/SpamAssassin/Plugin/WLBLEval.pm
--r--r--r--	root/root	usr/lib/perl5/site_perl/5.36/Mail/SpamAssassin/Plugin/WhiteListSubject.pm
+-r--r--r--	root/root	usr/lib/perl5/site_perl/5.36/Mail/SpamAssassin/Plugin/WelcomeListSubject.pm
 -r--r--r--	root/root	usr/lib/perl5/site_perl/5.36/Mail/SpamAssassin/PluginHandler.pm
 -r--r--r--	root/root	usr/lib/perl5/site_perl/5.36/Mail/SpamAssassin/RegistryBoundaries.pm
 -r--r--r--	root/root	usr/lib/perl5/site_perl/5.36/Mail/SpamAssassin/Reporter.pm
@@ -166,7 +171,7 @@ drwxr-xr-x	root/root	usr/share/man/man3/
 -r--r--r--	root/root	usr/share/man/man3/Mail::SpamAssassin::AICache.3pm.gz
 -r--r--r--	root/root	usr/share/man/man3/Mail::SpamAssassin::ArchiveIterator.3pm.gz
 -r--r--r--	root/root	usr/share/man/man3/Mail::SpamAssassin::AsyncLoop.3pm.gz
--r--r--r--	root/root	usr/share/man/man3/Mail::SpamAssassin::AutoWhitelist.3pm.gz
+-r--r--r--	root/root	usr/share/man/man3/Mail::SpamAssassin::AutoWelcomelist.3pm.gz
 -r--r--r--	root/root	usr/share/man/man3/Mail::SpamAssassin::Bayes.3pm.gz
 -r--r--r--	root/root	usr/share/man/man3/Mail::SpamAssassin::BayesStore.3pm.gz
 -r--r--r--	root/root	usr/share/man/man3/Mail::SpamAssassin::BayesStore::BDB.3pm.gz
@@ -180,6 +185,7 @@ drwxr-xr-x	root/root	usr/share/man/man3/
 -r--r--r--	root/root	usr/share/man/man3/Mail::SpamAssassin::Conf::Parser.3pm.gz
 -r--r--r--	root/root	usr/share/man/man3/Mail::SpamAssassin::Conf::SQL.3pm.gz
 -r--r--r--	root/root	usr/share/man/man3/Mail::SpamAssassin::DnsResolver.3pm.gz
+-r--r--r--	root/root	usr/share/man/man3/Mail::SpamAssassin::GeoDB.3pm.gz
 -r--r--r--	root/root	usr/share/man/man3/Mail::SpamAssassin::Logger.3pm.gz
 -r--r--r--	root/root	usr/share/man/man3/Mail::SpamAssassin::Logger::File.3pm.gz
 -r--r--r--	root/root	usr/share/man/man3/Mail::SpamAssassin::Logger::Stderr.3pm.gz
@@ -196,17 +202,20 @@ drwxr-xr-x	root/root	usr/share/man/man3/
 -r--r--r--	root/root	usr/share/man/man3/Mail::SpamAssassin::Plugin::AccessDB.3pm.gz
 -r--r--r--	root/root	usr/share/man/man3/Mail::SpamAssassin::Plugin::AntiVirus.3pm.gz
 -r--r--r--	root/root	usr/share/man/man3/Mail::SpamAssassin::Plugin::AskDNS.3pm.gz
+-r--r--r--	root/root	usr/share/man/man3/Mail::SpamAssassin::Plugin::AuthRes.3pm.gz
 -r--r--r--	root/root	usr/share/man/man3/Mail::SpamAssassin::Plugin::AutoLearnThreshold.3pm.gz
 -r--r--r--	root/root	usr/share/man/man3/Mail::SpamAssassin::Plugin::Bayes.3pm.gz
 -r--r--r--	root/root	usr/share/man/man3/Mail::SpamAssassin::Plugin::BodyRuleBaseExtractor.3pm.gz
 -r--r--r--	root/root	usr/share/man/man3/Mail::SpamAssassin::Plugin::Check.3pm.gz
 -r--r--r--	root/root	usr/share/man/man3/Mail::SpamAssassin::Plugin::DCC.3pm.gz
 -r--r--r--	root/root	usr/share/man/man3/Mail::SpamAssassin::Plugin::DKIM.3pm.gz
+-r--r--r--	root/root	usr/share/man/man3/Mail::SpamAssassin::Plugin::DMARC.3pm.gz
 -r--r--r--	root/root	usr/share/man/man3/Mail::SpamAssassin::Plugin::DNSEval.3pm.gz
+-r--r--r--	root/root	usr/share/man/man3/Mail::SpamAssassin::Plugin::DecodeShortURLs.3pm.gz
+-r--r--r--	root/root	usr/share/man/man3/Mail::SpamAssassin::Plugin::ExtractText.3pm.gz
 -r--r--r--	root/root	usr/share/man/man3/Mail::SpamAssassin::Plugin::FreeMail.3pm.gz
 -r--r--r--	root/root	usr/share/man/man3/Mail::SpamAssassin::Plugin::FromNameSpoof.3pm.gz
 -r--r--r--	root/root	usr/share/man/man3/Mail::SpamAssassin::Plugin::HashBL.3pm.gz
--r--r--r--	root/root	usr/share/man/man3/Mail::SpamAssassin::Plugin::Hashcash.3pm.gz
 -r--r--r--	root/root	usr/share/man/man3/Mail::SpamAssassin::Plugin::MIMEEval.3pm.gz
 -r--r--r--	root/root	usr/share/man/man3/Mail::SpamAssassin::Plugin::MIMEHeader.3pm.gz
 -r--r--r--	root/root	usr/share/man/man3/Mail::SpamAssassin::Plugin::OLEVBMacro.3pm.gz
@@ -231,7 +240,7 @@ drwxr-xr-x	root/root	usr/share/man/man3/
 -r--r--r--	root/root	usr/share/man/man3/Mail::SpamAssassin::Plugin::URIDetail.3pm.gz
 -r--r--r--	root/root	usr/share/man/man3/Mail::SpamAssassin::Plugin::URILocalBL.3pm.gz
 -r--r--r--	root/root	usr/share/man/man3/Mail::SpamAssassin::Plugin::VBounce.3pm.gz
--r--r--r--	root/root	usr/share/man/man3/Mail::SpamAssassin::Plugin::WhiteListSubject.3pm.gz
+-r--r--r--	root/root	usr/share/man/man3/Mail::SpamAssassin::Plugin::WelcomeListSubject.3pm.gz
 -r--r--r--	root/root	usr/share/man/man3/Mail::SpamAssassin::PluginHandler.3pm.gz
 -r--r--r--	root/root	usr/share/man/man3/Mail::SpamAssassin::RegistryBoundaries.3pm.gz
 -r--r--r--	root/root	usr/share/man/man3/Mail::SpamAssassin::SQLBasedAddrList.3pm.gz

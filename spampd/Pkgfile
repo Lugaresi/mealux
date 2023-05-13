@@ -4,7 +4,7 @@
 # Depends on:  p5-net-server
 
 name=spampd
-version=2.53
+version=2.61
 release=1
 source=(https://github.com/mpaperno/$name/archive/$version.tar.gz \
 	spampd-rh-rc-script)

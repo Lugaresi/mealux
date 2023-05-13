@@ -5,8 +5,8 @@
 # Optional:	re2c razor-agents p5-mail-spf p5-io-socket-ip p5-io-socket-inet6 p5-io-socket-ssl p5-mail-dkim p5-encode-detect p5-net-patricia
 
 name=spamassassin
-version=3.4.6
-release=3
+version=4.0.0
+release=1
 source=(
 https://www.apache.org/dist/spamassassin/source/Mail-SpamAssassin-$version.tar.bz2
 spamd.rc
