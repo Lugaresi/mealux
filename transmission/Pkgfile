@@ -1,18 +1,15 @@
 # Description: BitTorrent client/daemon with command-line and web user interface
 # URL:         http://transmission.m0k.org/
 # Maintainer:  Juergen Daubert, jue at crux dot nu
-# Depends on:  curl libevent
+# Depends on:  curl libevent libpsl
 
 name=transmission
-version=4.0.0-beta.3
+version=4.0.3
 release=1
-#source=(https://github.com/transmission/transmission-releases/raw/master/transmission-$version.tar.xz transmission.rc)
-source=(https://github.com/transmission/transmission/releases/download/4.0.0-beta.3/transmission-4.0.0-beta.3+r634b1e8fc1.tar.xz
-	transmission.rc)
+source=(https://github.com/transmission/transmission/releases/download/$version/transmission-$version.tar.xz transmission.rc)
 
 build() {
-#    cd $name-$version
-	cd $name-4.0.0-beta.3+r634b1e8fc1
+        cd $name-$version
 	mkdir build && cd build
 	cmake .. \
 		-DCMAKE_BUILD_TYPE=Release \
