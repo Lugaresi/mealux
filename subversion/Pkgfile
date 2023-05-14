@@ -1,0 +1,16 @@
+# Description: SVN
+# URL:         https://torproject.org/
+# Maintainer:  Suwako Moriya, suwako at 076 dot moe
+# Depends on:	 apr apr-util sqlite3 libzip utf8proc
+
+name=subversion
+version=1.14.2
+release=1
+source=(https://076.moe/repo/src/$name/$name-$version.tar.gz)
+
+build() {
+  cd $name-$version
+  ./configure --prefix=/usr --with-lz4=internal --with-utf8proc=internal
+  make
+  make DESTDIR=$PKG install
+}
