@@ -5,25 +5,29 @@
 # depends on: libevent libasr libbsd
 
 name=opensmtpd
-version=6.8.0p2
-libversion=3.6.1
-release=2
+version=7.0.0-git20230513
+#libversion=3.6.1
+release=1
 source=(
-  https://www.$name.org/archives/$name-$version.tar.gz
-  https://ftp.openbsd.org/pub/OpenBSD/LibreSSL/libressl-$libversion.tar.gz
+#  https://www.$name.org/archives/$name-$version.tar.gz
+#  https://ftp.openbsd.org/pub/OpenBSD/LibreSSL/libressl-$libversion.tar.gz
   $name.rc
 )
 
 build() {
-  cd libressl-$libversion
-  ./configure -prefix=$SRC/lssl --disable-shared --enable-static
-  make
-  make install
-  cd ..
-  cd $name-$version
-  aclocal
-  autoconf
-  ./configure --prefix=/usr --mandir=/usr/man --sysconfdir=/etc --libexecdir=/usr/lib --with-user-smtpd=mail --with-user-queue=mailq --with-group-queue=mail --with-ldflags=-lbsd --with-libssl=$SRC/lssl
+#  cd libressl-$libversion
+#  ./configure -prefix=$SRC/lssl --disable-shared --enable-static
+#  make
+#  make install
+#  cd ..
+#  cd $name-$version
+  
+  git clone https://github.com/OpenSMTPD/OpenSMTPD.git
+  cd OpenSMTPD
+  git checkout ea5797a970de9fce18bbe8a309717608defe801c
+  ./bootstrap
+  ./configure --prefix=/usr --mandir=/usr/man --sysconfdir=/etc --libexecdir=/usr/lib --with-user-smtpd=mail --with-user-queue=mailq --with-group-queue=mail --with-libbsd=true --with-ldflags=-lcrypt 
+# --with-libssl=$SRC/lssl
   make
   make DESTDIR=$PKG install
   chown root:mail $PKG/usr/sbin/smtpctl
