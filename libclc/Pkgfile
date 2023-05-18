@@ -5,7 +5,7 @@
 # Depends on: llvm, clang
 
 name=libclc
-version=15.0.6
+version=15.0.7
 release=1
 source=(https://github.com/llvm/llvm-project/releases/download/llvmorg-$version/$name-$version.src.tar.xz)
 
