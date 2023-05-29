@@ -82,10 +82,6 @@ lrwxrwxrwx	root/root	usr/lib/vdpau/libvdpau_nouveau.so -> libvdpau_nouveau.so.1.
 lrwxrwxrwx	root/root	usr/lib/vdpau/libvdpau_nouveau.so.1 -> libvdpau_nouveau.so.1.0.0
 lrwxrwxrwx	root/root	usr/lib/vdpau/libvdpau_nouveau.so.1.0 -> libvdpau_nouveau.so.1.0.0
 -rwxr-xr-x	root/root	usr/lib/vdpau/libvdpau_nouveau.so.1.0.0
-lrwxrwxrwx	root/root	usr/lib/vdpau/libvdpau_r300.so -> libvdpau_r300.so.1.0.0
-lrwxrwxrwx	root/root	usr/lib/vdpau/libvdpau_r300.so.1 -> libvdpau_r300.so.1.0.0
-lrwxrwxrwx	root/root	usr/lib/vdpau/libvdpau_r300.so.1.0 -> libvdpau_r300.so.1.0.0
--rwxr-xr-x	root/root	usr/lib/vdpau/libvdpau_r300.so.1.0.0
 lrwxrwxrwx	root/root	usr/lib/vdpau/libvdpau_r600.so -> libvdpau_r600.so.1.0.0
 lrwxrwxrwx	root/root	usr/lib/vdpau/libvdpau_r600.so.1 -> libvdpau_r600.so.1.0.0
 lrwxrwxrwx	root/root	usr/lib/vdpau/libvdpau_r600.so.1.0 -> libvdpau_r600.so.1.0.0
