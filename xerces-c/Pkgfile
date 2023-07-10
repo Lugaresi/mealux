@@ -1,0 +1,28 @@
+# Description: A validating XML parser written in a portable subset of C++
+# URL:         https://xerces.apache.org/xerces-c/
+# Packager:    Alan Mizrahi, alan at mizrahi dot com dot ve
+# Depends on:  curl
+
+name=xerces-c
+version=3.2.4
+release=1
+source=(https://downloads.apache.org/xerces/c/3/sources/$name-$version.tar.xz)
+
+build(){
+	mkdir build; cd build
+
+	cmake -Wno-dev ../$name-$version \
+		-DCMAKE_BUILD_TYPE=Release \
+		-DCMAKE_INSTALL_PREFIX=/usr \
+		-DCMAKE_INSTALL_LIBDIR=lib \
+		-DBUILD_SHARED_LIBS=on \
+		-DCMAKE_SKIP_RPATH=on \
+		-Dnetwork-accesor=curl \
+		-Dtranscoder=gnuiconv \
+		-Dmessage-loader=inmemory \
+		-Dsse2="$([[ `uname -m` =~ ^i.86$ ]] && echo no || echo yes)" # disable sse2 on 32-bit
+	
+	make
+	make DESTDIR=$PKG install
+	rm -rf $PKG/usr/share/doc
+}

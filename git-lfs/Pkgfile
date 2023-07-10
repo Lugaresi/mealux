@@ -1,15 +1,17 @@
-# Description: Remote terminal application that allows roaming.
-# URL:         https://mosh.org/
-# Maintainer:  Lugaresi
-# Depends on:  go
+# Description: Git large file storage
+# URL: https://git-lfs.com/
+# Maintainer: Petar Petrov, slackalaxy at gmail dot com
+# Depends on: git
 
 name=git-lfs
-version=3.2.0
-release=1
-source=(https://github.com/$name/$name/releases/download/v$version/$name-v$version.tar.gz)
+version=3.3.0
+release=2
+source=(https://github.com/git-lfs/git-lfs/releases/download/v${version}/$name-linux-amd64-v${version}.tar.gz)
 
 build() {
-    cd $name-$version
-    make
-    install -D -m 0755 bin/git-lfs $PKG/usr/bin/git-lfs
+	cd $name-$version
+	install -D -m755 $name $PKG/usr/bin/$name
+
+	mkdir -p $PKG/usr/share/man
+	cp -a man/man* $PKG/usr/share/man
 }
