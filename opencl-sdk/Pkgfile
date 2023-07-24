@@ -1,0 +1,30 @@
+# Description: OpenCL (Open Computing Language) SDK
+# URL: https://www.khronos.org/registry/cl/
+# Maintainer: Lugaresi
+# Depends on: cmake
+
+name=opencl-sdk
+version=2023.04.17
+release=1
+source=(https://github.com/KhronosGroup/OpenCL-SDK/releases/download/v$version/OpenCL-SDK-v$version-Source.tar.gz)
+
+build() {
+	cd OpenCL-SDK-v$version-Source
+
+	mkdir build2 && cd build2
+	cmake .. \
+	  -D BUILD_TESTING=OFF \
+	  -D BUILD_DOCS=OFF \
+	  -D BUILD_EXAMPLES=OFF \
+	  -D BUILD_TESTS=OFF \
+	  -D OPENCL_SDK_BUILD_SAMPLES=ON \
+	  -D OPENCL_SDK_TEST_SAMPLES=OFF \
+	  -D DEPENDENCIES_FORCE_DOWNLOAD=ON
+
+	make install
+        cd ../install
+        mkdir $PKG/usr
+        cp -r * $PKG/usr/
+
+
+}
