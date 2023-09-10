@@ -4,9 +4,9 @@
 # Depends on: xorg-libxext xorg-libxt
 
 name=xorg-libxpm-32
-version=3.5.13
+version=3.5.16
 release=1
-source=(https://www.x.org/releases/individual/lib/libXpm-$version.tar.bz2)
+source=(https://www.x.org/releases/individual/lib/libXpm-$version.tar.xz)
 
 build() {
 	cd libXpm-$version
@@ -14,7 +14,7 @@ build() {
 	./configure --prefix=/usr \
                 --program-suffix=32 \
                 --libdir=/usr/lib32 \
-
+		--disable-open-zfile
 
 	make
 	make DESTDIR=$PKG install

@@ -5,17 +5,14 @@
 # depends on: libpng libjpeg gnutls libgcript openssl libnsl
 
 name=libvncserver
-version=0.9.13
+version=0.9.14
 release=3
 source=(
     https://github.com/LibVNC/libvncserver/archive/LibVNCServer-$version.tar.gz
-    1c51df2842ac8eae425c4c88c918cf407e3bdbbb.diff
 )
 
 build() {
   cd $name-LibVNCServer-$version
-
-  patch -p1 -i $SRC/1c51df2842ac8eae425c4c88c918cf407e3bdbbb.diff
 
   mkdir build && cd build
   cmake -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_INSTALL_LIBDIR=/usr/lib -DBUILD_TESTING=OFF ..
