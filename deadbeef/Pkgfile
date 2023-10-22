@@ -4,16 +4,15 @@
 # Depends on:   faad2 libmad libsamplerate pulseaudio jansson libdispatch
 
 name=deadbeef
-version=1.9.2
+version=1.9.5
 release=1
-source=(https://sourceforge.net/projects/deadbeef/files/travis/linux/${version}/deadbeef-${version}.tar.bz2
-	7b52bac5a69abeab6d8b6601fd9e36803842d9c1.diff)
+source=(https://sourceforge.net/projects/deadbeef/files/travis/linux/${version}/deadbeef-${version}.tar.bz2)
 
 build() {
   cd $name-$version
 
-  # Fix building with FFMpeg 5.0+
-  patch -p1 -i $SRC/7b52bac5a69abeab6d8b6601fd9e36803842d9c1.diff
+  # Adplug built with std C++11
+  sed -e s/-Dstricmp=strcasecmp/-std=c++11\ -Dstricmp=strcasecmp/g -i plugins/adplug/Makefile.in
 
 #  ./autogen.sh
   CC=clang CXX=clang++ \
