@@ -1,6 +1,7 @@
-da98c264217c819d69f8e2e6e08fc285  Netscape-2.53.16.tar.xz
-1c84a81b9b4b282d819abbbfe647dd91  netscape-2.53.16.diff
+89fd60eaf4c62d975710bfa813061995  Netscape-2.53.17.1.tar.xz
+060a423e0957ccf213b861f2609e36d8  a79edf4cfc54aad30a5630b217645c4b8274d8f7.diff
+b1a65330b15e5e0c7db9dc3e169590b5  netscape-2.53.17.1.diff
 3abf9c81fce12c366e790efbe7cf877e  netscape.desktop
 fb84afb78222a53ace3ffa43e929b13d  nsmail.desktop
-92ebcb6d9410442a9c1cf9c321f292f4  seamonkey-2.53.16.source.tar.xz
+15c73a5e725b7f002b2789706ae643d9  seamonkey-2.53.17.1.source.tar.xz
 44d113a6a0ae6c551e3c7a2f4d439cc1  vpx-compat.diff
