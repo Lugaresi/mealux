@@ -1,0 +1,57 @@
+--- a/src/Cache.cpp	2023-02-23 00:50:45.000000000 +0100
++++ b/src/Cache.cpp	2023-11-01 00:17:10.699684919 +0100
+@@ -438,7 +438,7 @@ Cache::loadSecretsFromStore(
+                 if (job->error() && job->error() != QKeychain::Error::EntryNotFound) {
+                     nhlog::db()->error("Restoring secret '{}' failed ({}): {}",
+                                        name.toStdString(),
+-                                       job->error(),
++                                       static_cast<int>(job->error()),
+                                        job->errorString().toStdString());
+ 
+                     fatalSecretError();
+--- a/src/encryption/DeviceVerificationFlow.cpp	2023-02-23 00:50:45.000000000 +0100
++++ b/src/encryption/DeviceVerificationFlow.cpp	2023-11-01 00:17:10.699684919 +0100
+@@ -39,7 +39,7 @@ DeviceVerificationFlow::DeviceVerificati
+   , deviceIds(std::move(deviceIds_))
+   , model_(model)
+ {
+-    nhlog::crypto()->debug("CREATING NEW FLOW, {}, {}", flow_type, (void *)this);
++    nhlog::crypto()->debug("CREATING NEW FLOW, {}, {}", static_cast<int>(flow_type), (void *)this);
+     if (deviceIds.size() == 1)
+         deviceId = deviceIds.front();
+ 
+--- a/src/timeline/InputBar.cpp	2023-02-23 00:50:45.000000000 +0100
++++ b/src/timeline/InputBar.cpp	2023-11-01 01:11:59.406907938 +0100
+@@ -948,14 +948,14 @@ MediaUpload::MediaUpload(std::unique_ptr
+                 this,
+                 [mediaPlayer](QMediaPlayer::Error error) {
+                     nhlog::ui()->debug("Media player error {} and errorStr {}",
+-                                       error,
++                                       static_cast<int>(error),
+                                        mediaPlayer->errorString().toStdString());
+                 });
+         connect(mediaPlayer,
+                 &QMediaPlayer::mediaStatusChanged,
+                 [mediaPlayer](QMediaPlayer::MediaStatus status) {
+                     nhlog::ui()->debug(
+-                      "Media player status {} and error {}", status, mediaPlayer->error());
++                      "Media player status {} and error {}", static_cast<int>(status), static_cast<int>(mediaPlayer->error()));
+                 });
+         connect(mediaPlayer,
+                 qOverload<const QString &, const QVariant &>(&QMediaPlayer::metaDataChanged),
+--- a/src/ui/MxcMediaProxy.cpp	2023-02-23 00:50:45.000000000 +0100
++++ b/src/ui/MxcMediaProxy.cpp	2023-11-01 02:03:34.011823301 +0100
+@@ -37,11 +37,11 @@ MxcMediaProxy::MxcMediaProxy(QObject *pa
+             qOverload<QMediaPlayer::Error>(&MxcMediaProxy::error),
+             [this](QMediaPlayer::Error error) {
+                 nhlog::ui()->info("Media player error {} and errorStr {}",
+-                                  error,
++                                  static_cast<int>(error),
+                                   this->errorString().toStdString());
+             });
+     connect(this, &MxcMediaProxy::mediaStatusChanged, [this](QMediaPlayer::MediaStatus status) {
+-        nhlog::ui()->info("Media player status {} and error {}", status, this->error());
++        nhlog::ui()->info("Media player status {} and error {}", static_cast<int>(status), static_cast<int>(this->error()));
+     });
+     connect(this,
+             qOverload<const QString &, const QVariant &>(&MxcMediaProxy::metaDataChanged),
