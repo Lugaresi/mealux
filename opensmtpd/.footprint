@@ -16,6 +16,7 @@ drwxr-xr-x	root/root	usr/lib/opensmtpd/
 -rwxr-xr-x	root/root	usr/lib/opensmtpd/mail.mda
 drwxr-xr-x	root/root	usr/man/
 drwxr-xr-x	root/root	usr/man/man1/
+-rw-r--r--	root/root	usr/man/man1/lockspool.1.gz
 -rw-r--r--	root/root	usr/man/man1/smtp.1.gz
 drwxr-xr-x	root/root	usr/man/man5/
 -rw-r--r--	root/root	usr/man/man5/aliases.5.gz
@@ -25,6 +26,11 @@ drwxr-xr-x	root/root	usr/man/man5/
 drwxr-xr-x	root/root	usr/man/man7/
 -rw-r--r--	root/root	usr/man/man7/smtpd-filters.7.gz
 drwxr-xr-x	root/root	usr/man/man8/
+-rw-r--r--	root/root	usr/man/man8/mail.lmtp.8.gz
+-rw-r--r--	root/root	usr/man/man8/mail.local.8.gz
+-rw-r--r--	root/root	usr/man/man8/mail.maildir.8.gz
+-rw-r--r--	root/root	usr/man/man8/mail.mboxfile.8.gz
+-rw-r--r--	root/root	usr/man/man8/mail.mda.8.gz
 -rw-r--r--	root/root	usr/man/man8/makemap.8.gz
 -rw-r--r--	root/root	usr/man/man8/newaliases.8.gz
 -rw-r--r--	root/root	usr/man/man8/sendmail.8.gz
