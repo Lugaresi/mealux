@@ -1,0 +1,6 @@
+drwxr-xr-x	root/root	usr/
+drwxr-xr-x	root/root	usr/bin/
+-rwxr-xr-x	root/root	usr/bin/dos2unix
+lrwxrwxrwx	root/root	usr/bin/mac2unix -> dos2unix
+-rwxr-xr-x	root/root	usr/bin/unix2dos
+lrwxrwxrwx	root/root	usr/bin/unix2mac -> unix2dos

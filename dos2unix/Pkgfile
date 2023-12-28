@@ -1,0 +1,18 @@
+# Description: Dos2unix converts DOS or MAC text files to UNIX format
+# URL: https://waterlan.home.xs4all.nl/dos2unix.html
+# Maintainer: Daryl Fonseca-Holt, wyatt at prairieturtle dot ca
+# Depends on:
+
+name=dos2unix
+version=7.5.1
+release=1
+source=(http://www.xs4all.nl/~waterlan/$name/$name-$version.tar.gz)
+
+build() {
+  cd $name-$version
+  make clean
+  make CFLAGS="$CFLAGS -D_LARGEFILE_SOURCE"
+  make DESTDIR=$PKG install prefix=/usr
+  rm -rf $PKG/usr/share
+}
+
