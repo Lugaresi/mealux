@@ -4,12 +4,12 @@
 # Depends on: gtk3, mesa3d, libnotify, nss, nspr, autconf-2.13, startup-notification, libvpx, clang,  icu, pulseaudio, zip autoconf-2.13 cbindgen
 
 name=netscape
-version=2.53.17.1
+version=2.53.18
 release=1
 source=(https://archive.mozilla.org/pub/seamonkey/releases/$version$patchver/source/seamonkey-$version.source.tar.xz \
         http://www.stukamanhpt4.com/Netscape/Netscape-$version.tar.xz \
 	http://www.stukamanhpt4.com/Netscape/netscape-$version.diff \
-	https://github.com/rust-lang/packed_simd/commit/a79edf4cfc54aad30a5630b217645c4b8274d8f7.diff
+        firefox-115.4.0-icu-74.patch \
 	netscape.desktop nsmail.desktop vpx-compat.diff)
 
 build () {
@@ -18,9 +18,8 @@ build () {
     # Fix building with System libvpx > 1.8
     patch -p1 -i $SRC/vpx-compat.diff
 
-    # Packed_simd contains functions not working in latest rust
-    patch -d third_party/rust/packed_simd_2 -p1 -i $SRC/a79edf4cfc54aad30a5630b217645c4b8274d8f7.diff
-    sed -e s!b4ccbc0bad90038f00fc3c158736462d01d0053df3afa00f9169e67d1a264444!12e748b4928c3be6cc12b4165c3041a3d0efccf6195338ecd3d88b8fdb0bbcc7!g -i third_party/rust/packed_simd_2/.cargo-checksum.json
+    # Fix building with system ICU >= 74
+    patch -p1 -i $SRC/firefox-115.4.0-icu-74.patch
 
     sed -i mozconfig.nix -e s!@TOPSRCDIR@!`pwd`!g -e s!j4!j$(nproc)!g
 

@@ -1,7 +1,7 @@
-89fd60eaf4c62d975710bfa813061995  Netscape-2.53.17.1.tar.xz
-060a423e0957ccf213b861f2609e36d8  a79edf4cfc54aad30a5630b217645c4b8274d8f7.diff
-b1a65330b15e5e0c7db9dc3e169590b5  netscape-2.53.17.1.diff
+ae51c360019f64079320dc7dbfbbd2d4  Netscape-2.53.18.tar.xz
+0885627005e6516ccaef126ea21d70f8  firefox-115.4.0-icu-74.patch
+fa4c0418dc0d61b506ecf21dbbd5120c  netscape-2.53.18.diff
 3abf9c81fce12c366e790efbe7cf877e  netscape.desktop
 fb84afb78222a53ace3ffa43e929b13d  nsmail.desktop
-15c73a5e725b7f002b2789706ae643d9  seamonkey-2.53.17.1.source.tar.xz
+6ac064816caa2c3fe6bc1f130bd9599b  seamonkey-2.53.18.source.tar.xz
 44d113a6a0ae6c551e3c7a2f4d439cc1  vpx-compat.diff
