@@ -5,18 +5,15 @@
 # Depends on: libopensmtpd
 
 name=opensmtpd-filter-dkimsign
-version=0.5
+version=0.6
 release=1
-source=(https://distfiles.sigtrap.nl/filter-dkimsign-$version.tar.gz pledge.patch)
+source=(https://imperialat.at/releases/filter-dkimsign-$version.tar.gz pledge.patch)
 
 build() {
 	cd filter-dkimsign-$version
 	patch -p0 -i $SRC/pledge.patch
 	make -f Makefile.gnu 
-	make -f Makefile.gnu install DESTDIR=$PKG
-	mkdir -p $PKG/usr/lib/
-	mv $PKG/usr/libexec/* $PKG/usr/lib
-	rm -rf $PKG/usr/libexec
+	make -f Makefile.gnu install BINDIR=/usr/lib/opensmtpd/ DESTDIR=$PKG
 	mkdir -p $PKG/usr/man/
 	mv $PKG/usr/share/man/* $PKG/usr/man
 	rm -rf $PKG/usr/share

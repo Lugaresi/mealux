@@ -1,6 +1,12 @@
 drwxr-xr-x	root/root	usr/
 drwxr-xr-x	root/root	usr/include/
--rw-r--r--	root/root	usr/include/opensmtpd.h
+-r--r--r--	root/root	usr/include/opensmtpd.h
 drwxr-xr-x	root/root	usr/lib/
 -rw-r--r--	root/root	usr/lib/libopensmtpd.a
--rw-r--r--	root/root	usr/lib/libopensmtpd.so
+lrwxrwxrwx	root/root	usr/lib/libopensmtpd.so -> libopensmtpd.so.0.1.0
+lrwxrwxrwx	root/root	usr/lib/libopensmtpd.so.0 -> libopensmtpd.so.0.1.0
+-rwxr-xr-x	root/root	usr/lib/libopensmtpd.so.0.1.0
+drwxr-xr-x	root/root	usr/share/
+drwxr-xr-x	root/root	usr/share/man/
+drwxr-xr-x	root/root	usr/share/man/man3/
+-rw-r--r--	root/root	usr/share/man/man3/osmtpd_run.3.gz
