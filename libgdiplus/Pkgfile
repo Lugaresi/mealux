@@ -1,0 +1,20 @@
+# Description: C-based implementation of the GDI+ API .
+# URL: https://github.com/mono/libgdiplus
+# Maintainer: Lugaresi
+# Packager: Lugaresi
+
+name=libgdiplus
+version=6.1
+release=1
+source=(https://download.mono-project.com/sources/libgdiplus/$name-$version.tar.gz)
+
+build() {
+	cd $name-$version
+
+	./configure \
+		--prefix=/usr \
+		--with-pango
+
+	make
+	make DESTDIR=$PKG install
+}
