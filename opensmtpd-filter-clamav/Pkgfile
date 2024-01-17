@@ -1,0 +1,21 @@
+# Description: OpenSMTPD filter running messages through ClamAV
+# URL: https://umaxx.net/
+# Maintainer: Stuka
+# Packager: Stuka
+# Depends on: go
+
+name=opensmtpd-filter-clamav
+version=0.5
+release=1
+source=(https://umaxx.net/dl/filter-clamav-$version.tar.gz filter-clamav-unix.patch)
+
+build() {
+	cd filter-clamav-$version
+	patch -p1 -i $SRC/filter-clamav-unix.patch
+	make
+	strip filter-clamav
+	install -m0755 -d $PKG/usr/lib/opensmtpd/
+        install -m0755 filter-clamav $PKG/usr/lib/opensmtpd/
+	install -m0755 -d $PKG/usr/man/man1/
+	install -m0444 filter-clamav.1 $PKG/usr/man/man1
+}

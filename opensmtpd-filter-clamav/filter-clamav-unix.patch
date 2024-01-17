@@ -1,0 +1,38 @@
+Binary files filter-clamav-0.5/filter-clamav and filter-clamav-0.5-new/filter-clamav differ
+diff -rupN filter-clamav-0.5/filter-clamav.go filter-clamav-0.5-new/filter-clamav.go
+--- filter-clamav-0.5/filter-clamav.go	2020-04-18 00:58:34.000000000 +0200
++++ filter-clamav-0.5-new/filter-clamav.go	2024-01-17 15:12:24.324475925 +0100
+@@ -82,7 +82,8 @@ func (cl *clamav) response(tok string, i
+ }
+ 
+ func (cl *clamav) process(tok string) {
+-	con, e := net.Dial("tcp", addr) // todo: support "unix" if addr[0] == '/'
++	var tcpsocket bool = strings.Contains(addr, ":")
++	con, e := net.Dial(map[bool]string{true: "tcp", false: "unix"}[tcpsocket], addr)
+ 	if e != nil {
+ 		l3.Err(fmt.Sprintln(cl.sid, e))
+ 		cl.reset(tok)
+@@ -109,7 +110,13 @@ func (cl *clamav) process(tok string) {
+ 		cl.reset(tok)
+ 		return
+ 	}
+-	if c, ok := con.(*net.TCPConn); ok {
++	if (tcpsocket) {
++		c, _ := con.(*net.TCPConn)
++		if e = c.CloseWrite(); e != nil {
++			l3.Warning(fmt.Sprintln(cl.sid, "closewrite", e))
++		}
++	} else {
++		c, _ := con.(*net.UnixConn)
+ 		if e = c.CloseWrite(); e != nil {
+ 			l3.Warning(fmt.Sprintln(cl.sid, "closewrite", e))
+ 		}
+@@ -168,7 +175,7 @@ func run() {
+ 	for in.Scan() {
+ 		f := strings.Split(in.Text(), "|")
+ 		t, ver, ev, sid := f[0], f[1], f[4], f[5]
+-		if (t != "filter" && t != "report") || ver != "0.6" {
++		if (t != "filter" && t != "report") || ver != "0.7" {
+ 			l3.Err(fmt.Sprintln(sid, "protocol", t, ver))
+ 			return
+ 		}
