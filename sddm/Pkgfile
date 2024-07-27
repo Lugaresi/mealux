@@ -1,0 +1,47 @@
+# Description: QML based X11 and Wayland display manager
+# URL: https://github.com/sddm/sddm
+# Maintainer: Tsaop, leeroy at cock dot li
+# Depends on: extra-cmake-modules python3-docutils qt6-base
+
+name=sddm
+version=0.21.0
+release=2
+source=(https://github.com/$name/$name/archive/v$version/$name-$version.tar.gz
+	rc.sddm
+    sddm.pam
+    sddm-autologin.pam
+    sddm-greeter.pam)
+
+build() {
+	cd $name-$version
+	mkdir build; cd build
+
+	cmake \
+	-DCMAKE_INSTALL_PREFIX=/usr \
+	-DCMAKE_INSTALL_SYSCONFDIR=/etc \
+	-DBUILD_TESTING=OFF \
+	-DCMAKE_BUILD_TYPE=Release \
+	-DBUILD_WITH_QT6=ON \
+	-DBUILD_MAN_PAGES=ON \
+	-DENABLE_JOURNALD=OFF \
+	-DCMAKE_INSTALL_LIBEXECDIR=/usr/lib \
+	-Wno-dev \
+	..
+
+	make
+	make DESTDIR=$PKG install
+
+	rm -rf $PKG/usr/share/sddm/translations
+	find $PKG -name "README" -exec rm -v {} \;
+
+	install -dm755 $PKG/var/run/sddm
+	install -dm755 $PKG/var/lib/sddm
+	install -Dm755 $SRC/rc.sddm $PKG/etc/rc.d/sddm
+
+	# replace pam config files with CRUX-specific ones:
+	rm -rf $PKG/etc/pam.d
+	install -d $PKG/etc/pam.d
+	install -Dm644 $SRC/sddm.pam $PKG/etc/pam.d/sddm
+	install -Dm644 $SRC/sddm-autologin.pam $PKG/etc/pam.d/sddm-autologin
+	install -Dm644 $SRC/sddm-greeter.pam $PKG/etc/pam.d/sddm-greeter
+}
