@@ -1,7 +1,7 @@
 # Description: Xonotic is an addictive, arena-style first person shooter with crisp movement and a wide array of weapons. 
 # URL:         https://xonotic.org/
 # Maintainer:  Stuka
-# Depends on:  sdl libjpeg-turbo ode
+# Depends on:  libsdl2 libjpeg-turbo ode
 
 name=xonotic
 version=0.8.6
