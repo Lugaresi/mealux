@@ -1,22 +1,21 @@
 # Description: A multimedia playback engine
 # URL:         https://xine-project.org
 # Maintainer:  Torsten Henschel, thenschel dot henschelsoft dot de
-# Depends on:  alsa-lib ffmpeg glu gtk libdvdnav libmad libmng libvdpau libvpx xorg samba imagemagick
+# Depends on:  alsa-lib ffmpeg glu gtk libdvdnav libmad libmng libvdpau libvpx xorg samba imagemagick dav1d
 # Optional:    pulseaudio
 
 name=xine-lib
-version=1.2.12
+version=1.2.13
 release=3
 source=(https://downloads.sourceforge.net/project/xine/$name/$version/$name-$version.tar.xz
-        dav1d.patch ffmpeg-compat.patch)
+	https://www.linuxfromscratch.org/patches/blfs/svn/xine-lib-1.2.13-upstream_fixes-1.patch)
 
 build() {
     cd $name-$version
 
     sed -e 's/\(xcb-shape >= 1.0\)/xcb \1/' -i m4/video_out.m4
 
-    patch -p1 -i $SRC/dav1d.patch
-    patch -p1 -i $SRC/ffmpeg-compat.patch
+    patch -p1 -i $SRC/xine-lib-1.2.13-upstream_fixes-1.patch
 
     bash autogen.sh
 

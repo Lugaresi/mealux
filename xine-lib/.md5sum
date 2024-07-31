@@ -1,3 +1,2 @@
-ffed3d14b68e652b59509ea228773e51  dav1d.patch
-78e747b5c0a1dade6fac48d628a565a9  ffmpeg-compat.patch
-3d0660c9da158c31dd65e955e4ac8cd2  xine-lib-1.2.12.tar.xz
+af65b4849965a93e6338f447aa168bb9  xine-lib-1.2.13-upstream_fixes-1.patch
+9e1be39857b7a3cd7cc0f2b96331ff22  xine-lib-1.2.13.tar.xz
