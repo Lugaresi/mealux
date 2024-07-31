@@ -4,13 +4,17 @@
 # Depends on: gtk3, mesa3d, libnotify, nss, nspr, autconf-2.13, startup-notification, libvpx, clang,  icu, pulseaudio, zip autoconf-2.13 cbindgen
 
 name=netscape
-version=2.53.18
+version=2.53.18.2
 release=1
-source=(https://archive.mozilla.org/pub/seamonkey/releases/$version$patchver/source/seamonkey-$version.source.tar.xz \
+source=(https://archive.seamonkey-project.org/releases/$version/source/seamonkey-$version.source.tar.xz \
         http://www.stukamanhpt4.com/Netscape/Netscape-$version.tar.xz \
 	http://www.stukamanhpt4.com/Netscape/netscape-$version.diff \
         firefox-115.4.0-icu-74.patch \
+	https://www.linuxfromscratch.org/patches/blfs/svn/seamonkey-2.53.18.2-cxx17-1.patch \
 	netscape.desktop nsmail.desktop vpx-compat.diff)
+
+# C++17 patch courtesy of Linux From Scratch
+# https://www.linuxfromscratch.org/blfs/view/svn/xsoft/seamonkey.html
 
 build () {
     cd seamonkey-$version
@@ -20,6 +24,8 @@ build () {
 
     # Fix building with system ICU >= 74
     patch -p1 -i $SRC/firefox-115.4.0-icu-74.patch
+
+    patch -p1 -i $SRC/seamonkey-2.53.18.2-cxx17-1.patch
 
     sed -i mozconfig.nix -e s!@TOPSRCDIR@!`pwd`!g -e s!j4!j$(nproc)!g
 
@@ -34,6 +40,12 @@ build () {
     # echo export CARGO="$CARGO_HOME/bin/cargo" >> mozconfig.nix
     # echo export RUSTDOC="$CARGO_HOME/bin/rustdoc" >> mozconfig.nix
     # echo export RUSTFMT="$CARGO_HOME/bin/rustfmt" >> mozconfig.nix
+
+    # The SIMD code relies on the unmaintained packed_simd crate which
+    # fails to build with Rustc >= 1.78.0.  We may re-enable it once
+    # Mozilla port the code to use std::simd and std::simd is stabilized.
+    echo ac_add_options --disable-rust-simd >> mozconfig.nix
+
 
     export MOZCONFIG=$SRC/seamonkey-$version/mozconfig.nix
     export MACH_USE_SYSTEM_PYTHON=1
