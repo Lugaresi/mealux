@@ -6,14 +6,15 @@
 name=deadbeef-fb
 version=0.7git
 release=1
-source=()
+source=(errno-fix.diff)
 
 build() {
     git clone https://github.com/dbordak/deadbeef-librarybrowser/
     cd deadbeef-librarybrowser
+    patch -p1 -i $SRC/errno-fix.diff
     ./autogen.sh
     sed -e s/-Werror//g -i Makefile.in
-    bash configure --prefix=/usr --disable-gtk3 --enable-gtk2
+    bash configure --prefix=/usr --disable-gtk2 --enable-gtk3
     make
     make DESTDIR=$PKG install
 }

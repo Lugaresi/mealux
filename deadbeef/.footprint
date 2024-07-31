@@ -19,12 +19,10 @@ drwxr-xr-x	root/root	usr/lib/deadbeef/
 -rwxr-xr-x	root/root	usr/lib/deadbeef/alsa.so
 -rwxr-xr-x	root/root	usr/lib/deadbeef/artwork.la
 -rwxr-xr-x	root/root	usr/lib/deadbeef/artwork.so
--rwxr-xr-x	root/root	usr/lib/deadbeef/cdda.la
--rwxr-xr-x	root/root	usr/lib/deadbeef/cdda.so
 -rwxr-xr-x	root/root	usr/lib/deadbeef/converter.la
 -rwxr-xr-x	root/root	usr/lib/deadbeef/converter.so
--rwxr-xr-x	root/root	usr/lib/deadbeef/converter_gtk2.la
--rwxr-xr-x	root/root	usr/lib/deadbeef/converter_gtk2.so
+-rwxr-xr-x	root/root	usr/lib/deadbeef/converter_gtk3.la
+-rwxr-xr-x	root/root	usr/lib/deadbeef/converter_gtk3.so
 drwxr-xr-x	root/root	usr/lib/deadbeef/convpresets/
 -rw-r--r--	root/root	usr/lib/deadbeef/convpresets/AAC_VBR_192Kbps_(Nero_FAAC).txt
 -rw-r--r--	root/root	usr/lib/deadbeef/convpresets/AAC_VBR_256Kbps_(Nero_FAAC).txt
@@ -147,8 +145,8 @@ drwxr-xr-x	root/root	usr/lib/deadbeef/data68/Replay/
 -rwxr-xr-x	root/root	usr/lib/deadbeef/ddb_dsp_libretro.so
 -rwxr-xr-x	root/root	usr/lib/deadbeef/ddb_dumb.la
 -rwxr-xr-x	root/root	usr/lib/deadbeef/ddb_dumb.so
--rwxr-xr-x	root/root	usr/lib/deadbeef/ddb_gui_GTK2.la
--rwxr-xr-x	root/root	usr/lib/deadbeef/ddb_gui_GTK2.so
+-rwxr-xr-x	root/root	usr/lib/deadbeef/ddb_gui_GTK3.la
+-rwxr-xr-x	root/root	usr/lib/deadbeef/ddb_gui_GTK3.so
 -rwxr-xr-x	root/root	usr/lib/deadbeef/ddb_mono2stereo.la
 -rwxr-xr-x	root/root	usr/lib/deadbeef/ddb_mono2stereo.so
 -rwxr-xr-x	root/root	usr/lib/deadbeef/ddb_out_pw.la
@@ -181,8 +179,8 @@ drwxr-xr-x	root/root	usr/lib/deadbeef/data68/Replay/
 -rwxr-xr-x	root/root	usr/lib/deadbeef/musepack.so
 -rwxr-xr-x	root/root	usr/lib/deadbeef/notify.la
 -rwxr-xr-x	root/root	usr/lib/deadbeef/notify.so
--rwxr-xr-x	root/root	usr/lib/deadbeef/pltbrowser_gtk2.la
--rwxr-xr-x	root/root	usr/lib/deadbeef/pltbrowser_gtk2.so
+-rwxr-xr-x	root/root	usr/lib/deadbeef/pltbrowser_gtk3.la
+-rwxr-xr-x	root/root	usr/lib/deadbeef/pltbrowser_gtk3.so
 -rwxr-xr-x	root/root	usr/lib/deadbeef/psf.la
 -rwxr-xr-x	root/root	usr/lib/deadbeef/psf.so
 -rwxr-xr-x	root/root	usr/lib/deadbeef/pulse.la
@@ -191,8 +189,8 @@ drwxr-xr-x	root/root	usr/lib/deadbeef/data68/Replay/
 -rwxr-xr-x	root/root	usr/lib/deadbeef/rg_scanner.so
 -rwxr-xr-x	root/root	usr/lib/deadbeef/shellexec.la
 -rwxr-xr-x	root/root	usr/lib/deadbeef/shellexec.so
--rwxr-xr-x	root/root	usr/lib/deadbeef/shellexecui_gtk2.la
--rwxr-xr-x	root/root	usr/lib/deadbeef/shellexecui_gtk2.so
+-rwxr-xr-x	root/root	usr/lib/deadbeef/shellexecui_gtk3.la
+-rwxr-xr-x	root/root	usr/lib/deadbeef/shellexecui_gtk3.so
 -rwxr-xr-x	root/root	usr/lib/deadbeef/sndfile.la
 -rwxr-xr-x	root/root	usr/lib/deadbeef/sndfile.so
 -rwxr-xr-x	root/root	usr/lib/deadbeef/supereq.la

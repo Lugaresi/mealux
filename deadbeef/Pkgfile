@@ -1,12 +1,13 @@
 # Description:  The ultimate music player for Linux 
 # URL:          http://deadbeef.sourceforge.net/
 # Maintainer:   Stuka
-# Depends on:   faad2 libmad libsamplerate pulseaudio jansson libdispatch
+# Depends on:   faad2 libmad libsamplerate pulseaudio jansson libdispatch wavpack libzip
 
 name=deadbeef
-version=1.9.5
+version=1.9.6
 release=1
-source=(https://sourceforge.net/projects/deadbeef/files/travis/linux/${version}/deadbeef-${version}.tar.bz2)
+source=(https://sourceforge.net/projects/deadbeef/files/travis/linux/${version}/deadbeef-${version}.tar.bz2
+	https://github.com/DeaDBeeF-Player/deadbeef/commit/d4cca5605447122cd080691f43e46047a6039359.diff)
 
 build() {
   cd $name-$version
@@ -14,17 +15,19 @@ build() {
   # Adplug built with std C++11
   sed -e s/-Dstricmp=strcasecmp/-std=c++11\ -Dstricmp=strcasecmp/g -i plugins/adplug/Makefile.in
 
+  patch -p1 -i $SRC/d4cca5605447122cd080691f43e46047a6039359.diff
+
 #  ./autogen.sh
   CC=clang CXX=clang++ \
   ./configure --prefix=/usr --mandir=/usr/man \
-      --enable-alsa --enable-gtk2 --enable-vfs-curl --enable-supereq \
+      --enable-alsa --enable-gtk3 --enable-vfs-curl --enable-supereq \
       --enable-mad --enable-vorbis --enable-sndfile --enable-hotkeys \
       --enable-mms --enable-m3u --enable-converter --enable-artwork \
       --enable-wavpack --enable-musepack --enable-cdda --enable-ffap \
       --enable-opus --enable-ffmpeg --enable-hotkeys --enable-notify \
       --enable-dca --enable-aac --enable-mono2stereo --enable-alac --enable-wma \
       --disable-static --disable-nls --disable-nullout --disable-oss \
-      --disable-coreaudio --disable-gtk3 --disable-lfm --disable-sid --disable-vtx \
+      --disable-coreaudio --disable-gtk2 --disable-lfm --disable-sid --disable-vtx \
 
   make
   make install DESTDIR=$PKG
