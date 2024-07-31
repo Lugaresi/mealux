@@ -4,7 +4,7 @@
 # Depends on:  xine-lib
 
 name=xine-ui
-version=0.99.12
+version=0.99.14
 release=1
 source=(https://downloads.sourceforge.net/project/xine/$name/$version/xine-ui-$version.tar.xz)
 
