@@ -10,10 +10,12 @@ source=(https://github.com/$name/$name/archive/v$version/$name-$version.tar.gz
 	rc.sddm
     sddm.pam
     sddm-autologin.pam
-    sddm-greeter.pam)
+    sddm-greeter.pam
+	consolekit-fix.diff)
 
 build() {
 	cd $name-$version
+	patch -p1 -i $SRC/consolekit-fix.diff
 	mkdir build; cd build
 
 	cmake \
