@@ -4,11 +4,10 @@
 # Depends on: cmake glib xorg-libxcursor xorg-libxinerama xorg-libxkbfile xorg-libxrandr xorg-libxv
 # Optional: alsa-lib cups directfb ffmpeg gst-plugins-base libxslt neon pulseaudio wayland xmlto
 
-name=freerdp2
-version=2.10.0
+name=freerdp3
+version=3.6.3
 release=1
-source=(https://pub.freerdp.com/releases/freerdp-$version.tar.gz
-	ffmpeg-new.patch)
+source=(https://pub.freerdp.com/releases/freerdp-$version.tar.gz)
 
 build() {
 	prt-get isinst ccache && PATH="$(echo ${PATH} | awk -v RS=: -v ORS=: '/ccache/ {next} {print}' | sed 's/:*$//')"
@@ -16,7 +15,7 @@ build() {
 	prt-get isinst libxslt && PKGMK_FREERDP+=' -D WITH_MANPAGES=ON' || PKGMK_FREERDP+=' -D WITH_MANPAGES=OFF'
 	prt-get isinst ninja && PKGMK_FREERDP+=' -G Ninja'
 
-	(cd freerdp-$version && patch -p1 -i ../ffmpeg-new.patch)
+#	(cd freerdp-$version && patch -p1 -i ../ffmpeg-new.patch)
 
 	cmake -S freerdp-$version -B build $PKGMK_FREERDP \
 		-D CMAKE_BUILD_TYPE=RELEASE \
@@ -25,6 +24,7 @@ build() {
 		-D CMAKE_INSTALL_LIBDIR=lib \
 		-D CMAKE_SKIP_RPATH=ON \
 		-D WITH_CLIENT=ON \
+		-D WITH_CLIENT_SDL=OFF \
 		-D WITH_LIBSYSTEMD=OFF \
         	-D WITH_DSP_FFMPEG=ON \
 	        -D WITH_FFMPEG=ON \
