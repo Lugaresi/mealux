@@ -1,0 +1,33 @@
+# Description: document processor
+# URL: http://www.lyx.org/
+# Maintainer: Daryl Fonseca-Holt, wyatt at prairieturtle dot ca
+# Packager:
+# Depends on: qt6-svg python3 libxslt
+
+name=lyx
+version=2.4.1
+release=1
+source=(
+	    https://ftp.lip6.fr/pub/lyx/stable/2.4.x/lyx-$version.tar.xz
+		https://www.lyx.org/trac/export/HEAD/dictionaries/thes/th_it_IT_v2.idx
+		https://www.lyx.org/trac/export/HEAD/dictionaries/thes/th_it_IT_v2.dat
+		https://www.lyx.org/trac/export/HEAD/dictionaries/dicts/it_IT.dic
+		https://www.lyx.org/trac/export/HEAD/dictionaries/dicts/it_IT.aff
+)
+
+build() {
+	cd $name-$version
+#    sed -i '54 a #include <iterator>' src/lyxfind.cpp
+#    sed -i '45 a #include <cstring>' src/insets/InsetListings.cpp
+	./configure --prefix=/usr \
+		--sysconfdir=/etc/$name \
+		--enable-qt6 \
+		--without-xslt-stylesheets \
+		--mandir=/usr/share/man 
+
+	make
+	make DESTDIR=$PKG install
+	rm -rf $PKG/usr/share/locale/
+	rm $PKG/usr/share/lyx/templates/README.new_templates
+
+}
