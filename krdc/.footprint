@@ -8,19 +8,19 @@ drwxr-xr-x	root/root	usr/include/krdc/
 -rw-r--r--	root/root	usr/include/krdc/remoteviewfactory.h
 -rw-r--r--	root/root	usr/include/krdccore_export.h
 drwxr-xr-x	root/root	usr/lib/
-drwxr-xr-x	root/root	usr/lib/qt5/
-drwxr-xr-x	root/root	usr/lib/qt5/plugins/
-drwxr-xr-x	root/root	usr/lib/qt5/plugins/krdc/
-drwxr-xr-x	root/root	usr/lib/qt5/plugins/krdc/kcms/
--rwxr-xr-x	root/root	usr/lib/qt5/plugins/krdc/kcms/libkcm_krdc_rdpplugin.so
--rwxr-xr-x	root/root	usr/lib/qt5/plugins/krdc/kcms/libkcm_krdc_vncplugin.so
--rwxr-xr-x	root/root	usr/lib/qt5/plugins/krdc/libkrdc_rdpplugin.so
--rwxr-xr-x	root/root	usr/lib/qt5/plugins/krdc/libkrdc_testplugin.so
--rwxr-xr-x	root/root	usr/lib/qt5/plugins/krdc/libkrdc_vncplugin.so
+drwxr-xr-x	root/root	usr/lib/qt6/
+drwxr-xr-x	root/root	usr/lib/qt6/plugins/
+drwxr-xr-x	root/root	usr/lib/qt6/plugins/krdc/
+drwxr-xr-x	root/root	usr/lib/qt6/plugins/krdc/kcms/
+-rwxr-xr-x	root/root	usr/lib/qt6/plugins/krdc/kcms/libkcm_krdc_rdpplugin.so
+-rwxr-xr-x	root/root	usr/lib/qt6/plugins/krdc/kcms/libkcm_krdc_vncplugin.so
+-rwxr-xr-x	root/root	usr/lib/qt6/plugins/krdc/krdc_rdpplugin.so
+-rwxr-xr-x	root/root	usr/lib/qt6/plugins/krdc/krdc_testplugin.so
+-rwxr-xr-x	root/root	usr/lib/qt6/plugins/krdc/krdc_vncplugin.so
 drwxr-xr-x	root/root	usr/lib64/
 lrwxrwxrwx	root/root	usr/lib64/libkrdccore.so -> libkrdccore.so.5
--rwxr-xr-x	root/root	usr/lib64/libkrdccore.so.22.12.0
-lrwxrwxrwx	root/root	usr/lib64/libkrdccore.so.5 -> libkrdccore.so.22.12.0
+-rwxr-xr-x	root/root	usr/lib64/libkrdccore.so.24.05.2
+lrwxrwxrwx	root/root	usr/lib64/libkrdccore.so.5 -> libkrdccore.so.24.05.2
 drwxr-xr-x	root/root	usr/share/
 drwxr-xr-x	root/root	usr/share/applications/
 -rwxr-xr-x	root/root	usr/share/applications/org.kde.krdc.desktop
@@ -117,6 +117,10 @@ drwxr-xr-x	root/root	usr/share/doc/HTML/ru/
 drwxr-xr-x	root/root	usr/share/doc/HTML/ru/krdc/
 -rw-r--r--	root/root	usr/share/doc/HTML/ru/krdc/index.cache.bz2
 -rw-r--r--	root/root	usr/share/doc/HTML/ru/krdc/index.docbook
+drwxr-xr-x	root/root	usr/share/doc/HTML/sl/
+drwxr-xr-x	root/root	usr/share/doc/HTML/sl/krdc/
+-rw-r--r--	root/root	usr/share/doc/HTML/sl/krdc/index.cache.bz2
+-rw-r--r--	root/root	usr/share/doc/HTML/sl/krdc/index.docbook
 drwxr-xr-x	root/root	usr/share/doc/HTML/sr/
 drwxr-xr-x	root/root	usr/share/doc/HTML/sr/krdc/
 -rw-r--r--	root/root	usr/share/doc/HTML/sr/krdc/index.cache.bz2
@@ -133,9 +137,6 @@ drwxr-xr-x	root/root	usr/share/doc/HTML/uk/
 drwxr-xr-x	root/root	usr/share/doc/HTML/uk/krdc/
 -rw-r--r--	root/root	usr/share/doc/HTML/uk/krdc/index.cache.bz2
 -rw-r--r--	root/root	usr/share/doc/HTML/uk/krdc/index.docbook
-drwxr-xr-x	root/root	usr/share/kio/
-drwxr-xr-x	root/root	usr/share/kio/servicemenus/
--rw-r--r--	root/root	usr/share/kio/servicemenus/smb2rdc.desktop
 drwxr-xr-x	root/root	usr/share/locale/
 drwxr-xr-x	root/root	usr/share/locale/af/
 drwxr-xr-x	root/root	usr/share/locale/af/LC_MESSAGES/
@@ -364,5 +365,5 @@ drwxr-xr-x	root/root	usr/share/locale/zh_TW/LC_MESSAGES/
 -rw-r--r--	root/root	usr/share/locale/zh_TW/LC_MESSAGES/krdc.mo
 drwxr-xr-x	root/root	usr/share/metainfo/
 -rw-r--r--	root/root	usr/share/metainfo/org.kde.krdc.appdata.xml
-drwxr-xr-x	root/root	usr/share/qlogging-categories5/
--rw-r--r--	root/root	usr/share/qlogging-categories5/krdc.categories
+drwxr-xr-x	root/root	usr/share/qlogging-categories6/
+-rw-r--r--	root/root	usr/share/qlogging-categories6/krdc.categories

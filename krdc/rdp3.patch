@@ -1,0 +1,49 @@
+--- a/rdp/rdpsession.h	2024-08-03 04:55:56.336063452 +0200
++++ b/rdp/rdpsession.h	2024-08-03 04:54:51.996065212 +0200
+@@ -13,6 +13,7 @@
+ #include <QObject>
+ #include <QSize>
+ 
++#define WITH_FREERDP_DEPRECATED
+ #include <freerdp/freerdp.h>
+ 
+ class RdpSession;
+--- a/rdp/rdpsession.cpp.orig	2024-08-03 05:08:10.203043381 +0200
++++ b/rdp/rdpsession.cpp	2024-08-03 05:07:08.131045079 +0200
+@@ -183,7 +183,7 @@ BOOL resizeDisplay(rdpContext *context)
+     return FALSE;
+ }
+ 
+-void channelConnected(void *context, ChannelConnectedEventArgs *e)
++void channelConnected(void *context, const ChannelConnectedEventArgs *e)
+ {
+     auto rdpC = reinterpret_cast<rdpContext *>(context);
+     if (strcmp(e->name, RDPGFX_DVC_CHANNEL_NAME) == 0) {
+@@ -194,7 +194,7 @@ void channelConnected(void *context, Cha
+     }
+ }
+ 
+-void channelDisconnected(void *context, ChannelDisconnectedEventArgs *e)
++void channelDisconnected(void *context, const ChannelDisconnectedEventArgs *e)
+ {
+     auto rdpC = reinterpret_cast<rdpContext *>(context);
+     if (strcmp(e->name, RDPGFX_DVC_CHANNEL_NAME) == 0) {
+@@ -408,7 +408,7 @@ bool RdpSession::start()
+     }
+ 
+     if (!m_preferences->shareMedia().isEmpty()) {
+-        char *params[2] = {strdup("drive"), m_preferences->shareMedia().toLocal8Bit().data()};
++        const char *params[2] = {strdup("drive"), m_preferences->shareMedia().toLocal8Bit().data()};
+         freerdp_client_add_device_channel(settings, 1, params);
+     }
+ 
+@@ -527,7 +527,7 @@ bool RdpSession::sendEvent(QEvent *event
+     case QEvent::KeyRelease: {
+         auto keyEvent = static_cast<QKeyEvent *>(event);
+         auto code = freerdp_keyboard_get_rdp_scancode_from_x11_keycode(keyEvent->nativeScanCode());
+-        freerdp_input_send_keyboard_event_ex(input, keyEvent->type() == QEvent::KeyPress, code);
++        freerdp_input_send_keyboard_event_ex(input, keyEvent->type() == QEvent::KeyPress, true, code);
+         return true;
+     }
+     case QEvent::MouseButtonPress:
+ 
