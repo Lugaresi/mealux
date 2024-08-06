@@ -1,21 +1,18 @@
 # Description:	Desktop client for Matrix using Qt and C++14.
 # URL:		https://github.com/Nheko-Reborn/nheko
 # Maintainer:	Stuka
-# Depends on:   qt5 qtkeychain openssl boost spdlog libolm lmdb nlohmann-json cmark libevent asciidoc gst-plugins-good gst-plugins-bad re2
+# Depends on:   qt6 qtkeychain6 openssl boost spdlog libolm lmdb nlohmann-json cmark libevent asciidoc gst-plugins-good gst-plugins-bad re2 kdsingleapplication
 
 name=nheko
-version=0.11.3
+version=0.12.0
 release=1
-source=(https://github.com/Nheko-Reborn/$name/archive/v$version.tar.gz
-        fmt10.diff
-	https://nheko.im/nheko-reborn/coeurl/-/commit/831e2ee8e9cf08ea1ee9736cde8370f9d0312abc.diff)
+source=(https://github.com/Nheko-Reborn/$name/archive/v$version.tar.gz)
 # source=(https://github.com/Nheko-Reborn/nheko/archive/100b5e0371f9485ec6fbbdc69a0efd9aa84d26d3.zip)
 
 #		-DVOIP=OFF \
 #               -DUSE_BUNDLED_OPENSSL=OFF \
 
 build() {
-	patch -d$SRC/$name-$version -p1 -i $SRC/fmt10.diff
 
 	mkdir build
 	cd build
@@ -28,7 +25,7 @@ build() {
 		-DUSE_BUNDLED_LMDBXX=ON \
 		-DUSE_BUNDLED_COEURL=ON \
 		-DCOMPILE_QML=ON
-	patch -d _deps/coeurl-src -p1 -i $SRC/831e2ee8e9cf08ea1ee9736cde8370f9d0312abc.diff
+#	patch -d _deps/coeurl-src -p1 -i $SRC/831e2ee8e9cf08ea1ee9736cde8370f9d0312abc.diff
 	make
 	make DESTDIR=$PKG install
 	#Cleanup
