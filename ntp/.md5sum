@@ -1,5 +1,4 @@
-ac2571c523725fa093e77aea3ff864c8  ntp-4.2.8p15-fix-build-for-dynamic-stack-size-glibc-2.34-and-greater.patch
-e1e6b23d2fc75cced41801dbcd6c2561  ntp-4.2.8p15.tar.gz
+516bdabd94ab7c824e9771390761a46c  ntp-4.2.8p18.tar.gz
 9907e1106ce7b3769e8895d4bda1f54e  ntp.conf
 61284ff6135fd9d1e90485dc459755ee  ntpd.rc
 49dd738dd11b0ba3587bf5cabab79754  ntpdate.rc

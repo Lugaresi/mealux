@@ -4,19 +4,17 @@
 # Depends on: libedit
 
 name=ntp
-version=4.2.8p15
+version=4.2.8p18
 release=2
 source=(http://www.eecis.udel.edu/~ntp/ntp_spool/ntp4/ntp-4.2/ntp-$version.tar.gz
 		ntp.conf
 		ntpd.rc
         ntpdate.rc
-		ntp-4.2.8p15-fix-build-for-dynamic-stack-size-glibc-2.34-and-greater.patch
 		)
 
 
 build() {
 	cd $name-$version
-	patch -p1 -i $SRC/ntp-4.2.8p15-fix-build-for-dynamic-stack-size-glibc-2.34-and-greater.patch
 	./configure --prefix=/usr --libexecdir=/usr/lib --enable-linuxcaps --enable-ntp-signd
 	make
 	make DESTDIR=$PKG install
