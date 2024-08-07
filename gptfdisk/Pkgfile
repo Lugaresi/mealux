@@ -4,7 +4,7 @@
 # Depends on: gcc popt util-linux ncurses
 
 name=gptfdisk
-version=1.0.8
+version=1.0.10
 release=1
 source=(http://downloads.sourceforge.net/project/$name/$name/$version/$name-$version.tar.gz)
 
