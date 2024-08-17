@@ -1,0 +1,28 @@
+# Description: Ragel compiles executable finite state machines from regular languages.
+# URL:         https://www.colm.net/open-source/ragel/
+# Maintainer:  Stuka
+# Packager:    Stuka
+
+name=ragel
+version=7.0.4
+release=1
+source=(https://github.com/adrian-thurston/$name/archive/refs/tags/$version.tar.gz)
+
+build() {
+  
+  export `cat $name-$version/configure.ac | grep EXPECTED_COLM_VER | head -n 1`
+  curl -L -O https://github.com/adrian-thurston/colm/archive/refs/tags/$EXPECTED_COLM_VER.tar.gz
+  tar -xf $EXPECTED_COLM_VER.tar.gz
+  cd colm-$EXPECTED_COLM_VER
+  ./autogen.sh
+  ./configure --prefix=$SRC/colm --disable-shares --enable-static --disable-manual
+  make
+  make install
+  cd ..
+  cd $name-$version
+  ./autogen.sh
+  ./configure --prefix=/usr --disable-nls  --with-colm=$SRC/colm --disable-manual
+
+  make
+  make DESTDIR=$PKG install
+}
