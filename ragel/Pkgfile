@@ -14,8 +14,9 @@ build() {
   curl -L -O https://github.com/adrian-thurston/colm/archive/refs/tags/$EXPECTED_COLM_VER.tar.gz
   tar -xf $EXPECTED_COLM_VER.tar.gz
   cd colm-$EXPECTED_COLM_VER
+  ln -s .libs/libcolm.a src/libcolm.a
   ./autogen.sh
-  ./configure --prefix=$SRC/colm --disable-shares --enable-static --disable-manual
+  CFLAGS=-fPIC CXXFLAGS=-fPIC ./configure --prefix=$SRC/colm --disable-shared --enable-static --disable-manual
   make
   make install
   cd ..
