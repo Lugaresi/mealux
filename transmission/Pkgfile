@@ -1,31 +1,34 @@
 # Description: BitTorrent client/daemon with command-line and web user interface
-# URL:         http://transmission.m0k.org/
-# Maintainer:  Juergen Daubert, jue at crux dot nu
-# Depends on:  curl libevent libpsl
+# URL: https://transmissionbt.com/
+# Maintainer: Juergen Daubert, jue at crux dot nu
+# Depends on: curl libevent
 
 name=transmission
-version=4.0.3
+version=4.0.6
 release=1
-source=(https://github.com/transmission/transmission/releases/download/$version/transmission-$version.tar.xz transmission.rc)
+source=(https://github.com/transmission/transmission/releases/download/$version/$name-$version.tar.xz
+	miniupnp.patch transmission.rc)
 
 build() {
-        cd $name-$version
-	mkdir build && cd build
-	cmake .. \
-		-DCMAKE_BUILD_TYPE=Release \
-		-DCMAKE_INSTALL_PREFIX=/usr \
-		-DENABLE_CLI=ON \
-		-DENABLE_DAEMON=ON \
-		-DENABLE_GTK=OFF \
-		-DENABLE_NLS=OFF \
-		-DENABLE_QT=OFF \
-		-DENABLE_TESTS=OFF \
-		-DENABLE_UTILS=ON \
-		-DINSTALL_DOC=ON \
-		-DUSE_QT5=OFF
-	make
-	make DESTDIR=$PKG install
+	patch -d $name-$version -p1 -i $SRC/miniupnp.patch
 
-	rm -rf $PKG/usr/share/doc
+	cmake -S $name-$version -B build -G Ninja \
+		-D CMAKE_BUILD_TYPE=Release \
+		-D CMAKE_INSTALL_PREFIX=/usr \
+		-D RUN_CLANG_TIDY=OFF \
+		-D ENABLE_TESTS=OFF \
+		-D ENABLE_NLS=OFF \
+		-D INSTALL_DOC=ON \
+		-D INSTALL_LIB=OFF \
+		-D ENABLE_GTK=OFF \
+		-D ENABLE_QT=OFF \
+		-D ENABLE_CLI=ON \
+		-D ENABLE_DAEMON=ON
+
+	cmake --build build -j ${JOBS:-1}
+	DESTDIR=$PKG cmake --install build
+
+	rm -r $PKG/usr/share/doc
 	install -D -m 755 $SRC/$name.rc $PKG/etc/rc.d/$name
+	find $PKG -name '*LICENSE*' -o -name '*LEGAL*' -delete
 }
