@@ -4,7 +4,7 @@
 # Depends on:  wget
 
 name=debootstrap
-version=1.0.128+nmu2
+version=1.0.137
 release=1
 source=(http://ftp.debian.org/debian/pool/main/d/$name/debootstrap_$version.tar.gz)
 

@@ -7,13 +7,17 @@ drwxr-xr-x	root/root	usr/share/debootstrap/
 drwxr-xr-x	root/root	usr/share/debootstrap/scripts/
 -rw-r--r--	root/root	usr/share/debootstrap/scripts/aequorea
 -rw-r--r--	root/root	usr/share/debootstrap/scripts/amber
+lrwxrwxrwx	root/root	usr/share/debootstrap/scripts/aramo -> robur
 lrwxrwxrwx	root/root	usr/share/debootstrap/scripts/artful -> gutsy
 lrwxrwxrwx	root/root	usr/share/debootstrap/scripts/ascii -> sid
+lrwxrwxrwx	root/root	usr/share/debootstrap/scripts/awen -> robur
 lrwxrwxrwx	root/root	usr/share/debootstrap/scripts/bartholomea -> aequorea
+lrwxrwxrwx	root/root	usr/share/debootstrap/scripts/belenos -> robur
 lrwxrwxrwx	root/root	usr/share/debootstrap/scripts/beowulf -> sid
 lrwxrwxrwx	root/root	usr/share/debootstrap/scripts/bionic -> gutsy
 lrwxrwxrwx	root/root	usr/share/debootstrap/scripts/bookworm -> sid
 -rw-r--r--	root/root	usr/share/debootstrap/scripts/breezy
+lrwxrwxrwx	root/root	usr/share/debootstrap/scripts/brigantia -> robur
 lrwxrwxrwx	root/root	usr/share/debootstrap/scripts/bullseye -> sid
 lrwxrwxrwx	root/root	usr/share/debootstrap/scripts/buster -> sid
 lrwxrwxrwx	root/root	usr/share/debootstrap/scripts/byzantium -> amber
@@ -21,16 +25,21 @@ lrwxrwxrwx	root/root	usr/share/debootstrap/scripts/ceres -> sid
 lrwxrwxrwx	root/root	usr/share/debootstrap/scripts/chromodoris -> aequorea
 lrwxrwxrwx	root/root	usr/share/debootstrap/scripts/cosmic -> gutsy
 lrwxrwxrwx	root/root	usr/share/debootstrap/scripts/crimson -> amber
+lrwxrwxrwx	root/root	usr/share/debootstrap/scripts/dagda -> robur
 -rw-r--r--	root/root	usr/share/debootstrap/scripts/dapper
 lrwxrwxrwx	root/root	usr/share/debootstrap/scripts/dasyatis -> aequorea
 -rw-r--r--	root/root	usr/share/debootstrap/scripts/debian-common
 lrwxrwxrwx	root/root	usr/share/debootstrap/scripts/disco -> gutsy
+lrwxrwxrwx	root/root	usr/share/debootstrap/scripts/dwyn -> robur
 -rw-r--r--	root/root	usr/share/debootstrap/scripts/edgy
 lrwxrwxrwx	root/root	usr/share/debootstrap/scripts/eoan -> gutsy
 -rw-r--r--	root/root	usr/share/debootstrap/scripts/etch
 lrwxrwxrwx	root/root	usr/share/debootstrap/scripts/etch-m68k -> etch
+lrwxrwxrwx	root/root	usr/share/debootstrap/scripts/etiona -> robur
 -rw-r--r--	root/root	usr/share/debootstrap/scripts/feisty
+lrwxrwxrwx	root/root	usr/share/debootstrap/scripts/flidas -> robur
 lrwxrwxrwx	root/root	usr/share/debootstrap/scripts/focal -> gutsy
+lrwxrwxrwx	root/root	usr/share/debootstrap/scripts/forky -> sid
 lrwxrwxrwx	root/root	usr/share/debootstrap/scripts/groovy -> gutsy
 -rw-r--r--	root/root	usr/share/debootstrap/scripts/gutsy
 lrwxrwxrwx	root/root	usr/share/debootstrap/scripts/hardy -> gutsy
@@ -51,24 +60,36 @@ lrwxrwxrwx	root/root	usr/share/debootstrap/scripts/karmic -> gutsy
 lrwxrwxrwx	root/root	usr/share/debootstrap/scripts/kinetic -> gutsy
 lrwxrwxrwx	root/root	usr/share/debootstrap/scripts/lenny -> etch
 lrwxrwxrwx	root/root	usr/share/debootstrap/scripts/lucid -> gutsy
+lrwxrwxrwx	root/root	usr/share/debootstrap/scripts/lunar -> gutsy
+lrwxrwxrwx	root/root	usr/share/debootstrap/scripts/mantic -> gutsy
 lrwxrwxrwx	root/root	usr/share/debootstrap/scripts/maverick -> gutsy
+lrwxrwxrwx	root/root	usr/share/debootstrap/scripts/nabia -> robur
 lrwxrwxrwx	root/root	usr/share/debootstrap/scripts/natty -> gutsy
+lrwxrwxrwx	root/root	usr/share/debootstrap/scripts/noble -> gutsy
 lrwxrwxrwx	root/root	usr/share/debootstrap/scripts/oldoldstable -> sid
 lrwxrwxrwx	root/root	usr/share/debootstrap/scripts/oldstable -> sid
+lrwxrwxrwx	root/root	usr/share/debootstrap/scripts/ondokuz -> pardus
 lrwxrwxrwx	root/root	usr/share/debootstrap/scripts/oneiric -> gutsy
+lrwxrwxrwx	root/root	usr/share/debootstrap/scripts/onyedi -> pardus
+lrwxrwxrwx	root/root	usr/share/debootstrap/scripts/oracular -> gutsy
+-rw-r--r--	root/root	usr/share/debootstrap/scripts/pardus
 -rw-r--r--	root/root	usr/share/debootstrap/scripts/potato
 lrwxrwxrwx	root/root	usr/share/debootstrap/scripts/precise -> gutsy
 lrwxrwxrwx	root/root	usr/share/debootstrap/scripts/quantal -> gutsy
 lrwxrwxrwx	root/root	usr/share/debootstrap/scripts/raring -> gutsy
+-rw-r--r--	root/root	usr/share/debootstrap/scripts/robur
 -rw-r--r--	root/root	usr/share/debootstrap/scripts/sarge
 -rw-r--r--	root/root	usr/share/debootstrap/scripts/sarge.buildd
 -rw-r--r--	root/root	usr/share/debootstrap/scripts/sarge.fakechroot
 lrwxrwxrwx	root/root	usr/share/debootstrap/scripts/saucy -> gutsy
 -rw-r--r--	root/root	usr/share/debootstrap/scripts/sid
+lrwxrwxrwx	root/root	usr/share/debootstrap/scripts/slaine -> robur
 lrwxrwxrwx	root/root	usr/share/debootstrap/scripts/squeeze -> etch
 lrwxrwxrwx	root/root	usr/share/debootstrap/scripts/stable -> sid
 lrwxrwxrwx	root/root	usr/share/debootstrap/scripts/stretch -> sid
+lrwxrwxrwx	root/root	usr/share/debootstrap/scripts/taranis -> robur
 lrwxrwxrwx	root/root	usr/share/debootstrap/scripts/testing -> sid
+lrwxrwxrwx	root/root	usr/share/debootstrap/scripts/toutatis -> robur
 lrwxrwxrwx	root/root	usr/share/debootstrap/scripts/trixie -> sid
 lrwxrwxrwx	root/root	usr/share/debootstrap/scripts/trusty -> gutsy
 lrwxrwxrwx	root/root	usr/share/debootstrap/scripts/unstable -> sid
@@ -82,4 +103,6 @@ lrwxrwxrwx	root/root	usr/share/debootstrap/scripts/wily -> gutsy
 -rw-r--r--	root/root	usr/share/debootstrap/scripts/woody.buildd
 lrwxrwxrwx	root/root	usr/share/debootstrap/scripts/xenial -> gutsy
 lrwxrwxrwx	root/root	usr/share/debootstrap/scripts/yakkety -> gutsy
+lrwxrwxrwx	root/root	usr/share/debootstrap/scripts/yirmibir -> pardus
+lrwxrwxrwx	root/root	usr/share/debootstrap/scripts/yirmiuc -> pardus
 lrwxrwxrwx	root/root	usr/share/debootstrap/scripts/zesty -> gutsy
