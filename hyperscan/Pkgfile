@@ -1,0 +1,21 @@
+# Description: High-performance regular expression matching library 
+# URL:         https://www.hyperscan.io/
+# Maintainer:  Stuka
+# Packager:    Stuka
+# Depends on:  cmake sqlite3 libpcre
+
+name=hyperscan
+version=5.4.2
+release=1
+source=(https://github.com/intel/$name/archive/refs/tags/v$version.tar.gz)
+
+build() {
+  cd $name-$version
+  mkdir build && cd build
+  cmake .. \
+  -DCMAKE_C_FLAGS=-fPIC \                                                                           -DCMAKE_CXX_FLAGS=-fPIC \
+  -DCMAKE_INSTALL_PREFIX=/usr \
+  -DCMAKE_BUILD_TYPE=Release
+  make
+  make DESTDIR=$PKG install
+}

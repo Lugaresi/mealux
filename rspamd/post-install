@@ -1,0 +1,9 @@
+#!/bin/sh
+
+set -x
+
+getent group rspamd >/dev/null || /usr/sbin/groupadd -r rspamd
+getent passwd rspamd >/dev/null || /usr/sbin/useradd -r -m -g rspamd -G mail -s /bin/false -d /var/lib/rspamd rspamd
+
+chown rspamd:rspamd /run/rspamd
+chown rspamd:rspamd /var/lib/rspamd
