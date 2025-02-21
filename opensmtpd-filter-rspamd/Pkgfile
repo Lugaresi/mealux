@@ -1,0 +1,21 @@
+# Description: OpenSMTPD filter running messages through ClamAV
+# URL: https://umaxx.net/
+# Maintainer: Stuka
+# Packager: Stuka
+# Depends on: go
+
+name=opensmtpd-filter-rspamd
+version=c2cf7aa
+release=1
+source=()
+
+build() {
+	git clone https://github.com/poolpOrg/filter-rspamd && cd filter-rspamd
+	git checkout c2cf7aa
+	go build
+	strip filter-rspamd
+	install -m0755 -d $PKG/usr/lib/opensmtpd/
+	install -m0755 filter-rspamd $PKG/usr/lib/opensmtpd/
+	install -m0755 -d $PKG/usr/man/man8/
+	install -m0444 filter-rspamd.8 $PKG/usr/man/man8
+}

@@ -1,0 +1,7 @@
+drwxr-xr-x	root/root	usr/
+drwxr-xr-x	root/root	usr/lib/
+drwxr-xr-x	root/root	usr/lib/opensmtpd/
+-rwxr-xr-x	root/root	usr/lib/opensmtpd/filter-rspamd
+drwxr-xr-x	root/root	usr/man/
+drwxr-xr-x	root/root	usr/man/man8/
+-r--r--r--	root/root	usr/man/man8/filter-rspamd.8.gz
