@@ -1,0 +1,23 @@
+# Description:  
+# URL:         https://www.opensmtpd.org
+# Maintainer:  Isak Andersson, contact at bitpuffin dot com
+#
+# depends on: libevent libasr opensmtpd
+
+name=opensmtpd-table-passwd
+version=1.0.2
+release=1
+source=(
+  https://github.com/OpenSMTPD/table-passwd/releases/download/$version/table-passwd-$version.tar.gz
+)
+
+build() {
+  cd table-passwd-$version
+#  ./bootstrap 
+  ./configure --prefix=/usr --libexecdir=/usr/lib/
+  make
+  make DESTDIR=$PKG install
+  mkdir -p $PKG/usr/lib/opensmtpd
+  mv $PKG/usr/libexec/smtpd/table-passwd $PKG/usr/lib/opensmtpd/table-passwd
+  rm -rf $PKG/usr/libexec
+}
