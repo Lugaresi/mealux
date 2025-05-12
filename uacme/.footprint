@@ -1,0 +1,13 @@
+drwxr-xr-x	root/root	usr/
+drwxr-xr-x	root/root	usr/bin/
+-rwxr-xr-x	root/root	usr/bin/uacme
+-rwxr-xr-x	root/root	usr/bin/ualpn
+drwxr-xr-x	root/root	usr/share/
+drwxr-xr-x	root/root	usr/share/man/
+drwxr-xr-x	root/root	usr/share/man/man1/
+-rw-r--r--	root/root	usr/share/man/man1/uacme.1.gz
+-rw-r--r--	root/root	usr/share/man/man1/ualpn.1.gz
+drwxr-xr-x	root/root	usr/share/uacme/
+-rwxr-xr-x	root/root	usr/share/uacme/nsupdate.sh
+-rwxr-xr-x	root/root	usr/share/uacme/uacme.sh
+-rwxr-xr-x	root/root	usr/share/uacme/ualpn.sh

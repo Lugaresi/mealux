@@ -1,0 +1,25 @@
+# Description: ACMEv2 client written in plain C with minimal dependencies
+# URL:         https://github.com/ndilieto/uacme
+# Maintainer:  Aaron Ball, nullspoon at oper dot io
+# Depends on:  gnutls asciidoc
+
+name=uacme
+version=1.7.6
+release=1
+source=(https://github.com/ndilieto/uacme/archive/v${version}.tar.gz)
+
+build() {
+  cd ${name}-${version}
+  autoreconf -vf
+
+  sed -i \
+    -e '/AX_CHECK_COMPILE_FLAG/d' \
+    -e '/-fno-strict-aliasing/d' \
+    configure
+
+  ./configure --prefix=/usr
+
+  make
+  make DESTDIR=${PKG} install
+  rm -r "${PKG}/usr/share/doc"
+}
