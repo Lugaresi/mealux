@@ -298,5 +298,3 @@ drwxr-xr-x	root/root	usr/share/ntp/lib/NTP/
 drwxr-xr-x	root/root	var/
 drwxr-xr-x	root/root	var/lib/
 drwxr-xr-x	ntp/ntp	var/lib/ntp/
-drwxr-xr-x	root/root	var/run/
-drwxr-xr-x	ntp/ntp	var/run/ntpd/

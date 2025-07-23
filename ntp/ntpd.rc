@@ -3,17 +3,18 @@
 # /etc/rc.d/ntpd: start/stop ntp daemon
 #
 
-RUNDIR="/var/run/ntpd"
+RUNDIR="/run/ntpd"
 PIDFILE="$RUNDIR/ntpd.pid"
 PROG="/usr/bin/ntpd"
 ARGS="-g -u ntp:ntp -p $PIDFILE"
 
 case $1 in
 start)
+	test -d $RUNDIR || mkdir $RUNDIR
 	$PROG $ARGS
 	;;
 stop)
-	killall $PROG
+	kill $(cat $PIDFILE)
 	;;
 restart)
 	$0 stop

@@ -5,8 +5,8 @@
 
 name=ntp
 version=4.2.8p18
-release=2
-source=(http://www.eecis.udel.edu/~ntp/ntp_spool/ntp4/ntp-4.2/ntp-$version.tar.gz
+release=3
+source=(https://downloads.nwtime.org/ntp/4.2.8/ntp-$version.tar.gz
 		ntp.conf
 		ntpd.rc
         ntpdate.rc
@@ -15,10 +15,10 @@ source=(http://www.eecis.udel.edu/~ntp/ntp_spool/ntp4/ntp-4.2/ntp-$version.tar.g
 
 build() {
 	cd $name-$version
+	export CFLAGS="$CFLAGS -Wno-error=int-conversion -Wno-error=incompatible-pointer-types"
 	./configure --prefix=/usr --libexecdir=/usr/lib --enable-linuxcaps --enable-ntp-signd
 	make
 	make DESTDIR=$PKG install
-    install -d -o ntp -g ntp $PKG/var/run/ntpd
 	install -d -o ntp -g ntp $PKG/var/lib/ntp
 	install -Dm644 $SRC/ntp.conf $PKG/etc/ntp.conf
 	install -Dm755 $SRC/ntpd.rc $PKG/etc/rc.d/ntpd
