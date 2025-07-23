@@ -1,8 +1,9 @@
-bb3de343049e11c8e577f0523620fc14  Netscape-2.53.18.2.tar.xz
+a3e89c578c1dbd71d0eb094e42538b19  Netscape-2.53.21.tar.xz
+6c305def4338c76d8ef8415b9f9cc600  cpython-3.10.18+20250712-x86_64-unknown-linux-gnu-install_only_stripped.tar.gz
 0885627005e6516ccaef126ea21d70f8  firefox-115.4.0-icu-74.patch
-fa4c0418dc0d61b506ecf21dbbd5120c  netscape-2.53.18.2.diff
+3244d6c8803134bf72e72607148c24b7  netscape-2.53.21.diff
 3abf9c81fce12c366e790efbe7cf877e  netscape.desktop
 fb84afb78222a53ace3ffa43e929b13d  nsmail.desktop
-eba3c1777237e367c10ecb0981a36bcf  seamonkey-2.53.18.2-cxx17-1.patch
-266a86651348e21934707a7ccb3abef3  seamonkey-2.53.18.2.source.tar.xz
+eba3c1777237e367c10ecb0981a36bcf  seamonkey-2.53.20-cxx17-1.patch
+388a3a89245c3c3aa0e2303fba7ed253  seamonkey-2.53.21.source.tar.xz
 44d113a6a0ae6c551e3c7a2f4d439cc1  vpx-compat.diff

@@ -1,0 +1,19 @@
+# Description: Library of PNG support functions with APNG support.
+# URL: http://www.libpng.org
+# Maintainer: CRUX System Team, core-ports at crux dot nu
+# Depends on: zlib
+
+name=libpng
+version=1.6.50
+release=1
+source=(http://download.sourceforge.net/$name/$name-$version.tar.xz
+	https://downloads.sourceforge.net/sourceforge/libpng-apng/libpng-1.6.49-apng.patch.gz)
+
+build() {
+    gunzip libpng-1.6.49-apng.patch.gz
+    cd $name-$version
+    patch -p1 -i $SRC/libpng-1.6.49-apng.patch
+    ./configure --prefix=/usr
+    make
+    make DESTDIR=$PKG install
+}
