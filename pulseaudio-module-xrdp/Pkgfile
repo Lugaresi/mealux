@@ -4,8 +4,8 @@
 # Depends on:  pulseaudio
 
 name=pulseaudio-module-xrdp
-version=0.6
-release=2
+version=0.8
+release=1
 source=(https://github.com/neutrinolabs/$name/archive/v$version.tar.gz)
 
 build() {

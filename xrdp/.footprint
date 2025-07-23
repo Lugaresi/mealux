@@ -7,13 +7,16 @@ drwxr-xr-x	root/root	etc/rc.d/
 -rwxr-xr-x	root/root	etc/rc.d/xrdp
 drwxr-xr-x	root/root	etc/xrdp/
 -rw-------	root/root	etc/xrdp/cert.pem
+-rw-r--r--	root/root	etc/xrdp/gfx.toml
 -rw-------	root/root	etc/xrdp/key.pem
+-rw-r--r--	root/root	etc/xrdp/km-00000405.ini
 -rw-r--r--	root/root	etc/xrdp/km-00000406.ini
 -rw-r--r--	root/root	etc/xrdp/km-00000407.ini
 -rw-r--r--	root/root	etc/xrdp/km-00000409.ini
 -rw-r--r--	root/root	etc/xrdp/km-0000040a.ini
 -rw-r--r--	root/root	etc/xrdp/km-0000040b.ini
 -rw-r--r--	root/root	etc/xrdp/km-0000040c.ini
+-rw-r--r--	root/root	etc/xrdp/km-0000040e.ini
 -rw-r--r--	root/root	etc/xrdp/km-00000410.ini
 -rw-r--r--	root/root	etc/xrdp/km-00000411.ini
 -rw-r--r--	root/root	etc/xrdp/km-00000412.ini
@@ -22,6 +25,7 @@ drwxr-xr-x	root/root	etc/xrdp/
 -rw-r--r--	root/root	etc/xrdp/km-00000416.ini
 -rw-r--r--	root/root	etc/xrdp/km-00000419.ini
 -rw-r--r--	root/root	etc/xrdp/km-0000041d.ini
+-rw-r--r--	root/root	etc/xrdp/km-00000426.ini
 -rw-r--r--	root/root	etc/xrdp/km-00000807.ini
 -rw-r--r--	root/root	etc/xrdp/km-00000809.ini
 -rw-r--r--	root/root	etc/xrdp/km-0000080a.ini
@@ -30,6 +34,8 @@ drwxr-xr-x	root/root	etc/xrdp/
 -rw-r--r--	root/root	etc/xrdp/km-00000816.ini
 -rw-r--r--	root/root	etc/xrdp/km-0000100c.ini
 -rw-r--r--	root/root	etc/xrdp/km-00010409.ini
+-rw-r--r--	root/root	etc/xrdp/km-00010426.ini
+lrwxrwxrwx	root/root	etc/xrdp/km-00020426.ini -> km-00010426.ini
 -rw-r--r--	root/root	etc/xrdp/km-19360409.ini
 drwxr-xr-x	root/root	etc/xrdp/pulse/
 -rw-r--r--	root/root	etc/xrdp/pulse/default.pa
@@ -42,6 +48,7 @@ drwxr-xr-x	root/root	etc/xrdp/pulse/
 drwxr-xr-x	root/root	usr/
 drwxr-xr-x	root/root	usr/bin/
 -rwxr-xr-x	root/root	usr/bin/xrdp-dis
+-rwxr-xr-x	root/root	usr/bin/xrdp-dumpfv1
 -rwxr-xr-x	root/root	usr/bin/xrdp-genkeymap
 -rwxr-xr-x	root/root	usr/bin/xrdp-keygen
 -rwxr-xr-x	root/root	usr/bin/xrdp-sesadmin
@@ -68,14 +75,8 @@ drwxr-xr-x	root/root	usr/include/
 drwxr-xr-x	root/root	usr/lib/
 -rw-r--r--	root/root	usr/lib/libpainter.a
 -rwxr-xr-x	root/root	usr/lib/libpainter.la
-lrwxrwxrwx	root/root	usr/lib/libpainter.so -> libpainter.so.0.0.0
-lrwxrwxrwx	root/root	usr/lib/libpainter.so.0 -> libpainter.so.0.0.0
--rwxr-xr-x	root/root	usr/lib/libpainter.so.0.0.0
 -rw-r--r--	root/root	usr/lib/librfxencode.a
 -rwxr-xr-x	root/root	usr/lib/librfxencode.la
-lrwxrwxrwx	root/root	usr/lib/librfxencode.so -> librfxencode.so.0.0.0
-lrwxrwxrwx	root/root	usr/lib/librfxencode.so.0 -> librfxencode.so.0.0.0
--rwxr-xr-x	root/root	usr/lib/librfxencode.so.0.0.0
 drwxr-xr-x	root/root	usr/lib/pkgconfig/
 -rw-r--r--	root/root	usr/lib/pkgconfig/libpainter.pc
 -rw-r--r--	root/root	usr/lib/pkgconfig/rfxcodec.pc
@@ -86,14 +87,24 @@ drwxr-xr-x	root/root	usr/lib/xrdp/
 lrwxrwxrwx	root/root	usr/lib/xrdp/libcommon.so -> libcommon.so.0.0.0
 lrwxrwxrwx	root/root	usr/lib/xrdp/libcommon.so.0 -> libcommon.so.0.0.0
 -rwxr-xr-x	root/root	usr/lib/xrdp/libcommon.so.0.0.0
+-rw-r--r--	root/root	usr/lib/xrdp/libipm.a
+-rwxr-xr-x	root/root	usr/lib/xrdp/libipm.la
+lrwxrwxrwx	root/root	usr/lib/xrdp/libipm.so -> libipm.so.0.0.0
+lrwxrwxrwx	root/root	usr/lib/xrdp/libipm.so.0 -> libipm.so.0.0.0
+-rwxr-xr-x	root/root	usr/lib/xrdp/libipm.so.0.0.0
 -rw-r--r--	root/root	usr/lib/xrdp/libmc.a
 -rwxr-xr-x	root/root	usr/lib/xrdp/libmc.la
 -rwxr-xr-x	root/root	usr/lib/xrdp/libmc.so
--rw-r--r--	root/root	usr/lib/xrdp/libscp.a
--rwxr-xr-x	root/root	usr/lib/xrdp/libscp.la
-lrwxrwxrwx	root/root	usr/lib/xrdp/libscp.so -> libscp.so.0.0.0
-lrwxrwxrwx	root/root	usr/lib/xrdp/libscp.so.0 -> libscp.so.0.0.0
--rwxr-xr-x	root/root	usr/lib/xrdp/libscp.so.0.0.0
+-rw-r--r--	root/root	usr/lib/xrdp/libsesman.a
+-rwxr-xr-x	root/root	usr/lib/xrdp/libsesman.la
+lrwxrwxrwx	root/root	usr/lib/xrdp/libsesman.so -> libsesman.so.0.0.0
+lrwxrwxrwx	root/root	usr/lib/xrdp/libsesman.so.0 -> libsesman.so.0.0.0
+-rwxr-xr-x	root/root	usr/lib/xrdp/libsesman.so.0.0.0
+-rw-r--r--	root/root	usr/lib/xrdp/libtoml.a
+-rwxr-xr-x	root/root	usr/lib/xrdp/libtoml.la
+lrwxrwxrwx	root/root	usr/lib/xrdp/libtoml.so -> libtoml.so.1.0.0
+lrwxrwxrwx	root/root	usr/lib/xrdp/libtoml.so.1 -> libtoml.so.1.0.0
+-rwxr-xr-x	root/root	usr/lib/xrdp/libtoml.so.1.0.0
 -rw-r--r--	root/root	usr/lib/xrdp/libvnc.a
 -rwxr-xr-x	root/root	usr/lib/xrdp/libvnc.la
 -rwxr-xr-x	root/root	usr/lib/xrdp/libvnc.so
@@ -110,6 +121,11 @@ lrwxrwxrwx	root/root	usr/lib/xrdp/libxrdpapi.so.0 -> libxrdpapi.so.0.0.0
 -rw-r--r--	root/root	usr/lib/xrdp/libxup.a
 -rwxr-xr-x	root/root	usr/lib/xrdp/libxup.la
 -rwxr-xr-x	root/root	usr/lib/xrdp/libxup.so
+drwxr-xr-x	root/root	usr/libexec/
+drwxr-xr-x	root/root	usr/libexec/xrdp/
+-rwxr-xr-x	root/root	usr/libexec/xrdp/waitforx
+-rwxr-xr-x	root/root	usr/libexec/xrdp/xrdp-droppriv
+-rwxr-xr-x	root/root	usr/libexec/xrdp/xrdp-sesexec
 drwxr-xr-x	root/root	usr/sbin/
 -rwxr-xr-x	root/root	usr/sbin/xrdp
 -rwxr-xr-x	root/root	usr/sbin/xrdp-chansrv
@@ -119,10 +135,12 @@ drwxr-xr-x	root/root	usr/share/man/
 drwxr-xr-x	root/root	usr/share/man/man1/
 -rw-r--r--	root/root	usr/share/man/man1/xrdp-dis.1.gz
 drwxr-xr-x	root/root	usr/share/man/man5/
+-rw-r--r--	root/root	usr/share/man/man5/gfx.toml.5.gz
 -rw-r--r--	root/root	usr/share/man/man5/sesman.ini.5.gz
 -rw-r--r--	root/root	usr/share/man/man5/xrdp.ini.5.gz
 drwxr-xr-x	root/root	usr/share/man/man8/
 -rw-r--r--	root/root	usr/share/man/man8/xrdp-chansrv.8.gz
+-rw-r--r--	root/root	usr/share/man/man8/xrdp-dumpfv1.8.gz
 -rw-r--r--	root/root	usr/share/man/man8/xrdp-genkeymap.8.gz
 -rw-r--r--	root/root	usr/share/man/man8/xrdp-keygen.8.gz
 -rw-r--r--	root/root	usr/share/man/man8/xrdp-sesadmin.8.gz
@@ -130,11 +148,15 @@ drwxr-xr-x	root/root	usr/share/man/man8/
 -rw-r--r--	root/root	usr/share/man/man8/xrdp-sesrun.8.gz
 -rw-r--r--	root/root	usr/share/man/man8/xrdp.8.gz
 drwxr-xr-x	root/root	usr/share/xrdp/
+-rw-r--r--	root/root	usr/share/xrdp/README.logo
 -rw-r--r--	root/root	usr/share/xrdp/ad24b.bmp
 -rw-r--r--	root/root	usr/share/xrdp/ad256.bmp
 -rw-r--r--	root/root	usr/share/xrdp/cursor0.cur
 -rw-r--r--	root/root	usr/share/xrdp/cursor1.cur
 -rw-r--r--	root/root	usr/share/xrdp/sans-10.fv1
+-rw-r--r--	root/root	usr/share/xrdp/sans-18.fv1
+-rwxr-xr-x	root/root	usr/share/xrdp/xrdp-chkpriv
 -rw-r--r--	root/root	usr/share/xrdp/xrdp24b.bmp
 -rw-r--r--	root/root	usr/share/xrdp/xrdp256.bmp
 -rw-r--r--	root/root	usr/share/xrdp/xrdp_logo.bmp
+-rw-r--r--	root/root	usr/share/xrdp/xrdp_logo.png
