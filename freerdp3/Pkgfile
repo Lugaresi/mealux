@@ -5,7 +5,7 @@
 # Optional: alsa-lib cups directfb ffmpeg gst-plugins-base libxslt neon pulseaudio wayland xmlto
 
 name=freerdp3
-version=3.6.3
+version=3.16.0
 release=1
 source=(https://pub.freerdp.com/releases/freerdp-$version.tar.gz)
 
@@ -18,7 +18,7 @@ build() {
 #	(cd freerdp-$version && patch -p1 -i ../ffmpeg-new.patch)
 
 	cmake -S freerdp-$version -B build $PKGMK_FREERDP \
-		-D CMAKE_BUILD_TYPE=RELEASE \
+		-D CMAKE_BUILD_TYPE=Release \
 		-D CMAKE_C_FLAGS_RELEASE="$CFLAGS" \
 		-D CMAKE_INSTALL_PREFIX=/usr \
 		-D CMAKE_INSTALL_LIBDIR=lib \
