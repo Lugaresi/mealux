@@ -1,12 +1,12 @@
 # Description: SVN
-# URL:         https://torproject.org/
-# Maintainer:  Suwako Moriya, suwako at 076 dot moe
+# URL:         https://subversion.apache.org/
+# Maintainer:  Stu
 # Depends on:	 apr apr-util sqlite3 libzip utf8proc
 
 name=subversion
-version=1.14.2
+version=1.14.5
 release=1
-source=(https://076.moe/repo/src/$name/$name-$version.tar.gz)
+source=(https://dlcdn.apache.org/$name/$name-$version.tar.bz2)
 
 build() {
   cd $name-$version
