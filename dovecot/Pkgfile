@@ -1,0 +1,63 @@
+# Description: IMAP and POP3 server with ssl/ipv6 support, written with security primarily in mind
+# URL: https://dovecot.org
+# Maintainer: Juergen Daubert, jue at crux dot nu
+# Depends on: bzip2 libcap linux-pam openssl sqlite3 xz zlib
+# Optional: clucene cyrus-sasl icu krb5 libsodium lua53 lz4 mariadb nss openldap postgresql
+
+name=dovecot
+version=2.4.1-4
+release=1
+source=(https://dovecot.org/releases/2.4/$name-$version.tar.gz
+    dovecot.rc dovecot.pam)
+
+build() {
+    cd $name-$version
+
+    autoreconf -fvi -I /usr/share/gettext/m4
+
+    prt-get isinst clucene && PKGMK_DOVECOT+=' --with-lucene'
+    prt-get isinst icu && PKGMK_DOVECOT+=' --with-icu'
+    prt-get isinst krb5 && PKGMK_DOVECOT+=' --with-gssapi'
+    prt-get isinst libsodium && PKGMK_DOVECOT+=' --with-sodium'
+    prt-get isinst lua53 && PKGMK_DOVECOT+=' --with-lua=plugin'
+    prt-get isinst mariadb && PKGMK_DOVECOT+=' --with-mysql'
+    prt-get isinst nss && PKGMK_DOVECOT+=' --with-nss'
+    prt-get isinst openldap && PKGMK_DOVECOT+=' --with-ldap=plugin'
+    prt-get isinst postgresql && PKGMK_DOVECOT+=' --with-pgsql'
+
+    CPPFLAGS="-I/usr/include/tirpc" \
+    LDFLAGS+=" -ltirpc" \
+    ./configure $PKGMK_DOVECOT \
+        --prefix=/usr \
+        --libexecdir=/usr/lib \
+        --sysconfdir=/etc \
+        --localstatedir=/var \
+        --with-rundir=/run/dovecot \
+        --with-moduledir=/usr/lib/dovecot/modules \
+        --with-sql \
+        --with-sqlite \
+        --with-libcap \
+        --with-pam \
+        --with-ssl=openssl
+
+    make
+    make DESTDIR=$PKG install
+
+    # RC script
+    install -D -m 755 $SRC/dovecot.rc $PKG/etc/rc.d/dovecot
+
+    # PAM
+    install -D -m 644 $SRC/dovecot.pam $PKG/etc/pam.d/dovecot
+
+    # SSL
+    install -d $PKG/etc/ssl/{certs,private}
+    touch $PKG/etc/ssl/certs/dovecot.pem
+    touch $PKG/etc/ssl/private/dovecot.pem
+    chmod 0600 $PKG/etc/ssl/{certs/dovecot.pem,private/dovecot.pem}
+
+    # directories
+    install -d -m 0750 $PKG/var/lib/dovecot
+
+    # cleanup
+    rm -r $PKG/usr/share/doc
+}
