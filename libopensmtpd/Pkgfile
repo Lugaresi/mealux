@@ -5,9 +5,9 @@
 # Depends on: opensmtpd
 
 name=libopensmtpd
-version=0.7
+version=1.0
 release=1
-source=(https://distfiles.sigtrap.nl/$name-$version.tar.gz)
+source=(https://src.imperialat.at/releases/$name-$version.tar.gz)
 
 build() {
 	cd $name-$version

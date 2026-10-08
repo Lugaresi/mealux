@@ -7,7 +7,7 @@
 name=opensmtpd-filter-dkimsign
 version=0.6
 release=1
-source=(https://imperialat.at/releases/filter-dkimsign-$version.tar.gz pledge.patch)
+source=(https://src.imperialat.at/releases/filter-dkimsign-$version.tar.gz pledge.patch)
 
 build() {
 	cd filter-dkimsign-$version
